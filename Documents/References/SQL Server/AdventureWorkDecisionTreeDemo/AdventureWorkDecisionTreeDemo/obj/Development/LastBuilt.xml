@@ -1,0 +1,86 @@
+﻿<Infos>
+  <Item name="v Target Mail.dmm">
+    <Time>634517100667421044</Time>
+    <Hash length="16">
+      <b>158</b>
+      <b>116</b>
+      <b>245</b>
+      <b>40</b>
+      <b>181</b>
+      <b>179</b>
+      <b>192</b>
+      <b>208</b>
+      <b>144</b>
+      <b>153</b>
+      <b>211</b>
+      <b>33</b>
+      <b>34</b>
+      <b>49</b>
+      <b>20</b>
+      <b>158</b>
+    </Hash>
+  </Item>
+  <Item name="TargetMail.dsv">
+    <Time>634517092936128839</Time>
+    <Hash length="16">
+      <b>56</b>
+      <b>212</b>
+      <b>204</b>
+      <b>185</b>
+      <b>33</b>
+      <b>87</b>
+      <b>127</b>
+      <b>66</b>
+      <b>26</b>
+      <b>139</b>
+      <b>115</b>
+      <b>61</b>
+      <b>29</b>
+      <b>124</b>
+      <b>231</b>
+      <b>63</b>
+    </Hash>
+  </Item>
+  <Item name="Adventure Works DW2008R2.ds">
+    <Time>634517107952067702</Time>
+    <Hash length="16">
+      <b>92</b>
+      <b>124</b>
+      <b>159</b>
+      <b>30</b>
+      <b>218</b>
+      <b>199</b>
+      <b>189</b>
+      <b>93</b>
+      <b>31</b>
+      <b>177</b>
+      <b>17</b>
+      <b>177</b>
+      <b>155</b>
+      <b>66</b>
+      <b>5</b>
+      <b>220</b>
+    </Hash>
+  </Item>
+  <Item name="AdventureWorkDecisionTreeDemo.database">
+    <Time>634515276850497989</Time>
+    <Hash length="16">
+      <b>111</b>
+      <b>140</b>
+      <b>60</b>
+      <b>80</b>
+      <b>222</b>
+      <b>7</b>
+      <b>120</b>
+      <b>203</b>
+      <b>120</b>
+      <b>245</b>
+      <b>36</b>
+      <b>90</b>
+      <b>73</b>
+      <b>212</b>
+      <b>185</b>
+      <b>118</b>
+    </Hash>
+  </Item>
+</Infos>
