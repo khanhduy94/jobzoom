@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobZoom.Web", "Web\JobZoom.Web\JobZoom.Web.csproj", "{C92F3929-E710-40DC-803F-C2BF672B1EC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{3C0DE4D3-6132-4F1F-924B-90F61481854F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FACEDCCF-5FCC-4DBB-A9E0-B61B40742DA3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{DB0F19B0-8FA6-46CD-A37C-04AD717CCB37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{D6D84F62-DAB7-4D09-8A58-BDA730FCF498}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{6CF02858-4F6E-4F90-BA3D-DD19EA19C9E1}"
+EndProject
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "JobZoom.Database", "Database\JobZoom.Database\JobZoom.Database.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C92F3929-E710-40DC-803F-C2BF672B1EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C92F3929-E710-40DC-803F-C2BF672B1EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C92F3929-E710-40DC-803F-C2BF672B1EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C92F3929-E710-40DC-803F-C2BF672B1EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C92F3929-E710-40DC-803F-C2BF672B1EC9} = {3C0DE4D3-6132-4F1F-924B-90F61481854F}
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {DB0F19B0-8FA6-46CD-A37C-04AD717CCB37}
+	EndGlobalSection
+EndGlobal
