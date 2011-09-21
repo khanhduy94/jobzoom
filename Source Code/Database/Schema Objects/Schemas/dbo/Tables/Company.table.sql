@@ -20,7 +20,7 @@
 	REFERENCES [User](ID),
 	CONSTRAINT FK_Company_Industry
 	FOREIGN KEY (IndustryID)
-	REFERENCES [Career.Industry](ID),
+	REFERENCES [Industry](ID),
 	CONSTRAINT FK_Company_Country
 	FOREIGN KEY (CityID)
 	REFERENCES Country(ID),

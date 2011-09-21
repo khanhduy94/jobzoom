@@ -9,8 +9,8 @@
 	EndDate datetime NULL,
 	[Description] nvarchar(100) NULL,
 	ExperienceType int NOT NULL,
-	ModifiedDate datetime,
-	CONSTRAINT FK_Jobseeker.Exprience_User
+	ModifiedDate datetime NOT NULL,
+	CONSTRAINT FK_Jobseeker_Exprience_User
 	FOREIGN KEY (UserID)
 	REFERENCES [User](ID)
 )
