@@ -9,6 +9,5 @@
 	ModifiedDate datetime NOT NULL,
 	CONSTRAINT FK_User_AccountType 
 	FOREIGN KEY (AccountTypeID)
-	REFERENCES AccountType(ID)
-
+	REFERENCES [User.AccountType](ID)
 )
