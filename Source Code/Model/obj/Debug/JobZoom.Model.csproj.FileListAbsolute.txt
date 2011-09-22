@@ -1,0 +1,12 @@
+E:\Dev\Net framework\JobZoom\JobZoom.Model\bin\Debug\JobZoom.Model.dll.config
+E:\Dev\Net framework\JobZoom\JobZoom.Model\bin\Debug\JobZoom.Model.dll
+E:\Dev\Net framework\JobZoom\JobZoom.Model\bin\Debug\JobZoom.Model.pdb
+E:\Dev\Net framework\JobZoom\JobZoom.Model\obj\Debug\ResolveAssemblyReference.cache
+E:\Dev\Net framework\JobZoom\JobZoom.Model\obj\Debug\JobZoom.Model.dll
+E:\Dev\Net framework\JobZoom\JobZoom.Model\obj\Debug\JobZoom.Model.pdb
+E:\Dev\Net framework\JobZoom\Model\bin\Debug\JobZoom.Model.dll.config
+E:\Dev\Net framework\JobZoom\Model\bin\Debug\JobZoom.Model.dll
+E:\Dev\Net framework\JobZoom\Model\bin\Debug\JobZoom.Model.pdb
+E:\Dev\Net framework\JobZoom\Model\obj\Debug\ResolveAssemblyReference.cache
+E:\Dev\Net framework\JobZoom\Model\obj\Debug\JobZoom.Model.dll
+E:\Dev\Net framework\JobZoom\Model\obj\Debug\JobZoom.Model.pdb

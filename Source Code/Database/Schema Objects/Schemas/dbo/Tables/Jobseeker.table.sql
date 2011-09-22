@@ -28,5 +28,5 @@
 	REFERENCES Country(ID),
 	CONSTRAINT FK_JobseekerCity_Country
 	FOREIGN KEY (CityID)
-	REFERENCES Country(ID)
+	REFERENCES City(ID)
 )

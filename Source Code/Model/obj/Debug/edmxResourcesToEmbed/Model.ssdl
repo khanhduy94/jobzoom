@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JobZoomModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="JobZoomModelStoreContainer">
+    <EntitySet Name="City" EntityType="JobZoomModel.Store.City" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Company" EntityType="JobZoomModel.Store.Company" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Country" EntityType="JobZoomModel.Store.Country" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Function" EntityType="JobZoomModel.Store.Function" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Industry" EntityType="JobZoomModel.Store.Industry" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Job" EntityType="JobZoomModel.Store.Job" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Job_Ability" EntityType="JobZoomModel.Store.Job_Ability" store:Type="Tables" Schema="dbo" Table="Job.Ability" />
+    <EntitySet Name="Job_Applicant" EntityType="JobZoomModel.Store.Job_Applicant" store:Type="Tables" Schema="dbo" Table="Job.Applicant" />
+    <EntitySet Name="Job_Experience" EntityType="JobZoomModel.Store.Job_Experience" store:Type="Tables" Schema="dbo" Table="Job.Experience" />
+    <EntitySet Name="Job_Industry" EntityType="JobZoomModel.Store.Job_Industry" store:Type="Tables" Schema="dbo" Table="Job.Industry" />
+    <EntitySet Name="Jobseeker" EntityType="JobZoomModel.Store.Jobseeker" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobseeker_Connection" EntityType="JobZoomModel.Store.Jobseeker_Connection" store:Type="Tables" Schema="dbo" Table="Jobseeker.Connection" />
+    <EntitySet Name="Jobseeker_Experience" EntityType="JobZoomModel.Store.Jobseeker_Experience" store:Type="Tables" Schema="dbo" Table="Jobseeker.Experience" />
+    <EntitySet Name="Jobseeker_HonorAward" EntityType="JobZoomModel.Store.Jobseeker_HonorAward" store:Type="Tables" Schema="dbo" Table="Jobseeker.HonorAward" />
+    <EntitySet Name="Jobseeker_Language" EntityType="JobZoomModel.Store.Jobseeker_Language" store:Type="Tables" Schema="dbo" Table="Jobseeker.Language" />
+    <EntitySet Name="Jobseeker_Project" EntityType="JobZoomModel.Store.Jobseeker_Project" store:Type="Tables" Schema="dbo" Table="Jobseeker.Project" />
+    <EntitySet Name="Jobseeker_ProjectMember" EntityType="JobZoomModel.Store.Jobseeker_ProjectMember" store:Type="Tables" Schema="dbo" Table="Jobseeker.ProjectMember" />
+    <EntitySet Name="Jobseeker_Skill" EntityType="JobZoomModel.Store.Jobseeker_Skill" store:Type="Tables" Schema="dbo" Table="Jobseeker.Skill" />
+    <EntitySet Name="Language" EntityType="JobZoomModel.Store.Language" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="JobZoomModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_AccountType" EntityType="JobZoomModel.Store.User_AccountType" store:Type="Tables" Schema="dbo" Table="User.AccountType" />
+    <AssociationSet Name="FK_City_Country" Association="JobZoomModel.Store.FK_City_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_Country" Association="JobZoomModel.Store.FK_Company_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_Industry" Association="JobZoomModel.Store.FK_Company_Industry">
+      <End Role="Industry" EntitySet="Industry" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Company_User" Association="JobZoomModel.Store.FK_Company_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Company" EntitySet="Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Ability_Job" Association="JobZoomModel.Store.FK_Job_Ability_Job">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="Job_Ability" EntitySet="Job_Ability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Applicant_Job" Association="JobZoomModel.Store.FK_Job_Applicant_Job">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="Job_Applicant" EntitySet="Job_Applicant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Applicant_User" Association="JobZoomModel.Store.FK_Job_Applicant_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Job_Applicant" EntitySet="Job_Applicant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Experience_Job" Association="JobZoomModel.Store.FK_Job_Experience_Job">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="Job_Experience" EntitySet="Job_Experience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Industry_Industry" Association="JobZoomModel.Store.FK_Job_Industry_Industry">
+      <End Role="Industry" EntitySet="Industry" />
+      <End Role="Job_Industry" EntitySet="Job_Industry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Industry_Job" Association="JobZoomModel.Store.FK_Job_Industry_Job">
+      <End Role="Job" EntitySet="Job" />
+      <End Role="Job_Industry" EntitySet="Job_Industry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_User" Association="JobZoomModel.Store.FK_Job_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Job" EntitySet="Job" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Connection1_User" Association="JobZoomModel.Store.FK_Jobseeker_Connection1_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_Connection" EntitySet="Jobseeker_Connection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Connection2_User" Association="JobZoomModel.Store.FK_Jobseeker_Connection2_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_Connection" EntitySet="Jobseeker_Connection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Country" Association="JobZoomModel.Store.FK_Jobseeker_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="Jobseeker" EntitySet="Jobseeker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Exprience_User" Association="JobZoomModel.Store.FK_Jobseeker_Exprience_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_Experience" EntitySet="Jobseeker_Experience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_HonorAward_User" Association="JobZoomModel.Store.FK_Jobseeker_HonorAward_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_HonorAward" EntitySet="Jobseeker_HonorAward" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Language_Language" Association="JobZoomModel.Store.FK_Jobseeker_Language_Language">
+      <End Role="Language" EntitySet="Language" />
+      <End Role="Jobseeker_Language" EntitySet="Jobseeker_Language" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Language_User" Association="JobZoomModel.Store.FK_Jobseeker_Language_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_Language" EntitySet="Jobseeker_Language" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Project_User" Association="JobZoomModel.Store.FK_Jobseeker_Project_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_Project" EntitySet="Jobseeker_Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_ProjectMember_Project" Association="JobZoomModel.Store.FK_Jobseeker_ProjectMember_Project">
+      <End Role="Jobseeker_Project" EntitySet="Jobseeker_Project" />
+      <End Role="Jobseeker_ProjectMember" EntitySet="Jobseeker_ProjectMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_ProjectMember_User" Association="JobZoomModel.Store.FK_Jobseeker_ProjectMember_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_ProjectMember" EntitySet="Jobseeker_ProjectMember" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_Skill_User" Association="JobZoomModel.Store.FK_Jobseeker_Skill_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker_Skill" EntitySet="Jobseeker_Skill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobseeker_User" Association="JobZoomModel.Store.FK_Jobseeker_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Jobseeker" EntitySet="Jobseeker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JobseekerCity_Country" Association="JobZoomModel.Store.FK_JobseekerCity_Country">
+      <End Role="City" EntitySet="City" />
+      <End Role="Jobseeker" EntitySet="Jobseeker" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_AccountType" Association="JobZoomModel.Store.FK_User_AccountType">
+      <End Role="User_AccountType" EntitySet="User_AccountType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CountryID" Type="char" Nullable="false" MaxLength="36" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="IndustryID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="CompanyType" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanySize" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddressLine1" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="50" />
+    <Property Name="CityID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+    <Property Name="Founded" Type="datetime" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="Logo" Type="image" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Flag" Type="image" />
+  </EntityType>
+  <EntityType Name="Function">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Industry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Job">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="JobTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CityID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="CountryID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Experience" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Compensation" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job_Ability">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="JobID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="AbilityName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job_Applicant">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="JobID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Result" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job_Experience">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="JobID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="JobTitle" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="YearOfExperience" Type="int" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job_Industry">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="JobID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="IndustryID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Suffix" Type="nvarchar" MaxLength="10" />
+    <Property Name="FirtName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nchar" Nullable="false" MaxLength="1" />
+    <Property Name="Birthdate" Type="datetime" Nullable="false" />
+    <Property Name="MaritalStatus" Type="nchar" Nullable="false" MaxLength="1" />
+    <Property Name="Citizenship" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="AddressLine1" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="AddressLine2" Type="varchar" MaxLength="50" />
+    <Property Name="CityID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdditionalInfo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_Connection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="FromUserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ToUserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_Experience">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" MaxLength="50" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="ExperienceType" Type="int" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_HonorAward">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Issuer" Type="nvarchar" MaxLength="50" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+    <Property Name="IssueDate" Type="datetime" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_Language">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="LanguageID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Proficiency" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_Project">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ProjectName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProjectURL" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_ProjectMember">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ProjectID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="MemberID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobseeker_Skill">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="SkillName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Language">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="PasswordHash" Type="char" Nullable="false" MaxLength="64" />
+    <Property Name="PasswordSalt" Type="int" Nullable="false" />
+    <Property Name="AccountTypeID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User_AccountType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_City_Country">
+    <End Role="Country" Type="JobZoomModel.Store.Country" Multiplicity="1" />
+    <End Role="City" Type="JobZoomModel.Store.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_Country">
+    <End Role="Country" Type="JobZoomModel.Store.Country" Multiplicity="1" />
+    <End Role="Company" Type="JobZoomModel.Store.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_Industry">
+    <End Role="Industry" Type="JobZoomModel.Store.Industry" Multiplicity="1" />
+    <End Role="Company" Type="JobZoomModel.Store.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Industry">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="IndustryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Company_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Company" Type="JobZoomModel.Store.Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Ability_Job">
+    <End Role="Job" Type="JobZoomModel.Store.Job" Multiplicity="1" />
+    <End Role="Job_Ability" Type="JobZoomModel.Store.Job_Ability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job_Ability">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Applicant_Job">
+    <End Role="Job" Type="JobZoomModel.Store.Job" Multiplicity="1" />
+    <End Role="Job_Applicant" Type="JobZoomModel.Store.Job_Applicant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job_Applicant">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Applicant_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Job_Applicant" Type="JobZoomModel.Store.Job_Applicant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job_Applicant">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Experience_Job">
+    <End Role="Job" Type="JobZoomModel.Store.Job" Multiplicity="1" />
+    <End Role="Job_Experience" Type="JobZoomModel.Store.Job_Experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job_Experience">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Industry_Industry">
+    <End Role="Industry" Type="JobZoomModel.Store.Industry" Multiplicity="1" />
+    <End Role="Job_Industry" Type="JobZoomModel.Store.Job_Industry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Industry">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job_Industry">
+        <PropertyRef Name="IndustryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Industry_Job">
+    <End Role="Job" Type="JobZoomModel.Store.Job" Multiplicity="1" />
+    <End Role="Job_Industry" Type="JobZoomModel.Store.Job_Industry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job_Industry">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Job" Type="JobZoomModel.Store.Job" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Connection1_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_Connection" Type="JobZoomModel.Store.Jobseeker_Connection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Connection">
+        <PropertyRef Name="FromUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Connection2_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_Connection" Type="JobZoomModel.Store.Jobseeker_Connection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Connection">
+        <PropertyRef Name="ToUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Country">
+    <End Role="Country" Type="JobZoomModel.Store.Country" Multiplicity="1" />
+    <End Role="Jobseeker" Type="JobZoomModel.Store.Jobseeker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker">
+        <PropertyRef Name="Citizenship" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Exprience_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_Experience" Type="JobZoomModel.Store.Jobseeker_Experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Experience">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_HonorAward_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_HonorAward" Type="JobZoomModel.Store.Jobseeker_HonorAward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_HonorAward">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Language_Language">
+    <End Role="Language" Type="JobZoomModel.Store.Language" Multiplicity="1" />
+    <End Role="Jobseeker_Language" Type="JobZoomModel.Store.Jobseeker_Language" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Language">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Language">
+        <PropertyRef Name="LanguageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Language_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_Language" Type="JobZoomModel.Store.Jobseeker_Language" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Language">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Project_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_Project" Type="JobZoomModel.Store.Jobseeker_Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Project">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_ProjectMember_Project">
+    <End Role="Jobseeker_Project" Type="JobZoomModel.Store.Jobseeker_Project" Multiplicity="1" />
+    <End Role="Jobseeker_ProjectMember" Type="JobZoomModel.Store.Jobseeker_ProjectMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Jobseeker_Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_ProjectMember">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_ProjectMember_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_ProjectMember" Type="JobZoomModel.Store.Jobseeker_ProjectMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_ProjectMember">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_Skill_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker_Skill" Type="JobZoomModel.Store.Jobseeker_Skill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker_Skill">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobseeker_User">
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="1" />
+    <End Role="Jobseeker" Type="JobZoomModel.Store.Jobseeker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JobseekerCity_Country">
+    <End Role="City" Type="JobZoomModel.Store.City" Multiplicity="1" />
+    <End Role="Jobseeker" Type="JobZoomModel.Store.Jobseeker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Jobseeker">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_AccountType">
+    <End Role="User_AccountType" Type="JobZoomModel.Store.User_AccountType" Multiplicity="1" />
+    <End Role="User" Type="JobZoomModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_AccountType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="AccountTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
