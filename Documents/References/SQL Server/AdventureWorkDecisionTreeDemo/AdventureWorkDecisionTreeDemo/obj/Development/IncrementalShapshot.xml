@@ -19,21 +19,21 @@
     <ObjectSnapshots>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
-        <TimeStamp>XHyfHtrHvV0fsRGxm0IF3A==9/15/2011 7:13:15 PM9/15/2011 6:45:41 PM</TimeStamp>
+        <TimeStamp>XHyfHtrHvV0fsRGxm0IF3A==9/20/2011 12:22:38 AM9/20/2011 12:22:38 AM</TimeStamp>
         <ID>
           <String>Adventure Works DW2008R2</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.DataSourceView</Type>
-        <TimeStamp>ONTMuSFXf0Iai3M9HXznPw==9/15/2011 6:48:13 PM9/15/2011 6:48:11 PM</TimeStamp>
+        <TimeStamp>ONTMuSFXf0Iai3M9HXznPw==9/20/2011 12:22:38 AM9/20/2011 12:22:38 AM</TimeStamp>
         <ID>
           <String>TargetMail</String>
         </ID>
       </ObjectSnapshot>
       <ObjectSnapshot>
         <Type>Microsoft.AnalysisServices.MiningStructure</Type>
-        <TimeStamp>nnT1KLWzwNCQmdMhIjEUng==9/15/2011 7:01:06 PM9/15/2011 7:01:06 PM</TimeStamp>
+        <TimeStamp>nnT1KLWzwNCQmdMhIjEUng==9/20/2011 12:22:38 AM9/20/2011 12:22:38 AM</TimeStamp>
         <ID>
           <String>v Target Mail</String>
         </ID>
@@ -41,7 +41,7 @@
     </ObjectSnapshots>
     <DatabaseSnapshot>
       <Type>Microsoft.AnalysisServices.Database</Type>
-      <TimeStamp>b4w8UN4HeMt49SRaSdS5dg==9/13/2011 4:21:25 PM9/13/2011 4:21:21 PM</TimeStamp>
+      <TimeStamp>b4w8UN4HeMt49SRaSdS5dg==9/20/2011 12:22:38 AM9/20/2011 12:22:38 AM</TimeStamp>
       <ID>
         <String>AdventureWorkDecisionTreeDemo</String>
       </ID>
@@ -50,5 +50,5 @@
   </Snapshot>
   <AssemblyLocations />
   <ProcessingComplete>true</ProcessingComplete>
-  <LastDeployed>2011-09-15T12:13:23.366667Z</LastDeployed>
+  <LastDeployed>2011-09-20T11:47:18.84Z</LastDeployed>
 </DeploymentSnapshot>
