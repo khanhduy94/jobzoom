@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using JobZoom.Web.Models;
+using JobZoom.Web.JobZoomServiceReference;
 
 namespace JobZoom.Web.Controllers
 {
@@ -14,11 +14,10 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Index()
         {
-            using (var context = new JobZoomEntities())
-            {
-                var countries = context.Countries.ToList();
-                return View(countries);
-            }            
+            JobZoomServiceClient dataContext = new JobZoomServiceClient();
+            
+            List<Country> allCountries = dataContext.GetAllCountries();
+            return View();
         }
 
         //
@@ -26,11 +25,12 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Details(string id)
         {
-            using (var context = new JobZoomEntities())
-            {
-                var countries = context.Countries.Where(c => c.ID == id).First();
-                return View(countries);
-            }      
+            //using (var context = new JobZoomEntities())
+            //{
+            //    var countries = context.Countries.Where(c => c.ID == id).First();
+            //    return View(countries);
+            //}      
+            return View();
         }
 
         //
@@ -47,20 +47,21 @@ namespace JobZoom.Web.Controllers
         [HttpPost]
         public ActionResult Create(Country country)
         {
-            try
-            {
-                country.ID = System.Guid.NewGuid().ToString();
-                using (var context = new JobZoomEntities())
-                {
-                    context.Countries.AddObject(country);
-                    context.SaveChanges();
-                }
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //try
+            //{
+            //    country.ID = System.Guid.NewGuid().ToString();
+            //    using (var context = new JobZoomEntities())
+            //    {
+            //        context.Countries.AddObject(country);
+            //        context.SaveChanges();
+            //    }
+            //    return RedirectToAction("Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+            return null;
         }
         
         //
@@ -68,11 +69,13 @@ namespace JobZoom.Web.Controllers
  
         public ActionResult Edit(string id)
         {
-            using (var context = new JobZoomEntities())
-            {
-                var country = context.Countries.Where(c => c.ID == id).First();
-                return View(country);
-            }            
+            //using (var context = new JobZoomEntities())
+            //{
+            //    var country = context.Countries.Where(c => c.ID == id).First();
+            //    return View(country);
+            //}            
+
+            return View();
         }
 
         //
@@ -81,21 +84,23 @@ namespace JobZoom.Web.Controllers
         [HttpPost]
         public ActionResult Edit(Country collection)
         {
-            try
-            {
-                using (var context = new JobZoomEntities())
-                {
-                    var country = context.Countries.Where(c => c.ID == collection.ID).First();
-                    UpdateModel(country);
-                    context.SaveChanges();
-                }
+            //try
+            //{
+            //    using (var context = new JobZoomEntities())
+            //    {
+            //        var country = context.Countries.Where(c => c.ID == collection.ID).First();
+            //        UpdateModel(country);
+            //        context.SaveChanges();
+            //    }
  
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //    return RedirectToAction("Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+
+            return View();
         }
 
         //
@@ -103,11 +108,13 @@ namespace JobZoom.Web.Controllers
  
         public ActionResult Delete(string id)
         {
-            using (var context = new JobZoomEntities())
-            {
-                var country = context.Countries.Where(c => c.ID == id).First();
-                return View(country);
-            }      
+            //using (var context = new JobZoomEntities())
+            //{
+            //    var country = context.Countries.Where(c => c.ID == id).First();
+            //    return View(country);
+            //}      
+
+            return View();
         }
 
         //
@@ -116,21 +123,23 @@ namespace JobZoom.Web.Controllers
         [HttpPost]
         public ActionResult Delete(string id, FormCollection collection)
         {
-            try
-            {
-                using (var context = new JobZoomEntities())
-                {
-                    var country = context.Countries.Where(c => c.ID == id).First();
-                    context.Countries.DeleteObject(country);
-                    context.SaveChanges();
-                }
+            //try
+            //{
+            //    using (var context = new JobZoomEntities())
+            //    {
+            //        var country = context.Countries.Where(c => c.ID == id).First();
+            //        context.Countries.DeleteObject(country);
+            //        context.SaveChanges();
+            //    }
  
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            //    return RedirectToAction("Index");
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+
+            return View();
         }
     }
 }
