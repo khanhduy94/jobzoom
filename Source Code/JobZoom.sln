@@ -17,6 +17,8 @@ Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "JobZoom.Database", "Databas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobZoom.Business.Entities", "Business\JobZoom.Business.Entities\JobZoom.Business.Entities.csproj", "{0072ABF3-190F-4936-8F94-1A5008005CDA}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "JobZoom.Models", "Models\JobZoom.Models\JobZoom.Models.modelproj", "{DA6E53B8-A293-47E9-A9C2-8A753CC23C54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{0072ABF3-190F-4936-8F94-1A5008005CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0072ABF3-190F-4936-8F94-1A5008005CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0072ABF3-190F-4936-8F94-1A5008005CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA6E53B8-A293-47E9-A9C2-8A753CC23C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA6E53B8-A293-47E9-A9C2-8A753CC23C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA6E53B8-A293-47E9-A9C2-8A753CC23C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA6E53B8-A293-47E9-A9C2-8A753CC23C54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{05C4795F-90C7-46C4-BDE8-0ECF521BD6E9} = {3C0DE4D3-6132-4F1F-924B-90F61481854F}
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {DB0F19B0-8FA6-46CD-A37C-04AD717CCB37}
+		{DA6E53B8-A293-47E9-A9C2-8A753CC23C54} = {D6D84F62-DAB7-4D09-8A58-BDA730FCF498}
 		{0072ABF3-190F-4936-8F94-1A5008005CDA} = {6CF02858-4F6E-4F90-BA3D-DD19EA19C9E1}
 	EndGlobalSection
 EndGlobal
