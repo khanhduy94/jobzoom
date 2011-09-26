@@ -22,11 +22,16 @@ namespace JobZoom.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "EmployerHome",//Route name
+                "Employer/Home/{action}/{id}",
+                new { controller = "EmployerHome", action ="Index", id = UrlParameter.Optional }
+                );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-
+            );            
         }
 
         protected void Application_Start()
