@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:16684/JobZoomService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="ArrayOfCountry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Country" nillable="true" type="tns:Country" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCountry" nillable="true" type="tns:ArrayOfCountry" />
+  <xs:complexType name="Country">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Cities" nillable="true" type="tns:ArrayOfCity" />
+          <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
+          <xs:element minOccurs="0" name="Flag" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Jobseekers" nillable="true" type="tns:ArrayOfJobseeker" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Country" nillable="true" type="tns:Country" />
+  <xs:complexType name="ArrayOfCity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="City" nillable="true" type="tns:City" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCity" nillable="true" type="tns:ArrayOfCity" />
+  <xs:complexType name="City">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
+          <xs:element minOccurs="0" name="CountryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CountryReference" nillable="true" type="q2:EntityReferenceOfCountrylrRhuyLR" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Jobseekers" nillable="true" type="tns:ArrayOfJobseeker" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="City" nillable="true" type="tns:City" />
+  <xs:complexType name="ArrayOfJobseeker">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker" nillable="true" type="tns:Jobseeker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker" nillable="true" type="tns:ArrayOfJobseeker" />
+  <xs:complexType name="Jobseeker">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q3:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AdditionalInfo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Birthdate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Citizenship" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="City" nillable="true" type="tns:City" />
+          <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CityReference" nillable="true" type="q3:EntityReferenceOfCitylrRhuyLR" />
+          <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
+          <xs:element minOccurs="0" name="CountryReference" nillable="true" type="q3:EntityReferenceOfCountrylrRhuyLR" />
+          <xs:element minOccurs="0" name="FirtName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaritalStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q3:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="Website" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker" nillable="true" type="tns:Jobseeker" />
+  <xs:complexType name="User">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q4:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AccountTypeID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job_Applicant" nillable="true" type="tns:ArrayOfJob_Applicant" />
+          <xs:element minOccurs="0" name="Jobs" nillable="true" type="tns:ArrayOfJob" />
+          <xs:element minOccurs="0" name="Jobseeker_Connection" nillable="true" type="tns:ArrayOfJobseeker_Connection" />
+          <xs:element minOccurs="0" name="Jobseeker_Connection1" nillable="true" type="tns:ArrayOfJobseeker_Connection" />
+          <xs:element minOccurs="0" name="Jobseeker_Experience" nillable="true" type="tns:ArrayOfJobseeker_Experience" />
+          <xs:element minOccurs="0" name="Jobseeker_HonorAward" nillable="true" type="tns:ArrayOfJobseeker_HonorAward" />
+          <xs:element minOccurs="0" name="Jobseeker_Language" nillable="true" type="tns:ArrayOfJobseeker_Language" />
+          <xs:element minOccurs="0" name="Jobseeker_Project" nillable="true" type="tns:ArrayOfJobseeker_Project" />
+          <xs:element minOccurs="0" name="Jobseeker_ProjectMember" nillable="true" type="tns:ArrayOfJobseeker_ProjectMember" />
+          <xs:element minOccurs="0" name="Jobseeker_Skill" nillable="true" type="tns:ArrayOfJobseeker_Skill" />
+          <xs:element minOccurs="0" name="Jobseekers" nillable="true" type="tns:ArrayOfJobseeker" />
+          <xs:element minOccurs="0" name="LastLoginDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PasswordSalt" type="xs:int" />
+          <xs:element minOccurs="0" name="User_AccountType" nillable="true" type="tns:User_AccountType" />
+          <xs:element minOccurs="0" name="User_AccountTypeReference" nillable="true" type="q4:EntityReferenceOfUser_AccountTypelrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Company" nillable="true" type="tns:Company" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompany" nillable="true" type="tns:ArrayOfCompany" />
+  <xs:complexType name="Company">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q5:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanySize" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
+          <xs:element minOccurs="0" name="CountryReference" nillable="true" type="q5:EntityReferenceOfCountrylrRhuyLR" />
+          <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Founded" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Industry" nillable="true" type="tns:Industry" />
+          <xs:element minOccurs="0" name="IndustryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IndustryReference" nillable="true" type="q5:EntityReferenceOfIndustrylrRhuyLR" />
+          <xs:element minOccurs="0" name="Logo" nillable="true" type="xs:base64Binary" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q5:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="Website" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Company" nillable="true" type="tns:Company" />
+  <xs:complexType name="Industry">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q6:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job_Industry" nillable="true" type="tns:ArrayOfJob_Industry" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Industry" nillable="true" type="tns:Industry" />
+  <xs:complexType name="ArrayOfJob_Industry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Job_Industry" nillable="true" type="tns:Job_Industry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJob_Industry" nillable="true" type="tns:ArrayOfJob_Industry" />
+  <xs:complexType name="Job_Industry">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q7:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Industry" nillable="true" type="tns:Industry" />
+          <xs:element minOccurs="0" name="IndustryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IndustryReference" nillable="true" type="q7:EntityReferenceOfIndustrylrRhuyLR" />
+          <xs:element minOccurs="0" name="Job" nillable="true" type="tns:Job" />
+          <xs:element minOccurs="0" name="JobID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobReference" nillable="true" type="q7:EntityReferenceOfJoblrRhuyLR" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Job_Industry" nillable="true" type="tns:Job_Industry" />
+  <xs:complexType name="Job">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q8:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Compensation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CountryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Experience" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job_Ability" nillable="true" type="tns:ArrayOfJob_Ability" />
+          <xs:element minOccurs="0" name="Job_Applicant" nillable="true" type="tns:ArrayOfJob_Applicant" />
+          <xs:element minOccurs="0" name="Job_Experience" nillable="true" type="tns:ArrayOfJob_Experience" />
+          <xs:element minOccurs="0" name="Job_Industry" nillable="true" type="tns:ArrayOfJob_Industry" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q8:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Job" nillable="true" type="tns:Job" />
+  <xs:complexType name="ArrayOfJob_Ability">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Job_Ability" nillable="true" type="tns:Job_Ability" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJob_Ability" nillable="true" type="tns:ArrayOfJob_Ability" />
+  <xs:complexType name="Job_Ability">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q9:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AbilityName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job" nillable="true" type="tns:Job" />
+          <xs:element minOccurs="0" name="JobID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobReference" nillable="true" type="q9:EntityReferenceOfJoblrRhuyLR" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Job_Ability" nillable="true" type="tns:Job_Ability" />
+  <xs:complexType name="ArrayOfJob_Applicant">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Job_Applicant" nillable="true" type="tns:Job_Applicant" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJob_Applicant" nillable="true" type="tns:ArrayOfJob_Applicant" />
+  <xs:complexType name="Job_Applicant">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q10:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job" nillable="true" type="tns:Job" />
+          <xs:element minOccurs="0" name="JobID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobReference" nillable="true" type="q10:EntityReferenceOfJoblrRhuyLR" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q10:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Job_Applicant" nillable="true" type="tns:Job_Applicant" />
+  <xs:complexType name="ArrayOfJob_Experience">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Job_Experience" nillable="true" type="tns:Job_Experience" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJob_Experience" nillable="true" type="tns:ArrayOfJob_Experience" />
+  <xs:complexType name="Job_Experience">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q11:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job" nillable="true" type="tns:Job" />
+          <xs:element minOccurs="0" name="JobID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobReference" nillable="true" type="q11:EntityReferenceOfJoblrRhuyLR" />
+          <xs:element minOccurs="0" name="JobTitle" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="YearOfExperience" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Job_Experience" nillable="true" type="tns:Job_Experience" />
+  <xs:complexType name="ArrayOfJob">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Job" nillable="true" type="tns:Job" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJob" nillable="true" type="tns:ArrayOfJob" />
+  <xs:complexType name="ArrayOfJobseeker_Connection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_Connection" nillable="true" type="tns:Jobseeker_Connection" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_Connection" nillable="true" type="tns:ArrayOfJobseeker_Connection" />
+  <xs:complexType name="Jobseeker_Connection">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q12:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="FromUserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Status" type="xs:int" />
+          <xs:element minOccurs="0" name="ToUserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="User1" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="User1Reference" nillable="true" type="q12:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q12:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_Connection" nillable="true" type="tns:Jobseeker_Connection" />
+  <xs:complexType name="ArrayOfJobseeker_Experience">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_Experience" nillable="true" type="tns:Jobseeker_Experience" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_Experience" nillable="true" type="tns:ArrayOfJobseeker_Experience" />
+  <xs:complexType name="Jobseeker_Experience">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q13:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ExperienceType" type="xs:int" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StartDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q13:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_Experience" nillable="true" type="tns:Jobseeker_Experience" />
+  <xs:complexType name="ArrayOfJobseeker_HonorAward">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_HonorAward" nillable="true" type="tns:Jobseeker_HonorAward" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_HonorAward" nillable="true" type="tns:ArrayOfJobseeker_HonorAward" />
+  <xs:complexType name="Jobseeker_HonorAward">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q14:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IssueDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Issuer" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q14:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_HonorAward" nillable="true" type="tns:Jobseeker_HonorAward" />
+  <xs:complexType name="ArrayOfJobseeker_Language">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_Language" nillable="true" type="tns:Jobseeker_Language" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_Language" nillable="true" type="tns:ArrayOfJobseeker_Language" />
+  <xs:complexType name="Jobseeker_Language">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q15:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Language" nillable="true" type="tns:Language" />
+          <xs:element minOccurs="0" name="LanguageID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LanguageReference" nillable="true" type="q15:EntityReferenceOfLanguagelrRhuyLR" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Proficiency" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q15:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_Language" nillable="true" type="tns:Jobseeker_Language" />
+  <xs:complexType name="Language">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q16:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Jobseeker_Language" nillable="true" type="tns:ArrayOfJobseeker_Language" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Language" nillable="true" type="tns:Language" />
+  <xs:complexType name="ArrayOfJobseeker_Project">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_Project" nillable="true" type="tns:Jobseeker_Project" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_Project" nillable="true" type="tns:ArrayOfJobseeker_Project" />
+  <xs:complexType name="Jobseeker_Project">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q17:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Jobseeker_ProjectMember" nillable="true" type="tns:ArrayOfJobseeker_ProjectMember" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Occupation" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProjectName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProjectURL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q17:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_Project" nillable="true" type="tns:Jobseeker_Project" />
+  <xs:complexType name="ArrayOfJobseeker_ProjectMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_ProjectMember" nillable="true" type="tns:Jobseeker_ProjectMember" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_ProjectMember" nillable="true" type="tns:ArrayOfJobseeker_ProjectMember" />
+  <xs:complexType name="Jobseeker_ProjectMember">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q18:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Jobseeker_Project" nillable="true" type="tns:Jobseeker_Project" />
+          <xs:element minOccurs="0" name="Jobseeker_ProjectReference" nillable="true" type="q18:EntityReferenceOfJobseeker_ProjectlrRhuyLR" />
+          <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ProjectID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q18:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_ProjectMember" nillable="true" type="tns:Jobseeker_ProjectMember" />
+  <xs:complexType name="ArrayOfJobseeker_Skill">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jobseeker_Skill" nillable="true" type="tns:Jobseeker_Skill" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJobseeker_Skill" nillable="true" type="tns:ArrayOfJobseeker_Skill" />
+  <xs:complexType name="Jobseeker_Skill">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q19:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="SkillName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q19:EntityReferenceOfUserlrRhuyLR" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Jobseeker_Skill" nillable="true" type="tns:Jobseeker_Skill" />
+  <xs:complexType name="User_AccountType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q20:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="User_AccountType" nillable="true" type="tns:User_AccountType" />
+  <xs:complexType name="ArrayOfUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="User" nillable="true" type="tns:User" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+</xs:schema>
