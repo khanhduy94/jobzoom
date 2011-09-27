@@ -18,5 +18,41 @@ namespace JobZoom.Services
         {
             return dataContext.Countries.ToList();
         }
+
+        public Jobseeker GetJobseeker(string userID)
+        {
+            return dataContext.Jobseekers.Where(j => j.UserID == userID).First();
+        }
+
+        public bool SavePersonalInfo(Jobseeker model)
+        {
+            try
+            {
+                var jobseeker = dataContext.Jobseekers.First(j => j.UserID == model.UserID);
+                jobseeker.Title = model.Title;
+                jobseeker.FirstName = model.FirstName;
+                jobseeker.LastName = model.LastName;
+                jobseeker.Gender = model.Gender;
+                jobseeker.Birthdate = model.Birthdate;
+                jobseeker.Citizenship = model.Citizenship;
+                jobseeker.Country = model.Country;
+                jobseeker.CityID = model.CityID;
+                jobseeker.MaritalStatus = model.MaritalStatus;
+                jobseeker.Phone = model.Phone;
+                jobseeker.Mobile = model.Mobile;
+                jobseeker.Picture = model.Picture;
+                jobseeker.AddressLine1 = model.AddressLine1;
+                jobseeker.AddressLine2 = model.AddressLine2;
+                jobseeker.AdditionalInfo = model.AdditionalInfo;
+                jobseeker.Website = model.Website;
+                jobseeker.ModifiedDate = DateTime.Now;
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -2,8 +2,7 @@
 (
 	ID char(36) PRIMARY KEY NOT NULL, 
 	Email nvarchar(50) NOT NULL,
-	PasswordHash char(64) NOT NULL,
-	PasswordSalt int NOT NULL,
+	[Password] varchar(50) NOT NULL,
 	AccountTypeID char(36) NOT NULL,
 	LastLoginDate datetime NULL,
 	ModifiedDate datetime NOT NULL,

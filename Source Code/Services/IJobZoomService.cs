@@ -23,7 +23,11 @@ namespace JobZoom.Services
         [OperationContract(Name = "GetAllCountries")]
         List<Country> GetCountries();
 
-        // TODO: Add your service operations here
+        [OperationContract]
+        Jobseeker GetJobseeker(string userID);
+
+        [OperationContract]
+        bool SavePersonalInfo(Jobseeker model);    
     }
 
 

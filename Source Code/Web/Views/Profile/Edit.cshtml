@@ -1,0 +1,39 @@
+﻿@model JobZoom.Business.Entites.Jobseeker
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profile</h2>
+
+<fieldset>
+    <legend>Personal Information</legend>
+    @Html.ActionLink("Edit", "EditPersonalInfo", "Profile")
+
+    <div class="display-field">@Model.Title @Model.FirstName @Model.LastName</div>
+
+    <div class="display-label">Gender @Model.Gender</div>
+
+    <div class="display-label">Birthdate @String.Format("{0:dd/MM/yyyy}", Model.Birthdate)</div>
+
+    <div class="display-label">MaritalStatus @Model.MaritalStatus</div>
+
+    <div class="display-label">Citizenship @Model.Citizenship</div>    
+
+    <div class="display-label">AddressLine1 @Model.AddressLine1</div>   
+
+    <div class="display-label">AddressLine2 @Model.AddressLine2</div>    
+
+    <div class="display-label">CityID @Model.CityID</div>    
+
+    <div class="display-label">Phone @Model.Phone</div>   
+
+    <div class="display-label">Mobile @Model.Mobile</div>
+    
+    <div class="display-label">AdditionalInfo</div>
+    <div class="display-field">@Model.AdditionalInfo</div>
+
+    <div class="display-label">Website @Model.Website</div>        
+</fieldset>
+

@@ -239,7 +239,7 @@
           <Property Name="UserID" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="10" />
           <Property Name="Suffix" Type="nvarchar" MaxLength="10" />
-          <Property Name="FirtName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
           <Property Name="Gender" Type="nchar" Nullable="false" MaxLength="1" />
@@ -347,8 +347,7 @@
           </Key>
           <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="PasswordHash" Type="char" Nullable="false" MaxLength="64" />
-          <Property Name="PasswordSalt" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="AccountTypeID" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="LastLoginDate" Type="datetime" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
@@ -920,7 +919,7 @@
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="Suffix" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="FirtName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="true" />
@@ -1043,8 +1042,7 @@
           </Key>
           <Property Name="ID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
-          <Property Name="PasswordSalt" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="AccountTypeID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
           <Property Name="LastLoginDate" Type="DateTime" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
@@ -1454,7 +1452,7 @@
             <ScalarProperty Name="UserID" ColumnName="UserID" />
             <ScalarProperty Name="Title" ColumnName="Title" />
             <ScalarProperty Name="Suffix" ColumnName="Suffix" />
-            <ScalarProperty Name="FirtName" ColumnName="FirtName" />
+            <ScalarProperty Name="FirstName" ColumnName="FirstName" />
             <ScalarProperty Name="LastName" ColumnName="LastName" />
             <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
             <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -1535,8 +1533,7 @@
           <EntitySetMapping Name="Users"><EntityTypeMapping TypeName="JobZoomModel.User"><MappingFragment StoreEntitySet="User">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Email" ColumnName="Email" />
-            <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-            <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
             <ScalarProperty Name="AccountTypeID" ColumnName="AccountTypeID" />
             <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
             <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
@@ -1582,10 +1579,10 @@
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_HonorAward" Width="1.5" PointX="5.25" PointY="37.25" Height="2.7494921875000102" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Language" Width="1.5" PointX="5.25" PointY="27.875" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Project" Width="1.5" PointX="5.25" PointY="43.875" Height="2.749492187499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_ProjectMember" Width="1.5" PointX="7.5" PointY="34" Height="2.172587890624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_ProjectMember" Width="1.5" PointX="7.5" PointY="34.125" Height="2.172587890624996" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Skill" Width="1.5" PointX="5.25" PointY="47.375" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Language" Width="1.5" PointX="3" PointY="28.25" Height="1.5956835937500031" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomModel.User" Width="1.5" PointX="3" PointY="21.625" Height="4.8648079427083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomModel.User" Width="1.5" PointX="3" PointY="21.75" Height="4.6725065104166674" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.User_AccountType" Width="1.5" PointX="0.75" PointY="23.25" Height="1.5956835937500031" IsExpanded="true" />
         <AssociationConnector Association="JobZoomModel.FK_City_Country" ManuallyRouted="false">
           <ConnectorPoint PointX="8" PointY="12.0862939453125" />
@@ -1677,12 +1674,12 @@
           <ConnectorPoint PointX="7.5" PointY="16.470838778745993" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Job_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="22.264150390624998" />
-          <ConnectorPoint PointX="5.25" PointY="22.264150390624998" />
+          <ConnectorPoint PointX="4.5" PointY="22.326650390624998" />
+          <ConnectorPoint PointX="5.25" PointY="22.326650390624998" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Job_Applicant_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="24.920687846354159" />
-          <ConnectorPoint PointX="5" PointY="24.920687846354159" />
+          <ConnectorPoint PointX="4.5" PointY="24.887037130208327" />
+          <ConnectorPoint PointX="5" PointY="24.887037130208327" />
           <ConnectorPoint PointX="5" PointY="23.875" />
           <ConnectorPoint PointX="7.041666666666667" PointY="23.875" />
           <ConnectorPoint PointX="7.270833333333333" PointY="23.875" />
@@ -1705,24 +1702,24 @@
           <ConnectorPoint PointX="9.515625" PointY="27.375" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Connection1_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="25.767747894531247" />
-          <ConnectorPoint PointX="5.25" PointY="25.767747894531247" />
+          <ConnectorPoint PointX="4.5" PointY="25.717271820312497" />
+          <ConnectorPoint PointX="5.25" PointY="25.717271820312497" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Connection2_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="24.460343923177078" />
-          <ConnectorPoint PointX="4.916666666666667" PointY="24.460343923177078" />
-          <ConnectorPoint PointX="5.083333333333333" PointY="24.460343923177078" />
-          <ConnectorPoint PointX="5.25" PointY="24.460343923177078" />
+          <ConnectorPoint PointX="4.5" PointY="24.443518565104164" />
+          <ConnectorPoint PointX="4.916666666666667" PointY="24.443518565104164" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="24.443518565104164" />
+          <ConnectorPoint PointX="5.25" PointY="24.443518565104164" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Exprience_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4884615384615376" PointY="26.489807942708332" />
-          <ConnectorPoint PointX="5.03125" PointY="27.032596404246796" />
+          <ConnectorPoint PointX="4.4884615384615376" PointY="26.422506510416667" />
+          <ConnectorPoint PointX="5.03125" PointY="26.965294971955132" />
           <ConnectorPoint PointX="5.03125" PointY="34.942047526041669" />
           <ConnectorPoint PointX="5.25" PointY="34.942047526041669" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_HonorAward_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="26.480576173477562" />
-          <ConnectorPoint PointX="5.09375" PointY="27.074326173477562" />
+          <ConnectorPoint PointX="4.5" PointY="26.413274741185898" />
+          <ConnectorPoint PointX="5.09375" PointY="27.007024741185898" />
           <ConnectorPoint PointX="5.09375" PointY="38.624746093750005" />
           <ConnectorPoint PointX="5.25" PointY="38.624746093750005" />
         </AssociationConnector>
@@ -1733,33 +1730,33 @@
           <ConnectorPoint PointX="5.25" PointY="29.047841796875" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Language_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="26.45980694270833" />
-          <ConnectorPoint PointX="5.15625" PointY="27.11605694270833" />
+          <ConnectorPoint PointX="4.5" PointY="26.392505510416665" />
+          <ConnectorPoint PointX="5.15625" PointY="27.048755510416665" />
           <ConnectorPoint PointX="5.15625" PointY="29.675117559895835" />
           <ConnectorPoint PointX="5.25" PointY="29.675117559895835" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Project_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4988461538461531" PointY="26.489807942708332" />
-          <ConnectorPoint PointX="4.96875" PointY="26.95971178886218" />
+          <ConnectorPoint PointX="4.4988461538461531" PointY="26.422506510416667" />
+          <ConnectorPoint PointX="4.96875" PointY="26.892410356570515" />
           <ConnectorPoint PointX="4.96875" PointY="45.24974609375" />
           <ConnectorPoint PointX="5.25" PointY="45.24974609375" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_ProjectMember_Project" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="45.24974609375" />
           <ConnectorPoint PointX="8.28125" PointY="45.24974609375" />
-          <ConnectorPoint PointX="8.28125" PointY="36.172587890624996" />
+          <ConnectorPoint PointX="8.28125" PointY="36.297587890624996" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_ProjectMember_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="26.4390377119391" />
-          <ConnectorPoint PointX="4.9257702307692313" PointY="26.864807942708332" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="26.864807942708332" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="26.864807942708332" />
-          <ConnectorPoint PointX="7.5" PointY="26.864807942708332" />
-          <ConnectorPoint PointX="7.5" PointY="34" />
+          <ConnectorPoint PointX="4.5" PointY="26.371736279647436" />
+          <ConnectorPoint PointX="4.9257702307692313" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="7.5" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="7.5" PointY="34.125" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Skill_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4469230769230768" PointY="26.489807942708332" />
-          <ConnectorPoint PointX="4.875" PointY="26.917884865785254" />
+          <ConnectorPoint PointX="4.4469230769230768" PointY="26.422506510416667" />
+          <ConnectorPoint PointX="4.875" PointY="26.85058343349359" />
           <ConnectorPoint PointX="4.875" PointY="48.365143229166669" />
           <ConnectorPoint PointX="5.25" PointY="48.365143229166669" />
         </AssociationConnector>

@@ -37,12 +37,19 @@ namespace JobZoom.Services
         }
 
 
-        public List<Business.Entites.Country> GetCountries()
+        public List<Country> GetCountries()
         {            
-            //return new List<Country>{new Country{ID="Vietnam", Name="Vietnam"},
-            //    new Country{ID="US", Name="US"}};  
-
             return repository.GetCountries();
-        }       
+        }
+
+        public Jobseeker GetJobseeker(string userID)
+        {
+            return repository.GetJobseeker(userID);
+        }
+
+        public bool SavePersonalInfo(Jobseeker model)
+        {
+            return repository.SavePersonalInfo(model);
+        }  
     }
 }

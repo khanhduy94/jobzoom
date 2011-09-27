@@ -2934,7 +2934,7 @@ namespace JobZoom.Business.Entites
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="userID">Initial value of the UserID property.</param>
         /// <param name="title">Initial value of the Title property.</param>
-        /// <param name="firtName">Initial value of the FirtName property.</param>
+        /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="gender">Initial value of the Gender property.</param>
         /// <param name="birthdate">Initial value of the Birthdate property.</param>
@@ -2943,13 +2943,13 @@ namespace JobZoom.Business.Entites
         /// <param name="addressLine1">Initial value of the AddressLine1 property.</param>
         /// <param name="cityID">Initial value of the CityID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Jobseeker CreateJobseeker(global::System.String id, global::System.String userID, global::System.String title, global::System.String firtName, global::System.String lastName, global::System.String gender, global::System.DateTime birthdate, global::System.String maritalStatus, global::System.String citizenship, global::System.String addressLine1, global::System.String cityID, global::System.DateTime modifiedDate)
+        public static Jobseeker CreateJobseeker(global::System.String id, global::System.String userID, global::System.String title, global::System.String firstName, global::System.String lastName, global::System.String gender, global::System.DateTime birthdate, global::System.String maritalStatus, global::System.String citizenship, global::System.String addressLine1, global::System.String cityID, global::System.DateTime modifiedDate)
         {
             Jobseeker jobseeker = new Jobseeker();
             jobseeker.ID = id;
             jobseeker.UserID = userID;
             jobseeker.Title = title;
-            jobseeker.FirtName = firtName;
+            jobseeker.FirstName = firstName;
             jobseeker.LastName = lastName;
             jobseeker.Gender = gender;
             jobseeker.Birthdate = birthdate;
@@ -3068,24 +3068,24 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String FirtName
+        public global::System.String FirstName
         {
             get
             {
-                return _FirtName;
+                return _FirstName;
             }
             set
             {
-                OnFirtNameChanging(value);
-                ReportPropertyChanging("FirtName");
-                _FirtName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("FirtName");
-                OnFirtNameChanged();
+                OnFirstNameChanging(value);
+                ReportPropertyChanging("FirstName");
+                _FirstName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FirstName");
+                OnFirstNameChanged();
             }
         }
-        private global::System.String _FirtName;
-        partial void OnFirtNameChanging(global::System.String value);
-        partial void OnFirtNameChanged();
+        private global::System.String _FirstName;
+        partial void OnFirstNameChanging(global::System.String value);
+        partial void OnFirstNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5411,17 +5411,15 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="email">Initial value of the Email property.</param>
-        /// <param name="passwordHash">Initial value of the PasswordHash property.</param>
-        /// <param name="passwordSalt">Initial value of the PasswordSalt property.</param>
+        /// <param name="password">Initial value of the Password property.</param>
         /// <param name="accountTypeID">Initial value of the AccountTypeID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static User CreateUser(global::System.String id, global::System.String email, global::System.String passwordHash, global::System.Int32 passwordSalt, global::System.String accountTypeID, global::System.DateTime modifiedDate)
+        public static User CreateUser(global::System.String id, global::System.String email, global::System.String password, global::System.String accountTypeID, global::System.DateTime modifiedDate)
         {
             User user = new User();
             user.ID = id;
             user.Email = email;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            user.Password = password;
             user.AccountTypeID = accountTypeID;
             user.ModifiedDate = modifiedDate;
             return user;
@@ -5486,48 +5484,24 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String PasswordHash
+        public global::System.String Password
         {
             get
             {
-                return _PasswordHash;
+                return _Password;
             }
             set
             {
-                OnPasswordHashChanging(value);
-                ReportPropertyChanging("PasswordHash");
-                _PasswordHash = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("PasswordHash");
-                OnPasswordHashChanged();
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
             }
         }
-        private global::System.String _PasswordHash;
-        partial void OnPasswordHashChanging(global::System.String value);
-        partial void OnPasswordHashChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 PasswordSalt
-        {
-            get
-            {
-                return _PasswordSalt;
-            }
-            set
-            {
-                OnPasswordSaltChanging(value);
-                ReportPropertyChanging("PasswordSalt");
-                _PasswordSalt = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PasswordSalt");
-                OnPasswordSaltChanged();
-            }
-        }
-        private global::System.Int32 _PasswordSalt;
-        partial void OnPasswordSaltChanging(global::System.Int32 value);
-        partial void OnPasswordSaltChanged();
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
