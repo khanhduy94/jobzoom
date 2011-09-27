@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployerHomeController.cs" />
+    <Compile Include="Controllers\EmployerJobPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
     <Compile Include="Controllers\ProfileHomeController.cs" />
@@ -160,6 +161,9 @@
     <Content Include="Views\ProfileEdit\Basic.cshtml" />
     <Content Include="Views\ProfileEdit\EducationExperience.cshtml" />
     <Content Include="Views\ProfileEdit\WorkExperience.cshtml" />
+    <Content Include="Views\EmployerJobPost\Basic.cshtml" />
+    <Content Include="Views\EmployerJobPost\CandidatesRecommendation.cshtml" />
+    <Content Include="Views\EmployerJobPost\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
