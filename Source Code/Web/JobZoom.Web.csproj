@@ -65,6 +65,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EmployerHomeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileEditController.cs" />
+    <Compile Include="Controllers\ProfileHomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -154,6 +156,10 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\ProfileHome\Index.cshtml" />
+    <Content Include="Views\ProfileEdit\Basic.cshtml" />
+    <Content Include="Views\ProfileEdit\EducationExperience.cshtml" />
+    <Content Include="Views\ProfileEdit\WorkExperience.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
