@@ -3114,30 +3114,6 @@ namespace JobZoom.Business.Entites
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String MiddleName
-        {
-            get
-            {
-                return _MiddleName;
-            }
-            set
-            {
-                OnMiddleNameChanging(value);
-                ReportPropertyChanging("MiddleName");
-                _MiddleName = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("MiddleName");
-                OnMiddleNameChanged();
-            }
-        }
-        private global::System.String _MiddleName;
-        partial void OnMiddleNameChanging(global::System.String value);
-        partial void OnMiddleNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Gender
