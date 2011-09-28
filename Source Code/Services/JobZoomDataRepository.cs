@@ -19,6 +19,11 @@ namespace JobZoom.Services
             return dataContext.Countries.ToList();
         }
 
+        public List<City> GetCities()
+        {
+            return dataContext.Cities.ToList();
+        }
+
         public Jobseeker GetJobseeker(string userID)
         {
             return dataContext.Jobseekers.Where(j => j.UserID == userID).First();
@@ -28,8 +33,7 @@ namespace JobZoom.Services
         {
             try
             {
-                var jobseeker = dataContext.Jobseekers.First(j => j.UserID == model.UserID);
-                jobseeker.Title = model.Title;
+                var jobseeker = dataContext.Jobseekers.First(j => j.UserID == model.UserID);                
                 jobseeker.FirstName = model.FirstName;
                 jobseeker.LastName = model.LastName;
                 jobseeker.Gender = model.Gender;

@@ -74,7 +74,7 @@
             @Html.LabelFor(model => model.Citizenship)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Citizenship)
+            @Html.DropDownListFor(model => model.Citizenship, ViewData["ListCountry"] as IEnumerable<SelectListItem>, "Select...") 
             @Html.ValidationMessageFor(model => model.Citizenship)
         </div>
 
@@ -98,7 +98,7 @@
             @Html.LabelFor(model => model.CityID)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CityID)
+            @Html.DropDownListFor(model => model.CityID, ViewData["ListCity"] as IEnumerable<SelectListItem>, "Select...") 
             @Html.ValidationMessageFor(model => model.CityID)
         </div>
 

@@ -26,6 +26,8 @@ namespace JobZoom.Web.Controllers
             string userID = "1a7d990c-d629-4e8b-bb60-c5f22e498e5d";
             JobZoomServiceClient client = new JobZoomServiceClient();
             var profile = client.GetJobseeker(userID);
+            ViewData["ListCity"] = client.GetAllCities().ToSelectList(c => c.ID, c => c.Name);
+            ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID, c => c.Name);                        
             return View(profile);
         }
 

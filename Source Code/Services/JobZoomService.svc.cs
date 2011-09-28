@@ -42,6 +42,11 @@ namespace JobZoom.Services
             return repository.GetCountries();
         }
 
+        public List<City> GetCities()
+        {
+            return repository.GetCities();
+        }
+
         public Jobseeker GetJobseeker(string userID)
         {
             return repository.GetJobseeker(userID);
