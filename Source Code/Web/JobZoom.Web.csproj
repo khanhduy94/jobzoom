@@ -67,7 +67,6 @@
     <Compile Include="Controllers\EmployerJobPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
-    <Compile Include="Controllers\ProfileHomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
