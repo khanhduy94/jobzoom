@@ -9,9 +9,9 @@
 
 <fieldset>
     <legend>Personal Information</legend>
-    @Html.ActionLink("Edit", "EditPersonalInfo", "Profile")
+    @Html.ActionLink("Edit", "Basic", "ProfileEdit")
 
-    <div class="display-field">@Model.Title @Model.FirstName @Model.LastName</div>
+    <div class="display-field">@Model.FirstName @Model.LastName</div>
 
     <div class="display-label">Gender @Model.Gender</div>
 

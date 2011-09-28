@@ -2,8 +2,6 @@
 (
 	ID char(36) PRIMARY KEY NOT NULL, 
 	UserID char(36) NOT NULL,
-	Title nvarchar(10) NOT NULL,
-	Suffix nvarchar(10) NULL,
 	FirstName nvarchar(50) NOT NULL,
 	LastName nvarchar(50) NOT NULL,
 	Gender nchar(1) NOT NULL,

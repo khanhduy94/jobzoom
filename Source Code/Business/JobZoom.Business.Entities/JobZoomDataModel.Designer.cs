@@ -19,11 +19,9 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_City_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "City", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.City), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobseekerCity_Country", "City", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.City), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_Industry", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Industry), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Industry_Industry", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Industry), "Job_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Industry), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Ability_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Ability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Ability), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Applicant_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Applicant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Applicant), true)]
@@ -31,7 +29,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Industry_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Industry), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Applicant_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Job_Applicant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Applicant), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Connection1_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Connection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Connection), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Connection2_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Connection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Connection), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Exprience_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Experience", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Experience), true)]
@@ -43,6 +40,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Skill_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Skill), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_User_AccountType", "User_AccountType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User_AccountType), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.User), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobseekerCity_Country", "City", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.City), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 
 #endregion
 
@@ -257,22 +257,6 @@ namespace JobZoom.Business.Entites
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Jobseeker> Jobseekers
-        {
-            get
-            {
-                if ((_Jobseekers == null))
-                {
-                    _Jobseekers = base.CreateObjectSet<Jobseeker>("Jobseekers");
-                }
-                return _Jobseekers;
-            }
-        }
-        private ObjectSet<Jobseeker> _Jobseekers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Jobseeker_Connection> Jobseeker_Connection
         {
             get
@@ -429,6 +413,22 @@ namespace JobZoom.Business.Entites
             }
         }
         private ObjectSet<User_AccountType> _User_AccountType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Jobseeker> Jobseekers
+        {
+            get
+            {
+                if ((_Jobseekers == null))
+                {
+                    _Jobseekers = base.CreateObjectSet<Jobseeker>("Jobseekers");
+                }
+                return _Jobseekers;
+            }
+        }
+        private ObjectSet<Jobseeker> _Jobseekers;
 
         #endregion
         #region AddTo Methods
@@ -514,14 +514,6 @@ namespace JobZoom.Business.Entites
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Jobseekers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToJobseekers(Jobseeker jobseeker)
-        {
-            base.AddObject("Jobseekers", jobseeker);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Jobseeker_Connection EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToJobseeker_Connection(Jobseeker_Connection jobseeker_Connection)
@@ -599,6 +591,14 @@ namespace JobZoom.Business.Entites
         public void AddToUser_AccountType(User_AccountType user_AccountType)
         {
             base.AddObject("User_AccountType", user_AccountType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Jobseekers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJobseekers(Jobseeker jobseeker)
+        {
+            base.AddObject("Jobseekers", jobseeker);
         }
 
         #endregion
@@ -2933,7 +2933,6 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="userID">Initial value of the UserID property.</param>
-        /// <param name="title">Initial value of the Title property.</param>
         /// <param name="firstName">Initial value of the FirstName property.</param>
         /// <param name="lastName">Initial value of the LastName property.</param>
         /// <param name="gender">Initial value of the Gender property.</param>
@@ -2943,12 +2942,11 @@ namespace JobZoom.Business.Entites
         /// <param name="addressLine1">Initial value of the AddressLine1 property.</param>
         /// <param name="cityID">Initial value of the CityID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Jobseeker CreateJobseeker(global::System.String id, global::System.String userID, global::System.String title, global::System.String firstName, global::System.String lastName, global::System.String gender, global::System.DateTime birthdate, global::System.String maritalStatus, global::System.String citizenship, global::System.String addressLine1, global::System.String cityID, global::System.DateTime modifiedDate)
+        public static Jobseeker CreateJobseeker(global::System.String id, global::System.String userID, global::System.String firstName, global::System.String lastName, global::System.String gender, global::System.DateTime birthdate, global::System.String maritalStatus, global::System.String citizenship, global::System.String addressLine1, global::System.String cityID, global::System.DateTime modifiedDate)
         {
             Jobseeker jobseeker = new Jobseeker();
             jobseeker.ID = id;
             jobseeker.UserID = userID;
-            jobseeker.Title = title;
             jobseeker.FirstName = firstName;
             jobseeker.LastName = lastName;
             jobseeker.Gender = gender;
@@ -3014,54 +3012,6 @@ namespace JobZoom.Business.Entites
         private global::System.String _UserID;
         partial void OnUserIDChanging(global::System.String value);
         partial void OnUserIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Title
-        {
-            get
-            {
-                return _Title;
-            }
-            set
-            {
-                OnTitleChanging(value);
-                ReportPropertyChanging("Title");
-                _Title = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Title");
-                OnTitleChanged();
-            }
-        }
-        private global::System.String _Title;
-        partial void OnTitleChanging(global::System.String value);
-        partial void OnTitleChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Suffix
-        {
-            get
-            {
-                return _Suffix;
-            }
-            set
-            {
-                OnSuffixChanging(value);
-                ReportPropertyChanging("Suffix");
-                _Suffix = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Suffix");
-                OnSuffixChanged();
-            }
-        }
-        private global::System.String _Suffix;
-        partial void OnSuffixChanging(global::System.String value);
-        partial void OnSuffixChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5627,28 +5577,6 @@ namespace JobZoom.Business.Entites
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_User", "Jobseeker")]
-        public EntityCollection<Jobseeker> Jobseekers
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Connection1_User", "Jobseeker_Connection")]
         public EntityCollection<Jobseeker_Connection> Jobseeker_Connection
         {
@@ -5853,6 +5781,28 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User_AccountType>("JobZoomModel.FK_User_AccountType", "User_AccountType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_User", "Jobseeker")]
+        public EntityCollection<Jobseeker> Jobseekers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker", value);
                 }
             }
         }
