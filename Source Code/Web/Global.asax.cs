@@ -40,19 +40,7 @@ namespace JobZoom.Web
                 new { controller = "EmployerJobPost", action = "Basic", id = UrlParameter.Optional }
                 );
 
-            //JOB SEEKER ROUTINGS
-
-            routes.MapRoute(
-                "ProfileDefault",
-                "Profile/",
-                new { controller = "ProfileHome", action = "Index", id = UrlParameter.Optional }
-                );
-
-            routes.MapRoute(
-                "ProfileHome",
-                "Profile/Home/{action}/{id}",
-                new { controller = "ProfileHome", action = "Index", id = UrlParameter.Optional }
-                );
+            //JOB SEEKER ROUTINGS            
 
             routes.MapRoute(
                 "ProfileEditDefault",
