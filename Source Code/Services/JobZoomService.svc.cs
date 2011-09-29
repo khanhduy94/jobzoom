@@ -36,7 +36,6 @@ namespace JobZoom.Services
             return composite;
         }
 
-
         public List<Country> GetCountries()
         {            
             return repository.GetCountries();
@@ -55,6 +54,42 @@ namespace JobZoom.Services
         public bool SavePersonalInfo(Jobseeker model)
         {
             return repository.SavePersonalInfo(model);
-        }  
+        }
+
+        public Jobseeker_Experience GetExperience(string id)
+        {
+            return repository.GetExperience(id);
+        }
+
+        public List<Jobseeker_Experience> GetEducation(string userID)
+        {
+            return repository.GetEducation(userID);
+        }
+
+        public bool AddEducation(Jobseeker_Experience model)
+        {
+            return repository.AddEducation(model);
+        }
+
+        public List<Jobseeker_Experience> GetWorkExperience(string userID)
+        {
+            return repository.GetWorkExperience(userID);
+        }
+
+        public bool AddWorkExperience(Jobseeker_Experience model)
+        {
+            return repository.AddWorkExperience(model);
+        }
+
+        public bool SaveExperience(Jobseeker_Experience model)
+        {
+            return repository.SaveExperience(model);
+        }
+
+        public bool DeleteExperience(string id)
+        {
+            return repository.DeleteExperience(id);
+        }
+
     }
 }

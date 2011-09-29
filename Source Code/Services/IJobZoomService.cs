@@ -30,7 +30,28 @@ namespace JobZoom.Services
         Jobseeker GetJobseeker(string userID);
 
         [OperationContract]
-        bool SavePersonalInfo(Jobseeker model);    
+        bool SavePersonalInfo(Jobseeker model);
+
+        [OperationContract]
+        Jobseeker_Experience GetExperience(string id);
+
+        [OperationContract(Name = "GetAllEducation")]
+        List<Jobseeker_Experience> GetEducation(string userID);
+
+        [OperationContract(Name = "GetAllExperience")]
+        List<Jobseeker_Experience> GetWorkExperience(string userID);
+
+        [OperationContract]
+        bool AddEducation(Jobseeker_Experience model);
+
+        [OperationContract]
+        bool AddWorkExperience(Jobseeker_Experience model);
+
+        [OperationContract]
+        bool SaveExperience(Jobseeker_Experience model);
+
+        [OperationContract]
+        bool DeleteExperience(string id);
     }
 
 

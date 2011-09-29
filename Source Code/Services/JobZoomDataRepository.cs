@@ -14,6 +14,12 @@ namespace JobZoom.Services
             dataContext = new JobZoomEntities();
         }
 
+        public enum ExperienceType 
+        { 
+            EducationExperience,
+            WorkExperience
+        }
+
         public List<Country> GetCountries()
         {
             return dataContext.Countries.ToList();
@@ -50,6 +56,94 @@ namespace JobZoom.Services
                 jobseeker.AdditionalInfo = model.AdditionalInfo;
                 jobseeker.Website = model.Website;
                 jobseeker.ModifiedDate = DateTime.Now;
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Jobseeker_Experience GetExperience(string id)
+        {
+            return dataContext.Jobseeker_Experience.First(j => j.ID == id);
+        }
+
+        public List<Jobseeker_Experience> GetEducation(string userID)
+        {
+            return dataContext.Jobseeker_Experience.
+                Where(j => j.UserID == userID && j.ExperienceType == (int)ExperienceType.EducationExperience).
+                OrderBy(e => e.StartDate).ToList();
+        }
+
+        public bool AddEducation(Jobseeker_Experience model)
+        {
+            try
+            {
+                model.ExperienceType = (int)ExperienceType.EducationExperience;
+                model.ModifiedDate = DateTime.Now;                
+                dataContext.Jobseeker_Experience.AddObject(model);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool SaveExperience(Jobseeker_Experience model)
+        {
+            try
+            {
+                var education = dataContext.Jobseeker_Experience.First(j => j.ID == model.ID);
+                education.Name = model.Name;
+                education.Location = model.Location;
+                education.Title = model.Title;
+                education.Industry = model.Industry;
+                education.StartDate = model.StartDate;
+                education.EndDate = model.EndDate;
+                education.Description = model.Description;
+                education.ModifiedDate = DateTime.Now;
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Jobseeker_Experience> GetWorkExperience(string userID)
+        {
+            return dataContext.Jobseeker_Experience.
+                Where(j => j.UserID == userID && j.ExperienceType == (int)ExperienceType.WorkExperience).
+                OrderBy(e => e.StartDate).ToList();
+        }
+
+        public bool AddWorkExperience(Jobseeker_Experience model)
+        {
+            try
+            {
+                model.ExperienceType = (int)ExperienceType.WorkExperience;
+                model.ModifiedDate = DateTime.Now;
+                dataContext.Jobseeker_Experience.AddObject(model);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }       
+
+        public bool DeleteExperience(string id)
+        {
+            try
+            {
+                var education = dataContext.Jobseeker_Experience.Where(e => e.ID == id).First();
+                dataContext.DeleteObject(education);
                 dataContext.SaveChanges();
                 return true;
             }

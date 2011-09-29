@@ -4,6 +4,7 @@
 	UserID char(36) NOT NULL,
 	Name nvarchar(50) NOT NULL,
 	Title nvarchar(50) NULL,
+	Industry nvarchar(50) NULL,
 	Location nvarchar(50) NULL,
 	StartDate datetime NULL,
 	EndDate datetime NULL,

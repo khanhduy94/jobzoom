@@ -1,3 +1,80 @@
+<<<<<<< .mine
+﻿@model JobZoom.Web.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Profile</h2>
+
+<fieldset>
+    <legend>Personal Information</legend>
+    @Html.ActionLink("Edit", "Basic", "ProfileEdit")
+
+    <div class="display-field">@Model.Jobseeker.FirstName @Model.Jobseeker.LastName</div>
+
+    <div class="display-label">Gender @Model.Jobseeker.Gender</div>
+
+    <div class="display-label">Birthdate @String.Format("{0:dd/MM/yyyy}", Model.Jobseeker.Birthdate)</div>
+
+    <div class="display-label">MaritalStatus @Model.Jobseeker.MaritalStatus</div>
+
+    <div class="display-label">Citizenship @Model.Jobseeker.Citizenship</div>    
+
+    <div class="display-label">AddressLine1 @Model.Jobseeker.AddressLine1</div>   
+
+    <div class="display-label">AddressLine2 @Model.Jobseeker.AddressLine2</div>    
+
+    <div class="display-label">CityID @Model.Jobseeker.CityID</div>    
+
+    <div class="display-label">Phone @Model.Jobseeker.Phone</div>   
+
+    <div class="display-label">Mobile @Model.Jobseeker.Mobile</div>
+    
+    <div class="display-label">AdditionalInfo</div>
+    <div class="display-field">@Model.Jobseeker.AdditionalInfo</div>
+
+    <div class="display-label">Website @Model.Jobseeker.Website</div>        
+</fieldset>
+
+<fieldset>
+    <legend>Education - @Html.ActionLink("Add", "AddEducation", "ProfileEdit")</legend>
+    @foreach (var education in Model.Education)
+    {
+        <p>@Html.ActionLink("Edit", "UpdateEducation", new { id = education.ID } ) | @Html.ActionLink("Remove", "DeleteExperience", new { id = education.ID } )</p>
+        
+        <div class="display-field">@string.Format("{0:dd/MM/yyyy}", education.StartDate) - @string.Format("{0:dd/MM/yyyy}", education.EndDate)</div>
+        
+        <div class="display-field">@education.Name - @education.Title</div>              
+        
+        <div class="display-field">@education.Industry </div>   
+        
+        <div class="display-field">@education.Location</div>               
+             
+        <div class="display-field">@education.Description</div>
+    }
+             
+</fieldset>
+
+<fieldset>
+    <legend>Work Experience - @Html.ActionLink("Add", "AddWorkExperince", "ProfileEdit")</legend>
+    @foreach (var experience in Model.WorkExperience)
+    {
+        <p>@Html.ActionLink("Edit", "UpdateWorkExperince", new { id = experience.ID }) | @Html.ActionLink("Remove", "DeleteExperience", new { id = experience.ID })</p>
+        
+        <div class="display-field">@string.Format("{0:dd/MM/yyyy}", experience.StartDate) - @string.Format("{0:dd/MM/yyyy}", experience.EndDate)</div>
+        
+        <div class="display-field">@experience.Name - @experience.Title</div>              
+        
+        <div class="display-field">@experience.Industry </div>   
+        
+        <div class="display-field">@experience.Location</div>               
+             
+        <div class="display-field">@experience.Description</div>
+    }
+             
+</fieldset>=======
 ﻿@model JobZoom.Business.Entites.Jobseeker
 
 @{
@@ -37,3 +114,4 @@
     <div class="display-label">Website @Model.Website</div>        
 </fieldset>
 
+>>>>>>> .r119
