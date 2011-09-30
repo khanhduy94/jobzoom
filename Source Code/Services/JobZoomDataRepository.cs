@@ -32,7 +32,7 @@ namespace JobZoom.Services
 
         public Jobseeker GetJobseeker(string userID)
         {
-            return dataContext.Jobseekers.Where(j => j.UserID == userID).First();
+            return dataContext.Jobseekers.First(j => j.UserID == userID);
         }
 
         public bool SavePersonalInfo(Jobseeker model)
@@ -142,8 +142,103 @@ namespace JobZoom.Services
         {
             try
             {
-                var education = dataContext.Jobseeker_Experience.Where(e => e.ID == id).First();
+                var education = dataContext.Jobseeker_Experience.First(e => e.ID == id);
                 dataContext.DeleteObject(education);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<Jobseeker_Skill> GetSkill(string userID)
+        {
+            return dataContext.Jobseeker_Skill.Where(s => s.UserID == userID).ToList();
+        }
+
+        public bool AddSkill(Jobseeker_Skill model)
+        {
+            try
+            {                
+                model.ModifiedDate = DateTime.Now;
+                dataContext.Jobseeker_Skill.AddObject(model);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteSkill(string id)
+        {
+            try
+            {
+                var skill = dataContext.Jobseeker_Skill.First(e => e.ID == id);
+                dataContext.DeleteObject(skill);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Jobseeker_HonorAward GetHonorAward(string id)
+        {
+            return dataContext.Jobseeker_HonorAward.First(s => s.ID == id);
+        }
+
+        public List<Jobseeker_HonorAward> GetAllHonorAward(string userID)
+        {
+            return dataContext.Jobseeker_HonorAward.Where(s => s.UserID == userID).ToList();
+        }
+
+        public bool AddHonorAward(Jobseeker_HonorAward model)
+        {
+            try
+            {
+                model.ModifiedDate = DateTime.Now;
+                dataContext.Jobseeker_HonorAward.AddObject(model);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool SaveHonorAward(Jobseeker_HonorAward model)
+        {
+            try
+            {
+                var honorAward = dataContext.Jobseeker_HonorAward.First(j => j.ID == model.ID);
+                honorAward.Title = model.Title;
+                honorAward.Occupation = model.Occupation;
+                honorAward.Issuer = model.Issuer;
+                honorAward.IssueDate = model.IssueDate;
+                honorAward.Description = model.Description;
+                honorAward.ModifiedDate = DateTime.Now;
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteHonorAward(string id)
+        {
+            try
+            {
+                var skill = dataContext.Jobseeker_HonorAward.First(e => e.ID == id);
+                dataContext.DeleteObject(skill);
                 dataContext.SaveChanges();
                 return true;
             }

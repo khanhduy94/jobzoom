@@ -52,6 +52,30 @@ namespace JobZoom.Services
 
         [OperationContract]
         bool DeleteExperience(string id);
+
+        [OperationContract(Name = "GetAllSkill")]
+        List<Jobseeker_Skill> GetSkill(string userID);
+
+        [OperationContract]
+        bool AddSkill(Jobseeker_Skill model);
+
+        [OperationContract]
+        bool DeleteSkill(string id);
+
+        [OperationContract]
+        List<Jobseeker_HonorAward> GetAllHonorAward(string userID);
+
+        [OperationContract]
+        Jobseeker_HonorAward GetHonorAward(string id);
+
+        [OperationContract]
+        bool AddHonorAward(Jobseeker_HonorAward model);
+
+        [OperationContract]
+        bool SaveHonorAward(Jobseeker_HonorAward model);
+
+        [OperationContract]
+        bool DeleteHonorAward(string id);
     }
 
 

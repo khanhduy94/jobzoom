@@ -1,4 +1,3 @@
-<<<<<<< .mine
 ﻿@model JobZoom.Web.Models.ProfileViewModel
 
 @{
@@ -9,9 +8,8 @@
 <h2>Profile</h2>
 
 <fieldset>
-    <legend>Personal Information</legend>
-    @Html.ActionLink("Edit", "Basic", "ProfileEdit")
-
+    <legend>Personal Information - @Html.ActionLink("Edit", "Basic", "ProfileEdit")</legend>
+    
     <div class="display-field">@Model.Jobseeker.FirstName @Model.Jobseeker.LastName</div>
 
     <div class="display-label">Gender @Model.Jobseeker.Gender</div>
@@ -20,13 +18,13 @@
 
     <div class="display-label">MaritalStatus @Model.Jobseeker.MaritalStatus</div>
 
-    <div class="display-label">Citizenship @Model.Jobseeker.Citizenship</div>    
+    <div class="display-label">Citizenship @Model.Jobseeker.Country.Name</div>    
 
     <div class="display-label">AddressLine1 @Model.Jobseeker.AddressLine1</div>   
 
     <div class="display-label">AddressLine2 @Model.Jobseeker.AddressLine2</div>    
 
-    <div class="display-label">CityID @Model.Jobseeker.CityID</div>    
+    <div class="display-label">CityID @Model.Jobseeker.City.Name</div>    
 
     <div class="display-label">Phone @Model.Jobseeker.Phone</div>   
 
@@ -39,16 +37,37 @@
 </fieldset>
 
 <fieldset>
+    <legend>Experience - @Html.ActionLink("Add", "AddWorkExperience", "ProfileEdit")</legend>
+    @foreach (var experience in Model.WorkExperience)
+    {
+        <p>@Html.ActionLink("Edit", "UpdateWorkExperience", new { id = experience.ID }) | @Html.ActionLink("Remove", "DeleteWorkExperience", new { id = experience.ID })</p>
+        
+        <div class="display-field">@experience.Title</div>
+        
+        <div class="display-field">@experience.Name</div>
+        
+        <div class="display-field">@experience.Industry </div> 
+        
+        <div class="display-field">@string.Format("{0:dd/MM/yyyy}", experience.StartDate) - @string.Format("{0:dd/MM/yyyy}", experience.EndDate)</div>
+                                                  
+        <div class="display-field">@experience.Location</div>               
+             
+        <div class="display-field">@experience.Description</div>
+    }
+             
+</fieldset>
+
+<fieldset>
     <legend>Education - @Html.ActionLink("Add", "AddEducation", "ProfileEdit")</legend>
     @foreach (var education in Model.Education)
     {
-        <p>@Html.ActionLink("Edit", "UpdateEducation", new { id = education.ID } ) | @Html.ActionLink("Remove", "DeleteExperience", new { id = education.ID } )</p>
+        <p>@Html.ActionLink("Edit", "UpdateEducation", new { id = education.ID } ) | @Html.ActionLink("Remove", "DeleteEducation", new { id = education.ID } )</p>
         
-        <div class="display-field">@string.Format("{0:dd/MM/yyyy}", education.StartDate) - @string.Format("{0:dd/MM/yyyy}", education.EndDate)</div>
+        <div class="display-field">@education.Name</div>
         
-        <div class="display-field">@education.Name - @education.Title</div>              
+        <div class="display-field">@education.Title - @education.Industry </div>              
         
-        <div class="display-field">@education.Industry </div>   
+        <div class="display-field">@string.Format("{0:dd/MM/yyyy}", education.StartDate) - @string.Format("{0:dd/MM/yyyy}", education.EndDate)</div>                           
         
         <div class="display-field">@education.Location</div>               
              
@@ -58,60 +77,27 @@
 </fieldset>
 
 <fieldset>
-    <legend>Work Experience - @Html.ActionLink("Add", "AddWorkExperince", "ProfileEdit")</legend>
-    @foreach (var experience in Model.WorkExperience)
+    <legend>Honors and Awards - @Html.ActionLink("Add", "AddHonorAward", "ProfileEdit")</legend>
+    @foreach (var honorAward in Model.HonorAward)
     {
-        <p>@Html.ActionLink("Edit", "UpdateWorkExperince", new { id = experience.ID }) | @Html.ActionLink("Remove", "DeleteExperience", new { id = experience.ID })</p>
+        <p>@Html.ActionLink("Edit", "UpdateHonorAward", new { id = honorAward.ID }) | @Html.ActionLink("Remove", "DeleteHonorAward", new { id = honorAward.ID })</p>
         
-        <div class="display-field">@string.Format("{0:dd/MM/yyyy}", experience.StartDate) - @string.Format("{0:dd/MM/yyyy}", experience.EndDate)</div>
+        <div class="display-field">@honorAward.Title</div>
         
-        <div class="display-field">@experience.Name - @experience.Title</div>              
+        <div class="display-field">@honorAward.Issuer</div>                      
         
-        <div class="display-field">@experience.Industry </div>   
+        <div class="display-field">@honorAward.IssueDate | @honorAward.Occupation</div>                                                  
         
-        <div class="display-field">@experience.Location</div>               
-             
-        <div class="display-field">@experience.Description</div>
+        <div class="display-field">@honorAward.Description</div>
     }
              
-</fieldset>=======
-﻿@model JobZoom.Business.Entites.Jobseeker
-
-@{
-    ViewBag.Title = "Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Profile</h2>
-
-<fieldset>
-    <legend>Personal Information</legend>
-    @Html.ActionLink("Edit", "Basic", "ProfileEdit")
-
-    <div class="display-field">@Model.FirstName @Model.LastName</div>
-
-    <div class="display-label">Gender @Model.Gender</div>
-
-    <div class="display-label">Birthdate @String.Format("{0:dd/MM/yyyy}", Model.Birthdate)</div>
-
-    <div class="display-label">MaritalStatus @Model.MaritalStatus</div>
-
-    <div class="display-label">Citizenship @Model.Citizenship</div>    
-
-    <div class="display-label">AddressLine1 @Model.AddressLine1</div>   
-
-    <div class="display-label">AddressLine2 @Model.AddressLine2</div>    
-
-    <div class="display-label">CityID @Model.CityID</div>    
-
-    <div class="display-label">Phone @Model.Phone</div>   
-
-    <div class="display-label">Mobile @Model.Mobile</div>
-    
-    <div class="display-label">AdditionalInfo</div>
-    <div class="display-field">@Model.AdditionalInfo</div>
-
-    <div class="display-label">Website @Model.Website</div>        
 </fieldset>
 
->>>>>>> .r119
+<fieldset>
+    <legend>Skills - @Html.ActionLink("Add", "AddSkill", "ProfileEdit")</legend>
+    @foreach (var skill in Model.Skill)
+    {
+        <span>@skill.SkillName (@Html.ActionLink("Remove", "DeleteSkill", new { id = skill.ID })) </span> 
+    }
+             
+</fieldset>

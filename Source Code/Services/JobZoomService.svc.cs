@@ -91,5 +91,44 @@ namespace JobZoom.Services
             return repository.DeleteExperience(id);
         }
 
+        public List<Jobseeker_Skill> GetSkill(string userID)
+        {
+            return repository.GetSkill(userID);
+        }
+
+        public bool AddSkill(Jobseeker_Skill model)
+        {
+            return repository.AddSkill(model);
+        }
+
+        public bool DeleteSkill(string id)
+        {
+            return repository.DeleteSkill(id);
+        }
+
+        public List<Jobseeker_HonorAward> GetAllHonorAward(string userID)
+        {
+            return repository.GetAllHonorAward(userID);
+        }
+
+        public Jobseeker_HonorAward GetHonorAward(string userID)
+        {
+            return repository.GetHonorAward(userID);
+        }
+
+        public bool AddHonorAward(Jobseeker_HonorAward model)
+        {
+            return repository.AddHonorAward(model);
+        }
+
+        public bool SaveHonorAward(Jobseeker_HonorAward model)
+        {
+            return repository.SaveHonorAward(model);
+        }
+
+        public bool DeleteHonorAward(string id)
+        {
+            return repository.DeleteHonorAward(id);
+        }
     }
 }
