@@ -1,6 +1,25 @@
-﻿@{
-    ViewBag.Title = "Basic";
+﻿@model JobZoom.Business.Entites.Job
+           
+@{
+    ViewBag.Title = "Post a Job - Basic information";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    var jobType = new List<SelectListItem>();
+    jobType.Add(new SelectListItem { Text = "Full-time", Value = "Fulltime" });
+    jobType.Add(new SelectListItem { Text = "Part-time", Value = "Parttime" });
+    jobType.Add(new SelectListItem { Text = "Contract", Value = "Contract" });
+    jobType.Add(new SelectListItem { Text = "Temporary", Value = "Temporary" });
+    jobType.Add(new SelectListItem { Text = "Other", Value = "Other" });
+    
+    var jobExperience = new List<SelectListItem>();
+    jobExperience.Add(new SelectListItem { Text = "Excutive", Value = "Excutive" });
+    jobExperience.Add(new SelectListItem { Text = "Director", Value = "Director" });
+    jobExperience.Add(new SelectListItem { Text = "Mid-senior level", Value = "Mid-seniorLevel" });
+    jobExperience.Add(new SelectListItem { Text = "Associate", Value = "Associate" });
+    jobExperience.Add(new SelectListItem { Text = "Entry level", Value = "EntryLevel" });
+    jobExperience.Add(new SelectListItem { Text = "Internship", Value = "Internship" });
+    jobExperience.Add(new SelectListItem { Text = "Not applicable", Value = "NotApplicable" });
+   
 }
 
 <h2>Employer Job Posting</h2>
@@ -9,16 +28,67 @@
 @Html.ActionLink("Step 3. Candidates Recommendation", "CandidatesRecommendation", "EmployerJobPost")
 <h2>Step 1. Basic Information</h2>
 
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-<div>Job ID</div>
-<div>Job title</div>
-<div>Company name</div>
-<div>City ID</div>
-<div>Country ID</div>
-<div>Experience</div>
-<div>Type</div>
-<div>Compensation</div>
-<div>Industry ID (Many)</div>
-<div>Function ID (Many)</div>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Jobseeker</legend>
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.CompanyName)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobTitle)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CountryID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CountryID, ViewData["ListCountry"] as IEnumerable<SelectListItem>, "Select...") 
+            @Html.ValidationMessageFor(model => model.CountryID)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CityID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CityID, ViewData["ListCity"] as IEnumerable<SelectListItem>, "Select...") 
+            @Html.ValidationMessageFor(model => model.CityID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Experience)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Experience, jobExperience, "Select...")
+            @Html.ValidationMessageFor(model => model.Experience)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Type, jobType, "Select...")
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Compensation)
+        </div>
+
+        <div>Industry ID (Many)</div>
+
+        <div>Function ID (Many)</div>
+
+        <div><input type="submit" value="Save" /></div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "Edit")
+</div>
 
 
