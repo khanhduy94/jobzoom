@@ -26,6 +26,7 @@ namespace JobZoom.Web.Models
             WorkExperience = client.GetAllExperience(userID);
             Skill = client.GetAllSkill(userID);
             HonorAward = client.GetAllHonorAward(userID);
+            Project = client.GetAllProject(userID);
         }
     }
 }

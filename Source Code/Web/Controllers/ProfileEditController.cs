@@ -18,8 +18,7 @@ namespace JobZoom.Web.Controllers
             return View(new ProfileViewModel(userID));
         }
 
-        //
-        // GET 
+        #region Profile Basic Information
         public ActionResult Basic()
         {
             string userID = "1a7d990c-d629-4e8b-bb60-c5f22e498e5d";
@@ -53,9 +52,9 @@ namespace JobZoom.Web.Controllers
                 return View();
             }
         }
-        
-        //
-        // GET
+        #endregion
+
+        #region Education
         public ActionResult AddEducation()
         {           
             return View();
@@ -120,7 +119,9 @@ namespace JobZoom.Web.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Experience
         public ActionResult AddWorkExperience()
         {
             return View();
@@ -185,7 +186,9 @@ namespace JobZoom.Web.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Skills
         public ActionResult AddSkill()
         {
             return View();
@@ -225,7 +228,9 @@ namespace JobZoom.Web.Controllers
                 return View();
             }
         }
+        #endregion
 
+        #region Honor Award
         public ActionResult AddHonorAward()
         {
             return View();
@@ -290,5 +295,73 @@ namespace JobZoom.Web.Controllers
                 return View();
             }
         }
+        #endregion
+
+        #region Project
+        public ActionResult AddProject()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProject(Jobseeker_Project model)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            try
+            {
+                string userID = "1a7d990c-d629-4e8b-bb60-c5f22e498e5d";
+                JobZoomServiceClient client = new JobZoomServiceClient();
+                model.ID = System.Guid.NewGuid().ToString();
+                model.UserID = userID;
+                client.AddProject(model);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult UpdateProject(string id)
+        {
+            JobZoomServiceClient client = new JobZoomServiceClient();
+            var project = client.GetProject(id);
+            return View(project);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProject(Jobseeker_Project model)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            try
+            {
+                JobZoomServiceClient client = new JobZoomServiceClient();
+                client.SaveProject(model);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult DeleteProject(string id)
+        {
+            try
+            {
+                JobZoomServiceClient client = new JobZoomServiceClient();
+                client.DeleteProject(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        #endregion
     }
 }

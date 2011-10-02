@@ -101,3 +101,20 @@
     }
              
 </fieldset>
+
+<fieldset>
+    <legend>Projects - @Html.ActionLink("Add", "AddProject", "ProfileEdit")</legend>
+    @foreach (var project in Model.Project)
+    {
+        <p>@Html.ActionLink("Edit", "UpdateProject", new { id = project.ID }) | @Html.ActionLink("Remove", "DeleteProject", new { id = project.ID })</p>
+        
+        <div class="display-field">@project.ProjectName</div>
+        
+        <div class="display-field">@project.ProjectURL</div>                      
+        
+        <div class="display-field">@project.Occupation</div>                                                  
+        
+        <div class="display-field">@project.Description</div>
+    }
+             
+</fieldset>

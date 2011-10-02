@@ -76,6 +76,21 @@ namespace JobZoom.Services
 
         [OperationContract]
         bool DeleteHonorAward(string id);
+
+        [OperationContract]
+        List<Jobseeker_Project> GetAllProject(string userID);
+
+        [OperationContract]
+        Jobseeker_Project GetProject(string id);
+
+        [OperationContract]
+        bool AddProject(Jobseeker_Project model);
+
+        [OperationContract]
+        bool SaveProject(Jobseeker_Project model);
+
+        [OperationContract]
+        bool DeleteProject(string id);
     }
 
 

@@ -247,5 +247,64 @@ namespace JobZoom.Services
                 return false;
             }
         }
+
+        public Jobseeker_Project GetProject(string id)
+        {
+            return dataContext.Jobseeker_Project.First(s => s.ID == id);
+        }
+
+        public List<Jobseeker_Project> GetAllProject(string userID)
+        {
+            return dataContext.Jobseeker_Project.Where(s => s.UserID == userID).ToList();
+        }
+
+        public bool AddProject(Jobseeker_Project model)
+        {
+            try
+            {
+                model.ModifiedDate = DateTime.Now;
+                dataContext.Jobseeker_Project.AddObject(model);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool SaveProject(Jobseeker_Project model)
+        {
+            try
+            {
+                var project = dataContext.Jobseeker_Project.First(j => j.ID == model.ID);
+                project.ProjectName = model.ProjectName;
+                project.Occupation = model.Occupation;
+                project.ProjectURL = model.ProjectURL;
+                project.Description = model.Description;
+                project.ModifiedDate = DateTime.Now;
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteProject(string id)
+        {
+            try
+            {
+                var project = dataContext.Jobseeker_Project.First(e => e.ID == id);
+                dataContext.DeleteObject(project);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

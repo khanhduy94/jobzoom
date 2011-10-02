@@ -34,8 +34,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_HonorAward_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_HonorAward", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_HonorAward), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Language_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Language), "Jobseeker_Language", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Language), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Language_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Language", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Language), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Project), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Jobseeker_Project), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Skill_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Skill), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_User_AccountType", "User_AccountType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User_AccountType), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.User), true)]
@@ -43,6 +41,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Exprience_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Experience", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Experience), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Project), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Jobseeker_Project), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 
 #endregion
 
@@ -305,22 +305,6 @@ namespace JobZoom.Business.Entites
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Jobseeker_Project> Jobseeker_Project
-        {
-            get
-            {
-                if ((_Jobseeker_Project == null))
-                {
-                    _Jobseeker_Project = base.CreateObjectSet<Jobseeker_Project>("Jobseeker_Project");
-                }
-                return _Jobseeker_Project;
-            }
-        }
-        private ObjectSet<Jobseeker_Project> _Jobseeker_Project;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Jobseeker_ProjectMember> Jobseeker_ProjectMember
         {
             get
@@ -429,6 +413,22 @@ namespace JobZoom.Business.Entites
             }
         }
         private ObjectSet<Jobseeker_Experience> _Jobseeker_Experience;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Jobseeker_Project> Jobseeker_Project
+        {
+            get
+            {
+                if ((_Jobseeker_Project == null))
+                {
+                    _Jobseeker_Project = base.CreateObjectSet<Jobseeker_Project>("Jobseeker_Project");
+                }
+                return _Jobseeker_Project;
+            }
+        }
+        private ObjectSet<Jobseeker_Project> _Jobseeker_Project;
 
         #endregion
         #region AddTo Methods
@@ -538,14 +538,6 @@ namespace JobZoom.Business.Entites
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Jobseeker_Project EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToJobseeker_Project(Jobseeker_Project jobseeker_Project)
-        {
-            base.AddObject("Jobseeker_Project", jobseeker_Project);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Jobseeker_ProjectMember EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToJobseeker_ProjectMember(Jobseeker_ProjectMember jobseeker_ProjectMember)
@@ -599,6 +591,14 @@ namespace JobZoom.Business.Entites
         public void AddToJobseeker_Experience(Jobseeker_Experience jobseeker_Experience)
         {
             base.AddObject("Jobseeker_Experience", jobseeker_Experience);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Jobseeker_Project EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJobseeker_Project(Jobseeker_Project jobseeker_Project)
+        {
+            base.AddObject("Jobseeker_Project", jobseeker_Project);
         }
 
         #endregion
@@ -4600,15 +4600,13 @@ namespace JobZoom.Business.Entites
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="userID">Initial value of the UserID property.</param>
         /// <param name="projectName">Initial value of the ProjectName property.</param>
-        /// <param name="description">Initial value of the Description property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Jobseeker_Project CreateJobseeker_Project(global::System.String id, global::System.String userID, global::System.String projectName, global::System.String description, global::System.DateTime modifiedDate)
+        public static Jobseeker_Project CreateJobseeker_Project(global::System.String id, global::System.String userID, global::System.String projectName, global::System.DateTime modifiedDate)
         {
             Jobseeker_Project jobseeker_Project = new Jobseeker_Project();
             jobseeker_Project.ID = id;
             jobseeker_Project.UserID = userID;
             jobseeker_Project.ProjectName = projectName;
-            jobseeker_Project.Description = description;
             jobseeker_Project.ModifiedDate = modifiedDate;
             return jobseeker_Project;
         }
@@ -4742,7 +4740,7 @@ namespace JobZoom.Business.Entites
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Description
         {
@@ -4754,7 +4752,7 @@ namespace JobZoom.Business.Entites
             {
                 OnDescriptionChanging(value);
                 ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, false);
+                _Description = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Description");
                 OnDescriptionChanged();
             }
@@ -4993,44 +4991,6 @@ namespace JobZoom.Business.Entites
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project")]
-        public Jobseeker_Project Jobseeker_Project
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Jobseeker_Project> Jobseeker_ProjectReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "User")]
         public User User
         {
@@ -5059,6 +5019,44 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project")]
+        public Jobseeker_Project Jobseeker_Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Jobseeker_Project> Jobseeker_ProjectReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", value);
                 }
             }
         }
@@ -5689,28 +5687,6 @@ namespace JobZoom.Business.Entites
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "Jobseeker_Project")]
-        public EntityCollection<Jobseeker_Project> Jobseeker_Project
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "Jobseeker_ProjectMember")]
         public EntityCollection<Jobseeker_ProjectMember> Jobseeker_ProjectMember
         {
@@ -5827,6 +5803,28 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Experience>("JobZoomModel.FK_Jobseeker_Exprience_User", "Jobseeker_Experience", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "Jobseeker_Project")]
+        public EntityCollection<Jobseeker_Project> Jobseeker_Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project", value);
                 }
             }
         }

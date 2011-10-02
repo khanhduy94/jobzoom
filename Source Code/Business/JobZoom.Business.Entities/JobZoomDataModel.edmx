@@ -311,7 +311,7 @@
           <Property Name="ProjectName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
           <Property Name="ProjectURL" Type="nvarchar" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Jobseeker_ProjectMember">
@@ -675,7 +675,6 @@
           <EntitySet Name="Jobseeker_Connection" EntityType="JobZoomModel.Jobseeker_Connection" />
           <EntitySet Name="Jobseeker_HonorAward" EntityType="JobZoomModel.Jobseeker_HonorAward" />
           <EntitySet Name="Jobseeker_Language" EntityType="JobZoomModel.Jobseeker_Language" />
-          <EntitySet Name="Jobseeker_Project" EntityType="JobZoomModel.Jobseeker_Project" />
           <EntitySet Name="Jobseeker_ProjectMember" EntityType="JobZoomModel.Jobseeker_ProjectMember" />
           <EntitySet Name="Jobseeker_Skill" EntityType="JobZoomModel.Jobseeker_Skill" />
           <EntitySet Name="Languages" EntityType="JobZoomModel.Language" />
@@ -745,14 +744,6 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Jobseeker_Language" EntitySet="Jobseeker_Language" />
           </AssociationSet>
-          <AssociationSet Name="FK_Jobseeker_Project_User" Association="JobZoomModel.FK_Jobseeker_Project_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Jobseeker_Project" EntitySet="Jobseeker_Project" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Jobseeker_ProjectMember_Project" Association="JobZoomModel.FK_Jobseeker_ProjectMember_Project">
-            <End Role="Jobseeker_Project" EntitySet="Jobseeker_Project" />
-            <End Role="Jobseeker_ProjectMember" EntitySet="Jobseeker_ProjectMember" />
-          </AssociationSet>
           <AssociationSet Name="FK_Jobseeker_ProjectMember_User" Association="JobZoomModel.FK_Jobseeker_ProjectMember_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Jobseeker_ProjectMember" EntitySet="Jobseeker_ProjectMember" />
@@ -782,6 +773,15 @@
           <AssociationSet Name="FK_Jobseeker_Exprience_User" Association="JobZoomModel.FK_Jobseeker_Exprience_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Jobseeker_Experience" EntitySet="Jobseeker_Experience" />
+          </AssociationSet>
+          <EntitySet Name="Jobseeker_Project" EntityType="JobZoomModel.Jobseeker_Project" />
+          <AssociationSet Name="FK_Jobseeker_Project_User" Association="JobZoomModel.FK_Jobseeker_Project_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Jobseeker_Project" EntitySet="Jobseeker_Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jobseeker_ProjectMember_Project" Association="JobZoomModel.FK_Jobseeker_ProjectMember_Project">
+            <End Role="Jobseeker_Project" EntitySet="Jobseeker_Project" />
+            <End Role="Jobseeker_ProjectMember" EntitySet="Jobseeker_ProjectMember" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="City">
@@ -946,20 +946,6 @@
           <NavigationProperty Name="Language" Relationship="JobZoomModel.FK_Jobseeker_Language_Language" FromRole="Jobseeker_Language" ToRole="Language" />
           <NavigationProperty Name="User" Relationship="JobZoomModel.FK_Jobseeker_Language_User" FromRole="Jobseeker_Language" ToRole="User" />
         </EntityType>
-        <EntityType Name="Jobseeker_Project">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
-          <Property Name="ProjectName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Occupation" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ProjectURL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="JobZoomModel.FK_Jobseeker_Project_User" FromRole="Jobseeker_Project" ToRole="User" />
-          <NavigationProperty Name="Jobseeker_ProjectMember" Relationship="JobZoomModel.FK_Jobseeker_ProjectMember_Project" FromRole="Jobseeker_Project" ToRole="Jobseeker_ProjectMember" />
-        </EntityType>
         <EntityType Name="Jobseeker_ProjectMember">
           <Key>
             <PropertyRef Name="ID" />
@@ -968,8 +954,8 @@
           <Property Name="ProjectID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
           <Property Name="MemberID" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="Jobseeker_Project" Relationship="JobZoomModel.FK_Jobseeker_ProjectMember_Project" FromRole="Jobseeker_ProjectMember" ToRole="Jobseeker_Project" />
           <NavigationProperty Name="User" Relationship="JobZoomModel.FK_Jobseeker_ProjectMember_User" FromRole="Jobseeker_ProjectMember" ToRole="User" />
+          <NavigationProperty Name="Jobseeker_Project" Relationship="JobZoomModel.FK_Jobseeker_ProjectMember_Project" FromRole="Jobseeker_ProjectMember" ToRole="Jobseeker_Project" />
         </EntityType>
         <EntityType Name="Jobseeker_Skill">
           <Key>
@@ -1006,12 +992,12 @@
           <NavigationProperty Name="Jobseeker_Connection1" Relationship="JobZoomModel.FK_Jobseeker_Connection2_User" FromRole="User" ToRole="Jobseeker_Connection" />
           <NavigationProperty Name="Jobseeker_HonorAward" Relationship="JobZoomModel.FK_Jobseeker_HonorAward_User" FromRole="User" ToRole="Jobseeker_HonorAward" />
           <NavigationProperty Name="Jobseeker_Language" Relationship="JobZoomModel.FK_Jobseeker_Language_User" FromRole="User" ToRole="Jobseeker_Language" />
-          <NavigationProperty Name="Jobseeker_Project" Relationship="JobZoomModel.FK_Jobseeker_Project_User" FromRole="User" ToRole="Jobseeker_Project" />
           <NavigationProperty Name="Jobseeker_ProjectMember" Relationship="JobZoomModel.FK_Jobseeker_ProjectMember_User" FromRole="User" ToRole="Jobseeker_ProjectMember" />
           <NavigationProperty Name="Jobseeker_Skill" Relationship="JobZoomModel.FK_Jobseeker_Skill_User" FromRole="User" ToRole="Jobseeker_Skill" />
           <NavigationProperty Name="User_AccountType" Relationship="JobZoomModel.FK_User_AccountType" FromRole="User" ToRole="User_AccountType" />
           <NavigationProperty Name="Jobseekers" Relationship="JobZoomModel.FK_Jobseeker_User" FromRole="User" ToRole="Jobseeker" />
           <NavigationProperty Name="Jobseeker_Experience" Relationship="JobZoomModel.FK_Jobseeker_Exprience_User" FromRole="User" ToRole="Jobseeker_Experience" />
+          <NavigationProperty Name="Jobseeker_Project" Relationship="JobZoomModel.FK_Jobseeker_Project_User" FromRole="User" ToRole="Jobseeker_Project" />
         </EntityType>
         <EntityType Name="User_AccountType">
           <Key>
@@ -1213,30 +1199,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Jobseeker_Project_User">
-          <End Role="User" Type="JobZoomModel.User" Multiplicity="1" />
-          <End Role="Jobseeker_Project" Type="JobZoomModel.Jobseeker_Project" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Jobseeker_Project">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Jobseeker_ProjectMember_Project">
-          <End Role="Jobseeker_Project" Type="JobZoomModel.Jobseeker_Project" Multiplicity="1" />
-          <End Role="Jobseeker_ProjectMember" Type="JobZoomModel.Jobseeker_ProjectMember" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Jobseeker_Project">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Jobseeker_ProjectMember">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Jobseeker_ProjectMember_User">
           <End Role="User" Type="JobZoomModel.User" Multiplicity="1" />
           <End Role="Jobseeker_ProjectMember" Type="JobZoomModel.Jobseeker_ProjectMember" Multiplicity="*" />
@@ -1363,6 +1325,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Jobseeker_Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UserID" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Occupation" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProjectURL" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="JobZoomModel.FK_Jobseeker_Project_User" FromRole="Jobseeker_Project" ToRole="User" />
+          <NavigationProperty Name="Jobseeker_ProjectMember" Relationship="JobZoomModel.FK_Jobseeker_ProjectMember_Project" FromRole="Jobseeker_Project" ToRole="Jobseeker_ProjectMember" />
+        </EntityType>
+        <Association Name="FK_Jobseeker_Project_User">
+          <End Type="JobZoomModel.User" Role="User" Multiplicity="1" />
+          <End Type="JobZoomModel.Jobseeker_Project" Role="Jobseeker_Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Jobseeker_Project">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jobseeker_ProjectMember_Project">
+          <End Type="JobZoomModel.Jobseeker_Project" Role="Jobseeker_Project" Multiplicity="1" />
+          <End Type="JobZoomModel.Jobseeker_ProjectMember" Role="Jobseeker_ProjectMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker_Project">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Jobseeker_ProjectMember">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1466,15 +1466,6 @@
             <ScalarProperty Name="Proficiency" ColumnName="Proficiency" />
             <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Jobseeker_Project"><EntityTypeMapping TypeName="JobZoomModel.Jobseeker_Project"><MappingFragment StoreEntitySet="Jobseeker_Project">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="UserID" ColumnName="UserID" />
-            <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-            <ScalarProperty Name="Occupation" ColumnName="Occupation" />
-            <ScalarProperty Name="ProjectURL" ColumnName="ProjectURL" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Jobseeker_ProjectMember"><EntityTypeMapping TypeName="JobZoomModel.Jobseeker_ProjectMember"><MappingFragment StoreEntitySet="Jobseeker_ProjectMember">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
@@ -1543,6 +1534,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Jobseeker_Project">
+            <EntityTypeMapping TypeName="JobZoomModel.Jobseeker_Project">
+              <MappingFragment StoreEntitySet="Jobseeker_Project">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProjectURL" ColumnName="ProjectURL" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1563,7 +1567,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="JobZoomDataModel">
+      <Diagram Name="JobZoomDataModel" ZoomLevel="77">
         <EntityTypeShape EntityType="JobZoomModel.City" Width="1.5" PointX="6" PointY="41" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="10.25" PointY="21.75" Height="4.480205078124996" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Country" Width="1.5" PointX="8" PointY="11" Height="2.1725878906249996" IsExpanded="true" />
@@ -1577,16 +1581,17 @@
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Connection" Width="1.5" PointX="5.25" PointY="24.125" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_HonorAward" Width="1.5" PointX="5.25" PointY="37.25" Height="2.7494921875000102" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Language" Width="1.5" PointX="5.25" PointY="27.875" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Project" Width="1.5" PointX="5.25" PointY="43.875" Height="2.749492187499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_ProjectMember" Width="1.5" PointX="7.5" PointY="34.125" Height="2.172587890624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Skill" Width="1.5" PointX="5.25" PointY="47.375" Height="1.9802864583333388" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_ProjectMember" Width="1.5" PointX="7.75" PointY="33.875" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Skill" Width="1.5" PointX="5.125" PointY="44.625" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.Language" Width="1.5" PointX="3" PointY="28.25" Height="1.5956835937500031" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.User" Width="1.5" PointX="3" PointY="21.75" Height="4.6725065104166674" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomModel.User_AccountType" Width="1.5" PointX="0.75" PointY="23.25" Height="1.5956835937500031" IsExpanded="true" />
         <AssociationConnector Association="JobZoomModel.FK_City_Country" ManuallyRouted="false">
           <ConnectorPoint PointX="8" PointY="12.0862939453125" />
           <ConnectorPoint PointX="7" PointY="12.0862939453125" />
-          <ConnectorPoint PointX="7" PointY="41" />
+          <ConnectorPoint PointX="7" PointY="40.625" />
+          <ConnectorPoint PointX="6.75" PointY="40.625" />
+          <ConnectorPoint PointX="6.75" PointY="41" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Company_Country" ManuallyRouted="false">
           <ConnectorPoint PointX="9.3847684375" PointY="13.172587890625" />
@@ -1599,7 +1604,7 @@
           <ConnectorPoint PointX="6.75" PointY="16.725676333733976" />
           <ConnectorPoint PointX="6.9410744349011217" PointY="16.916750768635097" />
           <ConnectorPoint PointX="7.0589255650988791" PointY="17.034601898832854" />
-          <ConnectorPoint PointX="7.1285744349011217" PointY="17.104250768635097" />
+          <ConnectorPoint PointX="7.0660744349011217" PointY="17.041750768635097" />
           <ConnectorPoint PointX="7.2464255650988791" PointY="17.222101898832854" />
           <ConnectorPoint PointX="7.3125" PointY="17.288176333733976" />
           <ConnectorPoint PointX="7.3125" PointY="23.6093775" />
@@ -1610,27 +1615,27 @@
           <ConnectorPoint PointX="10.25" PointY="23.6093775" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Company_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="6.916666666666667" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="7.1168730852113358" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="7.229166666666667" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="7.395833333333333" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="9.0778008854166661" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="9.2444675520833339" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="9.9166666666666661" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="10.083333333333334" PointY="23.124531840820307" />
-          <ConnectorPoint PointX="10.25" PointY="23.124531840820307" />
+          <ConnectorPoint PointX="4.5" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="7.229166666666667" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="7.395833333333333" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="9.0778008854166661" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="9.2444675520833339" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="9.9166666666666661" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="10.083333333333334" PointY="23.118247009582511" />
+          <ConnectorPoint PointX="10.25" PointY="23.118247009582511" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Job_Industry_Industry" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="15.831585666866987" />
-          <ConnectorPoint PointX="6.916666666666667" PointY="15.831585666866987" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="15.831585666866987" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="15.831585666866985" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="15.831585666866987" />
           <ConnectorPoint PointX="7.5" PointY="15.831585666866987" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Job_Ability_Job" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="19.740143229166666" />
           <ConnectorPoint PointX="6.916666666666667" PointY="19.740143229166666" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="19.740143229166666" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="19.740143229166666" />
           <ConnectorPoint PointX="7.229166666666667" PointY="19.740143229166666" />
           <ConnectorPoint PointX="7.395833333333333" PointY="19.740143229166666" />
           <ConnectorPoint PointX="7.5" PointY="19.740143229166666" />
@@ -1638,7 +1643,7 @@
         <AssociationConnector Association="JobZoomModel.FK_Job_Applicant_Job" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="20.703837890625" />
           <ConnectorPoint PointX="6.916666666666667" PointY="20.703837890625" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="20.703837890625" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="20.703837890625" />
           <ConnectorPoint PointX="7.229166666666667" PointY="20.703837890625" />
           <ConnectorPoint PointX="7.395833333333333" PointY="20.703837890625" />
           <ConnectorPoint PointX="9.0778008854166661" PointY="20.703837890625" />
@@ -1651,6 +1656,8 @@
           <ConnectorPoint PointX="6.75" PointY="22.840992088942304" />
           <ConnectorPoint PointX="6.9410744349011217" PointY="23.032066523843426" />
           <ConnectorPoint PointX="7.0589255650988791" PointY="23.149917654041182" />
+          <ConnectorPoint PointX="7.0660744349011217" PointY="23.157066523843426" />
+          <ConnectorPoint PointX="7.1839255650988791" PointY="23.274917654041182" />
           <ConnectorPoint PointX="7.1875" PointY="23.278492088942304" />
           <ConnectorPoint PointX="7.1875" PointY="25.336293945312498" />
           <ConnectorPoint PointX="7.5" PointY="25.336293945312498" />
@@ -1659,6 +1666,8 @@
           <ConnectorPoint PointX="6.75" PointY="19.063460538461534" />
           <ConnectorPoint PointX="6.9410744349011209" PointY="18.872386103560412" />
           <ConnectorPoint PointX="7.0589255650988791" PointY="18.754534973362656" />
+          <ConnectorPoint PointX="7.0660744349011209" PointY="18.747386103560412" />
+          <ConnectorPoint PointX="7.1839255650988791" PointY="18.629534973362656" />
           <ConnectorPoint PointX="7.1875" PointY="18.625960538461534" />
           <ConnectorPoint PointX="7.1875" PointY="16.470838778745993" />
           <ConnectorPoint PointX="7.5" PointY="16.470838778745993" />
@@ -1668,12 +1677,12 @@
           <ConnectorPoint PointX="5.25" PointY="22.326650390624998" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Job_Applicant_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="24.093506847686616" />
-          <ConnectorPoint PointX="5" PointY="24.093506847686616" />
+          <ConnectorPoint PointX="4.5" PointY="23.85275447214341" />
+          <ConnectorPoint PointX="5" PointY="23.85275447214341" />
           <ConnectorPoint PointX="5" PointY="23.875" />
+          <ConnectorPoint PointX="5.072916666666667" PointY="23.875" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="23.875" />
           <ConnectorPoint PointX="6.916666666666667" PointY="23.875" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="23.875" />
-          <ConnectorPoint PointX="7.104166666666667" PointY="23.875" />
           <ConnectorPoint PointX="7.270833333333333" PointY="23.875" />
           <ConnectorPoint PointX="9.0778008854166661" PointY="23.875" />
           <ConnectorPoint PointX="9.3875371614583347" PointY="23.875" />
@@ -1683,56 +1692,54 @@
           <ConnectorPoint PointX="11.25" PointY="20.864889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Connection1_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="25.559131145698572" />
-          <ConnectorPoint PointX="5.25" PointY="25.559131145698572" />
+          <ConnectorPoint PointX="4.5" PointY="25.556788591292822" />
+          <ConnectorPoint PointX="5.072916666666667" PointY="25.556788591292822" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="25.556788591292822" />
+          <ConnectorPoint PointX="5.25" PointY="25.556788591292822" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Connection2_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="24.779565572849286" />
-          <ConnectorPoint PointX="5.25" PointY="24.779565572849286" />
+          <ConnectorPoint PointX="4.5" PointY="24.933302148832304" />
+          <ConnectorPoint PointX="5.072916666666667" PointY="24.933302148832304" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="24.933302148832304" />
+          <ConnectorPoint PointX="5.25" PointY="24.933302148832304" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_HonorAward_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4676923076923112" PointY="26.422506510416671" />
-          <ConnectorPoint PointX="4.96875" PointY="26.923564202724361" />
-          <ConnectorPoint PointX="4.96875" PointY="38.624746093750005" />
+          <ConnectorPoint PointX="4.4746153846153875" PointY="26.422506510416671" />
+          <ConnectorPoint PointX="5.03125" PointY="26.979141125801284" />
+          <ConnectorPoint PointX="5.03125" PointY="38.624746093750005" />
+          <ConnectorPoint PointX="5.072916666666667" PointY="38.624746093750005" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="38.624746093750005" />
           <ConnectorPoint PointX="5.25" PointY="38.624746093750005" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Language_Language" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="29.047841796875" />
           <ConnectorPoint PointX="4.791666666666667" PointY="29.047841796875" />
-          <ConnectorPoint PointX="5.098958333333333" PointY="29.047841796875" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="29.047841796875" />
           <ConnectorPoint PointX="5.25" PointY="29.047841796875" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Language_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="26.392505510416665" />
-          <ConnectorPoint PointX="5.0625" PointY="26.955005510416665" />
-          <ConnectorPoint PointX="5.0625" PointY="29.057444661458334" />
+          <ConnectorPoint PointX="4.5" PointY="26.399428587339742" />
+          <ConnectorPoint PointX="4.953125" PointY="26.852553587339742" />
+          <ConnectorPoint PointX="4.953125" PointY="29.057444661458334" />
+          <ConnectorPoint PointX="5.072916666666667" PointY="29.057444661458334" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="29.057444661458334" />
           <ConnectorPoint PointX="5.25" PointY="29.057444661458334" />
         </AssociationConnector>
-        <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Project_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.4884615384615412" PointY="26.422506510416671" />
-          <ConnectorPoint PointX="4.90625" PointY="26.840294971955132" />
-          <ConnectorPoint PointX="4.90625" PointY="45.24974609375" />
-          <ConnectorPoint PointX="5.25" PointY="45.24974609375" />
-        </AssociationConnector>
-        <AssociationConnector Association="JobZoomModel.FK_Jobseeker_ProjectMember_Project" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="45.24974609375" />
-          <ConnectorPoint PointX="8.28125" PointY="45.24974609375" />
-          <ConnectorPoint PointX="8.28125" PointY="36.297587890624996" />
-        </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_ProjectMember_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="26.371736279647436" />
-          <ConnectorPoint PointX="4.9257702307692313" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="4.5" PointY="26.375197818108973" />
+          <ConnectorPoint PointX="4.9223086923076949" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="5.072916666666667" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="26.797506510416667" />
           <ConnectorPoint PointX="6.916666666666667" PointY="26.797506510416667" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="26.797506510416667" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="26.797506510416667" />
           <ConnectorPoint PointX="7.375" PointY="26.797506510416667" />
-          <ConnectorPoint PointX="7.375" PointY="34" />
-          <ConnectorPoint PointX="7.5" PointY="34.125" />
+          <ConnectorPoint PointX="7.375" PointY="33.5" />
+          <ConnectorPoint PointX="7.75" PointY="33.875" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Skill_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.44692307692308" PointY="26.422506510416671" />
-          <ConnectorPoint PointX="4.875" PointY="26.85058343349359" />
-          <ConnectorPoint PointX="4.875" PointY="48.365143229166669" />
-          <ConnectorPoint PointX="5.25" PointY="48.365143229166669" />
+          <ConnectorPoint PointX="4.5" PointY="23.62390961346733" />
+          <ConnectorPoint PointX="5.15625" PointY="23.62390961346733" />
+          <ConnectorPoint PointX="5.15625" PointY="44.625" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_User_AccountType" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="24.047841796875" />
@@ -1740,8 +1747,8 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker" Width="1.5" PointX="8" PointY="27.875" Height="4.8648079427083246" />
         <AssociationConnector Association="JobZoomModel.FK_JobseekerCity_Country" >
-          <ConnectorPoint PointX="7.2187525" PointY="41" />
-          <ConnectorPoint PointX="7.2187525" PointY="31.432444661458334" />
+          <ConnectorPoint PointX="7.1875" PointY="41" />
+          <ConnectorPoint PointX="7.1875" PointY="31.432444661458334" />
           <ConnectorPoint PointX="7.291666666666667" PointY="31.432444661458334" />
           <ConnectorPoint PointX="7.458333333333333" PointY="31.432444661458334" />
           <ConnectorPoint PointX="8" PointY="31.432444661458334" />
@@ -1751,22 +1758,36 @@
           <ConnectorPoint PointX="9.16113421875" PointY="27.875" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_User" >
-          <ConnectorPoint PointX="4.5" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="6.916666666666667" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="7.083333333333333" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="7.104166666666667" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="7.395833333333333" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="9.0778008854166661" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="9.2444675520833339" PointY="23.398207170410146" />
-          <ConnectorPoint PointX="9.304203828125" PointY="23.398207170410146" />
+          <ConnectorPoint PointX="4.5" PointY="23.39506475479125" />
+          <ConnectorPoint PointX="6.916666666666667" PointY="23.39506475479125" />
+          <ConnectorPoint PointX="7.395833333333333" PointY="23.39506475479125" />
+          <ConnectorPoint PointX="9.0778008854166661" PointY="23.39506475479125" />
+          <ConnectorPoint PointX="9.2444675520833339" PointY="23.39506475479125" />
+          <ConnectorPoint PointX="9.304203828125" PointY="23.39506475479125" />
           <ConnectorPoint PointX="9.304203828125" PointY="27.875" />
         </AssociationConnector>
         <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Experience" Width="1.5" PointX="5.25" PointY="32.625" Height="3.326396484374996" />
         <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Exprience_User" >
-          <ConnectorPoint PointX="4.5" PointY="26.398274741185897" />
-          <ConnectorPoint PointX="5.015625" PointY="26.913899741185897" />
-          <ConnectorPoint PointX="5.015625" PointY="34.2881982421875" />
+          <ConnectorPoint PointX="4.4988461538461566" PointY="26.422506510416671" />
+          <ConnectorPoint PointX="4.875" PointY="26.798660356570515" />
+          <ConnectorPoint PointX="4.875" PointY="34.2881982421875" />
+          <ConnectorPoint PointX="4.947916666666667" PointY="34.2881982421875" />
+          <ConnectorPoint PointX="5.239583333333333" PointY="34.2881982421875" />
           <ConnectorPoint PointX="5.25" PointY="34.2881982421875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="JobZoomModel.Jobseeker_Project" Width="1.5" PointX="5.25" PointY="10.75" Height="2.7494921875000067" />
+        <AssociationConnector Association="JobZoomModel.FK_Jobseeker_Project_User" >
+          <ConnectorPoint PointX="3.75" PointY="21.75" />
+          <ConnectorPoint PointX="3.75" PointY="12.124746093750003" />
+          <ConnectorPoint PointX="5.25" PointY="12.124746093750003" />
+        </AssociationConnector>
+        <AssociationConnector Association="JobZoomModel.FK_Jobseeker_ProjectMember_Project" >
+          <ConnectorPoint PointX="6.75" PointY="13.499492187500007" />
+          <ConnectorPoint PointX="6.9410744349011217" PointY="13.690566622401127" />
+          <ConnectorPoint PointX="7.0589255650988791" PointY="13.808417752598885" />
+          <ConnectorPoint PointX="7.125" PointY="13.874492187500007" />
+          <ConnectorPoint PointX="7.125" PointY="34.992545945312507" />
+          <ConnectorPoint PointX="7.75" PointY="34.992545945312507" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

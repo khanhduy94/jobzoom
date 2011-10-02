@@ -130,5 +130,30 @@ namespace JobZoom.Services
         {
             return repository.DeleteHonorAward(id);
         }
+
+        public List<Jobseeker_Project> GetAllProject(string userID)
+        {
+            return repository.GetAllProject(userID);
+        }
+
+        public Jobseeker_Project GetProject(string userID)
+        {
+            return repository.GetProject(userID);
+        }
+
+        public bool AddProject(Jobseeker_Project model)
+        {
+            return repository.AddProject(model);
+        }
+
+        public bool SaveProject(Jobseeker_Project model)
+        {
+            return repository.SaveProject(model);
+        }
+
+        public bool DeleteProject(string id)
+        {
+            return repository.DeleteProject(id);
+        }
     }
 }
