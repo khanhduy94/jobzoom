@@ -19,9 +19,11 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_City_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "City", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.City), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobseekerCity_Country", "City", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.City), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_Industry", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Industry), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Industry_Industry", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Industry), "Job_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Industry), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Ability_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Ability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Ability), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Applicant_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Applicant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Applicant), true)]
@@ -29,20 +31,18 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Industry_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Industry), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Applicant_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Job_Applicant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Applicant), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Connection1_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Connection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Connection), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Connection2_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Connection", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Connection), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Exprience_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Experience", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Experience), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_HonorAward_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_HonorAward", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_HonorAward), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Language_Language", "Language", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Language), "Jobseeker_Language", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Language), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Language_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Language", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Language), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Project), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Jobseeker_Project), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Skill_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Skill), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_User_AccountType", "User_AccountType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User_AccountType), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.User), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobseekerCity_Country", "City", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.City), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Exprience_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Experience", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Experience), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_Project), true)]
-[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Jobseeker_Project), "Jobseeker_ProjectMember", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker_ProjectMember), true)]
 
 #endregion
 
@@ -257,6 +257,22 @@ namespace JobZoom.Business.Entites
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Jobseeker> Jobseekers
+        {
+            get
+            {
+                if ((_Jobseekers == null))
+                {
+                    _Jobseekers = base.CreateObjectSet<Jobseeker>("Jobseekers");
+                }
+                return _Jobseekers;
+            }
+        }
+        private ObjectSet<Jobseeker> _Jobseekers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Jobseeker_Connection> Jobseeker_Connection
         {
             get
@@ -269,6 +285,22 @@ namespace JobZoom.Business.Entites
             }
         }
         private ObjectSet<Jobseeker_Connection> _Jobseeker_Connection;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Jobseeker_Experience> Jobseeker_Experience
+        {
+            get
+            {
+                if ((_Jobseeker_Experience == null))
+                {
+                    _Jobseeker_Experience = base.CreateObjectSet<Jobseeker_Experience>("Jobseeker_Experience");
+                }
+                return _Jobseeker_Experience;
+            }
+        }
+        private ObjectSet<Jobseeker_Experience> _Jobseeker_Experience;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -301,6 +333,22 @@ namespace JobZoom.Business.Entites
             }
         }
         private ObjectSet<Jobseeker_Language> _Jobseeker_Language;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Jobseeker_Project> Jobseeker_Project
+        {
+            get
+            {
+                if ((_Jobseeker_Project == null))
+                {
+                    _Jobseeker_Project = base.CreateObjectSet<Jobseeker_Project>("Jobseeker_Project");
+                }
+                return _Jobseeker_Project;
+            }
+        }
+        private ObjectSet<Jobseeker_Project> _Jobseeker_Project;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -381,54 +429,6 @@ namespace JobZoom.Business.Entites
             }
         }
         private ObjectSet<User_AccountType> _User_AccountType;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Jobseeker> Jobseekers
-        {
-            get
-            {
-                if ((_Jobseekers == null))
-                {
-                    _Jobseekers = base.CreateObjectSet<Jobseeker>("Jobseekers");
-                }
-                return _Jobseekers;
-            }
-        }
-        private ObjectSet<Jobseeker> _Jobseekers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Jobseeker_Experience> Jobseeker_Experience
-        {
-            get
-            {
-                if ((_Jobseeker_Experience == null))
-                {
-                    _Jobseeker_Experience = base.CreateObjectSet<Jobseeker_Experience>("Jobseeker_Experience");
-                }
-                return _Jobseeker_Experience;
-            }
-        }
-        private ObjectSet<Jobseeker_Experience> _Jobseeker_Experience;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Jobseeker_Project> Jobseeker_Project
-        {
-            get
-            {
-                if ((_Jobseeker_Project == null))
-                {
-                    _Jobseeker_Project = base.CreateObjectSet<Jobseeker_Project>("Jobseeker_Project");
-                }
-                return _Jobseeker_Project;
-            }
-        }
-        private ObjectSet<Jobseeker_Project> _Jobseeker_Project;
 
         #endregion
         #region AddTo Methods
@@ -514,11 +514,27 @@ namespace JobZoom.Business.Entites
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Jobseekers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJobseekers(Jobseeker jobseeker)
+        {
+            base.AddObject("Jobseekers", jobseeker);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Jobseeker_Connection EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToJobseeker_Connection(Jobseeker_Connection jobseeker_Connection)
         {
             base.AddObject("Jobseeker_Connection", jobseeker_Connection);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Jobseeker_Experience EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJobseeker_Experience(Jobseeker_Experience jobseeker_Experience)
+        {
+            base.AddObject("Jobseeker_Experience", jobseeker_Experience);
         }
     
         /// <summary>
@@ -535,6 +551,14 @@ namespace JobZoom.Business.Entites
         public void AddToJobseeker_Language(Jobseeker_Language jobseeker_Language)
         {
             base.AddObject("Jobseeker_Language", jobseeker_Language);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Jobseeker_Project EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJobseeker_Project(Jobseeker_Project jobseeker_Project)
+        {
+            base.AddObject("Jobseeker_Project", jobseeker_Project);
         }
     
         /// <summary>
@@ -576,30 +600,6 @@ namespace JobZoom.Business.Entites
         {
             base.AddObject("User_AccountType", user_AccountType);
         }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Jobseekers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToJobseekers(Jobseeker jobseeker)
-        {
-            base.AddObject("Jobseekers", jobseeker);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Jobseeker_Experience EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToJobseeker_Experience(Jobseeker_Experience jobseeker_Experience)
-        {
-            base.AddObject("Jobseeker_Experience", jobseeker_Experience);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Jobseeker_Project EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToJobseeker_Project(Jobseeker_Project jobseeker_Project)
-        {
-            base.AddObject("Jobseeker_Project", jobseeker_Project);
-        }
 
         #endregion
     }
@@ -625,7 +625,7 @@ namespace JobZoom.Business.Entites
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="countryID">Initial value of the CountryID property.</param>
-        public static City CreateCity(global::System.String id, global::System.String name, global::System.String countryID)
+        public static City CreateCity(global::System.Int32 id, global::System.String name, global::System.Int32 countryID)
         {
             City city = new City();
             city.ID = id;
@@ -642,7 +642,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ID
+        public global::System.Int32 ID
         {
             get
             {
@@ -654,14 +654,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value, false);
+                    _ID = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.String _ID;
-        partial void OnIDChanging(global::System.String value);
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -693,7 +693,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CountryID
+        public global::System.Int32 CountryID
         {
             get
             {
@@ -703,13 +703,13 @@ namespace JobZoom.Business.Entites
             {
                 OnCountryIDChanging(value);
                 ReportPropertyChanging("CountryID");
-                _CountryID = StructuralObject.SetValidValue(value, false);
+                _CountryID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CountryID");
                 OnCountryIDChanged();
             }
         }
-        private global::System.String _CountryID;
-        partial void OnCountryIDChanging(global::System.String value);
+        private global::System.Int32 _CountryID;
+        partial void OnCountryIDChanging(global::System.Int32 value);
         partial void OnCountryIDChanged();
 
         #endregion
@@ -799,7 +799,7 @@ namespace JobZoom.Business.Entites
         /// <param name="addressLine1">Initial value of the AddressLine1 property.</param>
         /// <param name="cityID">Initial value of the CityID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Company CreateCompany(global::System.String id, global::System.String userID, global::System.String name, global::System.String industryID, global::System.String addressLine1, global::System.String cityID, global::System.DateTime modifiedDate)
+        public static Company CreateCompany(global::System.String id, global::System.String userID, global::System.String name, global::System.Int32 industryID, global::System.String addressLine1, global::System.Int32 cityID, global::System.DateTime modifiedDate)
         {
             Company company = new Company();
             company.ID = id;
@@ -895,7 +895,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String IndustryID
+        public global::System.Int32 IndustryID
         {
             get
             {
@@ -905,13 +905,13 @@ namespace JobZoom.Business.Entites
             {
                 OnIndustryIDChanging(value);
                 ReportPropertyChanging("IndustryID");
-                _IndustryID = StructuralObject.SetValidValue(value, false);
+                _IndustryID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("IndustryID");
                 OnIndustryIDChanged();
             }
         }
-        private global::System.String _IndustryID;
-        partial void OnIndustryIDChanging(global::System.String value);
+        private global::System.Int32 _IndustryID;
+        partial void OnIndustryIDChanging(global::System.Int32 value);
         partial void OnIndustryIDChanged();
     
         /// <summary>
@@ -1015,7 +1015,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CityID
+        public global::System.Int32 CityID
         {
             get
             {
@@ -1025,13 +1025,13 @@ namespace JobZoom.Business.Entites
             {
                 OnCityIDChanging(value);
                 ReportPropertyChanging("CityID");
-                _CityID = StructuralObject.SetValidValue(value, false);
+                _CityID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CityID");
                 OnCityIDChanged();
             }
         }
-        private global::System.String _CityID;
-        partial void OnCityIDChanging(global::System.String value);
+        private global::System.Int32 _CityID;
+        partial void OnCityIDChanging(global::System.Int32 value);
         partial void OnCityIDChanged();
     
         /// <summary>
@@ -1314,7 +1314,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Country CreateCountry(global::System.String id, global::System.String name)
+        public static Country CreateCountry(global::System.Int32 id, global::System.String name)
         {
             Country country = new Country();
             country.ID = id;
@@ -1330,7 +1330,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ID
+        public global::System.Int32 ID
         {
             get
             {
@@ -1342,14 +1342,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value, false);
+                    _ID = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.String _ID;
-        partial void OnIDChanging(global::System.String value);
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1488,7 +1488,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Function CreateFunction(global::System.String id, global::System.String name)
+        public static Function CreateFunction(global::System.Int32 id, global::System.String name)
         {
             Function function = new Function();
             function.ID = id;
@@ -1504,7 +1504,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ID
+        public global::System.Int32 ID
         {
             get
             {
@@ -1516,14 +1516,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value, false);
+                    _ID = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.String _ID;
-        partial void OnIDChanging(global::System.String value);
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1569,7 +1569,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Industry CreateIndustry(global::System.String id, global::System.String name)
+        public static Industry CreateIndustry(global::System.Int32 id, global::System.String name)
         {
             Industry industry = new Industry();
             industry.ID = id;
@@ -1585,7 +1585,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ID
+        public global::System.Int32 ID
         {
             get
             {
@@ -1597,14 +1597,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value, false);
+                    _ID = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.String _ID;
-        partial void OnIDChanging(global::System.String value);
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1704,7 +1704,7 @@ namespace JobZoom.Business.Entites
         /// <param name="type">Initial value of the Type property.</param>
         /// <param name="experience">Initial value of the Experience property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Job CreateJob(global::System.String id, global::System.String userID, global::System.String jobTitle, global::System.String companyName, global::System.String cityID, global::System.String countryID, global::System.String type, global::System.String experience, global::System.DateTime modifiedDate)
+        public static Job CreateJob(global::System.String id, global::System.String userID, global::System.String jobTitle, global::System.String companyName, global::System.Int32 cityID, global::System.Int32 countryID, global::System.String type, global::System.String experience, global::System.DateTime modifiedDate)
         {
             Job job = new Job();
             job.ID = id;
@@ -1826,7 +1826,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CityID
+        public global::System.Int32 CityID
         {
             get
             {
@@ -1836,13 +1836,13 @@ namespace JobZoom.Business.Entites
             {
                 OnCityIDChanging(value);
                 ReportPropertyChanging("CityID");
-                _CityID = StructuralObject.SetValidValue(value, false);
+                _CityID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CityID");
                 OnCityIDChanged();
             }
         }
-        private global::System.String _CityID;
-        partial void OnCityIDChanging(global::System.String value);
+        private global::System.Int32 _CityID;
+        partial void OnCityIDChanging(global::System.Int32 value);
         partial void OnCityIDChanged();
     
         /// <summary>
@@ -1850,7 +1850,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CountryID
+        public global::System.Int32 CountryID
         {
             get
             {
@@ -1860,13 +1860,13 @@ namespace JobZoom.Business.Entites
             {
                 OnCountryIDChanging(value);
                 ReportPropertyChanging("CountryID");
-                _CountryID = StructuralObject.SetValidValue(value, false);
+                _CountryID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CountryID");
                 OnCountryIDChanged();
             }
         }
-        private global::System.String _CountryID;
-        partial void OnCountryIDChanging(global::System.String value);
+        private global::System.Int32 _CountryID;
+        partial void OnCountryIDChanging(global::System.Int32 value);
         partial void OnCountryIDChanged();
     
         /// <summary>
@@ -2723,7 +2723,7 @@ namespace JobZoom.Business.Entites
         /// <param name="jobID">Initial value of the JobID property.</param>
         /// <param name="industryID">Initial value of the IndustryID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Job_Industry CreateJob_Industry(global::System.String id, global::System.String jobID, global::System.String industryID, global::System.DateTime modifiedDate)
+        public static Job_Industry CreateJob_Industry(global::System.String id, global::System.String jobID, global::System.Int32 industryID, global::System.DateTime modifiedDate)
         {
             Job_Industry job_Industry = new Job_Industry();
             job_Industry.ID = id;
@@ -2792,7 +2792,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String IndustryID
+        public global::System.Int32 IndustryID
         {
             get
             {
@@ -2802,13 +2802,13 @@ namespace JobZoom.Business.Entites
             {
                 OnIndustryIDChanging(value);
                 ReportPropertyChanging("IndustryID");
-                _IndustryID = StructuralObject.SetValidValue(value, false);
+                _IndustryID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("IndustryID");
                 OnIndustryIDChanged();
             }
         }
-        private global::System.String _IndustryID;
-        partial void OnIndustryIDChanging(global::System.String value);
+        private global::System.Int32 _IndustryID;
+        partial void OnIndustryIDChanging(global::System.Int32 value);
         partial void OnIndustryIDChanged();
     
         /// <summary>
@@ -2942,7 +2942,7 @@ namespace JobZoom.Business.Entites
         /// <param name="addressLine1">Initial value of the AddressLine1 property.</param>
         /// <param name="cityID">Initial value of the CityID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Jobseeker CreateJobseeker(global::System.String id, global::System.String userID, global::System.String firstName, global::System.String lastName, global::System.String gender, global::System.DateTime birthdate, global::System.String maritalStatus, global::System.String citizenship, global::System.String addressLine1, global::System.String cityID, global::System.DateTime modifiedDate)
+        public static Jobseeker CreateJobseeker(global::System.String id, global::System.String userID, global::System.String firstName, global::System.String lastName, global::System.String gender, global::System.DateTime birthdate, global::System.String maritalStatus, global::System.Int32 citizenship, global::System.String addressLine1, global::System.Int32 cityID, global::System.DateTime modifiedDate)
         {
             Jobseeker jobseeker = new Jobseeker();
             jobseeker.ID = id;
@@ -3138,7 +3138,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Citizenship
+        public global::System.Int32 Citizenship
         {
             get
             {
@@ -3148,13 +3148,13 @@ namespace JobZoom.Business.Entites
             {
                 OnCitizenshipChanging(value);
                 ReportPropertyChanging("Citizenship");
-                _Citizenship = StructuralObject.SetValidValue(value, false);
+                _Citizenship = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("Citizenship");
                 OnCitizenshipChanged();
             }
         }
-        private global::System.String _Citizenship;
-        partial void OnCitizenshipChanging(global::System.String value);
+        private global::System.Int32 _Citizenship;
+        partial void OnCitizenshipChanging(global::System.Int32 value);
         partial void OnCitizenshipChanged();
     
         /// <summary>
@@ -3234,7 +3234,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String CityID
+        public global::System.Int32 CityID
         {
             get
             {
@@ -3244,13 +3244,13 @@ namespace JobZoom.Business.Entites
             {
                 OnCityIDChanging(value);
                 ReportPropertyChanging("CityID");
-                _CityID = StructuralObject.SetValidValue(value, false);
+                _CityID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("CityID");
                 OnCityIDChanged();
             }
         }
-        private global::System.String _CityID;
-        partial void OnCityIDChanging(global::System.String value);
+        private global::System.Int32 _CityID;
+        partial void OnCityIDChanging(global::System.Int32 value);
         partial void OnCityIDChanged();
     
         /// <summary>
@@ -4364,7 +4364,7 @@ namespace JobZoom.Business.Entites
         /// <param name="languageID">Initial value of the LanguageID property.</param>
         /// <param name="proficiency">Initial value of the Proficiency property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Jobseeker_Language CreateJobseeker_Language(global::System.String id, global::System.String userID, global::System.String languageID, global::System.String proficiency, global::System.DateTime modifiedDate)
+        public static Jobseeker_Language CreateJobseeker_Language(global::System.String id, global::System.String userID, global::System.Int32 languageID, global::System.String proficiency, global::System.DateTime modifiedDate)
         {
             Jobseeker_Language jobseeker_Language = new Jobseeker_Language();
             jobseeker_Language.ID = id;
@@ -4434,7 +4434,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String LanguageID
+        public global::System.Int32 LanguageID
         {
             get
             {
@@ -4444,13 +4444,13 @@ namespace JobZoom.Business.Entites
             {
                 OnLanguageIDChanging(value);
                 ReportPropertyChanging("LanguageID");
-                _LanguageID = StructuralObject.SetValidValue(value, false);
+                _LanguageID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("LanguageID");
                 OnLanguageIDChanged();
             }
         }
-        private global::System.String _LanguageID;
-        partial void OnLanguageIDChanging(global::System.String value);
+        private global::System.Int32 _LanguageID;
+        partial void OnLanguageIDChanging(global::System.Int32 value);
         partial void OnLanguageIDChanged();
     
         /// <summary>
@@ -4991,44 +4991,6 @@ namespace JobZoom.Business.Entites
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "User")]
-        public User User
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<User> UserReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project")]
         public Jobseeker_Project Jobseeker_Project
         {
@@ -5057,6 +5019,44 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_ProjectMember_Project", "Jobseeker_Project", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_ProjectMember_User", "User")]
+        public User User
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<User> UserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoomModel.FK_Jobseeker_ProjectMember_User", "User", value);
                 }
             }
         }
@@ -5253,7 +5253,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Language CreateLanguage(global::System.String id, global::System.String name)
+        public static Language CreateLanguage(global::System.Int32 id, global::System.String name)
         {
             Language language = new Language();
             language.ID = id;
@@ -5269,7 +5269,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ID
+        public global::System.Int32 ID
         {
             get
             {
@@ -5281,14 +5281,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value, false);
+                    _ID = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.String _ID;
-        partial void OnIDChanging(global::System.String value);
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -5362,7 +5362,7 @@ namespace JobZoom.Business.Entites
         /// <param name="password">Initial value of the Password property.</param>
         /// <param name="accountTypeID">Initial value of the AccountTypeID property.</param>
         /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static User CreateUser(global::System.String id, global::System.String email, global::System.String password, global::System.String accountTypeID, global::System.DateTime modifiedDate)
+        public static User CreateUser(global::System.String id, global::System.String email, global::System.String password, global::System.Int32 accountTypeID, global::System.DateTime modifiedDate)
         {
             User user = new User();
             user.ID = id;
@@ -5456,7 +5456,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String AccountTypeID
+        public global::System.Int32 AccountTypeID
         {
             get
             {
@@ -5466,13 +5466,13 @@ namespace JobZoom.Business.Entites
             {
                 OnAccountTypeIDChanging(value);
                 ReportPropertyChanging("AccountTypeID");
-                _AccountTypeID = StructuralObject.SetValidValue(value, false);
+                _AccountTypeID = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("AccountTypeID");
                 OnAccountTypeIDChanged();
             }
         }
-        private global::System.String _AccountTypeID;
-        partial void OnAccountTypeIDChanging(global::System.String value);
+        private global::System.Int32 _AccountTypeID;
+        partial void OnAccountTypeIDChanging(global::System.Int32 value);
         partial void OnAccountTypeIDChanged();
     
         /// <summary>
@@ -5599,6 +5599,28 @@ namespace JobZoom.Business.Entites
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_User", "Jobseeker")]
+        public EntityCollection<Jobseeker> Jobseekers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Connection1_User", "Jobseeker_Connection")]
         public EntityCollection<Jobseeker_Connection> Jobseeker_Connection
         {
@@ -5643,6 +5665,28 @@ namespace JobZoom.Business.Entites
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Exprience_User", "Jobseeker_Experience")]
+        public EntityCollection<Jobseeker_Experience> Jobseeker_Experience
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker_Experience>("JobZoomModel.FK_Jobseeker_Exprience_User", "Jobseeker_Experience");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Experience>("JobZoomModel.FK_Jobseeker_Exprience_User", "Jobseeker_Experience", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_HonorAward_User", "Jobseeker_HonorAward")]
         public EntityCollection<Jobseeker_HonorAward> Jobseeker_HonorAward
         {
@@ -5677,6 +5721,28 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Language>("JobZoomModel.FK_Jobseeker_Language_User", "Jobseeker_Language", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "Jobseeker_Project")]
+        public EntityCollection<Jobseeker_Project> Jobseeker_Project
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project", value);
                 }
             }
         }
@@ -5762,72 +5828,6 @@ namespace JobZoom.Business.Entites
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_User", "Jobseeker")]
-        public EntityCollection<Jobseeker> Jobseekers
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker>("JobZoomModel.FK_Jobseeker_User", "Jobseeker", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Exprience_User", "Jobseeker_Experience")]
-        public EntityCollection<Jobseeker_Experience> Jobseeker_Experience
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker_Experience>("JobZoomModel.FK_Jobseeker_Exprience_User", "Jobseeker_Experience");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Experience>("JobZoomModel.FK_Jobseeker_Exprience_User", "Jobseeker_Experience", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Jobseeker_Project_User", "Jobseeker_Project")]
-        public EntityCollection<Jobseeker_Project> Jobseeker_Project
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Jobseeker_Project>("JobZoomModel.FK_Jobseeker_Project_User", "Jobseeker_Project", value);
-                }
-            }
-        }
 
         #endregion
     }
@@ -5847,7 +5847,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static User_AccountType CreateUser_AccountType(global::System.String id, global::System.String name)
+        public static User_AccountType CreateUser_AccountType(global::System.Int32 id, global::System.String name)
         {
             User_AccountType user_AccountType = new User_AccountType();
             user_AccountType.ID = id;
@@ -5863,7 +5863,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ID
+        public global::System.Int32 ID
         {
             get
             {
@@ -5875,14 +5875,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value, false);
+                    _ID = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.String _ID;
-        partial void OnIDChanging(global::System.String value);
+        private global::System.Int32 _ID;
+        partial void OnIDChanging(global::System.Int32 value);
         partial void OnIDChanged();
     
         /// <summary>
