@@ -30,8 +30,8 @@ namespace JobZoom.Web.Controllers
             genders.Add(new SelectListItem { Text = "Female", Value = "F" });
             ViewData["Genders"] = genders;         
 
-            ViewData["ListCity"] = client.GetAllCities().ToSelectList(c => c.ID, c => c.Name);
-            ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID, c => c.Name);                        
+            ViewData["ListCity"] = client.GetAllCities().ToSelectList(c => c.ID.ToString(), c => c.Name);
+            ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID.ToString(), c => c.Name);                        
             return View(profile);
         }
 
