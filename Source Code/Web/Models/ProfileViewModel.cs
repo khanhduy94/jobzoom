@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using JobZoom.Business.Entites;
 using JobZoom.Web.JobZoomServiceReference;
+using JobZoom.Business.Entites;
 
 namespace JobZoom.Web.Models
 {

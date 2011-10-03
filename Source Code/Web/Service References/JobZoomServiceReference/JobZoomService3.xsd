@@ -63,18 +63,15 @@
           <xs:element minOccurs="0" name="CityReference" nillable="true" type="q3:EntityReferenceOfCitylrRhuyLR" />
           <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
           <xs:element minOccurs="0" name="CountryReference" nillable="true" type="q3:EntityReferenceOfCountrylrRhuyLR" />
-          <xs:element minOccurs="0" name="FirtName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="MaritalStatus" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="MiddleName" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
-          <xs:element minOccurs="0" name="Suffix" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="UserReference" nillable="true" type="q3:EntityReferenceOfUserlrRhuyLR" />
@@ -105,8 +102,7 @@
           <xs:element minOccurs="0" name="Jobseekers" nillable="true" type="tns:ArrayOfJobseeker" />
           <xs:element minOccurs="0" name="LastLoginDate" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="PasswordHash" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="PasswordSalt" type="xs:int" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User_AccountType" nillable="true" type="tns:User_AccountType" />
           <xs:element minOccurs="0" name="User_AccountTypeReference" nillable="true" type="q4:EntityReferenceOfUser_AccountTypelrRhuyLR" />
         </xs:sequence>
@@ -322,6 +318,7 @@
           <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="ExperienceType" type="xs:int" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Industry" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />

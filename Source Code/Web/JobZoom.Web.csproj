@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JobZoom.Business.Entites, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -70,7 +71,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ControllerHelpers.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\JobZoomServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -118,12 +121,16 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.City.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Country.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_Experience.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_HonorAward.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_Project.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_Skill.datasource" />
     <None Include="Service References\JobZoomServiceReference\configuration91.svcinfo" />
     <None Include="Service References\JobZoomServiceReference\configuration.svcinfo" />
     <None Include="Service References\JobZoomServiceReference\JobZoom.Web.JobZoomServiceReference.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\JobZoomServiceReference\JobZoom.Web.JobZoomServiceReference.Country.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\JobZoomServiceReference\Reference.svcmap">
@@ -156,13 +163,22 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\ProfileHome\Index.cshtml" />
     <Content Include="Views\ProfileEdit\Basic.cshtml" />
     <Content Include="Views\ProfileEdit\EducationExperience.cshtml" />
     <Content Include="Views\ProfileEdit\WorkExperience.cshtml" />
     <Content Include="Views\EmployerJobPost\Basic.cshtml" />
     <Content Include="Views\EmployerJobPost\CandidatesRecommendation.cshtml" />
     <Content Include="Views\EmployerJobPost\Details.cshtml" />
+    <Content Include="Views\ProfileEdit\AddEducation.cshtml" />
+    <Content Include="Views\ProfileEdit\AddHonorAward.cshtml" />
+    <Content Include="Views\ProfileEdit\AddProject.cshtml" />
+    <Content Include="Views\ProfileEdit\AddSkill.cshtml" />
+    <Content Include="Views\ProfileEdit\AddWorkExperience.cshtml" />
+    <Content Include="Views\ProfileEdit\Index.cshtml" />
+    <Content Include="Views\ProfileEdit\UpdateEducation.cshtml" />
+    <Content Include="Views\ProfileEdit\UpdateHonorAward.cshtml" />
+    <Content Include="Views\ProfileEdit\UpdateProject.cshtml" />
+    <Content Include="Views\ProfileEdit\UpdateWorkExperience.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -173,7 +189,9 @@
   <ItemGroup>
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Profile\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\EmployerHome\Index.cshtml" />
   </ItemGroup>

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JobZoom.Web.JobZoomServiceReference;
-using JobZoom.Business.Entites;
 using JobZoom.Web.Models;
+using JobZoom.Business.Entites;
 
 namespace JobZoom.Web.Controllers
 {

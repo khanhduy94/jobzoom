@@ -28,6 +28,144 @@
   <wsdl:message name="IJobZoomService_GetAllCountries_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCountriesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllCities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCities" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllCities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetJobseeker_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobseeker" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetJobseeker_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetJobseekerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SavePersonalInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePersonalInfo" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SavePersonalInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePersonalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetExperience_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetExperience" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetExperience_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetExperienceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllEducation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEducation" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllEducation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEducationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllExperience_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllExperience" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllExperience_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllExperienceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddEducation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddEducation" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddEducation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddEducationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddWorkExperience_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddWorkExperience" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddWorkExperience_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddWorkExperienceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SaveExperience_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveExperience" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SaveExperience_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveExperienceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteExperience_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteExperience" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteExperience_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteExperienceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSkill" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSkill" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteSkill_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSkill" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteSkill_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSkillResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllHonorAward_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllHonorAward" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllHonorAward_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllHonorAwardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetHonorAward_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHonorAward" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetHonorAward_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHonorAwardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddHonorAward_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddHonorAward" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddHonorAward_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddHonorAwardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SaveHonorAward_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveHonorAward" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SaveHonorAward_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveHonorAwardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteHonorAward_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHonorAward" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteHonorAward_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteHonorAwardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProject" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProject" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProject" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_AddProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SaveProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveProject" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_SaveProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_DeleteProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
   <wsdl:portType name="IJobZoomService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetData" message="tns:IJobZoomService_GetData_InputMessage" />
@@ -40,6 +178,98 @@
     <wsdl:operation name="GetAllCountries">
       <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllCountries" message="tns:IJobZoomService_GetAllCountries_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllCountriesResponse" message="tns:IJobZoomService_GetAllCountries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllCities" message="tns:IJobZoomService_GetAllCities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllCitiesResponse" message="tns:IJobZoomService_GetAllCities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJobseeker">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetJobseeker" message="tns:IJobZoomService_GetJobseeker_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetJobseekerResponse" message="tns:IJobZoomService_GetJobseeker_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePersonalInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/SavePersonalInfo" message="tns:IJobZoomService_SavePersonalInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/SavePersonalInfoResponse" message="tns:IJobZoomService_SavePersonalInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExperience">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetExperience" message="tns:IJobZoomService_GetExperience_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetExperienceResponse" message="tns:IJobZoomService_GetExperience_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEducation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllEducation" message="tns:IJobZoomService_GetAllEducation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllEducationResponse" message="tns:IJobZoomService_GetAllEducation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExperience">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllExperience" message="tns:IJobZoomService_GetAllExperience_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllExperienceResponse" message="tns:IJobZoomService_GetAllExperience_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEducation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/AddEducation" message="tns:IJobZoomService_AddEducation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/AddEducationResponse" message="tns:IJobZoomService_AddEducation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkExperience">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/AddWorkExperience" message="tns:IJobZoomService_AddWorkExperience_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/AddWorkExperienceResponse" message="tns:IJobZoomService_AddWorkExperience_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveExperience">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/SaveExperience" message="tns:IJobZoomService_SaveExperience_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/SaveExperienceResponse" message="tns:IJobZoomService_SaveExperience_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExperience">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/DeleteExperience" message="tns:IJobZoomService_DeleteExperience_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/DeleteExperienceResponse" message="tns:IJobZoomService_DeleteExperience_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllSkill" message="tns:IJobZoomService_GetAllSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllSkillResponse" message="tns:IJobZoomService_GetAllSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/AddSkill" message="tns:IJobZoomService_AddSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/AddSkillResponse" message="tns:IJobZoomService_AddSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSkill">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/DeleteSkill" message="tns:IJobZoomService_DeleteSkill_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/DeleteSkillResponse" message="tns:IJobZoomService_DeleteSkill_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllHonorAward">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllHonorAward" message="tns:IJobZoomService_GetAllHonorAward_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllHonorAwardResponse" message="tns:IJobZoomService_GetAllHonorAward_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHonorAward">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetHonorAward" message="tns:IJobZoomService_GetHonorAward_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetHonorAwardResponse" message="tns:IJobZoomService_GetHonorAward_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHonorAward">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/AddHonorAward" message="tns:IJobZoomService_AddHonorAward_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/AddHonorAwardResponse" message="tns:IJobZoomService_AddHonorAward_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveHonorAward">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/SaveHonorAward" message="tns:IJobZoomService_SaveHonorAward_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/SaveHonorAwardResponse" message="tns:IJobZoomService_SaveHonorAward_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHonorAward">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/DeleteHonorAward" message="tns:IJobZoomService_DeleteHonorAward_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/DeleteHonorAwardResponse" message="tns:IJobZoomService_DeleteHonorAward_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllProject" message="tns:IJobZoomService_GetAllProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllProjectResponse" message="tns:IJobZoomService_GetAllProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetProject" message="tns:IJobZoomService_GetProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetProjectResponse" message="tns:IJobZoomService_GetProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/AddProject" message="tns:IJobZoomService_AddProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/AddProjectResponse" message="tns:IJobZoomService_AddProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/SaveProject" message="tns:IJobZoomService_SaveProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/SaveProjectResponse" message="tns:IJobZoomService_SaveProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/DeleteProject" message="tns:IJobZoomService_DeleteProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/DeleteProjectResponse" message="tns:IJobZoomService_DeleteProject_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IJobZoomService" type="tns:IJobZoomService">
@@ -64,6 +294,213 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllCountries">
       <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllCountries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCities">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJobseeker">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetJobseeker" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePersonalInfo">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/SavePersonalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExperience">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetExperience" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEducation">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllEducation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllExperience">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllExperience" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEducation">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/AddEducation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkExperience">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/AddWorkExperience" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveExperience">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/SaveExperience" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteExperience">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/DeleteExperience" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSkill">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSkill">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/AddSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSkill">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/DeleteSkill" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllHonorAward">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllHonorAward" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHonorAward">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetHonorAward" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHonorAward">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/AddHonorAward" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveHonorAward">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/SaveHonorAward" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHonorAward">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/DeleteHonorAward" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProject">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProject">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProject">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/AddProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveProject">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/SaveProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/DeleteProject" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
