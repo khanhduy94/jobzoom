@@ -16,9 +16,9 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Basic()
         {
-            //JobZoomServiceClient client = new JobZoomServiceClient();
-            //ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID, c => c.Name);
-            //ViewData["ListCity"] = client.GetAllCities().ToSelectList(c => c.ID, c => c.Name);
+            JobZoomServiceClient client = new JobZoomServiceClient();
+            ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID.ToString(), c => c.Name);
+            ViewData["ListCity"] = client.GetAllCities().ToSelectList(c => c.ID.ToString(), c => c.Name);
             return View();
         }
 
@@ -27,6 +27,8 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Details()
         {
+            JobZoomServiceClient client = new JobZoomServiceClient();
+            ViewData["ListIndustry"] = client.GetAllIndustries().ToSelectList(c => c.ID.ToString(), c => c.Name);
             return View();
         }
 

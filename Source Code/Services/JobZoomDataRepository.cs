@@ -30,6 +30,16 @@ namespace JobZoom.Services
             return dataContext.Cities.ToList();
         }
 
+        public List<Industry> GetIndustries()
+        {
+            return dataContext.Industries.ToList();
+        }
+
+        public List<Function> GetFunctions()
+        {
+            return dataContext.Functions.ToList();
+        }
+
         public Jobseeker GetJobseeker(string userID)
         {
             return dataContext.Jobseekers.First(j => j.UserID == userID);

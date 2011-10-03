@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Function]
 (
-	ID int PRIMARY KEY NOT NULL IDENTITY(1,1), 
+	ID char(5) PRIMARY KEY NOT NULL, 
 	Name nvarchar(50) NOT NULL
 )

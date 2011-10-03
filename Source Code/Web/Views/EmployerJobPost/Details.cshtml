@@ -1,4 +1,5 @@
-﻿@{
+﻿@model JobZoom.Business.Entites.Industry
+@{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,5 +10,50 @@
 @Html.ActionLink("Step 3. Candidates Recommendation", "CandidatesRecommendation", "EmployerJobPost")
 <h2>Step 2. Resume Details</h2>
 
-<div>Job Abilities (Many)</div>
-<div>Job Experiences (Many)</div>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Jobseeker</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.ID, ViewData["ListIndustry"] as IEnumerable<SelectListItem>, "Select...") 
+            @Html.ValidationMessageFor(model => model.ID)
+        </div>
+
+        <!--
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Job_Function)
+        </div>
+        <div class="editor-field">
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Job_Ability)
+        </div>
+        <div class="editor-field">
+            
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Job_Experience)
+        </div>
+        <div class="editor-field">
+            
+        </div>
+        -->
+
+
+        <div><input type="submit" value="Save" /></div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "Edit")
+</div>

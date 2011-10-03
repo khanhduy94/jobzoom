@@ -38,9 +38,14 @@
         @Html.HiddenFor(model => model.ID)
         @Html.HiddenFor(model => model.CompanyName)
 
+        
         <div class="editor-label">
             @Html.LabelFor(model => model.JobTitle)
         </div>
+        <div class="editor-label">
+            @Html.EditorFor(model => model.JobTitle)
+        </div>
+        
         
         <div class="editor-label">
             @Html.LabelFor(model => model.CountryID)
@@ -78,10 +83,9 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Compensation)
         </div>
-
-        <div>Industry ID (Many)</div>
-
-        <div>Function ID (Many)</div>
+        <div class="editor-label">
+            @Html.EditorFor(model => model.Compensation)
+        </div>
 
         <div><input type="submit" value="Save" /></div>
     </fieldset>

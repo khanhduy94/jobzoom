@@ -26,6 +26,12 @@ namespace JobZoom.Services
         [OperationContract(Name = "GetAllCities")]
         List<City> GetCities();
 
+        [OperationContract(Name = "GetAllIndustries")]
+        List<Industry> GetIndustries();
+
+        [OperationContract(Name = "GetAllFunctions")]
+        List<Function> GetFunctions();
+
         [OperationContract]
         Jobseeker GetJobseeker(string userID);
 

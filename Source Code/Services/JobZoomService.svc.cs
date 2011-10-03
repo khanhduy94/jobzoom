@@ -46,6 +46,16 @@ namespace JobZoom.Services
             return repository.GetCities();
         }
 
+        public List<Industry> GetIndustries()
+        {
+            return repository.GetIndustries();
+        }
+
+        public List<Function> GetFunctions()
+        {
+            return repository.GetFunctions();
+        }
+
         public Jobseeker GetJobseeker(string userID)
         {
             return repository.GetJobseeker(userID);

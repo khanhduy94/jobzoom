@@ -67,6 +67,7 @@
     <Compile Include="Controllers\EmployerHomeController.cs" />
     <Compile Include="Controllers\EmployerJobPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -123,16 +124,19 @@
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.City.datasource" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.Country.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Function.datasource" />
+    <None Include="Properties\DataSources\JobZoom.Business.Entites.Industry.datasource" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker.datasource" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_Experience.datasource" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_HonorAward.datasource" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_Project.datasource" />
     <None Include="Properties\DataSources\JobZoom.Business.Entites.Jobseeker_Skill.datasource" />
-    <None Include="Service References\JobZoomServiceReference\configuration91.svcinfo" />
-    <None Include="Service References\JobZoomServiceReference\configuration.svcinfo" />
     <None Include="Service References\JobZoomServiceReference\JobZoom.Web.JobZoomServiceReference.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\JobZoomServiceReference\JobZoomService.disco" />
+    <None Include="Service References\JobZoomServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\JobZoomServiceReference\configuration.svcinfo" />
     <None Include="Service References\JobZoomServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -179,29 +183,6 @@
     <Content Include="Views\ProfileEdit\UpdateHonorAward.cshtml" />
     <Content Include="Views\ProfileEdit\UpdateProject.cshtml" />
     <Content Include="Views\ProfileEdit\UpdateWorkExperience.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Profile\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EmployerHome\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\JobZoomServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\JobZoomServiceReference\JobZoomService.wsdl" />
     <None Include="Service References\JobZoomServiceReference\JobZoomService.xsd">
       <SubType>Designer</SubType>
@@ -223,10 +204,31 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Profile\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\EmployerHome\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Business\JobZoom.Business.Entities\JobZoom.Business.Entities.csproj">
       <Project>{0072ABF3-190F-4936-8F94-1A5008005CDA}</Project>
       <Name>JobZoom.Business.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\JobZoomServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

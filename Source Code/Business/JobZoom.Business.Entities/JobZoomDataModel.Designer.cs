@@ -24,10 +24,12 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_Industry", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Industry), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Company_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Company), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Jobseeker_Country", "Country", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Country), "Jobseeker", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Jobseeker), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Function_Function", "Function", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Function), "Job_Function", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Function), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Industry_Industry", "Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Industry), "Job_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Industry), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Ability_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Ability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Ability), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Applicant_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Applicant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Applicant), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Experience_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Experience", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Experience), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Function_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Function", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Function), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Industry_Job", "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.Job), "Job_Industry", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Industry), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Job", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_Job_Applicant_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entites.User), "Job_Applicant", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entites.Job_Applicant), true)]
@@ -93,6 +95,22 @@ namespace JobZoom.Business.Entites
         #endregion
     
         #region ObjectSet Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<C__RefactorLog> C__RefactorLog
+        {
+            get
+            {
+                if ((_C__RefactorLog == null))
+                {
+                    _C__RefactorLog = base.CreateObjectSet<C__RefactorLog>("C__RefactorLog");
+                }
+                return _C__RefactorLog;
+            }
+        }
+        private ObjectSet<C__RefactorLog> _C__RefactorLog;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -237,6 +255,22 @@ namespace JobZoom.Business.Entites
             }
         }
         private ObjectSet<Job_Experience> _Job_Experience;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Job_Function> Job_Function
+        {
+            get
+            {
+                if ((_Job_Function == null))
+                {
+                    _Job_Function = base.CreateObjectSet<Job_Function>("Job_Function");
+                }
+                return _Job_Function;
+            }
+        }
+        private ObjectSet<Job_Function> _Job_Function;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -434,6 +468,14 @@ namespace JobZoom.Business.Entites
         #region AddTo Methods
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the C__RefactorLog EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToC__RefactorLog(C__RefactorLog c__RefactorLog)
+        {
+            base.AddObject("C__RefactorLog", c__RefactorLog);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Cities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCities(City city)
@@ -503,6 +545,14 @@ namespace JobZoom.Business.Entites
         public void AddToJob_Experience(Job_Experience job_Experience)
         {
             base.AddObject("Job_Experience", job_Experience);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Job_Function EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJob_Function(Job_Function job_Function)
+        {
+            base.AddObject("Job_Function", job_Function);
         }
     
         /// <summary>
@@ -608,6 +658,61 @@ namespace JobZoom.Business.Entites
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="C__RefactorLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class C__RefactorLog : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new C__RefactorLog object.
+        /// </summary>
+        /// <param name="operationKey">Initial value of the OperationKey property.</param>
+        public static C__RefactorLog CreateC__RefactorLog(global::System.Guid operationKey)
+        {
+            C__RefactorLog c__RefactorLog = new C__RefactorLog();
+            c__RefactorLog.OperationKey = operationKey;
+            return c__RefactorLog;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid OperationKey
+        {
+            get
+            {
+                return _OperationKey;
+            }
+            set
+            {
+                if (_OperationKey != value)
+                {
+                    OnOperationKeyChanging(value);
+                    ReportPropertyChanging("OperationKey");
+                    _OperationKey = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("OperationKey");
+                    OnOperationKeyChanged();
+                }
+            }
+        }
+        private global::System.Guid _OperationKey;
+        partial void OnOperationKeyChanging(global::System.Guid value);
+        partial void OnOperationKeyChanged();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -1488,7 +1593,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Function CreateFunction(global::System.Int32 id, global::System.String name)
+        public static Function CreateFunction(global::System.String id, global::System.String name)
         {
             Function function = new Function();
             function.ID = id;
@@ -1504,7 +1609,7 @@ namespace JobZoom.Business.Entites
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 ID
+        public global::System.String ID
         {
             get
             {
@@ -1516,14 +1621,14 @@ namespace JobZoom.Business.Entites
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
+                    _ID = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.Int32 _ID;
-        partial void OnIDChanging(global::System.Int32 value);
+        private global::System.String _ID;
+        partial void OnIDChanging(global::System.String value);
         partial void OnIDChanged();
     
         /// <summary>
@@ -1552,6 +1657,31 @@ namespace JobZoom.Business.Entites
 
         #endregion
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Job_Function_Function", "Job_Function")]
+        public EntityCollection<Job_Function> Job_Function
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Job_Function>("JobZoomModel.FK_Job_Function_Function", "Job_Function");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Job_Function>("JobZoomModel.FK_Job_Function_Function", "Job_Function", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -2031,6 +2161,28 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Job_Experience>("JobZoomModel.FK_Job_Experience_Job", "Job_Experience", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Job_Function_Job", "Job_Function")]
+        public EntityCollection<Job_Function> Job_Function
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Job_Function>("JobZoomModel.FK_Job_Function_Job", "Job_Function");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Job_Function>("JobZoomModel.FK_Job_Function_Job", "Job_Function", value);
                 }
             }
         }
@@ -2699,6 +2851,218 @@ namespace JobZoom.Business.Entites
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Job>("JobZoomModel.FK_Job_Experience_Job", "Job", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Job_Function")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Job_Function : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Job_Function object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="jobID">Initial value of the JobID property.</param>
+        /// <param name="functionID">Initial value of the FunctionID property.</param>
+        /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
+        public static Job_Function CreateJob_Function(global::System.String id, global::System.String jobID, global::System.String functionID, global::System.DateTime modifiedDate)
+        {
+            Job_Function job_Function = new Job_Function();
+            job_Function.ID = id;
+            job_Function.JobID = jobID;
+            job_Function.FunctionID = functionID;
+            job_Function.ModifiedDate = modifiedDate;
+            return job_Function;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.String _ID;
+        partial void OnIDChanging(global::System.String value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobID
+        {
+            get
+            {
+                return _JobID;
+            }
+            set
+            {
+                OnJobIDChanging(value);
+                ReportPropertyChanging("JobID");
+                _JobID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobID");
+                OnJobIDChanged();
+            }
+        }
+        private global::System.String _JobID;
+        partial void OnJobIDChanging(global::System.String value);
+        partial void OnJobIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FunctionID
+        {
+            get
+            {
+                return _FunctionID;
+            }
+            set
+            {
+                OnFunctionIDChanging(value);
+                ReportPropertyChanging("FunctionID");
+                _FunctionID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FunctionID");
+                OnFunctionIDChanged();
+            }
+        }
+        private global::System.String _FunctionID;
+        partial void OnFunctionIDChanging(global::System.String value);
+        partial void OnFunctionIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModifiedDate
+        {
+            get
+            {
+                return _ModifiedDate;
+            }
+            set
+            {
+                OnModifiedDateChanging(value);
+                ReportPropertyChanging("ModifiedDate");
+                _ModifiedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModifiedDate");
+                OnModifiedDateChanged();
+            }
+        }
+        private global::System.DateTime _ModifiedDate;
+        partial void OnModifiedDateChanging(global::System.DateTime value);
+        partial void OnModifiedDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Job_Function_Function", "Function")]
+        public Function Function
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Function>("JobZoomModel.FK_Job_Function_Function", "Function").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Function>("JobZoomModel.FK_Job_Function_Function", "Function").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Function> FunctionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Function>("JobZoomModel.FK_Job_Function_Function", "Function");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Function>("JobZoomModel.FK_Job_Function_Function", "Function", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_Job_Function_Job", "Job")]
+        public Job Job
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job>("JobZoomModel.FK_Job_Function_Job", "Job").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job>("JobZoomModel.FK_Job_Function_Job", "Job").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Job> JobReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job>("JobZoomModel.FK_Job_Function_Job", "Job");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Job>("JobZoomModel.FK_Job_Function_Job", "Job", value);
                 }
             }
         }

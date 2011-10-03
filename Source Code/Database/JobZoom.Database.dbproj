@@ -60,7 +60,6 @@
     <Folder Include="Scripts" />
     <Folder Include="Scripts\Pre-Deployment" />
     <Folder Include="Scripts\Post-Deployment" />
-    <Folder Include="Data Generation Plans" />
     <Folder Include="Schema Comparisons" />
     <Folder Include="Properties\" />
     <Folder Include="Schema Objects\" />
@@ -120,6 +119,7 @@
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Functions\" />
     <Folder Include="Schema Objects\Database Level Objects\Storage\Partition Schemes\" />
     <Folder Include="Schema Objects\Schemas\dbo\Tables\Indexes\Constraints" />
+    <Folder Include="Data Generation Plans" />
   </ItemGroup>
   <ItemGroup>
     <PropertiesFile Include="Properties\Database.sqlsettings">
@@ -205,5 +205,13 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\User.AccountType.table.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Job.Function.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <NotInBuild Include="Data Generation Plans\StaticData.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
   </ItemGroup>
 </Project>
