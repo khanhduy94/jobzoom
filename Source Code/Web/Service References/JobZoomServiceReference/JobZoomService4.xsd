@@ -54,6 +54,30 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAllIndustries">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllIndustriesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllIndustriesResult" nillable="true" type="q5:ArrayOfIndustry" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFunctions">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllFunctionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllFunctionsResult" nillable="true" type="q6:ArrayOfFunction" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetJobseeker">
     <xs:complexType>
       <xs:sequence>
@@ -64,14 +88,14 @@
   <xs:element name="GetJobseekerResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetJobseekerResult" nillable="true" type="q5:Jobseeker" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetJobseekerResult" nillable="true" type="q7:Jobseeker" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SavePersonalInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q6:Jobseeker" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q8:Jobseeker" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -92,7 +116,7 @@
   <xs:element name="GetExperienceResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetExperienceResult" nillable="true" type="q7:Jobseeker_Experience" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetExperienceResult" nillable="true" type="q9:Jobseeker_Experience" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -106,7 +130,7 @@
   <xs:element name="GetAllEducationResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllEducationResult" nillable="true" type="q8:ArrayOfJobseeker_Experience" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllEducationResult" nillable="true" type="q10:ArrayOfJobseeker_Experience" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -120,14 +144,14 @@
   <xs:element name="GetAllExperienceResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllExperienceResult" nillable="true" type="q9:ArrayOfJobseeker_Experience" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllExperienceResult" nillable="true" type="q11:ArrayOfJobseeker_Experience" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddEducation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q10:Jobseeker_Experience" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q12:Jobseeker_Experience" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -141,7 +165,7 @@
   <xs:element name="AddWorkExperience">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q11:Jobseeker_Experience" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q13:Jobseeker_Experience" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -155,7 +179,7 @@
   <xs:element name="SaveExperience">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q12:Jobseeker_Experience" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q14:Jobseeker_Experience" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -190,14 +214,14 @@
   <xs:element name="GetAllSkillResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllSkillResult" nillable="true" type="q13:ArrayOfJobseeker_Skill" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllSkillResult" nillable="true" type="q15:ArrayOfJobseeker_Skill" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddSkill">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q14:Jobseeker_Skill" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q16:Jobseeker_Skill" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -232,7 +256,7 @@
   <xs:element name="GetAllHonorAwardResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllHonorAwardResult" nillable="true" type="q15:ArrayOfJobseeker_HonorAward" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllHonorAwardResult" nillable="true" type="q17:ArrayOfJobseeker_HonorAward" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -246,14 +270,14 @@
   <xs:element name="GetHonorAwardResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetHonorAwardResult" nillable="true" type="q16:Jobseeker_HonorAward" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetHonorAwardResult" nillable="true" type="q18:Jobseeker_HonorAward" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddHonorAward">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q17:Jobseeker_HonorAward" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q19:Jobseeker_HonorAward" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -267,7 +291,7 @@
   <xs:element name="SaveHonorAward">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q18:Jobseeker_HonorAward" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q20:Jobseeker_HonorAward" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -302,7 +326,7 @@
   <xs:element name="GetAllProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllProjectResult" nillable="true" type="q19:ArrayOfJobseeker_Project" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetAllProjectResult" nillable="true" type="q21:ArrayOfJobseeker_Project" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -316,14 +340,14 @@
   <xs:element name="GetProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetProjectResult" nillable="true" type="q20:Jobseeker_Project" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="GetProjectResult" nillable="true" type="q22:Jobseeker_Project" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddProject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q21:Jobseeker_Project" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q23:Jobseeker_Project" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -337,7 +361,7 @@
   <xs:element name="SaveProject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q22:Jobseeker_Project" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" minOccurs="0" name="model" nillable="true" type="q24:Jobseeker_Project" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

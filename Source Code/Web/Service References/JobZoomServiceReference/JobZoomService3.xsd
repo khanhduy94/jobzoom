@@ -14,7 +14,7 @@
           <xs:element minOccurs="0" name="Cities" nillable="true" type="tns:ArrayOfCity" />
           <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
           <xs:element minOccurs="0" name="Flag" nillable="true" type="xs:base64Binary" />
-          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
           <xs:element minOccurs="0" name="Jobseekers" nillable="true" type="tns:ArrayOfJobseeker" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
         </xs:sequence>
@@ -33,9 +33,9 @@
       <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
-          <xs:element minOccurs="0" name="CountryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CountryID" type="xs:int" />
           <xs:element minOccurs="0" name="CountryReference" nillable="true" type="q2:EntityReferenceOfCountrylrRhuyLR" />
-          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
           <xs:element minOccurs="0" name="Jobseekers" nillable="true" type="tns:ArrayOfJobseeker" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
         </xs:sequence>
@@ -57,9 +57,9 @@
           <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Birthdate" type="xs:dateTime" />
-          <xs:element minOccurs="0" name="Citizenship" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Citizenship" type="xs:int" />
           <xs:element minOccurs="0" name="City" nillable="true" type="tns:City" />
-          <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CityID" type="xs:int" />
           <xs:element minOccurs="0" name="CityReference" nillable="true" type="q3:EntityReferenceOfCitylrRhuyLR" />
           <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
           <xs:element minOccurs="0" name="CountryReference" nillable="true" type="q3:EntityReferenceOfCountrylrRhuyLR" />
@@ -85,7 +85,7 @@
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q4:EntityObject">
         <xs:sequence>
-          <xs:element minOccurs="0" name="AccountTypeID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AccountTypeID" type="xs:int" />
           <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
           <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
@@ -122,7 +122,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CityID" type="xs:int" />
           <xs:element minOccurs="0" name="CompanySize" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="CompanyType" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Country" nillable="true" type="tns:Country" />
@@ -131,7 +131,7 @@
           <xs:element minOccurs="0" name="Founded" nillable="true" type="xs:dateTime" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Industry" nillable="true" type="tns:Industry" />
-          <xs:element minOccurs="0" name="IndustryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IndustryID" type="xs:int" />
           <xs:element minOccurs="0" name="IndustryReference" nillable="true" type="q5:EntityReferenceOfIndustrylrRhuyLR" />
           <xs:element minOccurs="0" name="Logo" nillable="true" type="xs:base64Binary" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
@@ -151,7 +151,7 @@
       <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q6:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
-          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
           <xs:element minOccurs="0" name="Job_Industry" nillable="true" type="tns:ArrayOfJob_Industry" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
         </xs:sequence>
@@ -171,7 +171,7 @@
         <xs:sequence>
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Industry" nillable="true" type="tns:Industry" />
-          <xs:element minOccurs="0" name="IndustryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IndustryID" type="xs:int" />
           <xs:element minOccurs="0" name="IndustryReference" nillable="true" type="q7:EntityReferenceOfIndustrylrRhuyLR" />
           <xs:element minOccurs="0" name="Job" nillable="true" type="tns:Job" />
           <xs:element minOccurs="0" name="JobID" nillable="true" type="xs:string" />
@@ -186,16 +186,17 @@
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q8:EntityObject">
         <xs:sequence>
-          <xs:element minOccurs="0" name="CityID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CityID" type="xs:int" />
           <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Compensation" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="CountryID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CountryID" type="xs:int" />
           <xs:element minOccurs="0" name="Experience" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="JobTitle" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Job_Ability" nillable="true" type="tns:ArrayOfJob_Ability" />
           <xs:element minOccurs="0" name="Job_Applicant" nillable="true" type="tns:ArrayOfJob_Applicant" />
           <xs:element minOccurs="0" name="Job_Experience" nillable="true" type="tns:ArrayOfJob_Experience" />
+          <xs:element minOccurs="0" name="Job_Function" nillable="true" type="tns:ArrayOfJob_Function" />
           <xs:element minOccurs="0" name="Job_Industry" nillable="true" type="tns:ArrayOfJob_Industry" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
@@ -274,6 +275,41 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="Job_Experience" nillable="true" type="tns:Job_Experience" />
+  <xs:complexType name="ArrayOfJob_Function">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Job_Function" nillable="true" type="tns:Job_Function" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJob_Function" nillable="true" type="tns:ArrayOfJob_Function" />
+  <xs:complexType name="Job_Function">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q12:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Function" nillable="true" type="tns:Function" />
+          <xs:element minOccurs="0" name="FunctionID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FunctionReference" nillable="true" type="q12:EntityReferenceOfFunctionlrRhuyLR" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job" nillable="true" type="tns:Job" />
+          <xs:element minOccurs="0" name="JobID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="JobReference" nillable="true" type="q12:EntityReferenceOfJoblrRhuyLR" />
+          <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Job_Function" nillable="true" type="tns:Job_Function" />
+  <xs:complexType name="Function">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q13:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Job_Function" nillable="true" type="tns:ArrayOfJob_Function" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Function" nillable="true" type="tns:Function" />
   <xs:complexType name="ArrayOfJob">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Job" nillable="true" type="tns:Job" />
@@ -288,7 +324,7 @@
   <xs:element name="ArrayOfJobseeker_Connection" nillable="true" type="tns:ArrayOfJobseeker_Connection" />
   <xs:complexType name="Jobseeker_Connection">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q12="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q12:EntityObject">
+      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q14:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="FromUserID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
@@ -297,8 +333,8 @@
           <xs:element minOccurs="0" name="ToUserID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="User1" nillable="true" type="tns:User" />
-          <xs:element minOccurs="0" name="User1Reference" nillable="true" type="q12:EntityReferenceOfUserlrRhuyLR" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q12:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="User1Reference" nillable="true" type="q14:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q14:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -312,7 +348,7 @@
   <xs:element name="ArrayOfJobseeker_Experience" nillable="true" type="tns:ArrayOfJobseeker_Experience" />
   <xs:complexType name="Jobseeker_Experience">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q13="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q13:EntityObject">
+      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q15:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="EndDate" nillable="true" type="xs:dateTime" />
@@ -326,7 +362,7 @@
           <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q13:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q15:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -340,7 +376,7 @@
   <xs:element name="ArrayOfJobseeker_HonorAward" nillable="true" type="tns:ArrayOfJobseeker_HonorAward" />
   <xs:complexType name="Jobseeker_HonorAward">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q14="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q14:EntityObject">
+      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q16:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
@@ -351,7 +387,7 @@
           <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q14:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q16:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -365,17 +401,17 @@
   <xs:element name="ArrayOfJobseeker_Language" nillable="true" type="tns:ArrayOfJobseeker_Language" />
   <xs:complexType name="Jobseeker_Language">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q15="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q15:EntityObject">
+      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q17:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Language" nillable="true" type="tns:Language" />
-          <xs:element minOccurs="0" name="LanguageID" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="LanguageReference" nillable="true" type="q15:EntityReferenceOfLanguagelrRhuyLR" />
+          <xs:element minOccurs="0" name="LanguageID" type="xs:int" />
+          <xs:element minOccurs="0" name="LanguageReference" nillable="true" type="q17:EntityReferenceOfLanguagelrRhuyLR" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="Proficiency" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q15:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q17:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -383,9 +419,9 @@
   <xs:element name="Jobseeker_Language" nillable="true" type="tns:Jobseeker_Language" />
   <xs:complexType name="Language">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q16="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q16:EntityObject">
+      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q18:EntityObject">
         <xs:sequence>
-          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
           <xs:element minOccurs="0" name="Jobseeker_Language" nillable="true" type="tns:ArrayOfJobseeker_Language" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
         </xs:sequence>
@@ -401,7 +437,7 @@
   <xs:element name="ArrayOfJobseeker_Project" nillable="true" type="tns:ArrayOfJobseeker_Project" />
   <xs:complexType name="Jobseeker_Project">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q17="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q17:EntityObject">
+      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q19:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
@@ -412,7 +448,7 @@
           <xs:element minOccurs="0" name="ProjectURL" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q17:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q19:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -426,16 +462,16 @@
   <xs:element name="ArrayOfJobseeker_ProjectMember" nillable="true" type="tns:ArrayOfJobseeker_ProjectMember" />
   <xs:complexType name="Jobseeker_ProjectMember">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q18="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q18:EntityObject">
+      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q20:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Jobseeker_Project" nillable="true" type="tns:Jobseeker_Project" />
-          <xs:element minOccurs="0" name="Jobseeker_ProjectReference" nillable="true" type="q18:EntityReferenceOfJobseeker_ProjectlrRhuyLR" />
+          <xs:element minOccurs="0" name="Jobseeker_ProjectReference" nillable="true" type="q20:EntityReferenceOfJobseeker_ProjectlrRhuyLR" />
           <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="ProjectID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q18:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q20:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -449,14 +485,14 @@
   <xs:element name="ArrayOfJobseeker_Skill" nillable="true" type="tns:ArrayOfJobseeker_Skill" />
   <xs:complexType name="Jobseeker_Skill">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q19="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q19:EntityObject">
+      <xs:extension xmlns:q21="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q21:EntityObject">
         <xs:sequence>
           <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ModifiedDate" type="xs:dateTime" />
           <xs:element minOccurs="0" name="SkillName" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
           <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
-          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q19:EntityReferenceOfUserlrRhuyLR" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q21:EntityReferenceOfUserlrRhuyLR" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -464,9 +500,9 @@
   <xs:element name="Jobseeker_Skill" nillable="true" type="tns:Jobseeker_Skill" />
   <xs:complexType name="User_AccountType">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q20="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q20:EntityObject">
+      <xs:extension xmlns:q22="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q22:EntityObject">
         <xs:sequence>
-          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
           <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUser" />
         </xs:sequence>
@@ -480,4 +516,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUser" nillable="true" type="tns:ArrayOfUser" />
+  <xs:complexType name="ArrayOfIndustry">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Industry" nillable="true" type="tns:Industry" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIndustry" nillable="true" type="tns:ArrayOfIndustry" />
+  <xs:complexType name="ArrayOfFunction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Function" nillable="true" type="tns:Function" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFunction" nillable="true" type="tns:ArrayOfFunction" />
 </xs:schema>

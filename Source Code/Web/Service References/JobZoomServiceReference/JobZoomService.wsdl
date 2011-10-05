@@ -34,6 +34,18 @@
   <wsdl:message name="IJobZoomService_GetAllCities_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllCitiesResponse" />
   </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllIndustries_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIndustries" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllIndustries_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllIndustriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllFunctions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFunctions" />
+  </wsdl:message>
+  <wsdl:message name="IJobZoomService_GetAllFunctions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllFunctionsResponse" />
+  </wsdl:message>
   <wsdl:message name="IJobZoomService_GetJobseeker_InputMessage">
     <wsdl:part name="parameters" element="tns:GetJobseeker" />
   </wsdl:message>
@@ -183,6 +195,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllCities" message="tns:IJobZoomService_GetAllCities_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllCitiesResponse" message="tns:IJobZoomService_GetAllCities_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetAllIndustries">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllIndustries" message="tns:IJobZoomService_GetAllIndustries_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllIndustriesResponse" message="tns:IJobZoomService_GetAllIndustries_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFunctions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetAllFunctions" message="tns:IJobZoomService_GetAllFunctions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetAllFunctionsResponse" message="tns:IJobZoomService_GetAllFunctions_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetJobseeker">
       <wsdl:input wsaw:Action="http://tempuri.org/IJobZoomService/GetJobseeker" message="tns:IJobZoomService_GetJobseeker_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IJobZoomService/GetJobseekerResponse" message="tns:IJobZoomService_GetJobseeker_OutputMessage" />
@@ -303,6 +323,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllCities">
       <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllIndustries">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllIndustries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFunctions">
+      <soap:operation soapAction="http://tempuri.org/IJobZoomService/GetAllFunctions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

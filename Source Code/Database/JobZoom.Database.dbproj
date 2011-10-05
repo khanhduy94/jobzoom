@@ -44,7 +44,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>Data Source=.\SQLExpress;Integrated Security=True;Pooling=False</TargetConnectionString>
+    <TargetConnectionString>Data Source=CONGPHUCLE-MSFT;Integrated Security=True;Pooling=False</TargetConnectionString>
     <TargetDatabase>JobZoom</TargetDatabase>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <SuppressWarnings>
@@ -208,9 +208,12 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Job.Function.table.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\JobExperienceDecisionTree.table.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
   <ItemGroup>
-    <NotInBuild Include="Data Generation Plans\StaticData.sql">
+    <NotInBuild Include="Data Generation Plans\DataGenerationPlanExperiment.dgen">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
   </ItemGroup>

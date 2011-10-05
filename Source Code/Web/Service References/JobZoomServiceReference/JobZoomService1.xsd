@@ -107,6 +107,21 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="EntityReferenceOfUserlrRhuyLR" nillable="true" type="tns:EntityReferenceOfUserlrRhuyLR" />
+  <xs:complexType name="EntityReferenceOfFunctionlrRhuyLR">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="EntityReferenceOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Function" Namespace="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entites" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EntityReference">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EntityReferenceOfFunctionlrRhuyLR" nillable="true" type="tns:EntityReferenceOfFunctionlrRhuyLR" />
   <xs:complexType name="EntityReferenceOfLanguagelrRhuyLR">
     <xs:annotation>
       <xs:appinfo>
