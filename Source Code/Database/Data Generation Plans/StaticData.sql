@@ -1,6 +1,8 @@
 ﻿-- =============================================
 -- Table Industry
 -- =============================================
+DELETE [Industry];
+DBCC CHECKIDENT('Industry', RESEED, 0)
 INSERT INTO Industry(Name) VALUES('Accounting');
 INSERT INTO Industry(Name) VALUES('Airlines/Aviation');
 INSERT INTO Industry(Name) VALUES('Alternative Dispute Resolution');
@@ -152,6 +154,8 @@ INSERT INTO Industry(Name) VALUES('Writing and Editing');
 -- =============================================
 -- Table Function
 -- =============================================
+DELETE [Function];
+DBCC CHECKIDENT('Function', RESEED, 0)
 INSERT INTO [Function](ID, Name) VALUES('acct', 'Accounting/Auditing');
 INSERT INTO [Function](ID, Name) VALUES('adm', 'Administrative');
 INSERT INTO [Function](ID, Name) VALUES('advr', 'Advertising');
@@ -187,3 +191,13 @@ INSERT INTO [Function](ID, Name) VALUES('supl', 'Supply Chain');
 INSERT INTO [Function](ID, Name) VALUES('trng', 'Training');
 INSERT INTO [Function](ID, Name) VALUES('wrt', 'Writing/Editing');
 INSERT INTO [Function](ID, Name) VALUES('othr', 'Other');
+
+-- =============================================
+-- Table Language
+-- =============================================
+DELETE [Language];
+DBCC CHECKIDENT('Language', RESEED, 0)
+INSERT INTO [Language](Name) VALUES('Chinese');
+INSERT INTO [Language](Name) VALUES('English');
+INSERT INTO [Language](Name) VALUES('France');
+INSERT INTO [Language](Name) VALUES('Vietnamese');
