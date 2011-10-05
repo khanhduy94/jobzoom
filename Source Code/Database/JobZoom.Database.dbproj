@@ -213,7 +213,7 @@
     </Build>
   </ItemGroup>
   <ItemGroup>
-    <NotInBuild Include="Data Generation Plans\DataGenerationPlanExperiment.dgen">
+    <NotInBuild Include="Data Generation Plans\StaticData.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
   </ItemGroup>
