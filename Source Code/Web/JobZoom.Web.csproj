@@ -168,8 +168,6 @@
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\ProfileEdit\Basic.cshtml" />
-    <Content Include="Views\ProfileEdit\EducationExperience.cshtml" />
-    <Content Include="Views\ProfileEdit\WorkExperience.cshtml" />
     <Content Include="Views\EmployerJobPost\Basic.cshtml" />
     <Content Include="Views\EmployerJobPost\CandidatesRecommendation.cshtml" />
     <Content Include="Views\EmployerJobPost\Details.cshtml" />
