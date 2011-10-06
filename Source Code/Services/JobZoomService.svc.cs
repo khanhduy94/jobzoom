@@ -46,14 +46,9 @@ namespace JobZoom.Services
             return repository.GetCities();
         }
 
-        public List<Industry> GetIndustries()
+        public List<Language> GetLanguages()
         {
-            return repository.GetIndustries();
-        }
-
-        public List<Function> GetFunctions()
-        {
-            return repository.GetFunctions();
+            return repository.GetLanguages();
         }
 
         public Jobseeker GetJobseeker(string userID)
@@ -139,6 +134,31 @@ namespace JobZoom.Services
         public bool DeleteHonorAward(string id)
         {
             return repository.DeleteHonorAward(id);
+        }
+
+        public List<Jobseeker_Language> GetAllProfileLanguage(string userID)
+        {
+            return repository.GetAllProfileLanguage(userID);
+        }
+
+        public Jobseeker_Language GetProfileLanguage(string userID)
+        {
+            return repository.GetProfileLanguage(userID);
+        }
+
+        public bool AddProfileLanguage(Jobseeker_Language model)
+        {
+            return repository.AddProfileLanaguage(model);
+        }
+
+        public bool SaveProfileLanguage(Jobseeker_Language model)
+        {
+            return repository.SaveProfileLanguage(model);
+        }
+
+        public bool DeleteProfileLanguage(string id)
+        {
+            return repository.DeleteProfileLanguage(id);
         }
 
         public List<Jobseeker_Project> GetAllProject(string userID)

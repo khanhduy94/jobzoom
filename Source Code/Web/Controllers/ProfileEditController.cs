@@ -4,8 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JobZoom.Web.JobZoomServiceReference;
-using JobZoom.Web.Models;
 using JobZoom.Business.Entites;
+using JobZoom.Web.Models;
 
 namespace JobZoom.Web.Controllers
 {
@@ -28,10 +28,15 @@ namespace JobZoom.Web.Controllers
             var genders = new List<SelectListItem>();
             genders.Add(new SelectListItem { Text = "Male", Value = "M" });
             genders.Add(new SelectListItem { Text = "Female", Value = "F" });
-            ViewData["Genders"] = genders;         
+            ViewData["Genders"] = genders;
+
+            var maritalStatus = new List<SelectListItem>();
+            maritalStatus.Add(new SelectListItem { Text = "Single", Value = "S" });
+            maritalStatus.Add(new SelectListItem { Text = "Married", Value = "M" });
+            ViewData["Status"] = maritalStatus;
 
             ViewData["ListCity"] = client.GetAllCities().ToSelectList(c => c.ID.ToString(), c => c.Name);
-            ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID.ToString(), c => c.Name);                        
+            ViewData["ListCountry"] = client.GetAllCountries().ToSelectList(c => c.ID.ToString(), c => c.Name);
             return View(profile);
         }
 
@@ -288,6 +293,91 @@ namespace JobZoom.Web.Controllers
             {
                 JobZoomServiceClient client = new JobZoomServiceClient();
                 client.DeleteHonorAward(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+        #endregion
+
+        #region Languages
+        public ActionResult AddLanguage()
+        {
+            JobZoomServiceClient client = new JobZoomServiceClient();
+            var proficiency = new List<SelectListItem>();
+            proficiency.Add(new SelectListItem { Text = "Elementary", Value = "Elementary" });
+            proficiency.Add(new SelectListItem { Text = "Limited working", Value = "Limited working" });
+            proficiency.Add(new SelectListItem { Text = "Professional working", Value = "Professional working" });
+            proficiency.Add(new SelectListItem { Text = "Full professional working", Value = "Full professional working" });
+            proficiency.Add(new SelectListItem { Text = "Native or bilingual", Value = "Native or bilingual" });            
+            ViewData["ListProficiency"] = proficiency;
+            ViewData["ListLanguage"] = client.GetAllLanguages().ToSelectList(c => c.ID.ToString(), c => c.Name);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddLanguage(Jobseeker_Language model)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            try
+            {
+                string userID = "1a7d990c-d629-4e8b-bb60-c5f22e498e5d";
+                JobZoomServiceClient client = new JobZoomServiceClient();
+                model.ID = System.Guid.NewGuid().ToString();
+                model.UserID = userID;
+                client.AddProfileLanguage(model);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult UpdateLanguage(string id)
+        {
+            JobZoomServiceClient client = new JobZoomServiceClient();            
+            var proficiency = new List<SelectListItem>();
+            proficiency.Add(new SelectListItem { Text = "Elementary", Value = "Elementary" });
+            proficiency.Add(new SelectListItem { Text = "Limited working", Value = "Limited working" });
+            proficiency.Add(new SelectListItem { Text = "Professional working", Value = "Professional working" });
+            proficiency.Add(new SelectListItem { Text = "Full professional working", Value = "Full professional working" });
+            proficiency.Add(new SelectListItem { Text = "Native or bilingual", Value = "Native or bilingual" });
+            ViewData["ListProficiency"] = proficiency;
+            ViewData["ListLanguage"] = client.GetAllLanguages().ToSelectList(c => c.ID.ToString(), c => c.Name);
+
+            var language = client.GetProfileLanguage(id);
+            return View(language);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateLanguage(Jobseeker_Language model)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            try
+            {
+                JobZoomServiceClient client = new JobZoomServiceClient();
+                client.SaveProfileLanguage(model);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult DeleteLanguage(string id)
+        {
+            try
+            {
+                JobZoomServiceClient client = new JobZoomServiceClient();
+                client.DeleteProfileLanguage(id);
                 return RedirectToAction("Index");
             }
             catch

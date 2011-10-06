@@ -30,15 +30,11 @@ namespace JobZoom.Services
             return dataContext.Cities.ToList();
         }
 
-        public List<Industry> GetIndustries()
+        public List<Language> GetLanguages()
         {
-            return dataContext.Industries.ToList();
+            return dataContext.Languages.ToList();
         }
 
-        public List<Function> GetFunctions()
-        {
-            return dataContext.Functions.ToList();
-        }
 
         public Jobseeker GetJobseeker(string userID)
         {
@@ -49,23 +45,10 @@ namespace JobZoom.Services
         {
             try
             {
-                var jobseeker = dataContext.Jobseekers.First(j => j.UserID == model.UserID);                
-                jobseeker.FirstName = model.FirstName;
-                jobseeker.LastName = model.LastName;
-                jobseeker.Gender = model.Gender;
-                jobseeker.Birthdate = model.Birthdate;
-                jobseeker.Citizenship = model.Citizenship;
-                jobseeker.Country = model.Country;
-                jobseeker.CityID = model.CityID;
-                jobseeker.MaritalStatus = model.MaritalStatus;
-                jobseeker.Phone = model.Phone;
-                jobseeker.Mobile = model.Mobile;
-                jobseeker.Picture = model.Picture;
-                jobseeker.AddressLine1 = model.AddressLine1;
-                jobseeker.AddressLine2 = model.AddressLine2;
-                jobseeker.AdditionalInfo = model.AdditionalInfo;
-                jobseeker.Website = model.Website;
-                jobseeker.ModifiedDate = DateTime.Now;
+                model.ModifiedDate = DateTime.Now;
+                var jobseeker = dataContext.Jobseekers.First(j => j.UserID == model.UserID);
+                dataContext.Attach(jobseeker);
+                dataContext.ApplyCurrentValues(jobseeker.EntityKey.EntitySetName, model);
                 dataContext.SaveChanges();
                 return true;
             }
@@ -107,15 +90,10 @@ namespace JobZoom.Services
         {
             try
             {
+                model.ModifiedDate = DateTime.Now;
                 var education = dataContext.Jobseeker_Experience.First(j => j.ID == model.ID);
-                education.Name = model.Name;
-                education.Location = model.Location;
-                education.Title = model.Title;
-                education.Industry = model.Industry;
-                education.StartDate = model.StartDate;
-                education.EndDate = model.EndDate;
-                education.Description = model.Description;
-                education.ModifiedDate = DateTime.Now;
+                dataContext.Attach(education);
+                dataContext.ApplyCurrentValues(education.EntityKey.EntitySetName, model);                
                 dataContext.SaveChanges();
                 return true;
             }
@@ -227,13 +205,10 @@ namespace JobZoom.Services
         {
             try
             {
+                model.ModifiedDate = DateTime.Now;
                 var honorAward = dataContext.Jobseeker_HonorAward.First(j => j.ID == model.ID);
-                honorAward.Title = model.Title;
-                honorAward.Occupation = model.Occupation;
-                honorAward.Issuer = model.Issuer;
-                honorAward.IssueDate = model.IssueDate;
-                honorAward.Description = model.Description;
-                honorAward.ModifiedDate = DateTime.Now;
+                dataContext.Attach(honorAward);
+                dataContext.ApplyCurrentValues(honorAward.EntityKey.EntitySetName, model);                   
                 dataContext.SaveChanges();
                 return true;
             }
@@ -249,6 +224,63 @@ namespace JobZoom.Services
             {
                 var skill = dataContext.Jobseeker_HonorAward.First(e => e.ID == id);
                 dataContext.DeleteObject(skill);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public Jobseeker_Language GetProfileLanguage(string id)
+        {
+            return dataContext.Jobseeker_Language.First(s => s.ID == id);
+        }
+
+        public List<Jobseeker_Language> GetAllProfileLanguage(string userID)
+        {
+            return dataContext.Jobseeker_Language.Where(s => s.UserID == userID).ToList();
+        }
+
+        public bool AddProfileLanaguage(Jobseeker_Language model)
+        {
+            try
+            {
+                model.ModifiedDate = DateTime.Now;
+                dataContext.Jobseeker_Language.AddObject(model);
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool SaveProfileLanguage(Jobseeker_Language model)
+        {
+            try
+            {
+                model.ModifiedDate = DateTime.Now;
+                var language = dataContext.Jobseeker_Language.First(j => j.ID == model.ID);
+                dataContext.Attach(language);
+                dataContext.ApplyCurrentValues(language.EntityKey.EntitySetName, model);    
+                dataContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteProfileLanguage(string id)
+        {
+            try
+            {
+                var language = dataContext.Jobseeker_Language.First(e => e.ID == id);
+                dataContext.DeleteObject(language);
                 dataContext.SaveChanges();
                 return true;
             }
@@ -287,12 +319,10 @@ namespace JobZoom.Services
         {
             try
             {
+                model.ModifiedDate = DateTime.Now;
                 var project = dataContext.Jobseeker_Project.First(j => j.ID == model.ID);
-                project.ProjectName = model.ProjectName;
-                project.Occupation = model.Occupation;
-                project.ProjectURL = model.ProjectURL;
-                project.Description = model.Description;
-                project.ModifiedDate = DateTime.Now;
+                dataContext.Attach(project);
+                dataContext.ApplyCurrentValues(project.EntityKey.EntitySetName, model);    
                 dataContext.SaveChanges();
                 return true;
             }

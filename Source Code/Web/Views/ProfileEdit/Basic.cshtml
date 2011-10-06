@@ -3,10 +3,6 @@
 @{
     ViewBag.Title = "Profile-Basic Information";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    var maritalStatus = new List<SelectListItem>();
-    maritalStatus.Add(new SelectListItem { Text = "Single", Value = "S" });
-    maritalStatus.Add(new SelectListItem { Text = "Married", Value = "M" });
 }
 
 @Html.ActionLink("1. Edit Profile Basic", "Basic", "ProfileEdit")
@@ -63,7 +59,7 @@
             @Html.LabelFor(model => model.MaritalStatus)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.MaritalStatus, maritalStatus, "Select...")
+            @Html.DropDownListFor(model => model.MaritalStatus, ViewData["Status"] as IEnumerable<SelectListItem>, "Select...")
             @Html.ValidationMessageFor(model => model.MaritalStatus)
         </div>
 

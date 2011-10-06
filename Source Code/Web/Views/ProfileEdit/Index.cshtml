@@ -12,11 +12,11 @@
     
     <div class="display-field">@Model.Jobseeker.FirstName @Model.Jobseeker.LastName</div>
 
-    <div class="display-label">Gender @Model.Jobseeker.Gender</div>
+    <div class="display-label">Gender @Model.Gender.First(g=> g.Value == Model.Jobseeker.Gender).Text</div>
 
     <div class="display-label">Birthdate @String.Format("{0:dd/MM/yyyy}", Model.Jobseeker.Birthdate)</div>
 
-    <div class="display-label">MaritalStatus @Model.Jobseeker.MaritalStatus</div>
+    <div class="display-label">MaritalStatus @Model.MaritalStatus.First(m => m.Value == Model.Jobseeker.MaritalStatus).Text</div>
 
     <div class="display-label">Citizenship @Model.Jobseeker.Country.Name</div>    
 
@@ -61,7 +61,7 @@
     <legend>Education - @Html.ActionLink("Add", "AddEducation", "ProfileEdit")</legend>
     @foreach (var education in Model.Education)
     {
-        <p>@Html.ActionLink("Edit", "UpdateEducation", new { id = education.ID } ) | @Html.ActionLink("Remove", "DeleteEducation", new { id = education.ID } )</p>
+        <p>@Html.ActionLink("Edit", "UpdateEducation", new { id = education.ID }) | @Html.ActionLink("Remove", "DeleteEducation", new { id = education.ID })</p>
         
         <div class="display-field">@education.Name</div>
         
@@ -72,6 +72,15 @@
         <div class="display-field">@education.Location</div>               
              
         <div class="display-field">@education.Description</div>
+    }
+             
+</fieldset>
+
+<fieldset>
+    <legend>Languages - @Html.ActionLink("Add", "AddLanguage", "ProfileEdit")</legend>
+    @foreach (var language in Model.Language)
+    {                
+        <div class="display-field">@language.Language.Name - @language.Proficiency (@Html.ActionLink("Edit", "UpdateLanguage", new { id = language.ID }) | @Html.ActionLink("Remove", "DeleteLanguage", new { id = language.ID }))</div>               
     }
              
 </fieldset>

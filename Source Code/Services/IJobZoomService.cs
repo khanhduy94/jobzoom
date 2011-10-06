@@ -26,11 +26,8 @@ namespace JobZoom.Services
         [OperationContract(Name = "GetAllCities")]
         List<City> GetCities();
 
-        [OperationContract(Name = "GetAllIndustries")]
-        List<Industry> GetIndustries();
-
-        [OperationContract(Name = "GetAllFunctions")]
-        List<Function> GetFunctions();
+        [OperationContract(Name = "GetAllLanguages")]
+        List<Language> GetLanguages();
 
         [OperationContract]
         Jobseeker GetJobseeker(string userID);
@@ -82,6 +79,21 @@ namespace JobZoom.Services
 
         [OperationContract]
         bool DeleteHonorAward(string id);
+
+        [OperationContract]
+        List<Jobseeker_Language> GetAllProfileLanguage(string userID);
+
+        [OperationContract]
+        Jobseeker_Language GetProfileLanguage(string id);
+
+        [OperationContract]
+        bool AddProfileLanguage(Jobseeker_Language model);
+
+        [OperationContract]
+        bool SaveProfileLanguage(Jobseeker_Language model);
+
+        [OperationContract]
+        bool DeleteProfileLanguage(string id);
 
         [OperationContract]
         List<Jobseeker_Project> GetAllProject(string userID);
