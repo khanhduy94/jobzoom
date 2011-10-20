@@ -34,24 +34,107 @@ insert into Tag(ID, ObjectID, TagName, ParentID) values(NEWID(), '44CD50DE-8F7B-
 insert into Tag(ID, ObjectID, TagName, ParentID) values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', 'Web Programming', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag(ID, ObjectID, TagName, ParentID) values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', 'Testing', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 
-
 --Job
 
 insert into Job values('4ECC4CDC-EE7A-44A5-82EB-0B3DEBF22794', '55CD50DE-6A7B-4C9A-8E0F-C0CDF37986F7', 'Tester', null, '2011/10/10');
 insert into Job values('D27E4FCB-45DE-4399-9F81-4D6AB28853DD', '55CD50DE-6A7B-4C9A-8E0F-C0CDF37986F7', 'Web Developer', null, '2011/10/10');
 insert into Job values(NEWID(), '55CD50DE-6A7B-4C9A-8E0F-C0CDF37986F7', 'Sales', null, '2011/10/10');
 
-insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'Graphic design', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
+insert into Tag values(NEWID(), '62643156-3660-400F-A733-3EC98ED9B769', 'IT', 'B67DB5C2-5891-4DF9-88CF-3D502E9B499B',GETDATE());
+insert into Tag values(NEWID(), '4ECC4CDC-EE7A-44A5-82EB-0B3DEBF22794', 'IT', 'B67DB5C2-5891-4DF9-88CF-3D502E9B499B',GETDATE());
+
 insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'HTML/CSS', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'Web Programming', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'Front Page', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'Vb.Net', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5',GETDATE());
 insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'Developer', 'BDD12E21-6DDB-41B8-891E-30FF2D25EE62',GETDATE());
+insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'MVC', 'BDD12E21-6DDB-41B8-891E-30FF2D25EE62',GETDATE());
+insert into Tag values(NEWID(), 'D27E4FCB-45DE-4399-9F81-4D6AB28853DD', 'Silverlight', 'BDD12E21-6DDB-41B8-891E-30FF2D25EE62',GETDATE());
 
 insert into Tag values(NEWID(), '4ECC4CDC-EE7A-44A5-82EB-0B3DEBF22794', 'Testing', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag values(NEWID(), '4ECC4CDC-EE7A-44A5-82EB-0B3DEBF22794', 'Test case', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag values(NEWID(), '4ECC4CDC-EE7A-44A5-82EB-0B3DEBF22794', 'Black box testing', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
 insert into Tag values(NEWID(), '4ECC4CDC-EE7A-44A5-82EB-0B3DEBF22794', 'HTML/CSS', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5');
+
+
+insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Computer', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE());
+insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Market research', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE());
+insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Customer service', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE());
+insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Communication', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE());
+
+
+DECLARE @ID char(36)
+DECLARE @Major char(36)
+DECLARE @Skill char(36)
+set @ID = NEWID()
+set @Major = 'B67DB5C2-5891-4DF9-88CF-3D502E9B499B'
+set @Skill = 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5'
+insert into Job values(@ID, '55CD50DE-6A7B-4C9A-8E0F-C0CDF37986F7', 'Developer', null, GETDATE());
+insert into Tag values(NEWID(), @ID, 'IT', @Major, GETDATE());
+insert into Tag values(NEWID(), @ID, '.NET', @Major, GETDATE());
+insert into JobApproval values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', @ID, 0, 1, GETDATE())
+
+
+DECLARE @jobID char(36),
+		@profileID char(36),
+		@Major char(36),
+		@Skill char(36),
+		@ID char(36);
+set @ID = NEWID()
+set @Major = 'B67DB5C2-5891-4DF9-88CF-3D502E9B499B'
+set @Skill = 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5'
+SET @profileID = '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8'
+DECLARE job_cursor CURSOR FOR 
+SELECT Job.ID
+FROM Job
+INNER JOIN Tag ON Tag.ObjectID = Job.ID
+WHERE Tag.TagName = 'MBA';
+
+OPEN job_cursor;
+FETCH NEXT FROM job_cursor 
+INTO @jobID;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+
+	insert into Tag values(NEWID(), @jobID, '.NET', @Skill, GETDATE());
+	--update JobApproval set IsApproved = 1
+	--where JobID = @jobID	
+
+FETCH NEXT FROM job_cursor 
+    INTO @jobID;
+END
+CLOSE job_cursor;
+DEALLOCATE job_cursor;
+
+Exec GetPivotJobRequirement
+
+
+--insert into Tag values(NEWID(), @ID, '.Net', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Problem solving', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'C++', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'Java', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'Android', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'C#', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'ASP.Net', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Silverlight', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'MVC', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Database', @Skill, GETDATE());
+
+
+
+
+--insert into Tag values(NEWID(), @ID, 'Graphic design', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Computer Science', @Major, GETDATE());
+
+insert into Tag values(NEWID(), @ID, 'C++', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'Objective-C', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'C#', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Video processing', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Problem solving', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Hardware debug', @Skill, GETDATE());
+--insert into Tag values(NEWID(), @ID, 'Software driver development', @Skill, GETDATE());
+
 
 select Job.ID, Job.JobTitle, Tag.TagName, t1.TagName as Parent
 from Job
@@ -111,7 +194,9 @@ SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(TagName)
                         ORDER BY '],[' + ltrim(TagName)
                         FOR XML PATH('')), 1, 2, '') + ']'
  
-SET @query = 'SELECT * FROM (
+SET @query = 'CREATE VIEW PivotProfile
+				AS
+				SELECT * FROM (
 					select [Profile].ID, [Profile].FirstName, Tag.TagName
 					from [Profile]
 					inner join Tag on [Profile].ID = Tag.ObjectID
@@ -124,3 +209,26 @@ EXECUTE (@query)
 Exec GetPivotJobRequirement
 
 Exec GetPivotProfile
+
+DECLARE @jobID char(36),
+		@profileID char(36);
+
+SET @profileID = '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8'
+DECLARE job_cursor CURSOR FOR 
+SELECT ID
+FROM Job;
+
+OPEN job_cursor;
+
+FETCH NEXT FROM job_cursor 
+INTO @jobID;
+
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	insert into JobApproval values(NEWID(), @profileID, @jobID, 0, 1, GETDATE())
+
+FETCH NEXT FROM job_cursor 
+    INTO @jobID;
+END
+CLOSE job_cursor;
+DEALLOCATE job_cursor;
