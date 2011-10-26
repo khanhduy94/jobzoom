@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entities" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JobZoom.Business.Entities" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:22608/JobZoomService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:22608/JobZoomService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="Profile_Basic">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AddressLine1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AddressLine2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Birthdate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Facebook" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MaritalStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MobilePhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ProfileBasicId" type="ser:guid" />
+          <xs:element minOccurs="0" name="ProfilePictureUrl" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Twitter" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="User" nillable="true" type="tns:User" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserReference" nillable="true" type="q1:EntityReferenceOfUser_ST1hAEyT" />
+          <xs:element minOccurs="0" name="Website" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="Profile_Basic" nillable="true" type="tns:Profile_Basic" />
+  <xs:complexType name="User">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Profile_Basic" nillable="true" type="tns:ArrayOfProfile_Basic" />
+          <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="User" nillable="true" type="tns:User" />
+  <xs:complexType name="ArrayOfProfile_Basic">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Profile_Basic" nillable="true" type="tns:Profile_Basic" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProfile_Basic" nillable="true" type="tns:ArrayOfProfile_Basic" />
+</xs:schema>

@@ -1,0 +1,89 @@
+﻿@model JobZoom.Web.Models.ProfileWorkViewModel
+@{
+    ViewBag.Title = "Work Experience";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    // increase the default animation speed to exaggerate the effect
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Create an account": function () {
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#create-work").click(function () {
+            $("#dialog").dialog("open");
+            return false;
+        });
+    });
+</script>
+<script type="text/javascript">
+    // increase the default animation speed to exaggerate the effect
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#dialog-edit-exiting").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Create an account": function () {
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>
+@Html.ActionLink("1.Basic", "Basic", "ProfileEdit")
+@Html.ActionLink("2.Education", "Education", "ProfileEdit")
+@Html.ActionLink("3.Work", "Work", "ProfileEdit")
+<h2>
+    Work Experience</h2>
+<p>
+    <button id="create-work">
+        Create new work</button>
+</p>
+@foreach (var item in Model.ProfileWorks)
+{        
+    <script type="text/javascript">
+        $(function () {
+            $("#create-work-@(item.ProfileWorkId)").click(function () {
+                $("#dialog-edit-exiting").dialog("open");
+                return false;
+            });
+        });
+    </script>
+    <fieldset>
+        <legend>@item.CompanyName        
+            <a id="create-work-@item.ProfileWorkId" href="#">Edit</a> </legend>
+        @item.JobTitle
+        @item.StartDate
+        @item.EndDate
+        @item.Description
+        @item.ProfileWorkId
+    </fieldset>
+}
+<div id="dialog" title="Create new work">
+    <p>
+        @Html.Partial("~/Views/ProfileEdit/CreateProfileWork.cshtml")
+    </p>
+</div>
+<div id="dialog-edit-exiting" title="Edit existing work">
+    <p>
+        @Html.Partial("~/Views/ProfileEdit/EditProfileWork.cshtml")
+    </p>
+</div>

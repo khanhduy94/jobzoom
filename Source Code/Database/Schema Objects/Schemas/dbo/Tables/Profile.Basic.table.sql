@@ -1,0 +1,21 @@
+﻿CREATE TABLE [dbo].[Profile.Basic]
+(	 
+	ProfileBasicId		uniqueidentifier	NOT NULL,
+	UserId				nvarchar(128)		NOT NULL,
+	FirstName			nvarchar(50)		NOT NULL,
+	LastName			nvarchar(50)		NOT NULL,
+	Gender				nvarchar(10)		NOT NULL,
+	Birthdate			datetime			NOT NULL,
+	MaritalStatus		nvarchar(50)		NOT NULL,	
+	ProfilePictureUrl	nvarchar(255)		NULL,
+	AddressLine1		nvarchar(255)		NULL,
+	AddressLine2		nvarchar(255)		NULL,	
+	Country				nvarchar(128)		NULL,
+	City				nvarchar(128)		NULL,	
+	ZipCode				int					NULL,
+	Phone				nvarchar(50)		NULL,
+	MobilePhone			nvarchar(50)		NULL,	
+	Website				nvarchar(50)		NULL,	
+	Facebook			nvarchar(128)		NULL,
+	Twitter				nvarchar(128)		NULL,	
+)
