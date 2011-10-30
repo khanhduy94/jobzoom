@@ -352,8 +352,8 @@
     <Content Include="Views\ProfileWork\Create.cshtml" />
     <Content Include="Views\ProfileWork\Edit.cshtml" />
     <Content Include="Views\ProfileWork\Delete.cshtml" />
-    <Content Include="Views\ProfileEdit\CreateProfileWork.cshtml" />
-    <Content Include="Views\ProfileEdit\EditProfileWork.cshtml" />
+    <Content Include="Views\ProfileEdit\EditProfileWorkView.cshtml" />
+    <Content Include="Views\ProfileEdit\ListProfileWorkView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

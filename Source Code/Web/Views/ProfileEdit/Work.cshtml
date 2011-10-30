@@ -1,20 +1,25 @@
-﻿@model JobZoom.Web.Models.ProfileWorkViewModel
-@{
+﻿@{
     ViewBag.Title = "Work Experience";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script>
+<script type="text/javascript">
     // increase the default animation speed to exaggerate the effect
     $.fx.speeds._default = 1000;
     $(function () {
-        $("#dialog").dialog({
+        $("#work-dialog").dialog({
             autoOpen: false,
             height: 600,
             width: 700,
             show: "blind",
             hide: "explode",
             buttons: {
-                "Create an account": function () {
+                "Save": function () {
+                    $.post("/Profile/Edit/SaveWork",
+                        $("#EditProfileWorkView").serialize(),
+                        function (data) {
+                            $("#work-dialog").dialog("close");
+                            $("#divProfileWorkList").html(data);
+                        });
                 },
                 Cancel: function () {
                     $(this).dialog("close");
@@ -23,30 +28,21 @@
         });
 
         $("#create-work").click(function () {
-            $("#dialog").dialog("open");
-            return false;
+            $("#work-dialog").html("")
+                .dialog("option", "title", "Create Work")
+                .load("/Profile/Edit/CreateWork", function () { $("#work-dialog").dialog("open"); });
         });
-    });
-</script>
-<script type="text/javascript">
-    // increase the default animation speed to exaggerate the effect
-    $.fx.speeds._default = 1000;
-    $(function () {
-        $("#dialog-edit-exiting").dialog({
-            autoOpen: false,
-            height: 600,
-            width: 700,
-            show: "blind",
-            hide: "explode",
-            buttons: {
-                "Create an account": function () {
-                },
-                Cancel: function () {
-                    $(this).dialog("close");
-                }
-            }
+        $(".edit-work").live("click", function () {
+            var id = $(this).attr("profileworkid");            
+            $("#work-dialog").html("")
+                .dialog("option", "title", "Edit Work")
+                .load("/Profile/Edit/EditWork/" + id, function () { $("#work-dialog").dialog("open"); });
         });
+        LoadProfileWorkList();
     });
+    function LoadProfileWorkList() {
+        $("#divProfileWorkList").load("/Profile/Edit/ListWorks");
+    }
 </script>
 @Html.ActionLink("1.Basic", "Basic", "ProfileEdit")
 @Html.ActionLink("2.Education", "Education", "ProfileEdit")
@@ -57,33 +53,7 @@
     <button id="create-work">
         Create new work</button>
 </p>
-@foreach (var item in Model.ProfileWorks)
-{        
-    <script type="text/javascript">
-        $(function () {
-            $("#create-work-@(item.ProfileWorkId)").click(function () {
-                $("#dialog-edit-exiting").dialog("open");
-                return false;
-            });
-        });
-    </script>
-    <fieldset>
-        <legend>@item.CompanyName        
-            <a id="create-work-@item.ProfileWorkId" href="#">Edit</a> </legend>
-        @item.JobTitle
-        @item.StartDate
-        @item.EndDate
-        @item.Description
-        @item.ProfileWorkId
-    </fieldset>
-}
-<div id="dialog" title="Create new work">
-    <p>
-        @Html.Partial("~/Views/ProfileEdit/CreateProfileWork.cshtml")
-    </p>
+<div id="divProfileWorkList">
 </div>
-<div id="dialog-edit-exiting" title="Edit existing work">
-    <p>
-        @Html.Partial("~/Views/ProfileEdit/EditProfileWork.cshtml")
-    </p>
+<div id="work-dialog" title="" class="Hidden">
 </div>

@@ -322,3 +322,5 @@ div#title {
 .tri-state {
     width: 6em;
 }
+.ButtonLink { color:Blue; cursor:pointer; }
+.ButtonLink:hover { text-decoration:underline; }

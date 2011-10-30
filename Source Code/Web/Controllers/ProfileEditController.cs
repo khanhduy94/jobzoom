@@ -12,6 +12,7 @@ namespace JobZoom.Web.Controllers
     public class ProfileEditController : Controller
     {
         private JobZoomEntities db = new JobZoomEntities();
+        private string userId;
         //
         // GET: /ProfileEdit/
 
@@ -57,12 +58,58 @@ namespace JobZoom.Web.Controllers
         }
 
         public ActionResult Work()
+        {            
+            return View();
+        }
+
+        public ActionResult ListWorks()
         {
-            string userId = User.Identity.Name;
+            userId = User.Identity.Name;
             var profile_work = db.Profile_Work.Where(x => x.UserId == userId);
-            ProfileWorkViewModel profile_Work_ViewModel = new ProfileWorkViewModel();
-            profile_Work_ViewModel.ProfileWorks = profile_work;
-            return View(profile_Work_ViewModel);
+
+            return PartialView("ListProfileWorkView", profile_work);
+        }
+
+        [HttpGet]
+        public ActionResult CreateWork()
+        {
+            Profile_Work profile_work = new Profile_Work();
+            return PartialView("EditProfileWorkView", profile_work);
+        }
+
+        [HttpGet]
+        public ActionResult EditWork(Guid id)
+        {
+            Profile_Work profile_work = db.Profile_Work.FirstOrDefault(x => x.ProfileWorkId == id);
+
+            return PartialView("EditProfileWorkView", profile_work);
+        }
+
+        [HttpPost]
+        public ActionResult SaveWork(Profile_Work profile_work)
+        {
+            userId = User.Identity.Name;
+            profile_work.UserId = userId;
+
+            if (ModelState.IsValid)
+            {
+                if (profile_work.ProfileWorkId == Guid.Empty)
+                {                    
+                    profile_work.ProfileWorkId = Guid.NewGuid();
+                    db.Profile_Work.AddObject(profile_work);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Profile_Work.Attach(profile_work);
+                    db.ObjectStateManager.ChangeObjectState(profile_work, EntityState.Modified);
+                    db.SaveChanges();
+                }
+
+                             
+            }                        
+            var listProfileWork = db.Profile_Work.Where(x => x.UserId == userId);
+            return PartialView("ListProfileWorkView", listProfileWork);
         }
     }
 }
