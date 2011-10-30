@@ -16,6 +16,7 @@ namespace JobZoom.Web.Controllers
         //
         // GET: /ProfileEdit/
 
+        [Authorize]
         public ActionResult Index()
         {   
             return View();
@@ -51,17 +52,19 @@ namespace JobZoom.Web.Controllers
             return View(profile_basic);
         }
 
-
+        [Authorize]
         public ActionResult Education()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult Work()
         {            
             return View();
         }
 
+        [Authorize]
         public ActionResult ListWorks()
         {
             userId = User.Identity.Name;
@@ -70,6 +73,7 @@ namespace JobZoom.Web.Controllers
             return PartialView("ListProfileWorkView", profile_work);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult CreateWork()
         {
@@ -77,6 +81,7 @@ namespace JobZoom.Web.Controllers
             return PartialView("EditProfileWorkView", profile_work);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult EditWork(Guid id)
         {
@@ -85,6 +90,7 @@ namespace JobZoom.Web.Controllers
             return PartialView("EditProfileWorkView", profile_work);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult SaveWork(Profile_Work profile_work)
         {

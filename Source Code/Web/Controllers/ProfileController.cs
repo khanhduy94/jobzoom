@@ -11,6 +11,7 @@ namespace JobZoom.Web.Controllers
         //
         // GET: /Profile/
 
+        [Authorize]
         public ActionResult Home()
         {
             return View();
