@@ -1,21 +1,21 @@
-﻿CREATE TABLE [dbo].[Profile.Basic]
-(	 
-	ProfileBasicId		uniqueidentifier	NOT NULL,
-	UserId				nvarchar(128)		NOT NULL,
-	FirstName			nvarchar(50)		NOT NULL,
-	LastName			nvarchar(50)		NOT NULL,
-	Gender				nvarchar(10)		NOT NULL,
-	Birthdate			datetime			NOT NULL,
-	MaritalStatus		nvarchar(50)		NOT NULL,	
-	ProfilePictureUrl	nvarchar(255)		NULL,
-	AddressLine1		nvarchar(255)		NULL,
-	AddressLine2		nvarchar(255)		NULL,	
-	Country				nvarchar(128)		NULL,
-	City				nvarchar(128)		NULL,	
-	ZipCode				int					NULL,
-	Phone				nvarchar(50)		NULL,
-	MobilePhone			nvarchar(50)		NULL,	
-	Website				nvarchar(50)		NULL,	
-	Facebook			nvarchar(128)		NULL,
-	Twitter				nvarchar(128)		NULL,	
-)
+﻿CREATE TABLE [dbo].[Profile.Basic] (
+    [ProfileBasicId]    UNIQUEIDENTIFIER NOT NULL,
+    [UserId]            NVARCHAR (128)   NOT NULL,
+    [FirstName]         NVARCHAR (50)    NOT NULL,
+    [LastName]          NVARCHAR (50)    NOT NULL,
+    [Gender]            NVARCHAR (10)    NOT NULL,
+    [Birthdate]         DATETIME         NOT NULL,
+    [MaritalStatus]     NVARCHAR (50)    NOT NULL,
+    [ProfilePictureUrl] NVARCHAR (255)   NULL,
+    [AddressLine1]      NVARCHAR (255)   NULL,
+    [AddressLine2]      NVARCHAR (255)   NULL,
+    [Country]           NVARCHAR (128)   NULL,
+    [City]              NVARCHAR (128)   NULL,
+    [ZipCode]           INT              NULL,
+    [Phone]             NVARCHAR (50)    NULL,
+    [MobilePhone]       NVARCHAR (50)    NULL,
+    [Website]           NVARCHAR (50)    NULL,
+    [Facebook]          NVARCHAR (128)   NULL,
+    [Twitter]           NVARCHAR (128)   NULL
+);
+

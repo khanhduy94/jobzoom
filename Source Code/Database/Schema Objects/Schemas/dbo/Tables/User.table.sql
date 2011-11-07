@@ -1,6 +1,6 @@
-﻿CREATE TABLE [dbo].[User]
-(
-	UserId		nvarchar(128)		NOT NULL,
-	Email		nvarchar(128)		NOT NULL,
-	[Password]	nvarchar(256)		NOT NULL,
-)
+﻿CREATE TABLE [dbo].[User] (
+    [UserId]   NVARCHAR (128) NOT NULL,
+    [Email]    NVARCHAR (128) NOT NULL,
+    [Password] NVARCHAR (256) NOT NULL
+);
+

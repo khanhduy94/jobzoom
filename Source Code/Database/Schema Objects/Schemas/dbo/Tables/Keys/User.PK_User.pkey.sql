@@ -1,3 +1,0 @@
-﻿ALTER TABLE [dbo].[User]
-	ADD CONSTRAINT [PK_User]
-	PRIMARY KEY (UserId)
