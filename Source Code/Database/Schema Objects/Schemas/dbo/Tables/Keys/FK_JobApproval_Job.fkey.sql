@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[JobApproval]
+    ADD CONSTRAINT [FK_JobApproval_Job] FOREIGN KEY ([JobID]) REFERENCES [dbo].[Job] ([ID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
