@@ -95,7 +95,7 @@
     <Compile Include="Controllers\ProfileBasicController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
-    <Compile Include="Controllers\ProfileWorkController.cs" />
+    <Compile Include="Controllers\ProfileEducationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -111,6 +111,7 @@
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\jquery.tagit.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -171,6 +172,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\tag-it.js" />
     <Content Include="Scripts\ui\i18n\jquery-ui-i18n.js" />
     <Content Include="Scripts\ui\i18n\jquery.ui.datepicker-af.js" />
     <Content Include="Scripts\ui\i18n\jquery.ui.datepicker-ar-DZ.js" />
@@ -347,13 +349,15 @@
     <Content Include="Views\AdminUser\Create.cshtml" />
     <Content Include="Views\AdminUser\Edit.cshtml" />
     <Content Include="Views\AdminUser\Delete.cshtml" />
-    <Content Include="Views\ProfileWork\Index.cshtml" />
-    <Content Include="Views\ProfileWork\Details.cshtml" />
-    <Content Include="Views\ProfileWork\Create.cshtml" />
-    <Content Include="Views\ProfileWork\Edit.cshtml" />
-    <Content Include="Views\ProfileWork\Delete.cshtml" />
     <Content Include="Views\ProfileEdit\EditProfileWorkView.cshtml" />
     <Content Include="Views\ProfileEdit\ListProfileWorkView.cshtml" />
+    <Content Include="Views\ProfileEducation\Index.cshtml" />
+    <Content Include="Views\ProfileEducation\Details.cshtml" />
+    <Content Include="Views\ProfileEducation\Create.cshtml" />
+    <Content Include="Views\ProfileEducation\Edit.cshtml" />
+    <Content Include="Views\ProfileEducation\Delete.cshtml" />
+    <Content Include="Views\ProfileEdit\EditProfileEducationView.cshtml" />
+    <Content Include="Views\ProfileEdit\ListProfileEducationView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -58,6 +58,59 @@ namespace JobZoom.Web.Controllers
             return View();
         }
 
+        public ActionResult ListEducations()
+        {
+            userId = User.Identity.Name;
+            var profile_educations = db.Profile_Education.Where(x => x.UserId == userId);
+
+            return PartialView("ListProfileEducationView", profile_educations);
+        }
+
+        [HttpGet]
+        public ActionResult CreateEducation()
+        {
+            Profile_Education profile_educations = new Profile_Education();
+            return PartialView("EditProfileEducationView", profile_educations);
+        }
+
+        [HttpGet]
+        public ActionResult EditEducation(Guid id)
+        {
+            Profile_Education profile_educations = db.Profile_Education.FirstOrDefault(x => x.ProfileEducationId == id);
+            return PartialView("EditProfileEducationView", profile_educations);
+        }
+
+        [HttpPost]
+        public ActionResult SaveEducation(Profile_Education profile_education)
+        {
+            userId = User.Identity.Name;
+            profile_education.UserId = userId;
+
+            if (ModelState.IsValid)
+            {
+                if (profile_education.ProfileEducationId == Guid.Empty)
+                {
+                    profile_education.ProfileEducationId = Guid.NewGuid();
+                    db.Profile_Education.AddObject(profile_education);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Profile_Education.Attach(profile_education);
+                    db.ObjectStateManager.ChangeObjectState(profile_education, EntityState.Modified);
+                    db.SaveChanges();
+                }
+            }
+            var listProfileEducation = db.Profile_Education.Where(x => x.UserId == userId);
+            return PartialView("ListProfileEducationView", listProfileEducation);
+        }
+
+        public ActionResult DeleteWork()
+        {
+            return View();
+        }
+
+
         [Authorize]
         public ActionResult Work()
         {            
@@ -86,7 +139,6 @@ namespace JobZoom.Web.Controllers
         public ActionResult EditWork(Guid id)
         {
             Profile_Work profile_work = db.Profile_Work.FirstOrDefault(x => x.ProfileWorkId == id);
-
             return PartialView("EditProfileWorkView", profile_work);
         }
 
@@ -110,12 +162,16 @@ namespace JobZoom.Web.Controllers
                     db.Profile_Work.Attach(profile_work);
                     db.ObjectStateManager.ChangeObjectState(profile_work, EntityState.Modified);
                     db.SaveChanges();
-                }
-
-                             
+                }                             
             }                        
             var listProfileWork = db.Profile_Work.Where(x => x.UserId == userId);
             return PartialView("ListProfileWorkView", listProfileWork);
+        }
+
+        public ActionResult DeleteWork(Guid id)
+        {
+            Profile_Work profile_work = db.Profile_Work.Single(p => p.ProfileWorkId == id);
+            return View(profile_work);
         }
     }
 }

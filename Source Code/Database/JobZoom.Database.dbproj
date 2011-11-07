@@ -166,10 +166,19 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Company.PK_Company.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Work.FK_ProfileWork.pkey.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Work.PK_ProfileWork.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Work.FK_ProfileWorkUser.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Profile.Education.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Education.PK_ProfileEducation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Education.FK_ProfileEducationUser.fkey.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

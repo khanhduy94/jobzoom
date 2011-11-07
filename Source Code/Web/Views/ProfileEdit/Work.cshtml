@@ -2,6 +2,8 @@
     ViewBag.Title = "Work Experience";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="../../Content/jquery.tagit.css" rel="stylesheet" type="text/css" />
+<script src="../../Scripts/tag-it.js" type="text/javascript" ></script>
 <script type="text/javascript">
     // increase the default animation speed to exaggerate the effect
     $.fx.speeds._default = 1000;
@@ -44,6 +46,7 @@
         $("#divProfileWorkList").load("/Profile/Edit/ListWorks");
     }
 </script>
+
 @Html.ActionLink("1.Basic", "Basic", "ProfileEdit")
 @Html.ActionLink("2.Education", "Education", "ProfileEdit")
 @Html.ActionLink("3.Work", "Work", "ProfileEdit")
@@ -57,3 +60,4 @@
 </div>
 <div id="work-dialog" title="" class="Hidden">
 </div>
+
