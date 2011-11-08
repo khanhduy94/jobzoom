@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Job.Posting]
+(
+	JobPostingId		UNIQUEIDENTIFIER	NOT NULL, 
+	UserId				NVARCHAR(128)		NOT NULL,
+	CompanyId			UNIQUEIDENTIFIER	NULL,
+	CompanyName			NVARCHAR (128)		NULL,
+	JobTitle			NVARCHAR(128)		NOT NULL
+);
