@@ -25,13 +25,13 @@ namespace JobZoom.Web
             routes.MapRoute(
                 "EmployerDefault",//Route name
                 "Employer/",
-                new { controller = "EmployerHome", action = "Index", id = UrlParameter.Optional }
+                new { controller = "EmployerHome", action = "Home", id = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
                 "EmployerHome",//Route name
                 "Employer/Home/{action}/{id}",
-                new { controller = "EmployerHome", action = "Index", id = UrlParameter.Optional }
+                new { controller = "EmployerHome", action = "Home", id = UrlParameter.Optional }
                 );
 
             routes.MapRoute(
@@ -39,6 +39,14 @@ namespace JobZoom.Web
                 "Employer/Job/Post/{action}/{id}",
                 new { controller = "EmployerJobPost", action = "Basic", id = UrlParameter.Optional }
                 );
+
+            routes.MapRoute(
+                "EmployerEditJob",
+                "Employer/Job/Edit/{action}/{id}",
+                new { controller = "EmployerEditJob", action = "Basic", id = UrlParameter.Optional }
+                );
+
+            
 
 
             routes.MapRoute(
@@ -64,7 +72,7 @@ namespace JobZoom.Web
                 "ProfileEdit",
                 "Profile/Edit/{action}/{id}",
                 new { controller = "ProfileEdit", action = "Basic", id = UrlParameter.Optional }
-                );
+                );            
 
             //Adminstrator Page
             routes.MapRoute(
@@ -84,6 +92,8 @@ namespace JobZoom.Web
                 "Admin/User/{action}/{id}",
                 new { controller = "AdminUser", action = "Index", id = UrlParameter.Optional }
                 );
+
+
 
             routes.MapRoute(
                 "Default", // Route name

@@ -91,11 +91,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCompanyController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
+    <Compile Include="Controllers\EmployerEditJobController.cs" />
+    <Compile Include="Controllers\EmployerHomeController.cs" />
+    <Compile Include="Controllers\EmployerJobPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobPostingController.cs" />
     <Compile Include="Controllers\ProfileBasicController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
-    <Compile Include="Controllers\ProfileEducationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +143,12 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\background-tile.jpg" />
+    <Content Include="Images\backgroundGradient_students.jpg" />
+    <Content Include="Images\gclpbg.png" />
+    <Content Include="Images\gradientbgstretch.png" />
+    <Content Include="Images\headline_students.png" />
+    <Content Include="Images\Hero920_GSLPlive-wshdw.jpg" />
     <Content Include="Scripts\external\jquery.bgiframe-2.1.2.js" />
     <Content Include="Scripts\external\jquery.cookie.js" />
     <Content Include="Scripts\external\jquery.metadata.js" />
@@ -351,13 +360,22 @@
     <Content Include="Views\AdminUser\Delete.cshtml" />
     <Content Include="Views\ProfileEdit\EditProfileWorkView.cshtml" />
     <Content Include="Views\ProfileEdit\ListProfileWorkView.cshtml" />
-    <Content Include="Views\ProfileEducation\Index.cshtml" />
-    <Content Include="Views\ProfileEducation\Details.cshtml" />
-    <Content Include="Views\ProfileEducation\Create.cshtml" />
-    <Content Include="Views\ProfileEducation\Edit.cshtml" />
-    <Content Include="Views\ProfileEducation\Delete.cshtml" />
     <Content Include="Views\ProfileEdit\EditProfileEducationView.cshtml" />
     <Content Include="Views\ProfileEdit\ListProfileEducationView.cshtml" />
+    <Content Include="Views\EmployerJobPost\Basic.cshtml" />
+    <Content Include="Views\JobPosting\Index.cshtml" />
+    <Content Include="Views\JobPosting\Details.cshtml" />
+    <Content Include="Views\JobPosting\Create.cshtml" />
+    <Content Include="Views\JobPosting\Edit.cshtml" />
+    <Content Include="Views\JobPosting\Delete.cshtml" />
+    <Content Include="Views\EmployerEditJob\Basic.cshtml" />
+    <Content Include="Views\EmployerHome\Home.cshtml" />
+    <Content Include="Views\EmployerEditJob\Education.cshtml" />
+    <Content Include="Views\EmployerEditJob\EditWorkExpView.cshtml" />
+    <Content Include="Views\EmployerEditJob\ListWorkExpView.cshtml" />
+    <Content Include="Views\EmployerEditJob\ListEducationExpView.cshtml" />
+    <Content Include="Views\EmployerEditJob\EditEducationExpView.cshtml" />
+    <Content Include="Views\EmployerEditJob\Work.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -53,11 +53,13 @@ namespace JobZoom.Web.Controllers
         }
 
         [Authorize]
+        [OutputCache(Duration = 0)]
         public ActionResult Education()
         {
             return View();
         }
 
+        [OutputCache(Duration = 0)]
         public ActionResult ListEducations()
         {
             userId = User.Identity.Name;
@@ -67,6 +69,7 @@ namespace JobZoom.Web.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 0)]
         public ActionResult CreateEducation()
         {
             Profile_Education profile_educations = new Profile_Education();
@@ -74,6 +77,7 @@ namespace JobZoom.Web.Controllers
         }
 
         [HttpGet]
+        [OutputCache(Duration = 0)]
         public ActionResult EditEducation(Guid id)
         {
             Profile_Education profile_educations = db.Profile_Education.FirstOrDefault(x => x.ProfileEducationId == id);
@@ -112,12 +116,14 @@ namespace JobZoom.Web.Controllers
 
 
         [Authorize]
+        [OutputCache(Duration = 0)]
         public ActionResult Work()
         {            
             return View();
-        }
+        }        
 
         [Authorize]
+        [OutputCache(Duration = 0)]
         public ActionResult ListWorks()
         {
             userId = User.Identity.Name;
@@ -128,6 +134,7 @@ namespace JobZoom.Web.Controllers
 
         [Authorize]
         [HttpGet]
+        [OutputCache(Duration = 0)]
         public ActionResult CreateWork()
         {
             Profile_Work profile_work = new Profile_Work();
@@ -136,6 +143,7 @@ namespace JobZoom.Web.Controllers
 
         [Authorize]
         [HttpGet]
+        [OutputCache(Duration = 0)]
         public ActionResult EditWork(Guid id)
         {
             Profile_Work profile_work = db.Profile_Work.FirstOrDefault(x => x.ProfileWorkId == id);
@@ -172,6 +180,6 @@ namespace JobZoom.Web.Controllers
         {
             Profile_Work profile_work = db.Profile_Work.Single(p => p.ProfileWorkId == id);
             return View(profile_work);
-        }
+        }        
     }
 }

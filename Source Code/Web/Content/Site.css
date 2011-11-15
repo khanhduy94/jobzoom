@@ -3,15 +3,16 @@ The base color for this template is #5c87b2. If you'd like
 to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
-body {
-    background-color: #5c87b2;
+body {    
+    background-color: #6ad7fe;
+    background-image: url("../Images/backgroundGradient_students.jpg");
+    background-repeat: repeat-x;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
     color: #696969;
 }
-
 a:link {
     color: #034af3;
     text-decoration: underline;
