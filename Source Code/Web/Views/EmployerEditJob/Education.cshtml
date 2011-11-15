@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Work";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="../../Content/jquery.tagit.css" rel="stylesheet" type="text/css" />
+<script src="../../Scripts/tag-it.js" type="text/javascript" ></script>
+<div id="hidden-educationexpid" educationexpid="@Url.RequestContext.RouteData.Values["id"]" ></div>
+<script type="text/javascript">
+    // increase the default animation speed to exaggerate the effect
+    var educationexpid = $("#hidden-educationexpid").attr("educationexpid");
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#education-dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Save": function () {
+                    $.post("/Employer/Job/Edit/SaveEducation",
+                        $("#EditEducationExpView").serialize(),
+                        function (data) {
+                            $("#education-dialog").dialog("close");
+                            $("#divEducationExpList").html(data);
+                        });
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#create-education").click(function () {
+            $("#education-dialog").html("")
+                .dialog("option", "title", "Create Education")
+                .load("/Employer/Job/Edit/CreateEducation/" + educationexpid, function () { $("#education-dialog").dialog("open"); });
+        });
+        $(".edit-education").live("click", function () {
+            var id = $(this).attr("profileeducationid");            
+            $("#education-dialog").html("")
+                .dialog("option", "title", "Edit Work")
+                .load("/Employer/Job/Edit/EditEducation/" + id, function () { $("#education-dialog").dialog("open"); });
+        });
+        LoadProfileWorkList();
+    });
+    function LoadProfileWorkList() {
+        $("#divEducationExpList").load("/Employer/Job/Edit/ListEducations/" + educationexpid);
+    }
+</script>
+
+@Html.ActionLink("1.Basic", "Basic", "EmployerEditJob", new { id = Url.RequestContext.RouteData.Values["id"] }, null)
+@Html.ActionLink("2.Education Experience", "Education", "EmployerEditJob", new { id = Url.RequestContext.RouteData.Values["id"] }, null)
+@Html.ActionLink("3.Work Experience", "Work", "EmployerEditJob", new { id = Url.RequestContext.RouteData.Values["id"] }, null)
+@Html.ActionLink("4.Addition", "Work", "EmployerEditJob", new { id = Url.RequestContext.RouteData.Values["id"] }, null)
+<h2>
+    Work Experience</h2>
+<p>
+    <button id="create-education">
+        Create new education</button>
+</p>
+<div id="divEducationExpList">
+</div>
+<div id="education-dialog" title="" class="Hidden">
+</div>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<JobZoom.Business.Entities.Profile_Education>
+
+@foreach (var item in Model)
+{
+    <fieldset>
+        <legend>
+            @item.SchoolUniversityName
+        </legend>
+        @item.Major
+        @item.StartDate
+        @item.EndDate
+        @item.Description
+        @item.ProfileEducationId
+        <span class="edit-education ButtonLink" profileeducationid="@item.ProfileEducationId">Edit</span>
+    </fieldset>
+}
