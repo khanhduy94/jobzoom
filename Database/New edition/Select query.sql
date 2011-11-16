@@ -62,17 +62,27 @@ insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Market 
 insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Customer service', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE());
 insert into Tag values(NEWID(), 'E5BDE8B6-2719-4C78-81F0-16EA5EF91DB0', 'Communication', 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE());
 
+DELETE Tag WHERE ObjectID IS NOT NULL AND ObjectID <> '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8'
+DELETE JobApproval
+DELETE Job
+
+select JobTitle, Tag.TagName, Tag2.TagName from job 
+inner join Tag on job.id = tag.ObjectID
+inner join Tag as Tag2 on Tag2.ID = Tag.ParentID
 
 DECLARE @ID char(36)
-DECLARE @Major char(36)
+DECLARE @Industry char(36)
 DECLARE @Skill char(36)
 set @ID = NEWID()
-set @Major = 'B67DB5C2-5891-4DF9-88CF-3D502E9B499B'
+set @Industry = 'D7656123-4F37-4223-BE2C-FC6DA95E1399'
 set @Skill = 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5'
 insert into Job values(@ID, '55CD50DE-6A7B-4C9A-8E0F-C0CDF37986F7', 'Developer', null, GETDATE());
-insert into Tag values(NEWID(), @ID, 'IT', @Major, GETDATE());
-insert into Tag values(NEWID(), @ID, '.NET', @Major, GETDATE());
-insert into JobApproval values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', @ID, 0, 1, GETDATE())
+insert into Tag values(NEWID(), @ID, 'Computer Software', @Industry, GETDATE());
+insert into Tag values(NEWID(), @ID, '.NET Framework', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'C/C++', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'DBMS', @Skill, GETDATE());
+insert into Tag values(NEWID(), @ID, 'ASP.NET', @Skill, GETDATE());
+insert into JobApproval values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', @ID, 1, 0, GETDATE())
 
 
 DECLARE @jobID char(36),
