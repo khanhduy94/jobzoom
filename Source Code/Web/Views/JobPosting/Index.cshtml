@@ -6,17 +6,8 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table>
-    <tr>
-        <th>
-            UserId
-        </th>
-        <th>
-            CompanyId
-        </th>
+    <tr>                
         <th>
             CompanyName
         </th>
@@ -27,23 +18,15 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyId)
-        </td>
+    <tr>                
         <td>
             @Html.DisplayFor(modelItem => item.CompanyName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.JobTitle)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.JobPostingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.JobPostingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.JobPostingId })
+        <td>            
+            @Html.ActionLink("Details", "Details", new { id=item.JobPostingId })            
         </td>
     </tr>
 }

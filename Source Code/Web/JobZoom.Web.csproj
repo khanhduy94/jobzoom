@@ -95,7 +95,9 @@
     <Compile Include="Controllers\EmployerHomeController.cs" />
     <Compile Include="Controllers\EmployerJobPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobApplyController.cs" />
     <Compile Include="Controllers\JobPostingController.cs" />
+    <Compile Include="Controllers\JobPostingJobController.cs" />
     <Compile Include="Controllers\ProfileBasicController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
@@ -104,6 +106,7 @@
     </Compile>
     <Compile Include="Helpers\CustomMembershipProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ApplyJobConfirmViewModel.cs" />
     <Compile Include="Models\ProfileWorkViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\JobZoomServiceReference\Reference.cs">
@@ -365,9 +368,6 @@
     <Content Include="Views\EmployerJobPost\Basic.cshtml" />
     <Content Include="Views\JobPosting\Index.cshtml" />
     <Content Include="Views\JobPosting\Details.cshtml" />
-    <Content Include="Views\JobPosting\Create.cshtml" />
-    <Content Include="Views\JobPosting\Edit.cshtml" />
-    <Content Include="Views\JobPosting\Delete.cshtml" />
     <Content Include="Views\EmployerEditJob\Basic.cshtml" />
     <Content Include="Views\EmployerHome\Home.cshtml" />
     <Content Include="Views\EmployerEditJob\Education.cshtml" />
@@ -376,6 +376,8 @@
     <Content Include="Views\EmployerEditJob\ListEducationExpView.cshtml" />
     <Content Include="Views\EmployerEditJob\EditEducationExpView.cshtml" />
     <Content Include="Views\EmployerEditJob\Work.cshtml" />
+    <Content Include="Views\JobApply\ApplyConfirmView.cshtml" />
+    <Content Include="Views\JobApply\AppliedJobs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

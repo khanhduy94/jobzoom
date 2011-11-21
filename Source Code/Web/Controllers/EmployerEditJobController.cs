@@ -81,6 +81,15 @@ namespace JobZoom.Web.Controllers
                 {
                     workExp.JobWorkExpRequirementId = Guid.NewGuid();                    
                     db.Job_WorkExpRequirement.AddObject(workExp);
+
+                    //Tag tag = new Tag{ 
+                    //    ID= Guid.NewGuid(), 
+                    //    ObjectID = workExp.JobWorkExpRequirementId, 
+                    //    TableName="Job.WorkExpRequirement", 
+                    //    TagName = workExp.JobAttributeValue,
+                        
+                    //    IsUpToDate = true,
+                    
                     db.SaveChanges();
                 }
                 else

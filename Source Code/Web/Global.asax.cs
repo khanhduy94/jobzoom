@@ -44,10 +44,7 @@ namespace JobZoom.Web
                 "EmployerEditJob",
                 "Employer/Job/Edit/{action}/{id}",
                 new { controller = "EmployerEditJob", action = "Basic", id = UrlParameter.Optional }
-                );
-
-            
-
+                );            
 
             routes.MapRoute(
                 "ProfileDefault",
@@ -72,6 +69,18 @@ namespace JobZoom.Web
                 "ProfileEdit",
                 "Profile/Edit/{action}/{id}",
                 new { controller = "ProfileEdit", action = "Basic", id = UrlParameter.Optional }
+                );
+
+            //Job Applying
+            routes.MapRoute("JobApply",
+                "Job/Apply/{action}/{id}",
+                new { controller = "JobApply", action = "Index", id = UrlParameter.Optional }
+                );
+    
+            //JOB
+            routes.MapRoute("Job",
+                "Job/{action}/{id}",
+                new { controller = "JobPosting", action = "Index", id = UrlParameter.Optional }
                 );            
 
             //Adminstrator Page
@@ -92,7 +101,6 @@ namespace JobZoom.Web
                 "Admin/User/{action}/{id}",
                 new { controller = "AdminUser", action = "Index", id = UrlParameter.Optional }
                 );
-
 
 
             routes.MapRoute(

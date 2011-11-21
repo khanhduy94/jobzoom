@@ -3,7 +3,39 @@
 @{
     ViewBag.Title = "Details";
 }
-
+<div id="hidden-jobid" jobid="@Url.RequestContext.RouteData.Values["id"]" ></div>
+<script type="text/javascript">
+    // increase the default animation speed to exaggerate the effect
+    var jobid = $("#hidden-jobid").attr("jobid");    
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#apply-dialog").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Apply": function () {
+                    $.post("/Job/Apply/Apply/",
+                        $("#ApplyConfirmView").serialize(),
+                        function (data) {
+                            $("#apply-dialog").dialog("close");
+                            window.location("/Job/Apply/AppliedJobs");
+                        });
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+        $("#apply-job").click(function () {
+            $("#apply-dialog").html("")
+                .dialog("option", "title", "Apply this job")
+                .load("/Job/Apply/ApplyConfirmView/" + jobid, function () { $("#apply-dialog").dialog("open"); });
+        });
+    });    
+</script>
 <h2>Details</h2>
 
 <fieldset>
@@ -30,6 +62,11 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.JobPostingId }) |
+    <button id="apply-job">
+    Appy Job</button>
+</p>
+<p>    
     @Html.ActionLink("Back to List", "Index")
 </p>
+<div id="apply-dialog" title="" class="Hidden">
+</div>
