@@ -31,11 +31,12 @@ namespace JobZoom.Web.Controllers
                 ProfileID = profileId,
                 JobPostingId = model.JobId,
                 IsApplied = true,
-                IsApproved = false
+                IsApproved = false,
+                UserId = User.Identity.Name
             };
 
-            //db.Job_Approval.AddObject(job_approval);
-            //db.SaveChanges();
+            db.Job_Approval.AddObject(job_approval);
+            db.SaveChanges();
 
             return RedirectToAction("AppliedJobs");
         }

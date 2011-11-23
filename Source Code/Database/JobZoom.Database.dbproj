@@ -143,12 +143,6 @@
     <Build Include="Schema Objects\Database Level Objects\Storage\Files\JobZoom.sqlfile.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Tag.FK_Tag_ParentTag.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Tag.Detail.FK_TagDetail_Tag.fkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Indexes\IDX_ParentID.index.sql">
       <SubType>Code</SubType>
     </Build>
@@ -156,9 +150,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Tag.PK_Tag.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Tag.Detail.PK_TagDetail.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetPivotJobRequirement.proc.sql">
@@ -174,9 +165,6 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Tag.table.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\TagDetail.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\User.table.sql">
@@ -209,9 +197,6 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Work.FK_ProfileWork_User.fkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Company.PK_Company.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\User.PK_User.pkey.sql">
       <SubType>Code</SubType>
     </Build>
@@ -221,16 +206,52 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Job.Posting.PK_JobPosting.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\WorkExpRequirement.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Job.WorkExpRequirement.table.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\EducationExpRequirement.table.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Job.EducationExpRequirement.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.EducationExpRequirement.PK_JobEducationExpRequirement.pkey.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Job.WorkExpRequirement.PK_JobWorkExpRequirement.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Job.WorkExpRequirement.FK_JobWorkExRequirement_JobPosting.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Job.EducationExpRequirement.FK_JobEducationExpRequirement_JobPosting.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Company.PK_Company.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Work.PK_ProfileWork.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Education.PK_ProfileEducation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Profile.Basic.PK_ProfileBasic.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Job.OtherRequirement.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Job.OtherRequirement.PK_JobOtherRequirement.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Job.OtherRequirement.FK_JobOtherRequirement_JobPosting.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Views\JobRequirementView.view.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\AttributeTag.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\AttributeTag.PK_AttributeTag.pkey.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

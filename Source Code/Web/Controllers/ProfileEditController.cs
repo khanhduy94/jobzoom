@@ -28,12 +28,28 @@ namespace JobZoom.Web.Controllers
         [HttpGet]
         public ActionResult Basic()
         {
-            string userId = User.Identity.Name;
-            Profile_Basic profile_basic = db.Profile_Basic.Single(p => p.UserId == userId);
-            ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
-            ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
-            ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
-            return View(profile_basic);
+            string userId = User.Identity.Name;            
+
+            if (db.Profile_Basic.Where(x => x.UserId == userId).Count() != 1)
+            {
+                Profile_Basic profile_basic = new Profile_Basic();
+                ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
+                ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
+                ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
+                ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, profile_basic.MaritalStatus);
+
+                return View(profile_basic);
+            }
+            else
+            {
+                Profile_Basic profile_basic = db.Profile_Basic.Single(p => p.UserId == userId);
+                ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
+                ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
+                ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
+                ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, profile_basic.MaritalStatus);
+                
+                return View(profile_basic);
+            }            
         }
 
         // POST: /Profile/Edit/Basic
@@ -43,9 +59,19 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Profile_Basic.Attach(profile_basic);
-                db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
-                db.SaveChanges();
+                if (profile_basic.ProfileBasicId != Guid.Empty)
+                {
+                    db.Profile_Basic.Attach(profile_basic);
+                    db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    profile_basic.ProfileBasicId = Guid.NewGuid();
+                    db.Profile_Basic.AddObject(profile_basic);
+                    db.SaveChanges();
+                }
+                
                 return RedirectToAction("Basic");
             }
             //ViewBag.UserId = new SelectList(db.Users, "UserId", "Email", profile_basic.UserId);

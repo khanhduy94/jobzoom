@@ -18,9 +18,13 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("JobZoom.DemoModel", "FK_ProfileBasic_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Basic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Basic), true)]
-[assembly: EdmRelationshipAttribute("JobZoom.DemoModel", "FK_ProfileWorkUser", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Work), true)]
-[assembly: EdmRelationshipAttribute("JobZoom.DemoModel", "FK_ProfileEducationUser", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Education", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Education), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNode", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.DecisionTreeNode), "DecisionTreeNodeDistribution", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(JobZoom.Business.Entities.DecisionTreeNodeDistribution), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobEducationExpRequirement_JobPosting", "Job_Posting", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.Job_Posting), "Job_EducationExpRequirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Job_EducationExpRequirement), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobOtherRequirement_JobPosting", "Job_Posting", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.Job_Posting), "Job_OtherRequirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Job_OtherRequirement), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_JobWorkExRequirement_JobPosting", "Job_Posting", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.Job_Posting), "Job_WorkExpRequirement", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Job_WorkExpRequirement), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileBasic_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Basic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Basic), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileEducation_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Education", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Education), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileWork_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Work), true)]
 
 #endregion
 
@@ -75,6 +79,118 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Company> Companies
+        {
+            get
+            {
+                if ((_Companies == null))
+                {
+                    _Companies = base.CreateObjectSet<Company>("Companies");
+                }
+                return _Companies;
+            }
+        }
+        private ObjectSet<Company> _Companies;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DecisionTreeNode> DecisionTreeNodes
+        {
+            get
+            {
+                if ((_DecisionTreeNodes == null))
+                {
+                    _DecisionTreeNodes = base.CreateObjectSet<DecisionTreeNode>("DecisionTreeNodes");
+                }
+                return _DecisionTreeNodes;
+            }
+        }
+        private ObjectSet<DecisionTreeNode> _DecisionTreeNodes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DecisionTreeNodeDistribution> DecisionTreeNodeDistributions
+        {
+            get
+            {
+                if ((_DecisionTreeNodeDistributions == null))
+                {
+                    _DecisionTreeNodeDistributions = base.CreateObjectSet<DecisionTreeNodeDistribution>("DecisionTreeNodeDistributions");
+                }
+                return _DecisionTreeNodeDistributions;
+            }
+        }
+        private ObjectSet<DecisionTreeNodeDistribution> _DecisionTreeNodeDistributions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Job_EducationExpRequirement> Job_EducationExpRequirement
+        {
+            get
+            {
+                if ((_Job_EducationExpRequirement == null))
+                {
+                    _Job_EducationExpRequirement = base.CreateObjectSet<Job_EducationExpRequirement>("Job_EducationExpRequirement");
+                }
+                return _Job_EducationExpRequirement;
+            }
+        }
+        private ObjectSet<Job_EducationExpRequirement> _Job_EducationExpRequirement;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Job_OtherRequirement> Job_OtherRequirement
+        {
+            get
+            {
+                if ((_Job_OtherRequirement == null))
+                {
+                    _Job_OtherRequirement = base.CreateObjectSet<Job_OtherRequirement>("Job_OtherRequirement");
+                }
+                return _Job_OtherRequirement;
+            }
+        }
+        private ObjectSet<Job_OtherRequirement> _Job_OtherRequirement;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Job_Posting> Job_Posting
+        {
+            get
+            {
+                if ((_Job_Posting == null))
+                {
+                    _Job_Posting = base.CreateObjectSet<Job_Posting>("Job_Posting");
+                }
+                return _Job_Posting;
+            }
+        }
+        private ObjectSet<Job_Posting> _Job_Posting;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Job_WorkExpRequirement> Job_WorkExpRequirement
+        {
+            get
+            {
+                if ((_Job_WorkExpRequirement == null))
+                {
+                    _Job_WorkExpRequirement = base.CreateObjectSet<Job_WorkExpRequirement>("Job_WorkExpRequirement");
+                }
+                return _Job_WorkExpRequirement;
+            }
+        }
+        private ObjectSet<Job_WorkExpRequirement> _Job_WorkExpRequirement;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Profile_Basic> Profile_Basic
         {
             get
@@ -91,34 +207,18 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<User> Users
+        public ObjectSet<Profile_Education> Profile_Education
         {
             get
             {
-                if ((_Users == null))
+                if ((_Profile_Education == null))
                 {
-                    _Users = base.CreateObjectSet<User>("Users");
+                    _Profile_Education = base.CreateObjectSet<Profile_Education>("Profile_Education");
                 }
-                return _Users;
+                return _Profile_Education;
             }
         }
-        private ObjectSet<User> _Users;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Company> Companies
-        {
-            get
-            {
-                if ((_Companies == null))
-                {
-                    _Companies = base.CreateObjectSet<Company>("Companies");
-                }
-                return _Companies;
-            }
-        }
-        private ObjectSet<Company> _Companies;
+        private ObjectSet<Profile_Education> _Profile_Education;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -139,21 +239,141 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Profile_Education> Profile_Education
+        public ObjectSet<Tag> Tags
         {
             get
             {
-                if ((_Profile_Education == null))
+                if ((_Tags == null))
                 {
-                    _Profile_Education = base.CreateObjectSet<Profile_Education>("Profile_Education");
+                    _Tags = base.CreateObjectSet<Tag>("Tags");
                 }
-                return _Profile_Education;
+                return _Tags;
             }
         }
-        private ObjectSet<Profile_Education> _Profile_Education;
+        private ObjectSet<Tag> _Tags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<User> Users
+        {
+            get
+            {
+                if ((_Users == null))
+                {
+                    _Users = base.CreateObjectSet<User>("Users");
+                }
+                return _Users;
+            }
+        }
+        private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<JobRequirementView> JobRequirementViews
+        {
+            get
+            {
+                if ((_JobRequirementViews == null))
+                {
+                    _JobRequirementViews = base.CreateObjectSet<JobRequirementView>("JobRequirementViews");
+                }
+                return _JobRequirementViews;
+            }
+        }
+        private ObjectSet<JobRequirementView> _JobRequirementViews;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AttributeTag> AttributeTags
+        {
+            get
+            {
+                if ((_AttributeTags == null))
+                {
+                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
+                }
+                return _AttributeTags;
+            }
+        }
+        private ObjectSet<AttributeTag> _AttributeTags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Job_Approval> Job_Approval
+        {
+            get
+            {
+                if ((_Job_Approval == null))
+                {
+                    _Job_Approval = base.CreateObjectSet<Job_Approval>("Job_Approval");
+                }
+                return _Job_Approval;
+            }
+        }
+        private ObjectSet<Job_Approval> _Job_Approval;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCompanies(Company company)
+        {
+            base.AddObject("Companies", company);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DecisionTreeNodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDecisionTreeNodes(DecisionTreeNode decisionTreeNode)
+        {
+            base.AddObject("DecisionTreeNodes", decisionTreeNode);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DecisionTreeNodeDistributions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDecisionTreeNodeDistributions(DecisionTreeNodeDistribution decisionTreeNodeDistribution)
+        {
+            base.AddObject("DecisionTreeNodeDistributions", decisionTreeNodeDistribution);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Job_EducationExpRequirement EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJob_EducationExpRequirement(Job_EducationExpRequirement job_EducationExpRequirement)
+        {
+            base.AddObject("Job_EducationExpRequirement", job_EducationExpRequirement);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Job_OtherRequirement EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJob_OtherRequirement(Job_OtherRequirement job_OtherRequirement)
+        {
+            base.AddObject("Job_OtherRequirement", job_OtherRequirement);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Job_Posting EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJob_Posting(Job_Posting job_Posting)
+        {
+            base.AddObject("Job_Posting", job_Posting);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Job_WorkExpRequirement EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJob_WorkExpRequirement(Job_WorkExpRequirement job_WorkExpRequirement)
+        {
+            base.AddObject("Job_WorkExpRequirement", job_WorkExpRequirement);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Profile_Basic EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -164,19 +384,11 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Profile_Education EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToUsers(User user)
+        public void AddToProfile_Education(Profile_Education profile_Education)
         {
-            base.AddObject("Users", user);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCompanies(Company company)
-        {
-            base.AddObject("Companies", company);
+            base.AddObject("Profile_Education", profile_Education);
         }
     
         /// <summary>
@@ -188,11 +400,43 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Profile_Education EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToProfile_Education(Profile_Education profile_Education)
+        public void AddToTags(Tag tag)
         {
-            base.AddObject("Profile_Education", profile_Education);
+            base.AddObject("Tags", tag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUsers(User user)
+        {
+            base.AddObject("Users", user);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the JobRequirementViews EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJobRequirementViews(JobRequirementView jobRequirementView)
+        {
+            base.AddObject("JobRequirementViews", jobRequirementView);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttributeTags(AttributeTag attributeTag)
+        {
+            base.AddObject("AttributeTags", attributeTag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Job_Approval EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToJob_Approval(Job_Approval job_Approval)
+        {
+            base.AddObject("Job_Approval", job_Approval);
         }
 
         #endregion
@@ -206,7 +450,232 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="JobZoom.DemoModel", Name="Company")]
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="AttributeTag")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AttributeTag : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AttributeTag object.
+        /// </summary>
+        /// <param name="attributeTagId">Initial value of the AttributeTagId property.</param>
+        /// <param name="attributeTagName">Initial value of the AttributeTagName property.</param>
+        public static AttributeTag CreateAttributeTag(global::System.Guid attributeTagId, global::System.String attributeTagName)
+        {
+            AttributeTag attributeTag = new AttributeTag();
+            attributeTag.AttributeTagId = attributeTagId;
+            attributeTag.AttributeTagName = attributeTagName;
+            return attributeTag;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid AttributeTagId
+        {
+            get
+            {
+                return _AttributeTagId;
+            }
+            set
+            {
+                if (_AttributeTagId != value)
+                {
+                    OnAttributeTagIdChanging(value);
+                    ReportPropertyChanging("AttributeTagId");
+                    _AttributeTagId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AttributeTagId");
+                    OnAttributeTagIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _AttributeTagId;
+        partial void OnAttributeTagIdChanging(global::System.Guid value);
+        partial void OnAttributeTagIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String AttributeTagName
+        {
+            get
+            {
+                return _AttributeTagName;
+            }
+            set
+            {
+                OnAttributeTagNameChanging(value);
+                ReportPropertyChanging("AttributeTagName");
+                _AttributeTagName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("AttributeTagName");
+                OnAttributeTagNameChanged();
+            }
+        }
+        private global::System.String _AttributeTagName;
+        partial void OnAttributeTagNameChanging(global::System.String value);
+        partial void OnAttributeTagNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TableReference
+        {
+            get
+            {
+                return _TableReference;
+            }
+            set
+            {
+                OnTableReferenceChanging(value);
+                ReportPropertyChanging("TableReference");
+                _TableReference = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TableReference");
+                OnTableReferenceChanged();
+            }
+        }
+        private global::System.String _TableReference;
+        partial void OnTableReferenceChanging(global::System.String value);
+        partial void OnTableReferenceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                OnObjectIdChanging(value);
+                ReportPropertyChanging("ObjectId");
+                _ObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ObjectId");
+                OnObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ObjectId;
+        partial void OnObjectIdChanging(Nullable<global::System.Guid> value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ParentId
+        {
+            get
+            {
+                return _ParentId;
+            }
+            set
+            {
+                OnParentIdChanging(value);
+                ReportPropertyChanging("ParentId");
+                _ParentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentId");
+                OnParentIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ParentId;
+        partial void OnParentIdChanging(Nullable<global::System.Guid> value);
+        partial void OnParentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ParentName
+        {
+            get
+            {
+                return _ParentName;
+            }
+            set
+            {
+                OnParentNameChanging(value);
+                ReportPropertyChanging("ParentName");
+                _ParentName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ParentName");
+                OnParentNameChanged();
+            }
+        }
+        private global::System.String _ParentName;
+        partial void OnParentNameChanging(global::System.String value);
+        partial void OnParentNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ModifiedDate
+        {
+            get
+            {
+                return _ModifiedDate;
+            }
+            set
+            {
+                OnModifiedDateChanging(value);
+                ReportPropertyChanging("ModifiedDate");
+                _ModifiedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModifiedDate");
+                OnModifiedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ModifiedDate;
+        partial void OnModifiedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnModifiedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                OnStatusChanging(value);
+                ReportPropertyChanging("Status");
+                _Status = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Status");
+                OnStatusChanged();
+            }
+        }
+        private global::System.String _Status;
+        partial void OnStatusChanging(global::System.String value);
+        partial void OnStatusChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Company")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Company : EntityObject
@@ -671,7 +1140,1837 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="JobZoom.DemoModel", Name="Profile_Basic")]
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="DecisionTreeNode")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DecisionTreeNode : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DecisionTreeNode object.
+        /// </summary>
+        /// <param name="nODEID">Initial value of the NODEID property.</param>
+        public static DecisionTreeNode CreateDecisionTreeNode(global::System.String nODEID)
+        {
+            DecisionTreeNode decisionTreeNode = new DecisionTreeNode();
+            decisionTreeNode.NODEID = nODEID;
+            return decisionTreeNode;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NODEID
+        {
+            get
+            {
+                return _NODEID;
+            }
+            set
+            {
+                if (_NODEID != value)
+                {
+                    OnNODEIDChanging(value);
+                    ReportPropertyChanging("NODEID");
+                    _NODEID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("NODEID");
+                    OnNODEIDChanged();
+                }
+            }
+        }
+        private global::System.String _NODEID;
+        partial void OnNODEIDChanging(global::System.String value);
+        partial void OnNODEIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NODE_TYPE
+        {
+            get
+            {
+                return _NODE_TYPE;
+            }
+            set
+            {
+                OnNODE_TYPEChanging(value);
+                ReportPropertyChanging("NODE_TYPE");
+                _NODE_TYPE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NODE_TYPE");
+                OnNODE_TYPEChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NODE_TYPE;
+        partial void OnNODE_TYPEChanging(Nullable<global::System.Int32> value);
+        partial void OnNODE_TYPEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NODE_CAPTION
+        {
+            get
+            {
+                return _NODE_CAPTION;
+            }
+            set
+            {
+                OnNODE_CAPTIONChanging(value);
+                ReportPropertyChanging("NODE_CAPTION");
+                _NODE_CAPTION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NODE_CAPTION");
+                OnNODE_CAPTIONChanged();
+            }
+        }
+        private global::System.String _NODE_CAPTION;
+        partial void OnNODE_CAPTIONChanging(global::System.String value);
+        partial void OnNODE_CAPTIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CHILDREN_CARDINALITY
+        {
+            get
+            {
+                return _CHILDREN_CARDINALITY;
+            }
+            set
+            {
+                OnCHILDREN_CARDINALITYChanging(value);
+                ReportPropertyChanging("CHILDREN_CARDINALITY");
+                _CHILDREN_CARDINALITY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CHILDREN_CARDINALITY");
+                OnCHILDREN_CARDINALITYChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CHILDREN_CARDINALITY;
+        partial void OnCHILDREN_CARDINALITYChanging(Nullable<global::System.Int32> value);
+        partial void OnCHILDREN_CARDINALITYChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PARENTID
+        {
+            get
+            {
+                return _PARENTID;
+            }
+            set
+            {
+                OnPARENTIDChanging(value);
+                ReportPropertyChanging("PARENTID");
+                _PARENTID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PARENTID");
+                OnPARENTIDChanged();
+            }
+        }
+        private global::System.String _PARENTID;
+        partial void OnPARENTIDChanging(global::System.String value);
+        partial void OnPARENTIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NODE_DESCRIPTION
+        {
+            get
+            {
+                return _NODE_DESCRIPTION;
+            }
+            set
+            {
+                OnNODE_DESCRIPTIONChanging(value);
+                ReportPropertyChanging("NODE_DESCRIPTION");
+                _NODE_DESCRIPTION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NODE_DESCRIPTION");
+                OnNODE_DESCRIPTIONChanged();
+            }
+        }
+        private global::System.String _NODE_DESCRIPTION;
+        partial void OnNODE_DESCRIPTIONChanging(global::System.String value);
+        partial void OnNODE_DESCRIPTIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NODE_RULE
+        {
+            get
+            {
+                return _NODE_RULE;
+            }
+            set
+            {
+                OnNODE_RULEChanging(value);
+                ReportPropertyChanging("NODE_RULE");
+                _NODE_RULE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NODE_RULE");
+                OnNODE_RULEChanged();
+            }
+        }
+        private global::System.String _NODE_RULE;
+        partial void OnNODE_RULEChanging(global::System.String value);
+        partial void OnNODE_RULEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MARGINAL_RULE
+        {
+            get
+            {
+                return _MARGINAL_RULE;
+            }
+            set
+            {
+                OnMARGINAL_RULEChanging(value);
+                ReportPropertyChanging("MARGINAL_RULE");
+                _MARGINAL_RULE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MARGINAL_RULE");
+                OnMARGINAL_RULEChanged();
+            }
+        }
+        private global::System.String _MARGINAL_RULE;
+        partial void OnMARGINAL_RULEChanging(global::System.String value);
+        partial void OnMARGINAL_RULEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> NODE_PROBABILITY
+        {
+            get
+            {
+                return _NODE_PROBABILITY;
+            }
+            set
+            {
+                OnNODE_PROBABILITYChanging(value);
+                ReportPropertyChanging("NODE_PROBABILITY");
+                _NODE_PROBABILITY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NODE_PROBABILITY");
+                OnNODE_PROBABILITYChanged();
+            }
+        }
+        private Nullable<global::System.Double> _NODE_PROBABILITY;
+        partial void OnNODE_PROBABILITYChanging(Nullable<global::System.Double> value);
+        partial void OnNODE_PROBABILITYChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> MARGINAL_PROBABILITY
+        {
+            get
+            {
+                return _MARGINAL_PROBABILITY;
+            }
+            set
+            {
+                OnMARGINAL_PROBABILITYChanging(value);
+                ReportPropertyChanging("MARGINAL_PROBABILITY");
+                _MARGINAL_PROBABILITY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MARGINAL_PROBABILITY");
+                OnMARGINAL_PROBABILITYChanged();
+            }
+        }
+        private Nullable<global::System.Double> _MARGINAL_PROBABILITY;
+        partial void OnMARGINAL_PROBABILITYChanging(Nullable<global::System.Double> value);
+        partial void OnMARGINAL_PROBABILITYChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> NODE_SUPPORT
+        {
+            get
+            {
+                return _NODE_SUPPORT;
+            }
+            set
+            {
+                OnNODE_SUPPORTChanging(value);
+                ReportPropertyChanging("NODE_SUPPORT");
+                _NODE_SUPPORT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NODE_SUPPORT");
+                OnNODE_SUPPORTChanged();
+            }
+        }
+        private Nullable<global::System.Double> _NODE_SUPPORT;
+        partial void OnNODE_SUPPORTChanging(Nullable<global::System.Double> value);
+        partial void OnNODE_SUPPORTChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MSOLAP_MODEL_COLUMN
+        {
+            get
+            {
+                return _MSOLAP_MODEL_COLUMN;
+            }
+            set
+            {
+                OnMSOLAP_MODEL_COLUMNChanging(value);
+                ReportPropertyChanging("MSOLAP_MODEL_COLUMN");
+                _MSOLAP_MODEL_COLUMN = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MSOLAP_MODEL_COLUMN");
+                OnMSOLAP_MODEL_COLUMNChanged();
+            }
+        }
+        private global::System.String _MSOLAP_MODEL_COLUMN;
+        partial void OnMSOLAP_MODEL_COLUMNChanging(global::System.String value);
+        partial void OnMSOLAP_MODEL_COLUMNChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> MSOLAP_NODE_SCORE
+        {
+            get
+            {
+                return _MSOLAP_NODE_SCORE;
+            }
+            set
+            {
+                OnMSOLAP_NODE_SCOREChanging(value);
+                ReportPropertyChanging("MSOLAP_NODE_SCORE");
+                _MSOLAP_NODE_SCORE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MSOLAP_NODE_SCORE");
+                OnMSOLAP_NODE_SCOREChanged();
+            }
+        }
+        private Nullable<global::System.Double> _MSOLAP_NODE_SCORE;
+        partial void OnMSOLAP_NODE_SCOREChanging(Nullable<global::System.Double> value);
+        partial void OnMSOLAP_NODE_SCOREChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String MSOLAP_NODE_SHORT_CAPTION
+        {
+            get
+            {
+                return _MSOLAP_NODE_SHORT_CAPTION;
+            }
+            set
+            {
+                OnMSOLAP_NODE_SHORT_CAPTIONChanging(value);
+                ReportPropertyChanging("MSOLAP_NODE_SHORT_CAPTION");
+                _MSOLAP_NODE_SHORT_CAPTION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("MSOLAP_NODE_SHORT_CAPTION");
+                OnMSOLAP_NODE_SHORT_CAPTIONChanged();
+            }
+        }
+        private global::System.String _MSOLAP_NODE_SHORT_CAPTION;
+        partial void OnMSOLAP_NODE_SHORT_CAPTIONChanging(global::System.String value);
+        partial void OnMSOLAP_NODE_SHORT_CAPTIONChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ATTRIBUTE_NAME
+        {
+            get
+            {
+                return _ATTRIBUTE_NAME;
+            }
+            set
+            {
+                OnATTRIBUTE_NAMEChanging(value);
+                ReportPropertyChanging("ATTRIBUTE_NAME");
+                _ATTRIBUTE_NAME = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ATTRIBUTE_NAME");
+                OnATTRIBUTE_NAMEChanged();
+            }
+        }
+        private global::System.String _ATTRIBUTE_NAME;
+        partial void OnATTRIBUTE_NAMEChanging(global::System.String value);
+        partial void OnATTRIBUTE_NAMEChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNodeDistribution")]
+        public DecisionTreeNodeDistribution DecisionTreeNodeDistribution
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DecisionTreeNodeDistribution>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNodeDistribution").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DecisionTreeNodeDistribution>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNodeDistribution").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DecisionTreeNodeDistribution> DecisionTreeNodeDistributionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DecisionTreeNodeDistribution>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNodeDistribution");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DecisionTreeNodeDistribution>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNodeDistribution", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="DecisionTreeNodeDistribution")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DecisionTreeNodeDistribution : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DecisionTreeNodeDistribution object.
+        /// </summary>
+        /// <param name="nODEID">Initial value of the NODEID property.</param>
+        public static DecisionTreeNodeDistribution CreateDecisionTreeNodeDistribution(global::System.String nODEID)
+        {
+            DecisionTreeNodeDistribution decisionTreeNodeDistribution = new DecisionTreeNodeDistribution();
+            decisionTreeNodeDistribution.NODEID = nODEID;
+            return decisionTreeNodeDistribution;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NODEID
+        {
+            get
+            {
+                return _NODEID;
+            }
+            set
+            {
+                if (_NODEID != value)
+                {
+                    OnNODEIDChanging(value);
+                    ReportPropertyChanging("NODEID");
+                    _NODEID = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("NODEID");
+                    OnNODEIDChanged();
+                }
+            }
+        }
+        private global::System.String _NODEID;
+        partial void OnNODEIDChanging(global::System.String value);
+        partial void OnNODEIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ATTRIBUTE_NAME
+        {
+            get
+            {
+                return _ATTRIBUTE_NAME;
+            }
+            set
+            {
+                OnATTRIBUTE_NAMEChanging(value);
+                ReportPropertyChanging("ATTRIBUTE_NAME");
+                _ATTRIBUTE_NAME = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ATTRIBUTE_NAME");
+                OnATTRIBUTE_NAMEChanged();
+            }
+        }
+        private global::System.String _ATTRIBUTE_NAME;
+        partial void OnATTRIBUTE_NAMEChanging(global::System.String value);
+        partial void OnATTRIBUTE_NAMEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ATTRIBUTE_VALUE
+        {
+            get
+            {
+                return _ATTRIBUTE_VALUE;
+            }
+            set
+            {
+                OnATTRIBUTE_VALUEChanging(value);
+                ReportPropertyChanging("ATTRIBUTE_VALUE");
+                _ATTRIBUTE_VALUE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ATTRIBUTE_VALUE");
+                OnATTRIBUTE_VALUEChanged();
+            }
+        }
+        private global::System.String _ATTRIBUTE_VALUE;
+        partial void OnATTRIBUTE_VALUEChanging(global::System.String value);
+        partial void OnATTRIBUTE_VALUEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SUPPORT
+        {
+            get
+            {
+                return _SUPPORT;
+            }
+            set
+            {
+                OnSUPPORTChanging(value);
+                ReportPropertyChanging("SUPPORT");
+                _SUPPORT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SUPPORT");
+                OnSUPPORTChanged();
+            }
+        }
+        private Nullable<global::System.Double> _SUPPORT;
+        partial void OnSUPPORTChanging(Nullable<global::System.Double> value);
+        partial void OnSUPPORTChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> PROBABILITY
+        {
+            get
+            {
+                return _PROBABILITY;
+            }
+            set
+            {
+                OnPROBABILITYChanging(value);
+                ReportPropertyChanging("PROBABILITY");
+                _PROBABILITY = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PROBABILITY");
+                OnPROBABILITYChanged();
+            }
+        }
+        private Nullable<global::System.Double> _PROBABILITY;
+        partial void OnPROBABILITYChanging(Nullable<global::System.Double> value);
+        partial void OnPROBABILITYChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> VARIANCE
+        {
+            get
+            {
+                return _VARIANCE;
+            }
+            set
+            {
+                OnVARIANCEChanging(value);
+                ReportPropertyChanging("VARIANCE");
+                _VARIANCE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VARIANCE");
+                OnVARIANCEChanged();
+            }
+        }
+        private Nullable<global::System.Double> _VARIANCE;
+        partial void OnVARIANCEChanging(Nullable<global::System.Double> value);
+        partial void OnVARIANCEChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> VALUETYPE
+        {
+            get
+            {
+                return _VALUETYPE;
+            }
+            set
+            {
+                OnVALUETYPEChanging(value);
+                ReportPropertyChanging("VALUETYPE");
+                _VALUETYPE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VALUETYPE");
+                OnVALUETYPEChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _VALUETYPE;
+        partial void OnVALUETYPEChanging(Nullable<global::System.Int32> value);
+        partial void OnVALUETYPEChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNode")]
+        public DecisionTreeNode DecisionTreeNode
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DecisionTreeNode>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNode").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DecisionTreeNode>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNode").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DecisionTreeNode> DecisionTreeNodeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DecisionTreeNode>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNode");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DecisionTreeNode>("JobZoomModel.FK__DecisionT__NODEI__145C0A3F", "DecisionTreeNode", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Job_Approval")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Job_Approval : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Job_Approval object.
+        /// </summary>
+        /// <param name="jobApprovalId">Initial value of the JobApprovalId property.</param>
+        /// <param name="jobPostingId">Initial value of the JobPostingId property.</param>
+        /// <param name="profileID">Initial value of the ProfileID property.</param>
+        public static Job_Approval CreateJob_Approval(global::System.Guid jobApprovalId, global::System.Guid jobPostingId, global::System.Guid profileID)
+        {
+            Job_Approval job_Approval = new Job_Approval();
+            job_Approval.JobApprovalId = jobApprovalId;
+            job_Approval.JobPostingId = jobPostingId;
+            job_Approval.ProfileID = profileID;
+            return job_Approval;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobApprovalId
+        {
+            get
+            {
+                return _JobApprovalId;
+            }
+            set
+            {
+                if (_JobApprovalId != value)
+                {
+                    OnJobApprovalIdChanging(value);
+                    ReportPropertyChanging("JobApprovalId");
+                    _JobApprovalId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("JobApprovalId");
+                    OnJobApprovalIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _JobApprovalId;
+        partial void OnJobApprovalIdChanging(global::System.Guid value);
+        partial void OnJobApprovalIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobPostingId
+        {
+            get
+            {
+                return _JobPostingId;
+            }
+            set
+            {
+                OnJobPostingIdChanging(value);
+                ReportPropertyChanging("JobPostingId");
+                _JobPostingId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("JobPostingId");
+                OnJobPostingIdChanged();
+            }
+        }
+        private global::System.Guid _JobPostingId;
+        partial void OnJobPostingIdChanging(global::System.Guid value);
+        partial void OnJobPostingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid ProfileID
+        {
+            get
+            {
+                return _ProfileID;
+            }
+            set
+            {
+                OnProfileIDChanging(value);
+                ReportPropertyChanging("ProfileID");
+                _ProfileID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ProfileID");
+                OnProfileIDChanged();
+            }
+        }
+        private global::System.Guid _ProfileID;
+        partial void OnProfileIDChanging(global::System.Guid value);
+        partial void OnProfileIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsApplied
+        {
+            get
+            {
+                return _IsApplied;
+            }
+            set
+            {
+                OnIsAppliedChanging(value);
+                ReportPropertyChanging("IsApplied");
+                _IsApplied = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsApplied");
+                OnIsAppliedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsApplied;
+        partial void OnIsAppliedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsAppliedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsApproved
+        {
+            get
+            {
+                return _IsApproved;
+            }
+            set
+            {
+                OnIsApprovedChanging(value);
+                ReportPropertyChanging("IsApproved");
+                _IsApproved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsApproved");
+                OnIsApprovedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsApproved;
+        partial void OnIsApprovedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsApprovedChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Job_EducationExpRequirement")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Job_EducationExpRequirement : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Job_EducationExpRequirement object.
+        /// </summary>
+        /// <param name="jobEducationExpRequirementId">Initial value of the JobEducationExpRequirementId property.</param>
+        /// <param name="jobPostingId">Initial value of the JobPostingId property.</param>
+        /// <param name="jobAttributeName">Initial value of the JobAttributeName property.</param>
+        /// <param name="jobAttributeValue">Initial value of the JobAttributeValue property.</param>
+        public static Job_EducationExpRequirement CreateJob_EducationExpRequirement(global::System.Guid jobEducationExpRequirementId, global::System.Guid jobPostingId, global::System.String jobAttributeName, global::System.String jobAttributeValue)
+        {
+            Job_EducationExpRequirement job_EducationExpRequirement = new Job_EducationExpRequirement();
+            job_EducationExpRequirement.JobEducationExpRequirementId = jobEducationExpRequirementId;
+            job_EducationExpRequirement.JobPostingId = jobPostingId;
+            job_EducationExpRequirement.JobAttributeName = jobAttributeName;
+            job_EducationExpRequirement.JobAttributeValue = jobAttributeValue;
+            return job_EducationExpRequirement;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobEducationExpRequirementId
+        {
+            get
+            {
+                return _JobEducationExpRequirementId;
+            }
+            set
+            {
+                if (_JobEducationExpRequirementId != value)
+                {
+                    OnJobEducationExpRequirementIdChanging(value);
+                    ReportPropertyChanging("JobEducationExpRequirementId");
+                    _JobEducationExpRequirementId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("JobEducationExpRequirementId");
+                    OnJobEducationExpRequirementIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _JobEducationExpRequirementId;
+        partial void OnJobEducationExpRequirementIdChanging(global::System.Guid value);
+        partial void OnJobEducationExpRequirementIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobPostingId
+        {
+            get
+            {
+                return _JobPostingId;
+            }
+            set
+            {
+                OnJobPostingIdChanging(value);
+                ReportPropertyChanging("JobPostingId");
+                _JobPostingId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("JobPostingId");
+                OnJobPostingIdChanged();
+            }
+        }
+        private global::System.Guid _JobPostingId;
+        partial void OnJobPostingIdChanging(global::System.Guid value);
+        partial void OnJobPostingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeName
+        {
+            get
+            {
+                return _JobAttributeName;
+            }
+            set
+            {
+                OnJobAttributeNameChanging(value);
+                ReportPropertyChanging("JobAttributeName");
+                _JobAttributeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeName");
+                OnJobAttributeNameChanged();
+            }
+        }
+        private global::System.String _JobAttributeName;
+        partial void OnJobAttributeNameChanging(global::System.String value);
+        partial void OnJobAttributeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeValue
+        {
+            get
+            {
+                return _JobAttributeValue;
+            }
+            set
+            {
+                OnJobAttributeValueChanging(value);
+                ReportPropertyChanging("JobAttributeValue");
+                _JobAttributeValue = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeValue");
+                OnJobAttributeValueChanged();
+            }
+        }
+        private global::System.String _JobAttributeValue;
+        partial void OnJobAttributeValueChanging(global::System.String value);
+        partial void OnJobAttributeValueChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_JobEducationExpRequirement_JobPosting", "Job_Posting")]
+        public Job_Posting Job_Posting
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobEducationExpRequirement_JobPosting", "Job_Posting").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobEducationExpRequirement_JobPosting", "Job_Posting").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Job_Posting> Job_PostingReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobEducationExpRequirement_JobPosting", "Job_Posting");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Job_Posting>("JobZoomModel.FK_JobEducationExpRequirement_JobPosting", "Job_Posting", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Job_OtherRequirement")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Job_OtherRequirement : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Job_OtherRequirement object.
+        /// </summary>
+        /// <param name="jobOtherRequirementId">Initial value of the JobOtherRequirementId property.</param>
+        /// <param name="jobPostingId">Initial value of the JobPostingId property.</param>
+        /// <param name="jobAttributeName">Initial value of the JobAttributeName property.</param>
+        /// <param name="jobAttributeValue">Initial value of the JobAttributeValue property.</param>
+        public static Job_OtherRequirement CreateJob_OtherRequirement(global::System.Guid jobOtherRequirementId, global::System.Guid jobPostingId, global::System.String jobAttributeName, global::System.String jobAttributeValue)
+        {
+            Job_OtherRequirement job_OtherRequirement = new Job_OtherRequirement();
+            job_OtherRequirement.JobOtherRequirementId = jobOtherRequirementId;
+            job_OtherRequirement.JobPostingId = jobPostingId;
+            job_OtherRequirement.JobAttributeName = jobAttributeName;
+            job_OtherRequirement.JobAttributeValue = jobAttributeValue;
+            return job_OtherRequirement;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobOtherRequirementId
+        {
+            get
+            {
+                return _JobOtherRequirementId;
+            }
+            set
+            {
+                if (_JobOtherRequirementId != value)
+                {
+                    OnJobOtherRequirementIdChanging(value);
+                    ReportPropertyChanging("JobOtherRequirementId");
+                    _JobOtherRequirementId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("JobOtherRequirementId");
+                    OnJobOtherRequirementIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _JobOtherRequirementId;
+        partial void OnJobOtherRequirementIdChanging(global::System.Guid value);
+        partial void OnJobOtherRequirementIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobPostingId
+        {
+            get
+            {
+                return _JobPostingId;
+            }
+            set
+            {
+                OnJobPostingIdChanging(value);
+                ReportPropertyChanging("JobPostingId");
+                _JobPostingId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("JobPostingId");
+                OnJobPostingIdChanged();
+            }
+        }
+        private global::System.Guid _JobPostingId;
+        partial void OnJobPostingIdChanging(global::System.Guid value);
+        partial void OnJobPostingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeName
+        {
+            get
+            {
+                return _JobAttributeName;
+            }
+            set
+            {
+                OnJobAttributeNameChanging(value);
+                ReportPropertyChanging("JobAttributeName");
+                _JobAttributeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeName");
+                OnJobAttributeNameChanged();
+            }
+        }
+        private global::System.String _JobAttributeName;
+        partial void OnJobAttributeNameChanging(global::System.String value);
+        partial void OnJobAttributeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeValue
+        {
+            get
+            {
+                return _JobAttributeValue;
+            }
+            set
+            {
+                OnJobAttributeValueChanging(value);
+                ReportPropertyChanging("JobAttributeValue");
+                _JobAttributeValue = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeValue");
+                OnJobAttributeValueChanged();
+            }
+        }
+        private global::System.String _JobAttributeValue;
+        partial void OnJobAttributeValueChanging(global::System.String value);
+        partial void OnJobAttributeValueChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_JobOtherRequirement_JobPosting", "Job_Posting")]
+        public Job_Posting Job_Posting
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobOtherRequirement_JobPosting", "Job_Posting").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobOtherRequirement_JobPosting", "Job_Posting").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Job_Posting> Job_PostingReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobOtherRequirement_JobPosting", "Job_Posting");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Job_Posting>("JobZoomModel.FK_JobOtherRequirement_JobPosting", "Job_Posting", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Job_Posting")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Job_Posting : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Job_Posting object.
+        /// </summary>
+        /// <param name="jobPostingId">Initial value of the JobPostingId property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="jobTitle">Initial value of the JobTitle property.</param>
+        public static Job_Posting CreateJob_Posting(global::System.Guid jobPostingId, global::System.String userId, global::System.String jobTitle)
+        {
+            Job_Posting job_Posting = new Job_Posting();
+            job_Posting.JobPostingId = jobPostingId;
+            job_Posting.UserId = userId;
+            job_Posting.JobTitle = jobTitle;
+            return job_Posting;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobPostingId
+        {
+            get
+            {
+                return _JobPostingId;
+            }
+            set
+            {
+                if (_JobPostingId != value)
+                {
+                    OnJobPostingIdChanging(value);
+                    ReportPropertyChanging("JobPostingId");
+                    _JobPostingId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("JobPostingId");
+                    OnJobPostingIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _JobPostingId;
+        partial void OnJobPostingIdChanging(global::System.Guid value);
+        partial void OnJobPostingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CompanyId
+        {
+            get
+            {
+                return _CompanyId;
+            }
+            set
+            {
+                OnCompanyIdChanging(value);
+                ReportPropertyChanging("CompanyId");
+                _CompanyId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyId");
+                OnCompanyIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _CompanyId;
+        partial void OnCompanyIdChanging(Nullable<global::System.Guid> value);
+        partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyName
+        {
+            get
+            {
+                return _CompanyName;
+            }
+            set
+            {
+                OnCompanyNameChanging(value);
+                ReportPropertyChanging("CompanyName");
+                _CompanyName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CompanyName");
+                OnCompanyNameChanged();
+            }
+        }
+        private global::System.String _CompanyName;
+        partial void OnCompanyNameChanging(global::System.String value);
+        partial void OnCompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobTitle
+        {
+            get
+            {
+                return _JobTitle;
+            }
+            set
+            {
+                OnJobTitleChanging(value);
+                ReportPropertyChanging("JobTitle");
+                _JobTitle = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobTitle");
+                OnJobTitleChanged();
+            }
+        }
+        private global::System.String _JobTitle;
+        partial void OnJobTitleChanging(global::System.String value);
+        partial void OnJobTitleChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_JobEducationExpRequirement_JobPosting", "Job_EducationExpRequirement")]
+        public EntityCollection<Job_EducationExpRequirement> Job_EducationExpRequirement
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Job_EducationExpRequirement>("JobZoomModel.FK_JobEducationExpRequirement_JobPosting", "Job_EducationExpRequirement");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Job_EducationExpRequirement>("JobZoomModel.FK_JobEducationExpRequirement_JobPosting", "Job_EducationExpRequirement", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_JobOtherRequirement_JobPosting", "Job_OtherRequirement")]
+        public EntityCollection<Job_OtherRequirement> Job_OtherRequirement
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Job_OtherRequirement>("JobZoomModel.FK_JobOtherRequirement_JobPosting", "Job_OtherRequirement");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Job_OtherRequirement>("JobZoomModel.FK_JobOtherRequirement_JobPosting", "Job_OtherRequirement", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_JobWorkExRequirement_JobPosting", "Job_WorkExpRequirement")]
+        public EntityCollection<Job_WorkExpRequirement> Job_WorkExpRequirement
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Job_WorkExpRequirement>("JobZoomModel.FK_JobWorkExRequirement_JobPosting", "Job_WorkExpRequirement");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Job_WorkExpRequirement>("JobZoomModel.FK_JobWorkExRequirement_JobPosting", "Job_WorkExpRequirement", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Job_WorkExpRequirement")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Job_WorkExpRequirement : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Job_WorkExpRequirement object.
+        /// </summary>
+        /// <param name="jobWorkExpRequirementId">Initial value of the JobWorkExpRequirementId property.</param>
+        /// <param name="jobPostingId">Initial value of the JobPostingId property.</param>
+        /// <param name="jobAttributeName">Initial value of the JobAttributeName property.</param>
+        /// <param name="jobAttributeValue">Initial value of the JobAttributeValue property.</param>
+        public static Job_WorkExpRequirement CreateJob_WorkExpRequirement(global::System.Guid jobWorkExpRequirementId, global::System.Guid jobPostingId, global::System.String jobAttributeName, global::System.String jobAttributeValue)
+        {
+            Job_WorkExpRequirement job_WorkExpRequirement = new Job_WorkExpRequirement();
+            job_WorkExpRequirement.JobWorkExpRequirementId = jobWorkExpRequirementId;
+            job_WorkExpRequirement.JobPostingId = jobPostingId;
+            job_WorkExpRequirement.JobAttributeName = jobAttributeName;
+            job_WorkExpRequirement.JobAttributeValue = jobAttributeValue;
+            return job_WorkExpRequirement;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobWorkExpRequirementId
+        {
+            get
+            {
+                return _JobWorkExpRequirementId;
+            }
+            set
+            {
+                if (_JobWorkExpRequirementId != value)
+                {
+                    OnJobWorkExpRequirementIdChanging(value);
+                    ReportPropertyChanging("JobWorkExpRequirementId");
+                    _JobWorkExpRequirementId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("JobWorkExpRequirementId");
+                    OnJobWorkExpRequirementIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _JobWorkExpRequirementId;
+        partial void OnJobWorkExpRequirementIdChanging(global::System.Guid value);
+        partial void OnJobWorkExpRequirementIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobPostingId
+        {
+            get
+            {
+                return _JobPostingId;
+            }
+            set
+            {
+                OnJobPostingIdChanging(value);
+                ReportPropertyChanging("JobPostingId");
+                _JobPostingId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("JobPostingId");
+                OnJobPostingIdChanged();
+            }
+        }
+        private global::System.Guid _JobPostingId;
+        partial void OnJobPostingIdChanging(global::System.Guid value);
+        partial void OnJobPostingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeName
+        {
+            get
+            {
+                return _JobAttributeName;
+            }
+            set
+            {
+                OnJobAttributeNameChanging(value);
+                ReportPropertyChanging("JobAttributeName");
+                _JobAttributeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeName");
+                OnJobAttributeNameChanged();
+            }
+        }
+        private global::System.String _JobAttributeName;
+        partial void OnJobAttributeNameChanging(global::System.String value);
+        partial void OnJobAttributeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeValue
+        {
+            get
+            {
+                return _JobAttributeValue;
+            }
+            set
+            {
+                OnJobAttributeValueChanging(value);
+                ReportPropertyChanging("JobAttributeValue");
+                _JobAttributeValue = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeValue");
+                OnJobAttributeValueChanged();
+            }
+        }
+        private global::System.String _JobAttributeValue;
+        partial void OnJobAttributeValueChanging(global::System.String value);
+        partial void OnJobAttributeValueChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_JobWorkExRequirement_JobPosting", "Job_Posting")]
+        public Job_Posting Job_Posting
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobWorkExRequirement_JobPosting", "Job_Posting").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobWorkExRequirement_JobPosting", "Job_Posting").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Job_Posting> Job_PostingReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Job_Posting>("JobZoomModel.FK_JobWorkExRequirement_JobPosting", "Job_Posting");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Job_Posting>("JobZoomModel.FK_JobWorkExRequirement_JobPosting", "Job_Posting", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="JobRequirementView")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class JobRequirementView : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new JobRequirementView object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="jobPostingId">Initial value of the JobPostingId property.</param>
+        /// <param name="userId">Initial value of the UserId property.</param>
+        /// <param name="jobTitle">Initial value of the JobTitle property.</param>
+        /// <param name="jobAttributeName">Initial value of the JobAttributeName property.</param>
+        /// <param name="jobAttributeValue">Initial value of the JobAttributeValue property.</param>
+        public static JobRequirementView CreateJobRequirementView(global::System.Guid id, global::System.Guid jobPostingId, global::System.String userId, global::System.String jobTitle, global::System.String jobAttributeName, global::System.String jobAttributeValue)
+        {
+            JobRequirementView jobRequirementView = new JobRequirementView();
+            jobRequirementView.Id = id;
+            jobRequirementView.JobPostingId = jobPostingId;
+            jobRequirementView.UserId = userId;
+            jobRequirementView.JobTitle = jobTitle;
+            jobRequirementView.JobAttributeName = jobAttributeName;
+            jobRequirementView.JobAttributeValue = jobAttributeValue;
+            return jobRequirementView;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _Id;
+        partial void OnIdChanging(global::System.Guid value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid JobPostingId
+        {
+            get
+            {
+                return _JobPostingId;
+            }
+            set
+            {
+                OnJobPostingIdChanging(value);
+                ReportPropertyChanging("JobPostingId");
+                _JobPostingId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("JobPostingId");
+                OnJobPostingIdChanged();
+            }
+        }
+        private global::System.Guid _JobPostingId;
+        partial void OnJobPostingIdChanging(global::System.Guid value);
+        partial void OnJobPostingIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
+        partial void OnUserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> CompanyId
+        {
+            get
+            {
+                return _CompanyId;
+            }
+            set
+            {
+                OnCompanyIdChanging(value);
+                ReportPropertyChanging("CompanyId");
+                _CompanyId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyId");
+                OnCompanyIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _CompanyId;
+        partial void OnCompanyIdChanging(Nullable<global::System.Guid> value);
+        partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyName
+        {
+            get
+            {
+                return _CompanyName;
+            }
+            set
+            {
+                OnCompanyNameChanging(value);
+                ReportPropertyChanging("CompanyName");
+                _CompanyName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CompanyName");
+                OnCompanyNameChanged();
+            }
+        }
+        private global::System.String _CompanyName;
+        partial void OnCompanyNameChanging(global::System.String value);
+        partial void OnCompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobTitle
+        {
+            get
+            {
+                return _JobTitle;
+            }
+            set
+            {
+                OnJobTitleChanging(value);
+                ReportPropertyChanging("JobTitle");
+                _JobTitle = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobTitle");
+                OnJobTitleChanged();
+            }
+        }
+        private global::System.String _JobTitle;
+        partial void OnJobTitleChanging(global::System.String value);
+        partial void OnJobTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeName
+        {
+            get
+            {
+                return _JobAttributeName;
+            }
+            set
+            {
+                OnJobAttributeNameChanging(value);
+                ReportPropertyChanging("JobAttributeName");
+                _JobAttributeName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeName");
+                OnJobAttributeNameChanged();
+            }
+        }
+        private global::System.String _JobAttributeName;
+        partial void OnJobAttributeNameChanging(global::System.String value);
+        partial void OnJobAttributeNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String JobAttributeValue
+        {
+            get
+            {
+                return _JobAttributeValue;
+            }
+            set
+            {
+                OnJobAttributeValueChanging(value);
+                ReportPropertyChanging("JobAttributeValue");
+                _JobAttributeValue = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("JobAttributeValue");
+                OnJobAttributeValueChanged();
+            }
+        }
+        private global::System.String _JobAttributeValue;
+        partial void OnJobAttributeValueChanging(global::System.String value);
+        partial void OnJobAttributeValueChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Profile_Basic")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Profile_Basic : EntityObject
@@ -1149,16 +3448,16 @@ namespace JobZoom.Business.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoom.DemoModel", "FK_ProfileBasic_User", "User")]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_ProfileBasic_User", "User")]
         public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileBasic_User", "User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileBasic_User", "User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileBasic_User", "User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileBasic_User", "User").Value = value;
             }
         }
         /// <summary>
@@ -1170,13 +3469,13 @@ namespace JobZoom.Business.Entities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileBasic_User", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileBasic_User", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoom.DemoModel.FK_ProfileBasic_User", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoomModel.FK_ProfileBasic_User", "User", value);
                 }
             }
         }
@@ -1187,7 +3486,7 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="JobZoom.DemoModel", Name="Profile_Education")]
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Profile_Education")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Profile_Education : EntityObject
@@ -1443,16 +3742,16 @@ namespace JobZoom.Business.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoom.DemoModel", "FK_ProfileEducationUser", "User")]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_ProfileEducation_User", "User")]
         public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileEducationUser", "User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileEducation_User", "User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileEducationUser", "User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileEducation_User", "User").Value = value;
             }
         }
         /// <summary>
@@ -1464,13 +3763,13 @@ namespace JobZoom.Business.Entities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileEducationUser", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileEducation_User", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoom.DemoModel.FK_ProfileEducationUser", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoomModel.FK_ProfileEducation_User", "User", value);
                 }
             }
         }
@@ -1481,7 +3780,7 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="JobZoom.DemoModel", Name="Profile_Work")]
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Profile_Work")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Profile_Work : EntityObject
@@ -1737,16 +4036,16 @@ namespace JobZoom.Business.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoom.DemoModel", "FK_ProfileWorkUser", "User")]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_ProfileWork_User", "User")]
         public User User
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileWorkUser", "User").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileWork_User", "User").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileWorkUser", "User").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileWork_User", "User").Value = value;
             }
         }
         /// <summary>
@@ -1758,13 +4057,13 @@ namespace JobZoom.Business.Entities
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoom.DemoModel.FK_ProfileWorkUser", "User");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<User>("JobZoomModel.FK_ProfileWork_User", "User");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoom.DemoModel.FK_ProfileWorkUser", "User", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<User>("JobZoomModel.FK_ProfileWork_User", "User", value);
                 }
             }
         }
@@ -1775,7 +4074,234 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="JobZoom.DemoModel", Name="User")]
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Tag")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Tag : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Tag object.
+        /// </summary>
+        /// <param name="id">Initial value of the ID property.</param>
+        /// <param name="tagName">Initial value of the TagName property.</param>
+        /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
+        public static Tag CreateTag(global::System.Guid id, global::System.String tagName, global::System.DateTime modifiedDate)
+        {
+            Tag tag = new Tag();
+            tag.ID = id;
+            tag.TagName = tagName;
+            tag.ModifiedDate = modifiedDate;
+            return tag;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Guid _ID;
+        partial void OnIDChanging(global::System.Guid value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TableName
+        {
+            get
+            {
+                return _TableName;
+            }
+            set
+            {
+                OnTableNameChanging(value);
+                ReportPropertyChanging("TableName");
+                _TableName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TableName");
+                OnTableNameChanged();
+            }
+        }
+        private global::System.String _TableName;
+        partial void OnTableNameChanging(global::System.String value);
+        partial void OnTableNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ObjectID
+        {
+            get
+            {
+                return _ObjectID;
+            }
+            set
+            {
+                OnObjectIDChanging(value);
+                ReportPropertyChanging("ObjectID");
+                _ObjectID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ObjectID");
+                OnObjectIDChanged();
+            }
+        }
+        private global::System.String _ObjectID;
+        partial void OnObjectIDChanging(global::System.String value);
+        partial void OnObjectIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TagName
+        {
+            get
+            {
+                return _TagName;
+            }
+            set
+            {
+                OnTagNameChanging(value);
+                ReportPropertyChanging("TagName");
+                _TagName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TagName");
+                OnTagNameChanged();
+            }
+        }
+        private global::System.String _TagName;
+        partial void OnTagNameChanging(global::System.String value);
+        partial void OnTagNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ParentId
+        {
+            get
+            {
+                return _ParentId;
+            }
+            set
+            {
+                OnParentIdChanging(value);
+                ReportPropertyChanging("ParentId");
+                _ParentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentId");
+                OnParentIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ParentId;
+        partial void OnParentIdChanging(Nullable<global::System.Guid> value);
+        partial void OnParentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ParentName
+        {
+            get
+            {
+                return _ParentName;
+            }
+            set
+            {
+                OnParentNameChanging(value);
+                ReportPropertyChanging("ParentName");
+                _ParentName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ParentName");
+                OnParentNameChanged();
+            }
+        }
+        private global::System.String _ParentName;
+        partial void OnParentNameChanging(global::System.String value);
+        partial void OnParentNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime ModifiedDate
+        {
+            get
+            {
+                return _ModifiedDate;
+            }
+            set
+            {
+                OnModifiedDateChanging(value);
+                ReportPropertyChanging("ModifiedDate");
+                _ModifiedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModifiedDate");
+                OnModifiedDateChanged();
+            }
+        }
+        private global::System.DateTime _ModifiedDate;
+        partial void OnModifiedDateChanging(global::System.DateTime value);
+        partial void OnModifiedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsUpToDate
+        {
+            get
+            {
+                return _IsUpToDate;
+            }
+            set
+            {
+                OnIsUpToDateChanging(value);
+                ReportPropertyChanging("IsUpToDate");
+                _IsUpToDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsUpToDate");
+                OnIsUpToDateChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsUpToDate;
+        partial void OnIsUpToDateChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsUpToDateChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="User")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class User : EntityObject
@@ -1885,18 +4411,18 @@ namespace JobZoom.Business.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoom.DemoModel", "FK_ProfileBasic_User", "Profile_Basic")]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_ProfileBasic_User", "Profile_Basic")]
         public EntityCollection<Profile_Basic> Profile_Basic
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Basic>("JobZoom.DemoModel.FK_ProfileBasic_User", "Profile_Basic");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Basic>("JobZoomModel.FK_ProfileBasic_User", "Profile_Basic");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Basic>("JobZoom.DemoModel.FK_ProfileBasic_User", "Profile_Basic", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Basic>("JobZoomModel.FK_ProfileBasic_User", "Profile_Basic", value);
                 }
             }
         }
@@ -1907,40 +4433,40 @@ namespace JobZoom.Business.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoom.DemoModel", "FK_ProfileWorkUser", "Profile_Work")]
-        public EntityCollection<Profile_Work> Profile_Work
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Work>("JobZoom.DemoModel.FK_ProfileWorkUser", "Profile_Work");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Work>("JobZoom.DemoModel.FK_ProfileWorkUser", "Profile_Work", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("JobZoom.DemoModel", "FK_ProfileEducationUser", "Profile_Education")]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_ProfileEducation_User", "Profile_Education")]
         public EntityCollection<Profile_Education> Profile_Education
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Education>("JobZoom.DemoModel.FK_ProfileEducationUser", "Profile_Education");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Education>("JobZoomModel.FK_ProfileEducation_User", "Profile_Education");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Education>("JobZoom.DemoModel.FK_ProfileEducationUser", "Profile_Education", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Education>("JobZoomModel.FK_ProfileEducation_User", "Profile_Education", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_ProfileWork_User", "Profile_Work")]
+        public EntityCollection<Profile_Work> Profile_Work
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Profile_Work>("JobZoomModel.FK_ProfileWork_User", "Profile_Work");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Work>("JobZoomModel.FK_ProfileWork_User", "Profile_Work", value);
                 }
             }
         }
