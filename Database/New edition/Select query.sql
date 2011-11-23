@@ -66,7 +66,19 @@ DELETE Tag WHERE ObjectID IS NOT NULL AND ObjectID <> '44CD50DE-8F7B-4C9A-8E0F-C
 DELETE JobApproval
 DELETE Job
 
-select JobTitle, Tag.TagName, Tag2.TagName from job 
+delete Tag where ObjectID = '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8'
+
+insert into Tag values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', 'ASP.NET', null, 2, null,'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE())
+insert into Tag values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', '.NET Framework', null, 2, null, 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE())
+insert into Tag values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', 'C/C++', null, 2, null, 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5', GETDATE())
+
+select firstname, Tag.tagName, Tag2.TagName, Tag.Weight, Tag.Level
+from Profile
+inner join Tag on Profile.id = tag.ObjectID
+inner join Tag as Tag2 on Tag2.ID = Tag.ParentID
+
+select job.id, JobTitle, Tag.TagName, Tag2.TagName, Tag.Weight, Tag.Level, Tag.Required
+from job 
 inner join Tag on job.id = tag.ObjectID
 inner join Tag as Tag2 on Tag2.ID = Tag.ParentID
 
