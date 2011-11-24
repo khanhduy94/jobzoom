@@ -9,6 +9,7 @@
 	ObjectId			UNIQUEIDENTIFIER	NULL,
 	ParentId			UNIQUEIDENTIFIER	NULL,
 	ParentName			NVARCHAR(256)		NULL,
+	Attachment			NVARCHAR(200)		NULL,
 	ModifiedDate		DATETIME			NULL,
 	[Status]			VARCHAR(128)		NULL
 )
