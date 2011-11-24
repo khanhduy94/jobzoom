@@ -1,35 +1,31 @@
-﻿-- =============================================
--- Author:		<Author,,Name>
--- Create date: <Create Date,,>
--- Description:	<Description,,>
--- =============================================
-CREATE PROCEDURE [dbo].[GetPivotProfile]
+﻿CREATE PROCEDURE [dbo].[GetPivotProfile]
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	DECLARE @listCol VARCHAR(2000)
-	DECLARE @SQLString NVARCHAR(1000)
-	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(TagName)
-							FROM Tag
-							INNER JOIN [Profile] on [Profile].ID = Tag.ObjectID
-							ORDER BY '],[' + ltrim(TagName)
+	DECLARE @listCol VARCHAR(MAX)
+	DECLARE @SQLString NVARCHAR(MAX)
+	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(AttributeTagName)
+							FROM AttributeTag
+							INNER JOIN [Profile.Basic] on [Profile.Basic].ProfileBasicId = AttributeTag.ObjectId
+							ORDER BY '],[' + ltrim(AttributeTagName)
 							FOR XML PATH('')), 1, 2, '') + ']'
-	 
-	SET @SQLString = N'ALTER VIEW PivotProfile
+	IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = 'PivotProfile')
+	DROP VIEW PivotProfile
+
+	SET @SQLString = N'CREATE VIEW PivotProfile
 					AS
 					SELECT * FROM (
-						SELECT [Profile].ID, JobApproval.IsApproved, Tag.TagName
-						FROM [Profile]
-						INNER JOIN Tag on [Profile].ID = Tag.ObjectID
-						INNER JOIN JobApproval ON JobApproval.ProfileID = [Profile].ID
-						Group by [Profile].ID, JobApproval.IsApproved, Tag.TagName
+						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName
+						FROM [Profile.Basic]
+						INNER JOIN AttributeTag on [Profile.Basic].ProfileBasicId = AttributeTag.ObjectId
+						LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId
+						INNER JOIN [Job.Posting] ON [Job.Posting].JobPostingId = [Job.Approval].JobPostingId
+						GROUP BY [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName					
 					)t
-					PIVOT (COUNT(TagName) FOR TagName
+					PIVOT (COUNT(AttributeTagName) FOR AttributeTagName
 					IN ('+@listCol+')) AS pvt'
-					
 						
 	EXECUTE (@SQLString)
 END
-

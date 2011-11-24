@@ -23,7 +23,7 @@ Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "JobZoom.Database", "Databas
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{AB6132DC-2051-43F1-B7D2-017EF1EA00E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobZoom", "Core\JobZoom.csproj", "{2585D812-8B0A-4C3D-BEB7-8D9245EE5D5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobZoom.Core", "Core\JobZoom.Core.csproj", "{2585D812-8B0A-4C3D-BEB7-8D9245EE5D5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
