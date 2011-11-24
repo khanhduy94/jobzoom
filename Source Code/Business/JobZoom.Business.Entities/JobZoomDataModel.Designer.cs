@@ -287,22 +287,6 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AttributeTag> AttributeTags
-        {
-            get
-            {
-                if ((_AttributeTags == null))
-                {
-                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
-                }
-                return _AttributeTags;
-            }
-        }
-        private ObjectSet<AttributeTag> _AttributeTags;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Job_Approval> Job_Approval
         {
             get
@@ -315,6 +299,22 @@ namespace JobZoom.Business.Entities
             }
         }
         private ObjectSet<Job_Approval> _Job_Approval;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AttributeTag> AttributeTags
+        {
+            get
+            {
+                if ((_AttributeTags == null))
+                {
+                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
+                }
+                return _AttributeTags;
+            }
+        }
+        private ObjectSet<AttributeTag> _AttributeTags;
 
         #endregion
         #region AddTo Methods
@@ -424,19 +424,19 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAttributeTags(AttributeTag attributeTag)
-        {
-            base.AddObject("AttributeTags", attributeTag);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Job_Approval EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToJob_Approval(Job_Approval job_Approval)
         {
             base.AddObject("Job_Approval", job_Approval);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttributeTags(AttributeTag attributeTag)
+        {
+            base.AddObject("AttributeTags", attributeTag);
         }
 
         #endregion
@@ -523,6 +523,78 @@ namespace JobZoom.Business.Entities
         private global::System.String _AttributeTagName;
         partial void OnAttributeTagNameChanging(global::System.String value);
         partial void OnAttributeTagNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> Weight
+        {
+            get
+            {
+                return _Weight;
+            }
+            set
+            {
+                OnWeightChanging(value);
+                ReportPropertyChanging("Weight");
+                _Weight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Weight");
+                OnWeightChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _Weight;
+        partial void OnWeightChanging(Nullable<global::System.Int16> value);
+        partial void OnWeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> Level
+        {
+            get
+            {
+                return _Level;
+            }
+            set
+            {
+                OnLevelChanging(value);
+                ReportPropertyChanging("Level");
+                _Level = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Level");
+                OnLevelChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _Level;
+        partial void OnLevelChanging(Nullable<global::System.Int16> value);
+        partial void OnLevelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Required
+        {
+            get
+            {
+                return _Required;
+            }
+            set
+            {
+                OnRequiredChanging(value);
+                ReportPropertyChanging("Required");
+                _Required = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Required");
+                OnRequiredChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Required;
+        partial void OnRequiredChanging(Nullable<global::System.Boolean> value);
+        partial void OnRequiredChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

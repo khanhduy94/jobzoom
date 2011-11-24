@@ -42,7 +42,7 @@
       [JobRequirementView].[JobAttributeValue] AS [JobAttributeValue]
       FROM [dbo].[JobRequirementView] AS [JobRequirementView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__DecisionT__NODEI__145C0A3F" Association="JobZoomModel.Store.FK__DecisionT__NODEI__145C0A3F">
+          <AssociationSet Name="FK__DecisionT__NODEI__2C3393D0" Association="JobZoomModel.Store.FK__DecisionT__NODEI__2C3393D0">
             <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
             <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistribution" />
           </AssociationSet>
@@ -77,6 +77,9 @@
           </Key>
           <Property Name="AttributeTagId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AttributeTagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Weight" Type="smallint" />
+          <Property Name="Level" Type="smallint" />
+          <Property Name="Required" Type="bit" />
           <Property Name="TableReference" Type="varchar" MaxLength="128" />
           <Property Name="ObjectId" Type="uniqueidentifier" />
           <Property Name="ParentId" Type="uniqueidentifier" />
@@ -283,7 +286,7 @@
           <Property Name="JobAttributeName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="JobAttributeValue" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
-        <Association Name="FK__DecisionT__NODEI__145C0A3F">
+        <Association Name="FK__DecisionT__NODEI__2C3393D0">
           <End Role="DecisionTreeNode" Type="JobZoomModel.Store.DecisionTreeNode" Multiplicity="1" />
           <End Role="DecisionTreeNodeDistribution" Type="JobZoomModel.Store.DecisionTreeNodeDistribution" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -413,8 +416,8 @@
             <End Role="Profile_Work" EntitySet="Profile_Work" />
           </AssociationSet>
           <EntitySet Name="JobRequirementViews" EntityType="JobZoomModel.JobRequirementView" />
-          <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
           <EntitySet Name="Job_Approval" EntityType="JobZoomModel.Job_Approval" />
+          <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -691,19 +694,6 @@
           <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="AttributeTag">
-          <Key>
-            <PropertyRef Name="AttributeTagId" />
-          </Key>
-          <Property Type="Guid" Name="AttributeTagId" Nullable="false" />
-          <Property Type="String" Name="AttributeTagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Guid" Name="ObjectId" />
-          <Property Type="Guid" Name="ParentId" />
-          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Job_Approval">
           <Key>
             <PropertyRef Name="JobApprovalId" />
@@ -714,6 +704,22 @@
           <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsApplied" />
           <Property Type="Boolean" Name="IsApproved" />
+        </EntityType>
+        <EntityType Name="AttributeTag">
+          <Key>
+            <PropertyRef Name="AttributeTagId" />
+          </Key>
+          <Property Type="Guid" Name="AttributeTagId" Nullable="false" />
+          <Property Type="String" Name="AttributeTagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Weight" />
+          <Property Type="Int16" Name="Level" />
+          <Property Type="Boolean" Name="Required" />
+          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="ObjectId" />
+          <Property Type="Guid" Name="ParentId" />
+          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -911,20 +917,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AttributeTags">
-            <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
-              <MappingFragment StoreEntitySet="AttributeTag">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
-                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
-                <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
-                <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Job_Approval">
             <EntityTypeMapping TypeName="JobZoomModel.Job_Approval">
               <MappingFragment StoreEntitySet="Job_Approval">
@@ -934,6 +926,23 @@
                 <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
                 <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
                 <ScalarProperty Name="JobApprovalId" ColumnName="JobApprovalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeTags">
+            <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
+              <MappingFragment StoreEntitySet="AttributeTag">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
+                <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1003,8 +1012,8 @@
           <ConnectorPoint PointX="3" PointY="11.970896809895834" />
         </AssociationConnector>
         <EntityTypeShape EntityType="JobZoomModel.JobRequirementView" Width="1.5" PointX="13.375" PointY="0.75" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="13.375" PointY="4.75" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="JobZoomModel.Job_Approval" Width="1.5" PointX="10.375" PointY="6.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="13.375" PointY="4.75" Height="3.1340950520833388" />
       </Diagram>
     </Diagrams>
   </Designer>

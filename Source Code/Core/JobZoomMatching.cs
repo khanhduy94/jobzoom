@@ -30,16 +30,16 @@ namespace JobZoom.Core
             MatchingPoint = Results.Sum(i => i.Point);
         }
 
-        private IEnumerable<MatchingResult> Matching(Tag[] source, Tag[] target)
+        private IEnumerable<MatchingResult> Matching(AttributeTag[] source, AttributeTag[] target)
         {
             List<MatchingResult> matchingResults = new List<MatchingResult>();
             foreach (var item in target)
-            {                
-                var obj = source.FirstOrDefault(t => t.TagName.Equals(item.TagName) && t.ParentID.Equals(item.ParentID));
+            {
+                var obj = source.FirstOrDefault(t => t.AttributeTagName.Equals(item.AttributeTagName) && t.ParentId.Equals(item.ParentId));
                 if (obj != null)
                 {
                     MatchingResult result = new MatchingResult();
-                    result.TargetTagID = item.ID;
+                    result.TargetTagID = item.AttributeTagId.ToString();
                     result.IsExists = true;
                     if (item.Required.GetValueOrDefault())
                     {
