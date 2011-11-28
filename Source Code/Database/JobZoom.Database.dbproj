@@ -152,7 +152,7 @@
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\Tag.PK_Tag.pkey.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetPivotJobRequirement.proc.sql">
+    <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetPivotJob.proc.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Programmability\Stored Procedures\GetPivotProfile.proc.sql">
@@ -252,6 +252,12 @@
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\AttributeTag.PK_AttributeTag.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\Role.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Schema Objects\Schemas\dbo\Tables\UserInRole.table.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>

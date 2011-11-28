@@ -17,7 +17,7 @@
 			<Metadata Name="CompatibilityMode" Value="100" />
 		</CustomData>
 		<CustomData Category="Permissions" Type="XmlPermissions">
-			<Metadata Name="FileName" Value="D:\STUDY\QL092L\SUBJECTS\THESIS\SVN\SOURCE CODE\DATABASE\PROPERTIES\DATABASE.SQLPERMISSIONS" />
+			<Metadata Name="FileName" Value="E:\SVN\JOB ZOOM\SOURCE CODE\DATABASE\PROPERTIES\DATABASE.SQLPERMISSIONS" />
 		</CustomData>
 	</Header>
 	<Model>
@@ -56,6 +56,25 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
 		</Element>
+		<Element Type="ISql100PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Role].[RoleId]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Role]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
 		<Element Type="ISql90ForeignKeyConstraint">
 			<Relationship Name="Columns">
 				<Entry>
@@ -77,7 +96,7 @@
 					<References Name="[dbo].[DecisionTreeNode]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
 		</Element>
 		<Element Type="ISql90Route" Name="[AutoCreatedLocal]">
 			<Property Name="Address" Value="LOCAL" />
@@ -116,6 +135,51 @@
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[AttributeTag].[Weight]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[smallint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[AttributeTag].[Level]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[smallint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[AttributeTag].[Required]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -175,6 +239,22 @@
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
 									<Property Name="Length" Value="256" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[AttributeTag].[Attachment]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="200" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -883,7 +963,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="4" />
+			<AttachedAnnotation Disambiguator="5" />
 		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_JobEducationExpRequirement_JobPosting]">
 			<Relationship Name="Columns">
@@ -1017,37 +1097,41 @@
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql100Procedure" Name="[dbo].[GetPivotJobRequirement]">
+		<Element Type="ISql100Procedure" Name="[dbo].[GetPivotJob]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	DECLARE @listCol VARCHAR(2000)
-	DECLARE @SQLString NVARCHAR(1000)
-	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(TagName)
-							FROM Tag
-							INNER JOIN Job on Job.ID = Tag.ObjectID
-							ORDER BY '],[' + ltrim(TagName)
+	DECLARE @listCol VARCHAR(MAX)
+	DECLARE @SQLString NVARCHAR(MAX)
+	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(AttributeTagName)
+							FROM AttributeTag
+							INNER JOIN [Job.Posting] on [Job.Posting].JobPostingId = AttributeTag.ObjectId
+							ORDER BY '],[' + ltrim(AttributeTagName)
 							FOR XML PATH('')), 1, 2, '') + ']'
-	--DROP VIEW PivotJobRequirement
-	SET @SQLString = N'ALTER VIEW PivotJobRequirement
+
+	--DROP VIEW PivotJob
+	IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = 'PivotJob')
+	DROP VIEW PivotJob
+
+	SET @SQLString = N'CREATE VIEW PivotJob
 						AS
 						SELECT * FROM (
-							SELECT Job.ID, Job.JobTitle, JobApproval.IsApply, Tag.TagName 
-							FROM Job
-							INNER JOIN Tag on Job.ID = Tag.ObjectID
-							INNER JOIN JobApproval ON JobApproval.JobID = Job.ID
-							Group by Job.ID,  Job.JobTitle, Tag.TagName, JobApproval.IsApply
+							SELECT [Job.Posting].JobPostingId, [Job.Posting].UserId, [Job.Posting].CompanyId, [Job.Posting].CompanyName, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName 
+							FROM [Job.Posting]
+							INNER JOIN AttributeTag on [Job.Posting].JobPostingId = AttributeTag.ObjectId
+							LEFT JOIN [Job.Approval] ON [Job.Approval].JobPostingId = [Job.Posting].JobPostingId
+							Group by [Job.Posting].JobPostingId, [Job.Posting].UserId, [Job.Posting].CompanyId, [Job.Posting].CompanyName, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName 
 						)t
-						PIVOT (COUNT(TagName) FOR TagName
+						PIVOT (COUNT(AttributeTagName) FOR AttributeTagName
 						IN ('+@listCol+')) AS pvt'						
 	EXECUTE (@SQLString)
 
 END]]></Value>
 			</Property>
-			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[varchar]" />
@@ -1056,16 +1140,23 @@ END]]></Value>
 					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Tag]" />
+					<References Name="[dbo].[AttributeTag]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Job.Posting]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Job.Posting].[JobPostingId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AttributeTag].[ObjectId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AttributeTag].[AttributeTagName]" />
 				</Entry>
 				<Entry />
 				<Entry />
-				<Entry>
-					<References Name="[dbo].[Tag].[ObjectID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Tag].[TagName]" />
-				</Entry>
+				<Entry />
 			</Relationship>
 			<Relationship Name="Owner">
 				<Entry>
@@ -1073,44 +1164,46 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="972" />
+				<Property Name="Length" Value="1474" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetPivotJobRequirement]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetPivotJob]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql100Procedure" Name="[dbo].[GetPivotProfile]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	DECLARE @listCol VARCHAR(2000)
-	DECLARE @SQLString NVARCHAR(1000)
-	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(TagName)
-							FROM Tag
-							INNER JOIN [Profile] on [Profile].ID = Tag.ObjectID
-							ORDER BY '],[' + ltrim(TagName)
+	DECLARE @listCol VARCHAR(MAX)
+	DECLARE @SQLString NVARCHAR(MAX)
+	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(AttributeTagName)
+							FROM AttributeTag
+							INNER JOIN [Profile.Basic] on [Profile.Basic].ProfileBasicId = AttributeTag.ObjectId
+							ORDER BY '],[' + ltrim(AttributeTagName)
 							FOR XML PATH('')), 1, 2, '') + ']'
-	 
-	SET @SQLString = N'ALTER VIEW PivotProfile
+	IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = 'PivotProfile')
+	DROP VIEW PivotProfile
+
+	SET @SQLString = N'CREATE VIEW PivotProfile
 					AS
 					SELECT * FROM (
-						SELECT [Profile].ID, JobApproval.IsApproved, Tag.TagName
-						FROM [Profile]
-						INNER JOIN Tag on [Profile].ID = Tag.ObjectID
-						INNER JOIN JobApproval ON JobApproval.ProfileID = [Profile].ID
-						Group by [Profile].ID, JobApproval.IsApproved, Tag.TagName
+						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName
+						FROM [Profile.Basic]
+						INNER JOIN AttributeTag on [Profile.Basic].ProfileBasicId = AttributeTag.ObjectId
+						LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId
+						INNER JOIN [Job.Posting] ON [Job.Posting].JobPostingId = [Job.Approval].JobPostingId
+						GROUP BY [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName					
 					)t
-					PIVOT (COUNT(TagName) FOR TagName
+					PIVOT (COUNT(AttributeTagName) FOR AttributeTagName
 					IN ('+@listCol+')) AS pvt'
-					
 						
 	EXECUTE (@SQLString)
 END]]></Value>
 			</Property>
-			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[varchar]" />
@@ -1119,16 +1212,23 @@ END]]></Value>
 					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Tag]" />
+					<References Name="[dbo].[AttributeTag]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Profile.Basic]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Profile.Basic].[ProfileBasicId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AttributeTag].[ObjectId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[AttributeTag].[AttributeTagName]" />
 				</Entry>
 				<Entry />
 				<Entry />
-				<Entry>
-					<References Name="[dbo].[Tag].[ObjectID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Tag].[TagName]" />
-				</Entry>
+				<Entry />
 			</Relationship>
 			<Relationship Name="Owner">
 				<Entry>
@@ -1136,11 +1236,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="194" />
-				<Property Name="Length" Value="1141" />
+				<Property Name="Length" Value="1529" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[GetPivotProfile]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetPivotProfile]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[Job.Approval]">
@@ -1567,6 +1666,7 @@ END]]></Value>
 			</Relationship>
 		</Element>
 		<Element Type="ISql100View" Name="[dbo].[JobRequirementView]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Property Name="QueryScript">
 				<Value><![CDATA[
 	SELECT W.JobWorkExpRequirementId Id, P.JobPostingId, P.UserId, P.CompanyId, P.CompanyName, P.JobTitle, W.JobAttributeName, W.JobAttributeValue
@@ -1584,7 +1684,6 @@ END]]></Value>
 	INNER JOIN [Job.OtherRequirement] O
 	ON P.JobPostingId = O.JobPostingId]]></Value>
 			</Property>
-			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
 					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[Id]">
@@ -2590,6 +2689,50 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="ISql100Table" Name="[dbo].[Role]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Role].[RoleId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+						<AttachedAnnotation Disambiguator="4" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[Role].[RoleName]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="256" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[Tag]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -2793,10 +2936,338 @@ END]]></Value>
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[PasswordSalt]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[Comments]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
 									<Property Name="Length" Value="256" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[CreatedDate]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastModifiedDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastLoginDate]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastLoginIP]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="40" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[IsActivated]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[IsLockedOut]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[IsOnline]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastLockedOutDate]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastLockedOutReason]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="256" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastPasswordChangedDate]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[LastActivityDate]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[NewPasswordKey]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[NewPasswordRequested]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[NewEmail]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[NewEmailKey]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[User].[NewEmailRequested]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Owner">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql100Table" Name="[dbo].[UserInRole]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[UserInRole].[UserId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[UserInRole].[RoleId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
 										</Entry>
 									</Relationship>
 								</Element>
