@@ -150,6 +150,55 @@ namespace JobZoom.Web.Controllers
             return View();
         }
 
+        public ActionResult Activate(string username, string key)
+        {
+            CustomMembershipProvider membershipProvider = new CustomMembershipProvider();
+            if (membershipProvider.ActivateUser(username, key))
+                FormsAuthentication.SetAuthCookie(username, false);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ResendActivatedEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ResendActivatedEmail(ActivatedEmailModel Model)
+        {
+            if (ModelState.IsValid)
+            {
+                // ResendActivatedEmail will throw an exception rather
+                // than return false in certain failure scenarios.
+                bool ResendActivatedEmailSucceeded;
+                try
+                {
+                    CustomMembershipProvider _user = new CustomMembershipProvider();
+                    ResendActivatedEmailSucceeded = _user.resendActivatedEmail(Model.Email);
+                }
+                catch (Exception)
+                {
+                    ResendActivatedEmailSucceeded = false;
+                } 
+
+                if (ResendActivatedEmailSucceeded)
+                {
+                    return RedirectToAction("ResendActivatedEmailSucceeded");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Your email doesn't exists!");
+                }
+            }
+            // If we got this far, something failed, redisplay form
+            return View(Model);
+        }
+
+        public ActionResult ResendActivatedEmailSucceeded()
+        {
+            return View();
+        }
+
         #region Status Codes
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {

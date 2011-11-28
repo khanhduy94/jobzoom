@@ -25,6 +25,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileBasic_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Basic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Basic), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileEducation_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Education", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Education), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileWork_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Work), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "UserInRole", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Role), "User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.User))]
 
 #endregion
 
@@ -255,22 +256,6 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<User> Users
-        {
-            get
-            {
-                if ((_Users == null))
-                {
-                    _Users = base.CreateObjectSet<User>("Users");
-                }
-                return _Users;
-            }
-        }
-        private ObjectSet<User> _Users;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<JobRequirementView> JobRequirementViews
         {
             get
@@ -315,6 +300,38 @@ namespace JobZoom.Business.Entities
             }
         }
         private ObjectSet<AttributeTag> _AttributeTags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Role> Roles
+        {
+            get
+            {
+                if ((_Roles == null))
+                {
+                    _Roles = base.CreateObjectSet<Role>("Roles");
+                }
+                return _Roles;
+            }
+        }
+        private ObjectSet<Role> _Roles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<User> Users
+        {
+            get
+            {
+                if ((_Users == null))
+                {
+                    _Users = base.CreateObjectSet<User>("Users");
+                }
+                return _Users;
+            }
+        }
+        private ObjectSet<User> _Users;
 
         #endregion
         #region AddTo Methods
@@ -408,14 +425,6 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUsers(User user)
-        {
-            base.AddObject("Users", user);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the JobRequirementViews EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToJobRequirementViews(JobRequirementView jobRequirementView)
@@ -437,6 +446,22 @@ namespace JobZoom.Business.Entities
         public void AddToAttributeTags(AttributeTag attributeTag)
         {
             base.AddObject("AttributeTags", attributeTag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRoles(Role role)
+        {
+            base.AddObject("Roles", role);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUsers(User user)
+        {
+            base.AddObject("Users", user);
         }
 
         #endregion
@@ -739,6 +764,30 @@ namespace JobZoom.Business.Entities
         private global::System.String _Status;
         partial void OnStatusChanging(global::System.String value);
         partial void OnStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Attachment
+        {
+            get
+            {
+                return _Attachment;
+            }
+            set
+            {
+                OnAttachmentChanging(value);
+                ReportPropertyChanging("Attachment");
+                _Attachment = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Attachment");
+                OnAttachmentChanged();
+            }
+        }
+        private global::System.String _Attachment;
+        partial void OnAttachmentChanging(global::System.String value);
+        partial void OnAttachmentChanged();
 
         #endregion
     
@@ -4146,6 +4195,112 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Role")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Role : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Role object.
+        /// </summary>
+        /// <param name="roleId">Initial value of the RoleId property.</param>
+        /// <param name="roleName">Initial value of the RoleName property.</param>
+        public static Role CreateRole(global::System.Guid roleId, global::System.String roleName)
+        {
+            Role role = new Role();
+            role.RoleId = roleId;
+            role.RoleName = roleName;
+            return role;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                if (_RoleId != value)
+                {
+                    OnRoleIdChanging(value);
+                    ReportPropertyChanging("RoleId");
+                    _RoleId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RoleId");
+                    OnRoleIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _RoleId;
+        partial void OnRoleIdChanging(global::System.Guid value);
+        partial void OnRoleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String RoleName
+        {
+            get
+            {
+                return _RoleName;
+            }
+            set
+            {
+                OnRoleNameChanging(value);
+                ReportPropertyChanging("RoleName");
+                _RoleName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RoleName");
+                OnRoleNameChanged();
+            }
+        }
+        private global::System.String _RoleName;
+        partial void OnRoleNameChanging(global::System.String value);
+        partial void OnRoleNameChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "UserInRole", "User")]
+        public EntityCollection<User> Users
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<User>("JobZoomModel.UserInRole", "User");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<User>("JobZoomModel.UserInRole", "User", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Tag")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -4386,12 +4541,28 @@ namespace JobZoom.Business.Entities
         /// <param name="userId">Initial value of the UserId property.</param>
         /// <param name="email">Initial value of the Email property.</param>
         /// <param name="password">Initial value of the Password property.</param>
-        public static User CreateUser(global::System.String userId, global::System.String email, global::System.String password)
+        /// <param name="passwordSalt">Initial value of the PasswordSalt property.</param>
+        /// <param name="createdDate">Initial value of the CreatedDate property.</param>
+        /// <param name="lastLoginDate">Initial value of the LastLoginDate property.</param>
+        /// <param name="isActivated">Initial value of the IsActivated property.</param>
+        /// <param name="isLockedOut">Initial value of the IsLockedOut property.</param>
+        /// <param name="lastLockedOutDate">Initial value of the LastLockedOutDate property.</param>
+        /// <param name="lastPasswordChangedDate">Initial value of the LastPasswordChangedDate property.</param>
+        /// <param name="lastActivityDate">Initial value of the LastActivityDate property.</param>
+        public static User CreateUser(global::System.String userId, global::System.String email, global::System.String password, global::System.String passwordSalt, global::System.DateTime createdDate, global::System.DateTime lastLoginDate, global::System.Boolean isActivated, global::System.Boolean isLockedOut, global::System.DateTime lastLockedOutDate, global::System.DateTime lastPasswordChangedDate, global::System.DateTime lastActivityDate)
         {
             User user = new User();
             user.UserId = userId;
             user.Email = email;
             user.Password = password;
+            user.PasswordSalt = passwordSalt;
+            user.CreatedDate = createdDate;
+            user.LastLoginDate = lastLoginDate;
+            user.IsActivated = isActivated;
+            user.IsLockedOut = isLockedOut;
+            user.LastLockedOutDate = lastLockedOutDate;
+            user.LastPasswordChangedDate = lastPasswordChangedDate;
+            user.LastActivityDate = lastActivityDate;
             return user;
         }
 
@@ -4472,6 +4643,438 @@ namespace JobZoom.Business.Entities
         private global::System.String _Password;
         partial void OnPasswordChanging(global::System.String value);
         partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PasswordSalt
+        {
+            get
+            {
+                return _PasswordSalt;
+            }
+            set
+            {
+                OnPasswordSaltChanging(value);
+                ReportPropertyChanging("PasswordSalt");
+                _PasswordSalt = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PasswordSalt");
+                OnPasswordSaltChanged();
+            }
+        }
+        private global::System.String _PasswordSalt;
+        partial void OnPasswordSaltChanging(global::System.String value);
+        partial void OnPasswordSaltChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Comments
+        {
+            get
+            {
+                return _Comments;
+            }
+            set
+            {
+                OnCommentsChanging(value);
+                ReportPropertyChanging("Comments");
+                _Comments = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Comments");
+                OnCommentsChanged();
+            }
+        }
+        private global::System.String _Comments;
+        partial void OnCommentsChanging(global::System.String value);
+        partial void OnCommentsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime CreatedDate
+        {
+            get
+            {
+                return _CreatedDate;
+            }
+            set
+            {
+                OnCreatedDateChanging(value);
+                ReportPropertyChanging("CreatedDate");
+                _CreatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreatedDate");
+                OnCreatedDateChanged();
+            }
+        }
+        private global::System.DateTime _CreatedDate;
+        partial void OnCreatedDateChanging(global::System.DateTime value);
+        partial void OnCreatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> LastModifiedDate
+        {
+            get
+            {
+                return _LastModifiedDate;
+            }
+            set
+            {
+                OnLastModifiedDateChanging(value);
+                ReportPropertyChanging("LastModifiedDate");
+                _LastModifiedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastModifiedDate");
+                OnLastModifiedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _LastModifiedDate;
+        partial void OnLastModifiedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnLastModifiedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastLoginDate
+        {
+            get
+            {
+                return _LastLoginDate;
+            }
+            set
+            {
+                OnLastLoginDateChanging(value);
+                ReportPropertyChanging("LastLoginDate");
+                _LastLoginDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastLoginDate");
+                OnLastLoginDateChanged();
+            }
+        }
+        private global::System.DateTime _LastLoginDate;
+        partial void OnLastLoginDateChanging(global::System.DateTime value);
+        partial void OnLastLoginDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastLoginIP
+        {
+            get
+            {
+                return _LastLoginIP;
+            }
+            set
+            {
+                OnLastLoginIPChanging(value);
+                ReportPropertyChanging("LastLoginIP");
+                _LastLoginIP = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastLoginIP");
+                OnLastLoginIPChanged();
+            }
+        }
+        private global::System.String _LastLoginIP;
+        partial void OnLastLoginIPChanging(global::System.String value);
+        partial void OnLastLoginIPChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsActivated
+        {
+            get
+            {
+                return _IsActivated;
+            }
+            set
+            {
+                OnIsActivatedChanging(value);
+                ReportPropertyChanging("IsActivated");
+                _IsActivated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActivated");
+                OnIsActivatedChanged();
+            }
+        }
+        private global::System.Boolean _IsActivated;
+        partial void OnIsActivatedChanging(global::System.Boolean value);
+        partial void OnIsActivatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsLockedOut
+        {
+            get
+            {
+                return _IsLockedOut;
+            }
+            set
+            {
+                OnIsLockedOutChanging(value);
+                ReportPropertyChanging("IsLockedOut");
+                _IsLockedOut = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsLockedOut");
+                OnIsLockedOutChanged();
+            }
+        }
+        private global::System.Boolean _IsLockedOut;
+        partial void OnIsLockedOutChanging(global::System.Boolean value);
+        partial void OnIsLockedOutChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsOnline
+        {
+            get
+            {
+                return _IsOnline;
+            }
+            set
+            {
+                OnIsOnlineChanging(value);
+                ReportPropertyChanging("IsOnline");
+                _IsOnline = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsOnline");
+                OnIsOnlineChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsOnline;
+        partial void OnIsOnlineChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsOnlineChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastLockedOutDate
+        {
+            get
+            {
+                return _LastLockedOutDate;
+            }
+            set
+            {
+                OnLastLockedOutDateChanging(value);
+                ReportPropertyChanging("LastLockedOutDate");
+                _LastLockedOutDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastLockedOutDate");
+                OnLastLockedOutDateChanged();
+            }
+        }
+        private global::System.DateTime _LastLockedOutDate;
+        partial void OnLastLockedOutDateChanging(global::System.DateTime value);
+        partial void OnLastLockedOutDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastLockedOutReason
+        {
+            get
+            {
+                return _LastLockedOutReason;
+            }
+            set
+            {
+                OnLastLockedOutReasonChanging(value);
+                ReportPropertyChanging("LastLockedOutReason");
+                _LastLockedOutReason = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastLockedOutReason");
+                OnLastLockedOutReasonChanged();
+            }
+        }
+        private global::System.String _LastLockedOutReason;
+        partial void OnLastLockedOutReasonChanging(global::System.String value);
+        partial void OnLastLockedOutReasonChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastPasswordChangedDate
+        {
+            get
+            {
+                return _LastPasswordChangedDate;
+            }
+            set
+            {
+                OnLastPasswordChangedDateChanging(value);
+                ReportPropertyChanging("LastPasswordChangedDate");
+                _LastPasswordChangedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastPasswordChangedDate");
+                OnLastPasswordChangedDateChanged();
+            }
+        }
+        private global::System.DateTime _LastPasswordChangedDate;
+        partial void OnLastPasswordChangedDateChanging(global::System.DateTime value);
+        partial void OnLastPasswordChangedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LastActivityDate
+        {
+            get
+            {
+                return _LastActivityDate;
+            }
+            set
+            {
+                OnLastActivityDateChanging(value);
+                ReportPropertyChanging("LastActivityDate");
+                _LastActivityDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LastActivityDate");
+                OnLastActivityDateChanged();
+            }
+        }
+        private global::System.DateTime _LastActivityDate;
+        partial void OnLastActivityDateChanging(global::System.DateTime value);
+        partial void OnLastActivityDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NewPasswordKey
+        {
+            get
+            {
+                return _NewPasswordKey;
+            }
+            set
+            {
+                OnNewPasswordKeyChanging(value);
+                ReportPropertyChanging("NewPasswordKey");
+                _NewPasswordKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NewPasswordKey");
+                OnNewPasswordKeyChanged();
+            }
+        }
+        private global::System.String _NewPasswordKey;
+        partial void OnNewPasswordKeyChanging(global::System.String value);
+        partial void OnNewPasswordKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NewPasswordRequested
+        {
+            get
+            {
+                return _NewPasswordRequested;
+            }
+            set
+            {
+                OnNewPasswordRequestedChanging(value);
+                ReportPropertyChanging("NewPasswordRequested");
+                _NewPasswordRequested = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NewPasswordRequested");
+                OnNewPasswordRequestedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NewPasswordRequested;
+        partial void OnNewPasswordRequestedChanging(Nullable<global::System.DateTime> value);
+        partial void OnNewPasswordRequestedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NewEmail
+        {
+            get
+            {
+                return _NewEmail;
+            }
+            set
+            {
+                OnNewEmailChanging(value);
+                ReportPropertyChanging("NewEmail");
+                _NewEmail = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NewEmail");
+                OnNewEmailChanged();
+            }
+        }
+        private global::System.String _NewEmail;
+        partial void OnNewEmailChanging(global::System.String value);
+        partial void OnNewEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NewEmailKey
+        {
+            get
+            {
+                return _NewEmailKey;
+            }
+            set
+            {
+                OnNewEmailKeyChanging(value);
+                ReportPropertyChanging("NewEmailKey");
+                _NewEmailKey = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NewEmailKey");
+                OnNewEmailKeyChanged();
+            }
+        }
+        private global::System.String _NewEmailKey;
+        partial void OnNewEmailKeyChanging(global::System.String value);
+        partial void OnNewEmailKeyChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> NewEmailRequested
+        {
+            get
+            {
+                return _NewEmailRequested;
+            }
+            set
+            {
+                OnNewEmailRequestedChanging(value);
+                ReportPropertyChanging("NewEmailRequested");
+                _NewEmailRequested = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NewEmailRequested");
+                OnNewEmailRequestedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _NewEmailRequested;
+        partial void OnNewEmailRequestedChanging(Nullable<global::System.DateTime> value);
+        partial void OnNewEmailRequestedChanged();
 
         #endregion
     
@@ -4539,6 +5142,28 @@ namespace JobZoom.Business.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Profile_Work>("JobZoomModel.FK_ProfileWork_User", "Profile_Work", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "UserInRole", "Role")]
+        public EntityCollection<Role> Roles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Role>("JobZoomModel.UserInRole", "Role");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Role>("JobZoomModel.UserInRole", "Role", value);
                 }
             }
         }

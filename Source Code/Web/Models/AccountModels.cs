@@ -7,7 +7,6 @@ using System.Web.Security;
 
 namespace JobZoom.Web.Models
 {
-
     public class ChangePasswordModel
     {
         [Required]
@@ -63,5 +62,20 @@ namespace JobZoom.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class ActivatedEmailModel
+    {
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email address")]
+        [EmailValidation(ErrorMessage = "Not a valid Email Address")]
+        public string Email { get; set; }
+    }
+
+    //EmailValidation
+    public class EmailValidationAttribute : RegularExpressionAttribute
+    {
+        public EmailValidationAttribute() : base(@"^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-zA-Z0-9]{1}[a-zA-Z0-9\-]{0,62}[a-zA-Z0-9]{1})|[a-zA-Z])\.)+[a-zA-Z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$") { }
     }
 }

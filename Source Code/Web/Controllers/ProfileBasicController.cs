@@ -15,7 +15,6 @@ namespace JobZoom.Web.Controllers
 
         //
         // GET: /ProfileBasic/
-
         public ViewResult Index()
         {
             var profile_basic = db.Profile_Basic.Include("User");

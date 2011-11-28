@@ -41,9 +41,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Diagnostics" />
-    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime" />
-    <Reference Include="Microsoft.WindowsAzure.StorageClient" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -94,6 +91,7 @@
     <Compile Include="Controllers\EmployerEditJobController.cs" />
     <Compile Include="Controllers\EmployerHomeController.cs" />
     <Compile Include="Controllers\EmployerJobPostController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobApplyController.cs" />
     <Compile Include="Controllers\JobPostingController.cs" />
@@ -104,7 +102,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomAuthorizeAttribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Helpers\CustomMembershipProvider.cs" />
+    <Compile Include="Helpers\CustomRoleProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApplyJobConfirmViewModel.cs" />
     <Compile Include="Models\ProfileWorkViewModel.cs" />
@@ -114,7 +116,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\jquery.tagit.css" />
@@ -378,9 +379,17 @@
     <Content Include="Views\EmployerEditJob\Work.cshtml" />
     <Content Include="Views\JobApply\ApplyConfirmView.cshtml" />
     <Content Include="Views\JobApply\AppliedJobs.cshtml" />
+    <Content Include="Views\ProfileWork\Create.cshtml" />
+    <Content Include="Views\ProfileWork\Delete.cshtml" />
+    <Content Include="Views\ProfileWork\Details.cshtml" />
+    <Content Include="Views\ProfileWork\Edit.cshtml" />
+    <Content Include="Views\ProfileWork\Index.cshtml" />
+    <Content Include="Views\Error\Error403.cshtml" />
+    <Content Include="Views\Error\Error404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ProfileEducation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

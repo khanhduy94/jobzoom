@@ -16,7 +16,7 @@ namespace JobZoom.Web.Controllers
         //
         // GET: /ProfileEdit/
 
-        [Authorize]
+        [CustomAuthorize(Roles = "Employer")]
         public ActionResult Index()
         {   
             return View();
