@@ -29,7 +29,7 @@
           <EntitySet Name="Profile_Education" EntityType="JobZoomModel.Store.Profile_Education" store:Type="Tables" Schema="dbo" Table="Profile.Education" />
           <EntitySet Name="Profile_Work" EntityType="JobZoomModel.Store.Profile_Work" store:Type="Tables" Schema="dbo" Table="Profile.Work" />
           <EntitySet Name="Role" EntityType="JobZoomModel.Store.Role" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Tag" EntityType="JobZoomModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SimilarityTerm" EntityType="JobZoomModel.Store.SimilarityTerm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="JobZoomModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserInRole" EntityType="JobZoomModel.Store.UserInRole" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobRequirementView" EntityType="JobZoomModel.Store.JobRequirementView" store:Type="Views" store:Schema="dbo" store:Name="JobRequirementView">
@@ -85,14 +85,14 @@
           <Key>
             <PropertyRef Name="AttributeTagId" />
           </Key>
-          <Property Name="AttributeTagId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AttributeTagId" Type="varchar" Nullable="false" MaxLength="36" />
           <Property Name="AttributeTagName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Weight" Type="smallint" />
           <Property Name="Level" Type="smallint" />
           <Property Name="Required" Type="bit" />
           <Property Name="TableReference" Type="varchar" MaxLength="128" />
-          <Property Name="ObjectId" Type="uniqueidentifier" />
-          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="ObjectId" Type="varchar" MaxLength="36" />
+          <Property Name="ParentId" Type="varchar" MaxLength="36" />
           <Property Name="ParentName" Type="nvarchar" MaxLength="256" />
           <Property Name="Attachment" Type="nvarchar" MaxLength="100" />
           <Property Name="ModifiedDate" Type="datetime" />
@@ -262,18 +262,14 @@
           <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
-        <EntityType Name="Tag">
+        <EntityType Name="SimilarityTerm">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="TableName" Type="char" MaxLength="128" />
-          <Property Name="ObjectID" Type="char" MaxLength="128" />
-          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="ParentId" Type="uniqueidentifier" />
-          <Property Name="ParentName" Type="nvarchar" MaxLength="256" />
-          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
-          <Property Name="IsUpToDate" Type="bit" />
+          <Property Name="Keyword1" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Keyword2" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Rate" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -457,7 +453,6 @@
           <EntitySet Name="Profile_Basic" EntityType="JobZoomModel.Profile_Basic" />
           <EntitySet Name="Profile_Education" EntityType="JobZoomModel.Profile_Education" />
           <EntitySet Name="Profile_Work" EntityType="JobZoomModel.Profile_Work" />
-          <EntitySet Name="Tags" EntityType="JobZoomModel.Tag" />
           <AssociationSet Name="FK__DecisionT__NODEI__145C0A3F" Association="JobZoomModel.FK__DecisionT__NODEI__145C0A3F">
             <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
             <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistributions" />
@@ -476,7 +471,6 @@
           </AssociationSet>
           <EntitySet Name="JobRequirementViews" EntityType="JobZoomModel.JobRequirementView" />
           <EntitySet Name="Job_Approval" EntityType="JobZoomModel.Job_Approval" />
-          <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
           <EntitySet Name="Roles" EntityType="JobZoomModel.Role" />
           <EntitySet Name="Users" EntityType="JobZoomModel.User" />
           <AssociationSet Name="FK_ProfileBasic_User" Association="JobZoomModel.FK_ProfileBasic_User">
@@ -495,6 +489,8 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="SimilarityTerms" EntityType="JobZoomModel.SimilarityTerm" />
+          <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -650,19 +646,6 @@
           <Property Type="String" Name="Description" MaxLength="512" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="JobZoomModel.FK_ProfileWork_User" FromRole="Profile_Work" ToRole="User" />
         </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Guid" Name="ID" Nullable="false" />
-          <Property Type="String" Name="TableName" MaxLength="128" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="ObjectID" MaxLength="128" FixedLength="true" Unicode="false" />
-          <Property Type="String" Name="TagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="ParentId" />
-          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" />
-          <Property Type="Boolean" Name="IsUpToDate" />
-        </EntityType>
         <Association Name="FK__DecisionT__NODEI__145C0A3F">
           <End Type="JobZoomModel.DecisionTreeNode" Role="DecisionTreeNode" Multiplicity="1" />
           <End Type="JobZoomModel.DecisionTreeNodeDistribution" Role="DecisionTreeNodeDistribution" Multiplicity="0..1" />
@@ -734,23 +717,6 @@
           <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsApplied" />
           <Property Type="Boolean" Name="IsApproved" />
-        </EntityType>
-        <EntityType Name="AttributeTag">
-          <Key>
-            <PropertyRef Name="AttributeTagId" />
-          </Key>
-          <Property Type="Guid" Name="AttributeTagId" Nullable="false" />
-          <Property Type="String" Name="AttributeTagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="Weight" />
-          <Property Type="Int16" Name="Level" />
-          <Property Type="Boolean" Name="Required" />
-          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="Guid" Name="ObjectId" />
-          <Property Type="Guid" Name="ParentId" />
-          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Attachment" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -830,6 +796,32 @@
           <End Type="JobZoomModel.Role" Role="Role" Multiplicity="*" />
           <End Type="JobZoomModel.User" Role="User" Multiplicity="*" />
         </Association>
+        <EntityType Name="SimilarityTerm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Keyword1" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Keyword2" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AttributeTag">
+          <Key>
+            <PropertyRef Name="AttributeTagId" />
+          </Key>
+          <Property Type="String" Name="AttributeTagId" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AttributeTagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Weight" />
+          <Property Type="Int16" Name="Level" />
+          <Property Type="Boolean" Name="Required" />
+          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ObjectId" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentId" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Attachment" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -989,20 +981,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="JobZoomModel.Tag">
-              <MappingFragment StoreEntitySet="Tag">
-                <ScalarProperty Name="IsUpToDate" ColumnName="IsUpToDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="TagName" ColumnName="TagName" />
-                <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
-                <ScalarProperty Name="TableName" ColumnName="TableName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="JobRequirementViews">
             <EntityTypeMapping TypeName="JobZoomModel.JobRequirementView">
               <MappingFragment StoreEntitySet="JobRequirementView">
@@ -1026,24 +1004,6 @@
                 <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
                 <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
                 <ScalarProperty Name="JobApprovalId" ColumnName="JobApprovalId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AttributeTags">
-            <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
-              <MappingFragment StoreEntitySet="AttributeTag">
-                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
-                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
-                <ScalarProperty Name="Required" ColumnName="Required" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
-                <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1090,6 +1050,34 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="SimilarityTerms">
+            <EntityTypeMapping TypeName="JobZoomModel.SimilarityTerm">
+              <MappingFragment StoreEntitySet="SimilarityTerm">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Keyword2" ColumnName="Keyword2" />
+                <ScalarProperty Name="Keyword1" ColumnName="Keyword1" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeTags">
+            <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
+              <MappingFragment StoreEntitySet="AttributeTag">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
+                <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1121,7 +1109,6 @@
         <EntityTypeShape EntityType="JobZoomModel.Profile_Basic" Width="1.5" PointX="3" PointY="1.375" Height="4.6725065104166674" />
         <EntityTypeShape EntityType="JobZoomModel.Profile_Education" Width="1.5" PointX="3" PointY="6.875" Height="2.9417936197916674" />
         <EntityTypeShape EntityType="JobZoomModel.Profile_Work" Width="1.5" PointX="3" PointY="10.5" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="JobZoomModel.Tag" Width="1.5" PointX="10.75" PointY="9.75" Height="2.5571907552083246" />
         <AssociationConnector Association="JobZoomModel.FK__DecisionT__NODEI__145C0A3F" >
           <ConnectorPoint PointX="7.25" PointY="12.028595377604169" />
           <ConnectorPoint PointX="8" PointY="12.028595377604169" />
@@ -1142,7 +1129,6 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="JobZoomModel.JobRequirementView" Width="1.5" PointX="13.375" PointY="0.75" Height="2.5571907552083246" />
         <EntityTypeShape EntityType="JobZoomModel.Job_Approval" Width="1.5" PointX="10.375" PointY="6.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="13.375" PointY="4.75" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="JobZoomModel.Role" Width="1.5" PointX="0.75" PointY="1.625" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="JobZoomModel.User" Width="1.5" PointX="0.75" PointY="4.5" Height="5.8263151041666674" />
         <AssociationConnector Association="JobZoomModel.FK_ProfileBasic_User" >
@@ -1162,6 +1148,8 @@
           <ConnectorPoint PointX="1.5" PointY="3.2206835937500031" />
           <ConnectorPoint PointX="1.5" PointY="4.5" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="JobZoomModel.SimilarityTerm" Width="1.5" PointX="13.375" PointY="9.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="10.375" PointY="9.75" Height="3.3263964843750031" />
       </Diagram>
     </Diagrams>
   </Designer>

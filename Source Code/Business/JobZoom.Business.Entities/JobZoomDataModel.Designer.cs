@@ -240,22 +240,6 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Tag> Tags
-        {
-            get
-            {
-                if ((_Tags == null))
-                {
-                    _Tags = base.CreateObjectSet<Tag>("Tags");
-                }
-                return _Tags;
-            }
-        }
-        private ObjectSet<Tag> _Tags;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<JobRequirementView> JobRequirementViews
         {
             get
@@ -288,22 +272,6 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AttributeTag> AttributeTags
-        {
-            get
-            {
-                if ((_AttributeTags == null))
-                {
-                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
-                }
-                return _AttributeTags;
-            }
-        }
-        private ObjectSet<AttributeTag> _AttributeTags;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Role> Roles
         {
             get
@@ -332,6 +300,38 @@ namespace JobZoom.Business.Entities
             }
         }
         private ObjectSet<User> _Users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SimilarityTerm> SimilarityTerms
+        {
+            get
+            {
+                if ((_SimilarityTerms == null))
+                {
+                    _SimilarityTerms = base.CreateObjectSet<SimilarityTerm>("SimilarityTerms");
+                }
+                return _SimilarityTerms;
+            }
+        }
+        private ObjectSet<SimilarityTerm> _SimilarityTerms;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AttributeTag> AttributeTags
+        {
+            get
+            {
+                if ((_AttributeTags == null))
+                {
+                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
+                }
+                return _AttributeTags;
+            }
+        }
+        private ObjectSet<AttributeTag> _AttributeTags;
 
         #endregion
         #region AddTo Methods
@@ -417,14 +417,6 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTags(Tag tag)
-        {
-            base.AddObject("Tags", tag);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the JobRequirementViews EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToJobRequirementViews(JobRequirementView jobRequirementView)
@@ -441,14 +433,6 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAttributeTags(AttributeTag attributeTag)
-        {
-            base.AddObject("AttributeTags", attributeTag);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRoles(Role role)
@@ -462,6 +446,22 @@ namespace JobZoom.Business.Entities
         public void AddToUsers(User user)
         {
             base.AddObject("Users", user);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SimilarityTerms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSimilarityTerms(SimilarityTerm similarityTerm)
+        {
+            base.AddObject("SimilarityTerms", similarityTerm);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttributeTags(AttributeTag attributeTag)
+        {
+            base.AddObject("AttributeTags", attributeTag);
         }
 
         #endregion
@@ -487,7 +487,7 @@ namespace JobZoom.Business.Entities
         /// </summary>
         /// <param name="attributeTagId">Initial value of the AttributeTagId property.</param>
         /// <param name="attributeTagName">Initial value of the AttributeTagName property.</param>
-        public static AttributeTag CreateAttributeTag(global::System.Guid attributeTagId, global::System.String attributeTagName)
+        public static AttributeTag CreateAttributeTag(global::System.String attributeTagId, global::System.String attributeTagName)
         {
             AttributeTag attributeTag = new AttributeTag();
             attributeTag.AttributeTagId = attributeTagId;
@@ -503,7 +503,7 @@ namespace JobZoom.Business.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid AttributeTagId
+        public global::System.String AttributeTagId
         {
             get
             {
@@ -515,14 +515,14 @@ namespace JobZoom.Business.Entities
                 {
                     OnAttributeTagIdChanging(value);
                     ReportPropertyChanging("AttributeTagId");
-                    _AttributeTagId = StructuralObject.SetValidValue(value);
+                    _AttributeTagId = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("AttributeTagId");
                     OnAttributeTagIdChanged();
                 }
             }
         }
-        private global::System.Guid _AttributeTagId;
-        partial void OnAttributeTagIdChanging(global::System.Guid value);
+        private global::System.String _AttributeTagId;
+        partial void OnAttributeTagIdChanging(global::System.String value);
         partial void OnAttributeTagIdChanged();
     
         /// <summary>
@@ -650,7 +650,7 @@ namespace JobZoom.Business.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Guid> ObjectId
+        public global::System.String ObjectId
         {
             get
             {
@@ -660,13 +660,13 @@ namespace JobZoom.Business.Entities
             {
                 OnObjectIdChanging(value);
                 ReportPropertyChanging("ObjectId");
-                _ObjectId = StructuralObject.SetValidValue(value);
+                _ObjectId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("ObjectId");
                 OnObjectIdChanged();
             }
         }
-        private Nullable<global::System.Guid> _ObjectId;
-        partial void OnObjectIdChanging(Nullable<global::System.Guid> value);
+        private global::System.String _ObjectId;
+        partial void OnObjectIdChanging(global::System.String value);
         partial void OnObjectIdChanged();
     
         /// <summary>
@@ -674,7 +674,7 @@ namespace JobZoom.Business.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Guid> ParentId
+        public global::System.String ParentId
         {
             get
             {
@@ -684,13 +684,13 @@ namespace JobZoom.Business.Entities
             {
                 OnParentIdChanging(value);
                 ReportPropertyChanging("ParentId");
-                _ParentId = StructuralObject.SetValidValue(value);
+                _ParentId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("ParentId");
                 OnParentIdChanged();
             }
         }
-        private Nullable<global::System.Guid> _ParentId;
-        partial void OnParentIdChanging(Nullable<global::System.Guid> value);
+        private global::System.String _ParentId;
+        partial void OnParentIdChanging(global::System.String value);
         partial void OnParentIdChanged();
     
         /// <summary>
@@ -716,6 +716,30 @@ namespace JobZoom.Business.Entities
         private global::System.String _ParentName;
         partial void OnParentNameChanging(global::System.String value);
         partial void OnParentNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Attachment
+        {
+            get
+            {
+                return _Attachment;
+            }
+            set
+            {
+                OnAttachmentChanging(value);
+                ReportPropertyChanging("Attachment");
+                _Attachment = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Attachment");
+                OnAttachmentChanged();
+            }
+        }
+        private global::System.String _Attachment;
+        partial void OnAttachmentChanging(global::System.String value);
+        partial void OnAttachmentChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -764,30 +788,6 @@ namespace JobZoom.Business.Entities
         private global::System.String _Status;
         partial void OnStatusChanging(global::System.String value);
         partial void OnStatusChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Attachment
-        {
-            get
-            {
-                return _Attachment;
-            }
-            set
-            {
-                OnAttachmentChanging(value);
-                ReportPropertyChanging("Attachment");
-                _Attachment = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Attachment");
-                OnAttachmentChanged();
-            }
-        }
-        private global::System.String _Attachment;
-        partial void OnAttachmentChanging(global::System.String value);
-        partial void OnAttachmentChanged();
 
         #endregion
     
@@ -4301,26 +4301,28 @@ namespace JobZoom.Business.Entities
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="Tag")]
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="SimilarityTerm")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Tag : EntityObject
+    public partial class SimilarityTerm : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Tag object.
+        /// Create a new SimilarityTerm object.
         /// </summary>
         /// <param name="id">Initial value of the ID property.</param>
-        /// <param name="tagName">Initial value of the TagName property.</param>
-        /// <param name="modifiedDate">Initial value of the ModifiedDate property.</param>
-        public static Tag CreateTag(global::System.Guid id, global::System.String tagName, global::System.DateTime modifiedDate)
+        /// <param name="keyword1">Initial value of the Keyword1 property.</param>
+        /// <param name="keyword2">Initial value of the Keyword2 property.</param>
+        /// <param name="rate">Initial value of the Rate property.</param>
+        public static SimilarityTerm CreateSimilarityTerm(global::System.Guid id, global::System.String keyword1, global::System.String keyword2, global::System.Double rate)
         {
-            Tag tag = new Tag();
-            tag.ID = id;
-            tag.TagName = tagName;
-            tag.ModifiedDate = modifiedDate;
-            return tag;
+            SimilarityTerm similarityTerm = new SimilarityTerm();
+            similarityTerm.ID = id;
+            similarityTerm.Keyword1 = keyword1;
+            similarityTerm.Keyword2 = keyword2;
+            similarityTerm.Rate = rate;
+            return similarityTerm;
         }
 
         #endregion
@@ -4356,170 +4358,74 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String TableName
+        public global::System.String Keyword1
         {
             get
             {
-                return _TableName;
+                return _Keyword1;
             }
             set
             {
-                OnTableNameChanging(value);
-                ReportPropertyChanging("TableName");
-                _TableName = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("TableName");
-                OnTableNameChanged();
+                OnKeyword1Changing(value);
+                ReportPropertyChanging("Keyword1");
+                _Keyword1 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Keyword1");
+                OnKeyword1Changed();
             }
         }
-        private global::System.String _TableName;
-        partial void OnTableNameChanging(global::System.String value);
-        partial void OnTableNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ObjectID
-        {
-            get
-            {
-                return _ObjectID;
-            }
-            set
-            {
-                OnObjectIDChanging(value);
-                ReportPropertyChanging("ObjectID");
-                _ObjectID = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ObjectID");
-                OnObjectIDChanged();
-            }
-        }
-        private global::System.String _ObjectID;
-        partial void OnObjectIDChanging(global::System.String value);
-        partial void OnObjectIDChanged();
+        private global::System.String _Keyword1;
+        partial void OnKeyword1Changing(global::System.String value);
+        partial void OnKeyword1Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String TagName
+        public global::System.String Keyword2
         {
             get
             {
-                return _TagName;
+                return _Keyword2;
             }
             set
             {
-                OnTagNameChanging(value);
-                ReportPropertyChanging("TagName");
-                _TagName = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("TagName");
-                OnTagNameChanged();
+                OnKeyword2Changing(value);
+                ReportPropertyChanging("Keyword2");
+                _Keyword2 = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Keyword2");
+                OnKeyword2Changed();
             }
         }
-        private global::System.String _TagName;
-        partial void OnTagNameChanging(global::System.String value);
-        partial void OnTagNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Guid> ParentId
-        {
-            get
-            {
-                return _ParentId;
-            }
-            set
-            {
-                OnParentIdChanging(value);
-                ReportPropertyChanging("ParentId");
-                _ParentId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ParentId");
-                OnParentIdChanged();
-            }
-        }
-        private Nullable<global::System.Guid> _ParentId;
-        partial void OnParentIdChanging(Nullable<global::System.Guid> value);
-        partial void OnParentIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ParentName
-        {
-            get
-            {
-                return _ParentName;
-            }
-            set
-            {
-                OnParentNameChanging(value);
-                ReportPropertyChanging("ParentName");
-                _ParentName = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ParentName");
-                OnParentNameChanged();
-            }
-        }
-        private global::System.String _ParentName;
-        partial void OnParentNameChanging(global::System.String value);
-        partial void OnParentNameChanged();
+        private global::System.String _Keyword2;
+        partial void OnKeyword2Changing(global::System.String value);
+        partial void OnKeyword2Changed();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime ModifiedDate
+        public global::System.Double Rate
         {
             get
             {
-                return _ModifiedDate;
+                return _Rate;
             }
             set
             {
-                OnModifiedDateChanging(value);
-                ReportPropertyChanging("ModifiedDate");
-                _ModifiedDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ModifiedDate");
-                OnModifiedDateChanged();
+                OnRateChanging(value);
+                ReportPropertyChanging("Rate");
+                _Rate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Rate");
+                OnRateChanged();
             }
         }
-        private global::System.DateTime _ModifiedDate;
-        partial void OnModifiedDateChanging(global::System.DateTime value);
-        partial void OnModifiedDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsUpToDate
-        {
-            get
-            {
-                return _IsUpToDate;
-            }
-            set
-            {
-                OnIsUpToDateChanging(value);
-                ReportPropertyChanging("IsUpToDate");
-                _IsUpToDate = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsUpToDate");
-                OnIsUpToDateChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _IsUpToDate;
-        partial void OnIsUpToDateChanging(Nullable<global::System.Boolean> value);
-        partial void OnIsUpToDateChanged();
+        private global::System.Double _Rate;
+        partial void OnRateChanging(global::System.Double value);
+        partial void OnRateChanged();
 
         #endregion
     
