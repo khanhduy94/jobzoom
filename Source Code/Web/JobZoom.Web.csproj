@@ -108,6 +108,7 @@
     <Compile Include="Helpers\CustomRoleProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApplyJobConfirmViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\ProfileWorkViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\JobZoomServiceReference\Reference.cs">

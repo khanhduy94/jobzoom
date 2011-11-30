@@ -15,8 +15,7 @@ namespace JobZoom.Business.Entities
                 return new List<string>
                 {
                     "Single",
-                    "Married",
-                    "Devoted"
+                    "Married"                    
                 };
             }
         }

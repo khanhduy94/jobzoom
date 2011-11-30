@@ -129,12 +129,6 @@ namespace JobZoom.Web.Controllers
             return PartialView("ListProfileEducationView", listProfileEducation);
         }
 
-        public ActionResult DeleteWork()
-        {
-            return View();
-        }
-
-
         [Authorize]
         [OutputCache(Duration = 0)]
         public ActionResult Work()

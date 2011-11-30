@@ -14,9 +14,8 @@ namespace JobZoom.Business.Entities
             {
                 return new List<string>
                 {
-                    "Nam",
-                    "Nữ",
-                    "Không xác định"
+                    "Male",
+                    "Female"                    
                 };
             }
         }

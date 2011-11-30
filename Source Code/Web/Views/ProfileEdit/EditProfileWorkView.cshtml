@@ -8,6 +8,11 @@
             availableTags: ["c++", "java", "php", "coldfusion", "javascript", "asp", "ruby", "python", "c", "scala", "groovy", "haskell", "perl"]
         });
     });
+
+    $(function () {
+        $("#StartDate").datepicker({ dateFormat: "mm/dd/yy" });
+        $("#EndDate").datepicker({ dateFormat: "mm/dd/yy" });
+    }); 
 </script>
 @using (Html.BeginForm("SaveWork", "ProfileEdit", FormMethod.Post, new { id = "EditProfileWorkView" }))
 {

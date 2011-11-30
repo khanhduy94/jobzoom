@@ -2,8 +2,14 @@
 
 @{
     ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>
-    Sorry, an error occurred while processing your request.
+    Sorry, an error occurred while processing your request.    
 </h2>
+<h3>
+    @if(Model != null){
+        @Model.Exception.Message
+    }
+</h3>

@@ -393,7 +393,7 @@ public class CustomMembershipProvider : MembershipProvider
                     DateTime _lastPasswordChangedDate = dbuser.LastPasswordChangedDate;
                     DateTime _lastLockedOutDate = dbuser.LastLockedOutDate;
 
-                    MembershipUser user = new MembershipUser("CustomMembershipProvider",
+                    MembershipUser user = new MembershipUser("JobZoomMembershipProvider",
                                                               _username,
                                                               _providerUserKey,
                                                               _email,

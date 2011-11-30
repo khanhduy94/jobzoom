@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using JobZoom.Web.Models;
+using JobZoom.Business.Entities;
 
 namespace JobZoom.Web.Controllers
 {
@@ -66,6 +67,10 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Register()
         {
+            ViewBag.City = new SelectList(new City { }.GetCities);
+            ViewBag.Country = new SelectList(new Countries { }.GetCountries);
+            ViewBag.Gender = new SelectList(new Genders { }.GetGenders);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList);
             return View();
         }
 
@@ -83,7 +88,26 @@ namespace JobZoom.Web.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    // Save basic information
+                    JobZoomEntities db = new JobZoomEntities();
+                    Profile_Basic profile_basic = new Profile_Basic();
+                    profile_basic.ProfileBasicId = Guid.NewGuid();
+                    profile_basic.UserId = model.UserName;
+                    profile_basic.FirstName = model.FirstName;
+                    profile_basic.LastName = model.LastName;
+                    profile_basic.Birthdate = model.Birthdate;
+                    profile_basic.Gender = model.Gender;
+                    profile_basic.MaritalStatus = model.MaritalStatus;
+                    profile_basic.Country = model.Country;
+                    profile_basic.City = model.City;
+                    db.Profile_Basic.AddObject(profile_basic);
+
+                    // Add user to Jobseeker role
+                    var user = db.Users.FirstOrDefault(u=> u.UserId == model.UserName);
+                    var role = db.Roles.FirstOrDefault(r => r.RoleName == "Jobseeker");
+                    role.Users.Add(user);   
+                    db.SaveChanges();
+                    
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -91,6 +115,11 @@ namespace JobZoom.Web.Controllers
                     ModelState.AddModelError("", ErrorCodeToString(createStatus));
                 }
             }
+
+            ViewBag.Gender = new SelectList(new Genders { }.GetGenders, model.Gender);
+            ViewBag.City = new SelectList(new City { }.GetCities, model.City);
+            ViewBag.Country = new SelectList(new Countries { }.GetCountries, model.Country);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, model.MaritalStatus);
 
             // If we got this far, something failed, redisplay form
             return View(model);

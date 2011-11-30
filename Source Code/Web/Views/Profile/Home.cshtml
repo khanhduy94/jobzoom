@@ -1,7 +1,65 @@
-﻿@{
-    ViewBag.Title = "Home";
+﻿@model JobZoom.Web.Models.ProfileViewModel
+@{
+    ViewBag.Title = "Edit Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 @Html.ActionLink("Edit Profile", "Basic", "ProfileEdit")
-<h2>Home</h2>
+<h2>
+    Profile</h2>
+<fieldset>
+    <div class="display-field" style="font-weight: bold">
+        @Html.DisplayFor(model => model.Basic.FirstName) @Html.DisplayFor(model => model.Basic.LastName)
+    </div>
+    <div class="display-field">
+        Birthdate: @Model.Basic.Birthdate.ToShortDateString()
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Basic.Gender)
+    </div>
+    <div class="display-field">
+        Marital Status: @Html.DisplayFor(model => model.Basic.MaritalStatus)
+    </div>
+    <div class="display-field">
+        Address Line 1: @Html.DisplayFor(model => model.Basic.AddressLine1)
+    </div>
+    <div class="display-field">
+        Address Line 1: @Html.DisplayFor(model => model.Basic.AddressLine2)
+    </div>
+    <div class="display-field">
+        Country: @Html.DisplayFor(model => model.Basic.Country)
+    </div>
+    <div class="display-field">
+        City: @Html.DisplayFor(model => model.Basic.City)
+    </div>
+    <div class="display-field">
+        Zip Code: @Html.DisplayFor(model => model.Basic.ZipCode)
+    </div>
+    <div class="display-field">
+        Phone: @Html.DisplayFor(model => model.Basic.Phone)
+    </div>
+    <div class="display-field">
+        Mobile: @Html.DisplayFor(model => model.Basic.MobilePhone)
+    </div>
+    <div class="display-field">
+        Website: @Html.DisplayFor(model => model.Basic.Website)
+    </div>
+    <div class="display-field">
+        Facebook: @Html.DisplayFor(model => model.Basic.Facebook)
+    </div>
+    <div class="display-field">
+        Twitter: @Html.DisplayFor(model => model.Basic.Twitter)
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Education</legend>
+    @if (Model.Educations.Count() > 0)
+    {
+        foreach (var item in Model.Educations)
+        {
+            @item.SchoolUniversityName
+            @item.Major
+            @item.StartDate  @item.EndDate
+            @item.Description
+        }
+    }
+</fieldset>
