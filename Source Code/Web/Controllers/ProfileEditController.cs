@@ -15,12 +15,11 @@ namespace JobZoom.Web.Controllers
         private string userId;
         //
         // GET: /ProfileEdit/
-
-        [CustomAuthorize(Roles = "Employer")]
-        public ActionResult Index()
-        {   
-            return View();
-        }
+        
+        //public ActionResult Index()
+        //{   
+        //    return View();
+        //}
 
         //
         // GET: /Profile/Edit/Basic
@@ -28,28 +27,24 @@ namespace JobZoom.Web.Controllers
         [HttpGet]
         public ActionResult Basic()
         {
-            string userId = User.Identity.Name;            
+            string userId = User.Identity.Name;
+            Profile_Basic profile_basic;
 
             if (db.Profile_Basic.Where(x => x.UserId == userId).Count() != 1)
             {
-                Profile_Basic profile_basic = new Profile_Basic();
-                ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
-                ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
-                ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
-                ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, profile_basic.MaritalStatus);
-
-                return View(profile_basic);
+                profile_basic = new Profile_Basic();                
             }
             else
             {
-                Profile_Basic profile_basic = db.Profile_Basic.Single(p => p.UserId == userId);
-                ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
-                ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
-                ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
-                ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, profile_basic.MaritalStatus);
-                
-                return View(profile_basic);
-            }            
+                profile_basic = db.Profile_Basic.Single(p => p.UserId == userId);                
+            }
+
+            ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
+            ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
+            ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, profile_basic.MaritalStatus);
+
+            return View(profile_basic);
         }
 
         // POST: /Profile/Edit/Basic
@@ -73,8 +68,7 @@ namespace JobZoom.Web.Controllers
                 }
                 
                 return RedirectToAction("Basic");
-            }
-            //ViewBag.UserId = new SelectList(db.Users, "UserId", "Email", profile_basic.UserId);
+            }            
             return View(profile_basic);
         }
 

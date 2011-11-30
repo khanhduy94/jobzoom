@@ -386,10 +386,16 @@
     <Content Include="Views\ProfileWork\Index.cshtml" />
     <Content Include="Views\Error\Error403.cshtml" />
     <Content Include="Views\Error\Error404.cshtml" />
+    <Content Include="Views\ProfileEdit\CreateProfileWork.cshtml" />
+    <Content Include="Views\ProfileEdit\EditProfileWork.cshtml" />
+    <Content Include="Views\JobPosting\Create.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\JobPosting\Delete.cshtml" />
+    <Content Include="Views\JobPosting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ProfileEducation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
