@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Profile.Education] (
-    [ProfileEducationId]   UNIQUEIDENTIFIER NOT NULL,
+    [ProfileEducationId]   CHAR(36) NOT NULL,
     [UserId]               NVARCHAR (128)   NOT NULL,
-    [SchoolUniversityId]   UNIQUEIDENTIFIER NULL,
+    [SchoolUniversityId]   CHAR(36) NULL,
     [SchoolUniversityName] NVARCHAR (128)   NOT NULL,
     [Major]                NVARCHAR (128)   NOT NULL,
     [StartDate]            DATE             NULL,

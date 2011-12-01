@@ -24,7 +24,7 @@ namespace JobZoom.Web.Controllers
         //
         // GET: /JobPostingJob/Details/5
 
-        public ViewResult Details(Guid id)
+        public ViewResult Details(string id)
         {
             Job_Posting job_posting = db.Job_Posting.Single(j => j.JobPostingId == id);
             return View(job_posting);
@@ -46,7 +46,7 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                job_posting.JobPostingId = Guid.NewGuid();
+                job_posting.JobPostingId = Guid.NewGuid().ToString();
                 db.Job_Posting.AddObject(job_posting);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
@@ -57,8 +57,8 @@ namespace JobZoom.Web.Controllers
         
         //
         // GET: /JobPostingJob/Edit/5
- 
-        public ActionResult Edit(Guid id)
+
+        public ActionResult Edit(string id)
         {
             Job_Posting job_posting = db.Job_Posting.Single(j => j.JobPostingId == id);
             return View(job_posting);
@@ -82,8 +82,8 @@ namespace JobZoom.Web.Controllers
 
         //
         // GET: /JobPostingJob/Delete/5
- 
-        public ActionResult Delete(Guid id)
+
+        public ActionResult Delete(string id)
         {
             Job_Posting job_posting = db.Job_Posting.Single(j => j.JobPostingId == id);
             return View(job_posting);
@@ -93,7 +93,7 @@ namespace JobZoom.Web.Controllers
         // POST: /JobPostingJob/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(string id)
         {            
             Job_Posting job_posting = db.Job_Posting.Single(j => j.JobPostingId == id);
             db.Job_Posting.DeleteObject(job_posting);

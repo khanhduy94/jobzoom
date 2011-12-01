@@ -47,7 +47,7 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (profile_basic.ProfileBasicId != Guid.Empty)
+                if (profile_basic.ProfileBasicId != string.Empty)
                 {
                     db.Profile_Basic.Attach(profile_basic);
                     db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
@@ -55,7 +55,7 @@ namespace JobZoom.Web.Controllers
                 }
                 else
                 {
-                    profile_basic.ProfileBasicId = Guid.NewGuid();
+                    profile_basic.ProfileBasicId = Guid.NewGuid().ToString();
                     db.Profile_Basic.AddObject(profile_basic);
                     db.SaveChanges();
                 }
@@ -97,7 +97,7 @@ namespace JobZoom.Web.Controllers
 
         [HttpGet]
         [OutputCache(Duration = 0)]
-        public ActionResult EditEducation(Guid id)
+        public ActionResult EditEducation(string id)
         {
             Profile_Education profile_educations = db.Profile_Education.FirstOrDefault(x => x.ProfileEducationId == id);
             return PartialView("EditProfileEducationView", profile_educations);
@@ -111,9 +111,9 @@ namespace JobZoom.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                if (profile_education.ProfileEducationId == Guid.Empty)
+                if (profile_education.ProfileEducationId == string.Empty)
                 {
-                    profile_education.ProfileEducationId = Guid.NewGuid();
+                    profile_education.ProfileEducationId = Guid.NewGuid().ToString();
                     db.Profile_Education.AddObject(profile_education);
                     db.SaveChanges();
                 }
@@ -157,7 +157,7 @@ namespace JobZoom.Web.Controllers
         [Authorize]
         [HttpGet]
         [OutputCache(Duration = 0)]
-        public ActionResult EditWork(Guid id)
+        public ActionResult EditWork(string id)
         {
             Profile_Work profile_work = db.Profile_Work.FirstOrDefault(x => x.ProfileWorkId == id);
             return PartialView("EditProfileWorkView", profile_work);
@@ -172,9 +172,9 @@ namespace JobZoom.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                if (profile_work.ProfileWorkId == Guid.Empty)
+                if (profile_work.ProfileWorkId == string.Empty)
                 {                    
-                    profile_work.ProfileWorkId = Guid.NewGuid();
+                    profile_work.ProfileWorkId = Guid.NewGuid().ToString();
                     db.Profile_Work.AddObject(profile_work);
                     db.SaveChanges();
                 }
@@ -189,7 +189,7 @@ namespace JobZoom.Web.Controllers
             return PartialView("ListProfileWorkView", listProfileWork);
         }
 
-        public ActionResult DeleteWork(Guid id)
+        public ActionResult DeleteWork(string id)
         {
             Profile_Work profile_work = db.Profile_Work.Single(p => p.ProfileWorkId == id);
             return View(profile_work);

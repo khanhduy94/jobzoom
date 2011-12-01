@@ -15,7 +15,7 @@ namespace JobZoom.Web.Controllers
         // GET: /JobApply/
 
         [OutputCache(Duration = 0)]
-        public ActionResult ApplyConfirmView(Guid id)
+        public ActionResult ApplyConfirmView(string id)
         {
             return PartialView("ApplyConfirmView");
         }
@@ -24,10 +24,10 @@ namespace JobZoom.Web.Controllers
         public ActionResult Apply(JobApplyConfirmViewModel model)
         {
             model.UserId = User.Identity.Name;
-            Guid profileId = db.Profile_Basic.SingleOrDefault(x=>x.UserId == User.Identity.Name).ProfileBasicId;
+            string profileId = db.Profile_Basic.SingleOrDefault(x=>x.UserId == User.Identity.Name).ProfileBasicId;
             Job_Approval job_approval = new Job_Approval
             {
-                JobApprovalId = Guid.NewGuid(),
+                JobApprovalId = Guid.NewGuid().ToString(),
                 ProfileID = profileId,
                 JobPostingId = model.JobId,
                 IsApplied = true,

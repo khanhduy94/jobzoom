@@ -24,7 +24,7 @@ namespace JobZoom.Web.Controllers
         //
         // GET: /AdminCompany/Details/5
 
-        public ViewResult Details(Guid id)
+        public ViewResult Details(string id)
         {
             Company company = db.Companies.Single(c => c.CompanyId == id);
             return View(company);
@@ -46,7 +46,7 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                company.CompanyId = Guid.NewGuid();
+                company.CompanyId = Guid.NewGuid().ToString();
                 db.Companies.AddObject(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
@@ -57,8 +57,8 @@ namespace JobZoom.Web.Controllers
         
         //
         // GET: /AdminCompany/Edit/5
- 
-        public ActionResult Edit(Guid id)
+
+        public ActionResult Edit(string id)
         {
             Company company = db.Companies.Single(c => c.CompanyId == id);
             return View(company);
@@ -82,8 +82,8 @@ namespace JobZoom.Web.Controllers
 
         //
         // GET: /AdminCompany/Delete/5
- 
-        public ActionResult Delete(Guid id)
+
+        public ActionResult Delete(string id)
         {
             Company company = db.Companies.Single(c => c.CompanyId == id);
             return View(company);
@@ -93,7 +93,7 @@ namespace JobZoom.Web.Controllers
         // POST: /AdminCompany/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(string id)
         {            
             Company company = db.Companies.Single(c => c.CompanyId == id);
             db.Companies.DeleteObject(company);

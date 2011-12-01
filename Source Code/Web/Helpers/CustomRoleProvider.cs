@@ -109,7 +109,7 @@ public class CustomRoleProvider : RoleProvider
         using (JobZoomEntities db = new JobZoomEntities())
         {
             Role dbrole = new Role();
-            dbrole.RoleId = Guid.NewGuid();
+            dbrole.RoleId = Guid.NewGuid().ToString();
             dbrole.RoleName = roleName;
 
             db.AddToRoles(dbrole);

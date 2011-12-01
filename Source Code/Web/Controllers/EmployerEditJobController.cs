@@ -12,11 +12,11 @@ namespace JobZoom.Web.Controllers
     {
         private JobZoomEntities db = new JobZoomEntities();
         private string userId;
-        private Guid jobPosingId;
+        private string jobPosingId;
         //
         // GET: /EmployerEditJob/
 
-        public ActionResult Basic(Guid id)
+        public ActionResult Basic(string id)
         {
             Job_Posting job_posting = db.Job_Posting.Single(x => x.JobPostingId == id);
             return View(job_posting);
@@ -34,14 +34,14 @@ namespace JobZoom.Web.Controllers
             return View(job_posting);
         }
 
-        public ActionResult Education(Guid id)
+        public ActionResult Education(string id)
         {
             var test = Url.RequestContext.RouteData.Values["id"];
             List<Job_EducationExpRequirement> model = db.Job_EducationExpRequirement.Where(x => x.JobPostingId == id).ToList();            
             return View(model);
         }
 
-        public ActionResult Work(Guid id)
+        public ActionResult Work(string id)
         {
             jobPosingId = id;
             return View();
@@ -49,7 +49,7 @@ namespace JobZoom.Web.Controllers
 
         [OutputCache(Duration = 0)]
         [HttpGet]
-        public ActionResult ListWorks(Guid id)
+        public ActionResult ListWorks(string id)
         {
             var listWorkExp = db.Job_WorkExpRequirement.Where(x => x.JobPostingId == id);
             return PartialView("ListWorkExpView", listWorkExp);
@@ -65,7 +65,7 @@ namespace JobZoom.Web.Controllers
 
         [OutputCache(Duration = 0)]
         [HttpGet]
-        public ActionResult EditWork(Guid id)
+        public ActionResult EditWork(string id)
         {
             Job_WorkExpRequirement workExp = db.Job_WorkExpRequirement.FirstOrDefault(x=>x.JobWorkExpRequirementId == id);
             return PartialView("EditWorkExpView", workExp);
@@ -77,13 +77,13 @@ namespace JobZoom.Web.Controllers
         {
             if(ModelState.IsValid)
             {
-                if(workExp.JobWorkExpRequirementId == Guid.Empty)
+                if(workExp.JobWorkExpRequirementId == string.Empty)
                 {
-                    workExp.JobWorkExpRequirementId = Guid.NewGuid();                    
+                    workExp.JobWorkExpRequirementId = Guid.NewGuid().ToString();                    
                     db.Job_WorkExpRequirement.AddObject(workExp);
 
                     //Tag tag = new Tag{ 
-                    //    ID= Guid.NewGuid(), 
+                    //    ID= Guid.NewGuid().ToString(), 
                     //    ObjectID = workExp.JobWorkExpRequirementId, 
                     //    TableName="Job.WorkExpRequirement", 
                     //    TagName = workExp.JobAttributeValue,
@@ -113,7 +113,7 @@ namespace JobZoom.Web.Controllers
 
         [OutputCache(Duration = 0)]
         [HttpGet]
-        public ActionResult EditEducation(Guid id)
+        public ActionResult EditEducation(string id)
         {
             Job_EducationExpRequirement educationExp = db.Job_EducationExpRequirement.FirstOrDefault(x => x.JobEducationExpRequirementId == id);
             return PartialView("EditEducationExpView", educationExp);
@@ -124,9 +124,9 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (educationExp.JobEducationExpRequirementId == Guid.Empty)
+                if (educationExp.JobEducationExpRequirementId == string.Empty)
                 {
-                    educationExp.JobEducationExpRequirementId = Guid.NewGuid();
+                    educationExp.JobEducationExpRequirementId = Guid.NewGuid().ToString();
                     db.Job_EducationExpRequirement.AddObject(educationExp);
                     db.SaveChanges();
                 }
@@ -143,7 +143,7 @@ namespace JobZoom.Web.Controllers
 
         [OutputCache(Duration = 0)]
         [HttpGet]
-        public ActionResult ListEducations(Guid id)
+        public ActionResult ListEducations(string id)
         {
             List<Job_EducationExpRequirement> listEducationExp = db.Job_EducationExpRequirement.Where(x => x.JobPostingId == id).ToList();
             return PartialView("ListEducationExpView", listEducationExp);

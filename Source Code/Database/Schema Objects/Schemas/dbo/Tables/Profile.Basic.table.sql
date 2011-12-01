@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Profile.Basic] (
-    [ProfileBasicId]    UNIQUEIDENTIFIER NOT NULL,
+    [ProfileBasicId]    CHAR(36) NOT NULL,
     [UserId]            NVARCHAR (128)   NOT NULL,
     [FirstName]         NVARCHAR (50)    NOT NULL,
     [LastName]          NVARCHAR (50)    NOT NULL,

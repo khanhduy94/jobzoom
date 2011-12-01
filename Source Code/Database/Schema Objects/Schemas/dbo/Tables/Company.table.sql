@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[Company] (
-    [CompanyId]    UNIQUEIDENTIFIER NOT NULL,
+    [CompanyId]    CHAR(36) NOT NULL,
     [Name]         NVARCHAR (128)   NOT NULL,
     [Industry]     NVARCHAR (256)   NULL,
     [CompanySize]  NVARCHAR (128)   NULL,

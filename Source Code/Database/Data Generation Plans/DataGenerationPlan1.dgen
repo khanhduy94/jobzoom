@@ -88,7 +88,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1152,7 +1152,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1174,7 +1174,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1196,7 +1196,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1253,7 +1253,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1275,7 +1275,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1362,7 +1362,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1406,7 +1406,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1487,7 +1487,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1509,7 +1509,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1740,7 +1740,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2159,7 +2159,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2203,7 +2203,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2375,7 +2375,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2419,7 +2419,7 @@
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
+											<References ExternalSource="BuiltIns" Name="[CHAR(36)]" />
 										</Entry>
 									</Relationship>
 								</Element>

@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Job.Approval] (
-    [JobApprovalId]		UNIQUEIDENTIFIER	NOT NULL,
-	[JobPostingId]		UNIQUEIDENTIFIER	NOT NULL,
-    [ProfileID]			UNIQUEIDENTIFIER	NOT NULL,    
+    [JobApprovalId]		CHAR(36)	NOT NULL,
+	[JobPostingId]		CHAR(36)	NOT NULL,
+    [ProfileID]			CHAR(36)	NOT NULL,    
 	[UserId]			NVARCHAR(128)		NULL,    
 	[IsApplied]			BIT					NULL,
     [IsApproved]		BIT					NULL,

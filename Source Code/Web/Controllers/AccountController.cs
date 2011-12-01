@@ -91,7 +91,7 @@ namespace JobZoom.Web.Controllers
                     // Save basic information
                     JobZoomEntities db = new JobZoomEntities();
                     Profile_Basic profile_basic = new Profile_Basic();
-                    profile_basic.ProfileBasicId = Guid.NewGuid();
+                    profile_basic.ProfileBasicId = Guid.NewGuid().ToString();
                     profile_basic.UserId = model.UserName;
                     profile_basic.FirstName = model.FirstName;
                     profile_basic.LastName = model.LastName;
@@ -154,7 +154,7 @@ namespace JobZoom.Web.Controllers
                     // Save basic information
                     JobZoomEntities db = new JobZoomEntities();
                     Company company = new Company();
-                    company.CompanyId = Guid.NewGuid();
+                    company.CompanyId = Guid.NewGuid().ToString();
                     company.UserId = model.UserName;
                     company.Name = model.CompanyName;
                     company.Industry = model.Industry;

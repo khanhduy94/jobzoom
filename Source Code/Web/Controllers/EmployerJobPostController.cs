@@ -23,7 +23,7 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                job_posting.JobPostingId = Guid.NewGuid();
+                job_posting.JobPostingId = Guid.NewGuid().ToString();
                 db.Job_Posting.AddObject(job_posting);
                 db.SaveChanges();
                 return RedirectToAction("Basic", "EmployerEditJob", new { id = job_posting.JobPostingId});

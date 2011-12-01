@@ -32,18 +32,6 @@
           <EntitySet Name="SimilarityTerm" EntityType="JobZoomModel.Store.SimilarityTerm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="JobZoomModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserInRole" EntityType="JobZoomModel.Store.UserInRole" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="JobRequirementView" EntityType="JobZoomModel.Store.JobRequirementView" store:Type="Views" store:Schema="dbo" store:Name="JobRequirementView">
-            <DefiningQuery>SELECT 
-      [JobRequirementView].[Id] AS [Id], 
-      [JobRequirementView].[JobPostingId] AS [JobPostingId], 
-      [JobRequirementView].[UserId] AS [UserId], 
-      [JobRequirementView].[CompanyId] AS [CompanyId], 
-      [JobRequirementView].[CompanyName] AS [CompanyName], 
-      [JobRequirementView].[JobTitle] AS [JobTitle], 
-      [JobRequirementView].[JobAttributeName] AS [JobAttributeName], 
-      [JobRequirementView].[JobAttributeValue] AS [JobAttributeValue]
-      FROM [dbo].[JobRequirementView] AS [JobRequirementView]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__DecisionT__NODEI__2C3393D0" Association="JobZoomModel.Store.FK__DecisionT__NODEI__2C3393D0">
             <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
             <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistribution" />
@@ -85,7 +73,7 @@
           <Key>
             <PropertyRef Name="AttributeTagId" />
           </Key>
-          <Property Name="AttributeTagId" Type="varchar" Nullable="false" MaxLength="36" />
+          <Property Name="AttributeTagId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="AttributeTagName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="Weight" Type="smallint" />
           <Property Name="Level" Type="smallint" />
@@ -102,7 +90,7 @@
           <Key>
             <PropertyRef Name="CompanyId" />
           </Key>
-          <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CompanyId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Industry" Type="nvarchar" MaxLength="256" />
@@ -161,9 +149,9 @@
           <Key>
             <PropertyRef Name="JobApprovalId" />
           </Key>
-          <Property Name="JobApprovalId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="JobPostingId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProfileID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobApprovalId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="JobPostingId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="ProfileID" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="IsApplied" Type="bit" />
           <Property Name="IsApproved" Type="bit" />
@@ -172,8 +160,8 @@
           <Key>
             <PropertyRef Name="JobEducationExpRequirementId" />
           </Key>
-          <Property Name="JobEducationExpRequirementId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="JobPostingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobEducationExpRequirementId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="JobPostingId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="JobAttributeName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="JobAttributeValue" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
@@ -181,8 +169,8 @@
           <Key>
             <PropertyRef Name="JobOtherRequirementId" />
           </Key>
-          <Property Name="JobOtherRequirementId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="JobPostingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobOtherRequirementId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="JobPostingId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="JobAttributeName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="JobAttributeValue" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
@@ -190,9 +178,9 @@
           <Key>
             <PropertyRef Name="JobPostingId" />
           </Key>
-          <Property Name="JobPostingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobPostingId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="CompanyId" Type="uniqueidentifier" />
+          <Property Name="CompanyId" Type="char" MaxLength="36" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="128" />
           <Property Name="JobTitle" Type="nvarchar" Nullable="false" MaxLength="128" />
         </EntityType>
@@ -200,8 +188,8 @@
           <Key>
             <PropertyRef Name="JobWorkExpRequirementId" />
           </Key>
-          <Property Name="JobWorkExpRequirementId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="JobPostingId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JobWorkExpRequirementId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="JobPostingId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="JobAttributeName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="JobAttributeValue" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
@@ -209,7 +197,7 @@
           <Key>
             <PropertyRef Name="ProfileBasicId" />
           </Key>
-          <Property Name="ProfileBasicId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProfileBasicId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -232,9 +220,9 @@
           <Key>
             <PropertyRef Name="ProfileEducationId" />
           </Key>
-          <Property Name="ProfileEducationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProfileEducationId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="SchoolUniversityId" Type="uniqueidentifier" />
+          <Property Name="SchoolUniversityId" Type="char" MaxLength="36" />
           <Property Name="SchoolUniversityName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Major" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="StartDate" Type="date" />
@@ -246,9 +234,9 @@
           <Key>
             <PropertyRef Name="ProfileWorkId" />
           </Key>
-          <Property Name="ProfileWorkId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProfileWorkId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="CompanyId" Type="uniqueidentifier" />
+          <Property Name="CompanyId" Type="char" MaxLength="36" />
           <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="JobTitle" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="StartDate" Type="date" />
@@ -260,14 +248,14 @@
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
         <EntityType Name="SimilarityTerm">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="varchar" Nullable="false" MaxLength="36" />
+          <Property Name="ID" Type="char" Nullable="false" MaxLength="36" />
           <Property Name="Keyword1" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Keyword2" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Rate" Type="float" Nullable="false" />
@@ -304,28 +292,7 @@
             <PropertyRef Name="RoleId" />
           </Key>
           <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'JobZoom.dbo.JobRequirementView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="JobRequirementView">
-          <Key>
-            <PropertyRef Name="Id" />
-            
-            
-            
-            
-            
-          </Key>
-          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="JobPostingId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="CompanyId" Type="uniqueidentifier" />
-          <Property Name="CompanyName" Type="nvarchar" MaxLength="128" />
-          <Property Name="JobTitle" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="JobAttributeName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="JobAttributeValue" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="RoleId" Type="char" Nullable="false" MaxLength="36" />
         </EntityType>
         <Association Name="FK__DecisionT__NODEI__2C3393D0">
           <End Role="DecisionTreeNode" Type="JobZoomModel.Store.DecisionTreeNode" Multiplicity="1" />
@@ -444,35 +411,20 @@
     <edmx:ConceptualModels>
       <Schema Namespace="JobZoomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="JobZoomEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
+          <EntitySet Name="Companies" EntityType="JobZoomModel.Company" />
           <EntitySet Name="DecisionTreeNodes" EntityType="JobZoomModel.DecisionTreeNode" />
           <EntitySet Name="DecisionTreeNodeDistributions" EntityType="JobZoomModel.DecisionTreeNodeDistribution" />
-          <EntitySet Name="Job_EducationExpRequirement" EntityType="JobZoomModel.Job_EducationExpRequirement" />
-          <EntitySet Name="Job_OtherRequirement" EntityType="JobZoomModel.Job_OtherRequirement" />
-          <EntitySet Name="Job_Posting" EntityType="JobZoomModel.Job_Posting" />
-          <EntitySet Name="Job_WorkExpRequirement" EntityType="JobZoomModel.Job_WorkExpRequirement" />
           <EntitySet Name="Profile_Basic" EntityType="JobZoomModel.Profile_Basic" />
           <EntitySet Name="Profile_Education" EntityType="JobZoomModel.Profile_Education" />
           <EntitySet Name="Profile_Work" EntityType="JobZoomModel.Profile_Work" />
-          <AssociationSet Name="FK__DecisionT__NODEI__145C0A3F" Association="JobZoomModel.FK__DecisionT__NODEI__145C0A3F">
+          <EntitySet Name="Roles" EntityType="JobZoomModel.Role" />
+          <EntitySet Name="SimilarityTerms" EntityType="JobZoomModel.SimilarityTerm" />
+          <EntitySet Name="Users" EntityType="JobZoomModel.User" />
+          <AssociationSet Name="FK__DecisionT__NODEI__2C3393D0" Association="JobZoomModel.FK__DecisionT__NODEI__2C3393D0">
             <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
             <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistributions" />
           </AssociationSet>
-          <AssociationSet Name="FK_JobEducationExpRequirement_JobPosting" Association="JobZoomModel.FK_JobEducationExpRequirement_JobPosting">
-            <End Role="Job_Posting" EntitySet="Job_Posting" />
-            <End Role="Job_EducationExpRequirement" EntitySet="Job_EducationExpRequirement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobOtherRequirement_JobPosting" Association="JobZoomModel.FK_JobOtherRequirement_JobPosting">
-            <End Role="Job_Posting" EntitySet="Job_Posting" />
-            <End Role="Job_OtherRequirement" EntitySet="Job_OtherRequirement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JobWorkExRequirement_JobPosting" Association="JobZoomModel.FK_JobWorkExRequirement_JobPosting">
-            <End Role="Job_Posting" EntitySet="Job_Posting" />
-            <End Role="Job_WorkExpRequirement" EntitySet="Job_WorkExpRequirement" />
-          </AssociationSet>
-          <EntitySet Name="JobRequirementViews" EntityType="JobZoomModel.JobRequirementView" />
-          <EntitySet Name="Job_Approval" EntityType="JobZoomModel.Job_Approval" />
-          <EntitySet Name="Roles" EntityType="JobZoomModel.Role" />
-          <EntitySet Name="Users" EntityType="JobZoomModel.User" />
           <AssociationSet Name="FK_ProfileBasic_User" Association="JobZoomModel.FK_ProfileBasic_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Profile_Basic" EntitySet="Profile_Basic" />
@@ -489,10 +441,65 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
-          <EntitySet Name="SimilarityTerms" EntityType="JobZoomModel.SimilarityTerm" />
-          <EntitySet Name="Companies" EntityType="JobZoomModel.Company" />
+          <EntitySet Name="Job_EducationExpRequirement" EntityType="JobZoomModel.Job_EducationExpRequirement" />
+          <EntitySet Name="Job_OtherRequirement" EntityType="JobZoomModel.Job_OtherRequirement" />
+          <EntitySet Name="Job_WorkExpRequirement" EntityType="JobZoomModel.Job_WorkExpRequirement" />
+          <EntitySet Name="Job_Approval" EntityType="JobZoomModel.Job_Approval" />
+          <EntitySet Name="Job_Posting" EntityType="JobZoomModel.Job_Posting" />
+          <AssociationSet Name="FK_JobEducationExpRequirement_JobPosting" Association="JobZoomModel.FK_JobEducationExpRequirement_JobPosting">
+            <End Role="Job_Posting" EntitySet="Job_Posting" />
+            <End Role="Job_EducationExpRequirement" EntitySet="Job_EducationExpRequirement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobOtherRequirement_JobPosting" Association="JobZoomModel.FK_JobOtherRequirement_JobPosting">
+            <End Role="Job_Posting" EntitySet="Job_Posting" />
+            <End Role="Job_OtherRequirement" EntitySet="Job_OtherRequirement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JobWorkExRequirement_JobPosting" Association="JobZoomModel.FK_JobWorkExRequirement_JobPosting">
+            <End Role="Job_Posting" EntitySet="Job_Posting" />
+            <End Role="Job_WorkExpRequirement" EntitySet="Job_WorkExpRequirement" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AttributeTag">
+          <Key>
+            <PropertyRef Name="AttributeTagId" />
+          </Key>
+          <Property Type="String" Name="AttributeTagId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="AttributeTagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Weight" />
+          <Property Type="Int16" Name="Level" />
+          <Property Type="Boolean" Name="Required" />
+          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ObjectId" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentId" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Attachment" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Type="String" Name="CompanyId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Industry" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanySize" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine1" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine2" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobilePhone" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Faceboook" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Twitter" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Linkedin" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Logo" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="DecisionTreeNode">
           <Key>
             <PropertyRef Name="NODEID" />
@@ -512,7 +519,7 @@
           <Property Type="Double" Name="MSOLAP_NODE_SCORE" />
           <Property Type="String" Name="MSOLAP_NODE_SHORT_CAPTION" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ATTRIBUTE_NAME" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DecisionTreeNodeDistribution" Relationship="JobZoomModel.FK__DecisionT__NODEI__145C0A3F" FromRole="DecisionTreeNode" ToRole="DecisionTreeNodeDistribution" />
+          <NavigationProperty Name="DecisionTreeNodeDistribution" Relationship="JobZoomModel.FK__DecisionT__NODEI__2C3393D0" FromRole="DecisionTreeNode" ToRole="DecisionTreeNodeDistribution" />
         </EntityType>
         <EntityType Name="DecisionTreeNodeDistribution">
           <Key>
@@ -525,56 +532,13 @@
           <Property Type="Double" Name="PROBABILITY" />
           <Property Type="Double" Name="VARIANCE" />
           <Property Type="Int32" Name="VALUETYPE" />
-          <NavigationProperty Name="DecisionTreeNode" Relationship="JobZoomModel.FK__DecisionT__NODEI__145C0A3F" FromRole="DecisionTreeNodeDistribution" ToRole="DecisionTreeNode" />
-        </EntityType>
-        <EntityType Name="Job_EducationExpRequirement">
-          <Key>
-            <PropertyRef Name="JobEducationExpRequirementId" />
-          </Key>
-          <Property Type="Guid" Name="JobEducationExpRequirementId" Nullable="false" />
-          <Property Type="Guid" Name="JobPostingId" Nullable="false" />
-          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Job_Posting" Relationship="JobZoomModel.FK_JobEducationExpRequirement_JobPosting" FromRole="Job_EducationExpRequirement" ToRole="Job_Posting" />
-        </EntityType>
-        <EntityType Name="Job_OtherRequirement">
-          <Key>
-            <PropertyRef Name="JobOtherRequirementId" />
-          </Key>
-          <Property Type="Guid" Name="JobOtherRequirementId" Nullable="false" />
-          <Property Type="Guid" Name="JobPostingId" Nullable="false" />
-          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Job_Posting" Relationship="JobZoomModel.FK_JobOtherRequirement_JobPosting" FromRole="Job_OtherRequirement" ToRole="Job_Posting" />
-        </EntityType>
-        <EntityType Name="Job_Posting">
-          <Key>
-            <PropertyRef Name="JobPostingId" />
-          </Key>
-          <Property Type="Guid" Name="JobPostingId" Nullable="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="CompanyId" />
-          <Property Type="String" Name="CompanyName" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Job_EducationExpRequirement" Relationship="JobZoomModel.FK_JobEducationExpRequirement_JobPosting" FromRole="Job_Posting" ToRole="Job_EducationExpRequirement" />
-          <NavigationProperty Name="Job_OtherRequirement" Relationship="JobZoomModel.FK_JobOtherRequirement_JobPosting" FromRole="Job_Posting" ToRole="Job_OtherRequirement" />
-          <NavigationProperty Name="Job_WorkExpRequirement" Relationship="JobZoomModel.FK_JobWorkExRequirement_JobPosting" FromRole="Job_Posting" ToRole="Job_WorkExpRequirement" />
-        </EntityType>
-        <EntityType Name="Job_WorkExpRequirement">
-          <Key>
-            <PropertyRef Name="JobWorkExpRequirementId" />
-          </Key>
-          <Property Type="Guid" Name="JobWorkExpRequirementId" Nullable="false" />
-          <Property Type="Guid" Name="JobPostingId" Nullable="false" />
-          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Job_Posting" Relationship="JobZoomModel.FK_JobWorkExRequirement_JobPosting" FromRole="Job_WorkExpRequirement" ToRole="Job_Posting" />
+          <NavigationProperty Name="DecisionTreeNode" Relationship="JobZoomModel.FK__DecisionT__NODEI__2C3393D0" FromRole="DecisionTreeNodeDistribution" ToRole="DecisionTreeNode" />
         </EntityType>
         <EntityType Name="Profile_Basic">
           <Key>
             <PropertyRef Name="ProfileBasicId" />
           </Key>
-          <Property Type="Guid" Name="ProfileBasicId" Nullable="false" />
+          <Property Type="String" Name="ProfileBasicId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -598,9 +562,9 @@
           <Key>
             <PropertyRef Name="ProfileEducationId" />
           </Key>
-          <Property Type="Guid" Name="ProfileEducationId" Nullable="false" />
+          <Property Type="String" Name="ProfileEducationId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="SchoolUniversityId" />
+          <Property Type="String" Name="SchoolUniversityId" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="SchoolUniversityName" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Major" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="StartDate" />
@@ -613,9 +577,9 @@
           <Key>
             <PropertyRef Name="ProfileWorkId" />
           </Key>
-          <Property Type="Guid" Name="ProfileWorkId" Nullable="false" />
+          <Property Type="String" Name="ProfileWorkId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="CompanyId" />
+          <Property Type="String" Name="CompanyId" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="StartDate" />
@@ -624,85 +588,22 @@
           <Property Type="String" Name="Description" MaxLength="512" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="JobZoomModel.FK_ProfileWork_User" FromRole="Profile_Work" ToRole="User" />
         </EntityType>
-        <Association Name="FK__DecisionT__NODEI__145C0A3F">
-          <End Type="JobZoomModel.DecisionTreeNode" Role="DecisionTreeNode" Multiplicity="1" />
-          <End Type="JobZoomModel.DecisionTreeNodeDistribution" Role="DecisionTreeNodeDistribution" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="DecisionTreeNode">
-              <PropertyRef Name="NODEID" />
-            </Principal>
-            <Dependent Role="DecisionTreeNodeDistribution">
-              <PropertyRef Name="NODEID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JobEducationExpRequirement_JobPosting">
-          <End Type="JobZoomModel.Job_Posting" Role="Job_Posting" Multiplicity="1" />
-          <End Type="JobZoomModel.Job_EducationExpRequirement" Role="Job_EducationExpRequirement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Job_Posting">
-              <PropertyRef Name="JobPostingId" />
-            </Principal>
-            <Dependent Role="Job_EducationExpRequirement">
-              <PropertyRef Name="JobPostingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JobOtherRequirement_JobPosting">
-          <End Type="JobZoomModel.Job_Posting" Role="Job_Posting" Multiplicity="1" />
-          <End Type="JobZoomModel.Job_OtherRequirement" Role="Job_OtherRequirement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Job_Posting">
-              <PropertyRef Name="JobPostingId" />
-            </Principal>
-            <Dependent Role="Job_OtherRequirement">
-              <PropertyRef Name="JobPostingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_JobWorkExRequirement_JobPosting">
-          <End Type="JobZoomModel.Job_Posting" Role="Job_Posting" Multiplicity="1" />
-          <End Type="JobZoomModel.Job_WorkExpRequirement" Role="Job_WorkExpRequirement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Job_Posting">
-              <PropertyRef Name="JobPostingId" />
-            </Principal>
-            <Dependent Role="Job_WorkExpRequirement">
-              <PropertyRef Name="JobPostingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="JobRequirementView">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Guid" Name="Id" Nullable="false" />
-          <Property Type="Guid" Name="JobPostingId" Nullable="false" />
-          <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="CompanyId" />
-          <Property Type="String" Name="CompanyName" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Job_Approval">
-          <Key>
-            <PropertyRef Name="JobApprovalId" />
-          </Key>
-          <Property Type="Guid" Name="JobApprovalId" Nullable="false" />
-          <Property Type="Guid" Name="JobPostingId" Nullable="false" />
-          <Property Type="Guid" Name="ProfileID" Nullable="false" />
-          <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsApplied" />
-          <Property Type="Boolean" Name="IsApproved" />
-        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Type="Guid" Name="RoleId" Nullable="false" />
+          <Property Type="String" Name="RoleId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="JobZoomModel.UserInRole" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SimilarityTerm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="Keyword1" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Keyword2" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -734,6 +635,18 @@
           <NavigationProperty Name="Profile_Work" Relationship="JobZoomModel.FK_ProfileWork_User" FromRole="User" ToRole="Profile_Work" />
           <NavigationProperty Name="Roles" Relationship="JobZoomModel.UserInRole" FromRole="User" ToRole="Role" />
         </EntityType>
+        <Association Name="FK__DecisionT__NODEI__2C3393D0">
+          <End Type="JobZoomModel.DecisionTreeNode" Role="DecisionTreeNode" Multiplicity="1" />
+          <End Type="JobZoomModel.DecisionTreeNodeDistribution" Role="DecisionTreeNodeDistribution" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODEID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNodeDistribution">
+              <PropertyRef Name="NODEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProfileBasic_User">
           <End Type="JobZoomModel.User" Role="User" Multiplicity="1" />
           <End Type="JobZoomModel.Profile_Basic" Role="Profile_Basic" Multiplicity="*" />
@@ -774,62 +687,145 @@
           <End Type="JobZoomModel.Role" Role="Role" Multiplicity="*" />
           <End Type="JobZoomModel.User" Role="User" Multiplicity="*" />
         </Association>
-        <EntityType Name="AttributeTag">
+        <EntityType Name="Job_EducationExpRequirement">
           <Key>
-            <PropertyRef Name="AttributeTagId" />
+            <PropertyRef Name="JobEducationExpRequirementId" />
           </Key>
-          <Property Type="String" Name="AttributeTagId" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AttributeTagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="Int16" Name="Weight" />
-          <Property Type="Int16" Name="Level" />
-          <Property Type="Boolean" Name="Required" />
-          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ObjectId" MaxLength="36" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ParentId" MaxLength="36" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Attachment" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="ModifiedDate" />
-          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="JobEducationExpRequirementId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobPostingId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job_Posting" Relationship="JobZoomModel.FK_JobEducationExpRequirement_JobPosting" FromRole="Job_EducationExpRequirement" ToRole="Job_Posting" />
         </EntityType>
-        <EntityType Name="SimilarityTerm">
+        <EntityType Name="Job_OtherRequirement">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="JobOtherRequirementId" />
           </Key>
-          <Property Type="String" Name="ID" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Keyword1" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Keyword2" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Double" Name="Rate" Nullable="false" />
+          <Property Type="String" Name="JobOtherRequirementId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobPostingId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job_Posting" Relationship="JobZoomModel.FK_JobOtherRequirement_JobPosting" FromRole="Job_OtherRequirement" ToRole="Job_Posting" />
         </EntityType>
-        <EntityType Name="Company">
+        <EntityType Name="Job_WorkExpRequirement">
           <Key>
-            <PropertyRef Name="CompanyId" />
+            <PropertyRef Name="JobWorkExpRequirementId" />
           </Key>
-          <Property Type="Guid" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="JobWorkExpRequirementId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobPostingId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobAttributeName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobAttributeValue" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job_Posting" Relationship="JobZoomModel.FK_JobWorkExRequirement_JobPosting" FromRole="Job_WorkExpRequirement" ToRole="Job_Posting" />
+        </EntityType>
+        <EntityType Name="Job_Approval">
+          <Key>
+            <PropertyRef Name="JobApprovalId" />
+          </Key>
+          <Property Type="String" Name="JobApprovalId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="JobPostingId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="ProfileID" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
           <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Industry" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CompanySize" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AddressLine1" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AddressLine2" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Country" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="City" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="State" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Phone" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MobilePhone" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Fax" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Faceboook" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Twitter" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Linkedin" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Logo" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsApplied" />
+          <Property Type="Boolean" Name="IsApproved" />
         </EntityType>
+        <EntityType Name="Job_Posting">
+          <Key>
+            <PropertyRef Name="JobPostingId" />
+          </Key>
+          <Property Type="String" Name="JobPostingId" Nullable="false" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="UserId" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanyId" MaxLength="36" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="CompanyName" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="JobTitle" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Job_EducationExpRequirement" Relationship="JobZoomModel.FK_JobEducationExpRequirement_JobPosting" FromRole="Job_Posting" ToRole="Job_EducationExpRequirement" />
+          <NavigationProperty Name="Job_OtherRequirement" Relationship="JobZoomModel.FK_JobOtherRequirement_JobPosting" FromRole="Job_Posting" ToRole="Job_OtherRequirement" />
+          <NavigationProperty Name="Job_WorkExpRequirement" Relationship="JobZoomModel.FK_JobWorkExRequirement_JobPosting" FromRole="Job_Posting" ToRole="Job_WorkExpRequirement" />
+        </EntityType>
+        <Association Name="FK_JobEducationExpRequirement_JobPosting">
+          <End Type="JobZoomModel.Job_Posting" Role="Job_Posting" Multiplicity="1" />
+          <End Type="JobZoomModel.Job_EducationExpRequirement" Role="Job_EducationExpRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_Posting">
+              <PropertyRef Name="JobPostingId" />
+            </Principal>
+            <Dependent Role="Job_EducationExpRequirement">
+              <PropertyRef Name="JobPostingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobOtherRequirement_JobPosting">
+          <End Type="JobZoomModel.Job_Posting" Role="Job_Posting" Multiplicity="1" />
+          <End Type="JobZoomModel.Job_OtherRequirement" Role="Job_OtherRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_Posting">
+              <PropertyRef Name="JobPostingId" />
+            </Principal>
+            <Dependent Role="Job_OtherRequirement">
+              <PropertyRef Name="JobPostingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JobWorkExRequirement_JobPosting">
+          <End Type="JobZoomModel.Job_Posting" Role="Job_Posting" Multiplicity="1" />
+          <End Type="JobZoomModel.Job_WorkExpRequirement" Role="Job_WorkExpRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job_Posting">
+              <PropertyRef Name="JobPostingId" />
+            </Principal>
+            <Dependent Role="Job_WorkExpRequirement">
+              <PropertyRef Name="JobPostingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="JobZoomModelStoreContainer" CdmEntityContainer="JobZoomEntities">
+          <EntitySetMapping Name="AttributeTags">
+            <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
+              <MappingFragment StoreEntitySet="AttributeTag">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
+                <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="JobZoomModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Faceboook" ColumnName="Faceboook" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="CompanySize" ColumnName="CompanySize" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DecisionTreeNodes">
             <EntityTypeMapping TypeName="JobZoomModel.DecisionTreeNode">
               <MappingFragment StoreEntitySet="DecisionTreeNode">
@@ -861,47 +857,6 @@
                 <ScalarProperty Name="ATTRIBUTE_VALUE" ColumnName="ATTRIBUTE_VALUE" />
                 <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
                 <ScalarProperty Name="NODEID" ColumnName="NODEID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Job_EducationExpRequirement">
-            <EntityTypeMapping TypeName="JobZoomModel.Job_EducationExpRequirement">
-              <MappingFragment StoreEntitySet="Job_EducationExpRequirement">
-                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
-                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
-                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
-                <ScalarProperty Name="JobEducationExpRequirementId" ColumnName="JobEducationExpRequirementId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Job_OtherRequirement">
-            <EntityTypeMapping TypeName="JobZoomModel.Job_OtherRequirement">
-              <MappingFragment StoreEntitySet="Job_OtherRequirement">
-                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
-                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
-                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
-                <ScalarProperty Name="JobOtherRequirementId" ColumnName="JobOtherRequirementId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Job_Posting">
-            <EntityTypeMapping TypeName="JobZoomModel.Job_Posting">
-              <MappingFragment StoreEntitySet="Job_Posting">
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Job_WorkExpRequirement">
-            <EntityTypeMapping TypeName="JobZoomModel.Job_WorkExpRequirement">
-              <MappingFragment StoreEntitySet="Job_WorkExpRequirement">
-                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
-                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
-                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
-                <ScalarProperty Name="JobWorkExpRequirementId" ColumnName="JobWorkExpRequirementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -959,37 +914,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="JobRequirementViews">
-            <EntityTypeMapping TypeName="JobZoomModel.JobRequirementView">
-              <MappingFragment StoreEntitySet="JobRequirementView">
-                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
-                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Job_Approval">
-            <EntityTypeMapping TypeName="JobZoomModel.Job_Approval">
-              <MappingFragment StoreEntitySet="Job_Approval">
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="IsApplied" ColumnName="IsApplied" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
-                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
-                <ScalarProperty Name="JobApprovalId" ColumnName="JobApprovalId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="JobZoomModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SimilarityTerms">
+            <EntityTypeMapping TypeName="JobZoomModel.SimilarityTerm">
+              <MappingFragment StoreEntitySet="SimilarityTerm">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Keyword2" ColumnName="Keyword2" />
+                <ScalarProperty Name="Keyword1" ColumnName="Keyword1" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1028,56 +967,56 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="AttributeTags">
-            <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
-              <MappingFragment StoreEntitySet="AttributeTag">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
-                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
-                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
-                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
-                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
-                <ScalarProperty Name="Required" ColumnName="Required" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
-                <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
+          <EntitySetMapping Name="Job_EducationExpRequirement">
+            <EntityTypeMapping TypeName="JobZoomModel.Job_EducationExpRequirement">
+              <MappingFragment StoreEntitySet="Job_EducationExpRequirement">
+                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
+                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
+                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
+                <ScalarProperty Name="JobEducationExpRequirementId" ColumnName="JobEducationExpRequirementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SimilarityTerms">
-            <EntityTypeMapping TypeName="JobZoomModel.SimilarityTerm">
-              <MappingFragment StoreEntitySet="SimilarityTerm">
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Keyword2" ColumnName="Keyword2" />
-                <ScalarProperty Name="Keyword1" ColumnName="Keyword1" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="Job_OtherRequirement">
+            <EntityTypeMapping TypeName="JobZoomModel.Job_OtherRequirement">
+              <MappingFragment StoreEntitySet="Job_OtherRequirement">
+                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
+                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
+                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
+                <ScalarProperty Name="JobOtherRequirementId" ColumnName="JobOtherRequirementId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="JobZoomModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
-                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
-                <ScalarProperty Name="Faceboook" ColumnName="Faceboook" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="CompanySize" ColumnName="CompanySize" />
-                <ScalarProperty Name="Industry" ColumnName="Industry" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+          <EntitySetMapping Name="Job_WorkExpRequirement">
+            <EntityTypeMapping TypeName="JobZoomModel.Job_WorkExpRequirement">
+              <MappingFragment StoreEntitySet="Job_WorkExpRequirement">
+                <ScalarProperty Name="JobAttributeValue" ColumnName="JobAttributeValue" />
+                <ScalarProperty Name="JobAttributeName" ColumnName="JobAttributeName" />
+                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
+                <ScalarProperty Name="JobWorkExpRequirementId" ColumnName="JobWorkExpRequirementId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_Approval">
+            <EntityTypeMapping TypeName="JobZoomModel.Job_Approval">
+              <MappingFragment StoreEntitySet="Job_Approval">
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsApplied" ColumnName="IsApplied" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
+                <ScalarProperty Name="JobApprovalId" ColumnName="JobApprovalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Job_Posting">
+            <EntityTypeMapping TypeName="JobZoomModel.Job_Posting">
+              <MappingFragment StoreEntitySet="Job_Posting">
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="JobPostingId" ColumnName="JobPostingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1102,57 +1041,56 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="JobZoomDataModel">
-        <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNode" Width="1.5" PointX="5.75" PointY="10" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNodeDistribution" Width="1.5" PointX="8" PointY="10.75" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="JobZoomModel.Job_EducationExpRequirement" Width="1.5" PointX="8" PointY="1.25" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="JobZoomModel.Job_OtherRequirement" Width="1.5" PointX="8" PointY="3.875" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="JobZoomModel.Job_Posting" Width="1.5" PointX="5.75" PointY="3.625" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="JobZoomModel.Job_WorkExpRequirement" Width="1.5" PointX="8" PointY="6.625" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="JobZoomModel.Profile_Basic" Width="1.5" PointX="3" PointY="1.375" Height="4.6725065104166674" />
-        <EntityTypeShape EntityType="JobZoomModel.Profile_Education" Width="1.5" PointX="3" PointY="6.875" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="JobZoomModel.Profile_Work" Width="1.5" PointX="3" PointY="10.5" Height="2.9417936197916674" />
-        <AssociationConnector Association="JobZoomModel.FK__DecisionT__NODEI__145C0A3F" >
-          <ConnectorPoint PointX="7.25" PointY="12.028595377604169" />
-          <ConnectorPoint PointX="8" PointY="12.028595377604169" />
+        <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="0.75" PointY="11.75" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="12.75" PointY="0.75" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNode" Width="1.5" PointX="7.75" PointY="10" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNodeDistribution" Width="1.5" PointX="10" PointY="10.75" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="JobZoomModel.Profile_Basic" Width="1.5" PointX="5.25" PointY="1.375" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="JobZoomModel.Profile_Education" Width="1.5" PointX="5.25" PointY="6.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="JobZoomModel.Profile_Work" Width="1.5" PointX="5.25" PointY="10.5" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="JobZoomModel.Role" Width="1.5" PointX="0.75" PointY="6.625" Height="1.5956835937499951" />
+        <EntityTypeShape EntityType="JobZoomModel.SimilarityTerm" Width="1.5" PointX="12.75" PointY="6.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JobZoomModel.User" Width="1.5" PointX="3" PointY="4.5" Height="5.8263151041666674" />
+        <AssociationConnector Association="JobZoomModel.FK__DecisionT__NODEI__2C3393D0" >
+          <ConnectorPoint PointX="9.25" PointY="12.028595377604169" />
+          <ConnectorPoint PointX="10" PointY="12.028595377604169" />
         </AssociationConnector>
-        <AssociationConnector Association="JobZoomModel.FK_JobEducationExpRequirement_JobPosting" >
-          <ConnectorPoint PointX="6.5" PointY="3.625" />
-          <ConnectorPoint PointX="6.5" PointY="2.2401432291666694" />
-          <ConnectorPoint PointX="8" PointY="2.2401432291666694" />
-        </AssociationConnector>
-        <AssociationConnector Association="JobZoomModel.FK_JobOtherRequirement_JobPosting" >
-          <ConnectorPoint PointX="7.25" PointY="4.8651432291666694" />
-          <ConnectorPoint PointX="8" PointY="4.8651432291666694" />
-        </AssociationConnector>
-        <AssociationConnector Association="JobZoomModel.FK_JobWorkExRequirement_JobPosting" >
-          <ConnectorPoint PointX="6.5" PointY="6.1821907552083388" />
-          <ConnectorPoint PointX="6.5" PointY="7.6151432291666694" />
-          <ConnectorPoint PointX="8" PointY="7.6151432291666694" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="JobZoomModel.JobRequirementView" Width="1.5" PointX="13.375" PointY="0.75" Height="2.5571907552083246" />
-        <EntityTypeShape EntityType="JobZoomModel.Job_Approval" Width="1.5" PointX="10.375" PointY="6.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="JobZoomModel.Role" Width="1.5" PointX="0.75" PointY="1.625" Height="1.5956835937500031" />
-        <EntityTypeShape EntityType="JobZoomModel.User" Width="1.5" PointX="0.75" PointY="4.5" Height="5.8263151041666674" />
         <AssociationConnector Association="JobZoomModel.FK_ProfileBasic_User" >
-          <ConnectorPoint PointX="2.25" PointY="5.2737532552083337" />
-          <ConnectorPoint PointX="3" PointY="5.2737532552083337" />
+          <ConnectorPoint PointX="4.5" PointY="5.2737532552083337" />
+          <ConnectorPoint PointX="5.25" PointY="5.2737532552083337" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_ProfileEducation_User" >
-          <ConnectorPoint PointX="2.25" PointY="8.3458968098958337" />
-          <ConnectorPoint PointX="3" PointY="8.3458968098958337" />
+          <ConnectorPoint PointX="4.5" PointY="8.3458968098958337" />
+          <ConnectorPoint PointX="5.25" PointY="8.3458968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.FK_ProfileWork_User" >
-          <ConnectorPoint PointX="1.5" PointY="10.326315104166667" />
-          <ConnectorPoint PointX="1.5" PointY="11.970896809895834" />
-          <ConnectorPoint PointX="3" PointY="11.970896809895834" />
+          <ConnectorPoint PointX="3.75" PointY="10.326315104166667" />
+          <ConnectorPoint PointX="3.75" PointY="11.970896809895834" />
+          <ConnectorPoint PointX="5.25" PointY="11.970896809895834" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomModel.UserInRole" >
-          <ConnectorPoint PointX="1.5" PointY="3.2206835937500031" />
-          <ConnectorPoint PointX="1.5" PointY="4.5" />
+          <ConnectorPoint PointX="2.25" PointY="7.422841796874998" />
+          <ConnectorPoint PointX="3" PointY="7.422841796874998" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="10.375" PointY="9.75" Height="3.3263964843750031" />
-        <EntityTypeShape EntityType="JobZoomModel.SimilarityTerm" Width="1.5" PointX="12.375" PointY="4.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="12.375" PointY="7.75" Height="4.6725065104166674" />
+        <EntityTypeShape EntityType="JobZoomModel.Job_EducationExpRequirement" Width="1.5" PointX="10" PointY="1.125" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JobZoomModel.Job_OtherRequirement" Width="1.5" PointX="10" PointY="3.875" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JobZoomModel.Job_WorkExpRequirement" Width="1.5" PointX="10" PointY="6.625" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="JobZoomModel.Job_Approval" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906250102" />
+        <EntityTypeShape EntityType="JobZoomModel.Job_Posting" Width="1.5" PointX="7.75" PointY="3.625" Height="2.5571907552083246" />
+        <AssociationConnector Association="JobZoomModel.FK_JobEducationExpRequirement_JobPosting" >
+          <ConnectorPoint PointX="8.5" PointY="3.625" />
+          <ConnectorPoint PointX="8.5" PointY="2.1151432291666667" />
+          <ConnectorPoint PointX="10" PointY="2.1151432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="JobZoomModel.FK_JobOtherRequirement_JobPosting" >
+          <ConnectorPoint PointX="9.25" PointY="4.8651432291666667" />
+          <ConnectorPoint PointX="10" PointY="4.8651432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="JobZoomModel.FK_JobWorkExRequirement_JobPosting" >
+          <ConnectorPoint PointX="8.5" PointY="6.1821907552083246" />
+          <ConnectorPoint PointX="8.5" PointY="7.6151432291666659" />
+          <ConnectorPoint PointX="10" PointY="7.6151432291666659" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

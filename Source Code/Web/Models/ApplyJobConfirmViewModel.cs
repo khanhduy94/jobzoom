@@ -8,6 +8,6 @@ namespace JobZoom.Web.Models
     public class JobApplyConfirmViewModel
     {
         public string UserId { get; set; }
-        public Guid JobId { get; set; }
+        public string JobId { get; set; }
     }
 }
