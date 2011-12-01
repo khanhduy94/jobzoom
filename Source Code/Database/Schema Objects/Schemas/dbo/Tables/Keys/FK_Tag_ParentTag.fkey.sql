@@ -1,7 +1,0 @@
-﻿ALTER TABLE [dbo].[Tag]
-    ADD CONSTRAINT [FK_Tag_ParentTag] FOREIGN KEY ([ParentID]) REFERENCES [dbo].[Tag] ([ID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
-ALTER TABLE [dbo].[Tag] NOCHECK CONSTRAINT [FK_Tag_ParentTag];
-
