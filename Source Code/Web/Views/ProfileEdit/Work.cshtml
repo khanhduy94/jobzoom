@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Work";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="../../Content/jquery.tagit.css" rel="stylesheet" type="text/css" />
+<script src="../../Scripts/tag-it.js" type="text/javascript" ></script>
+<script type="text/javascript">
+    // increase the default animation speed to exaggerate the effect
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#work-dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Save": function () {
+                    $.post("/Profile/Edit/SaveWork",
+                        $("#EditProfileWorkView").serialize(),
+                        function (data) {
+                            $("#work-dialog").dialog("close");
+                            $("#divProfileWorkList").html(data);
+                        });
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#create-work").click(function () {
+            $("#work-dialog").html("")
+                .dialog("option", "title", "Create Work")
+                .load("/Profile/Edit/CreateWork", function () { $("#work-dialog").dialog("open"); });
+        });
+        $(".edit-work").live("click", function () {
+            var id = $(this).attr("profileworkid");            
+            $("#work-dialog").html("")
+                .dialog("option", "title", "Edit Work")
+                .load("/Profile/Edit/EditWork/" + id, function () { $("#work-dialog").dialog("open"); });
+        });
+        LoadProfileWorkList();
+    });
+    function LoadProfileWorkList() {
+        $("#divProfileWorkList").load("/Profile/Edit/ListWorks");
+    }
+</script>
+
+@Html.ActionLink("1.Basic", "Basic", "ProfileEdit")
+@Html.ActionLink("2.Education", "Education", "ProfileEdit")
+@Html.ActionLink("3.Work", "Work", "ProfileEdit")
+<h2>
+    Work Experience</h2>
+<p>
+    <button id="create-work">
+        Create new work</button>
+</p>
+<div id="divProfileWorkList">
+</div>
+<div id="work-dialog" title="" class="Hidden">
+</div>
+

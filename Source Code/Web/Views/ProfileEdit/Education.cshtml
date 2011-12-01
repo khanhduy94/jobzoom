@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Education";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    // increase the default animation speed to exaggerate the effect
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#education-dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Save": function () {
+                    $.post("/Profile/Edit/SaveEducation",
+                        $("#EditProfileEducationView").serialize(),
+                        function (data) {
+                            $("#education-dialog").dialog("close");
+                            $("#divProfileEducationList").html(data);
+                        });
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#create-education").click(function () {
+            $("#education-dialog").html("")
+                .dialog("option", "title", "Create Education")
+                .load("/Profile/Edit/CreateEducation", function () { $("#education-dialog").dialog("open"); });
+        });
+        $(".edit-education").live("click", function () {
+            var id = $(this).attr("profileeducationid");            
+            $("#education-dialog").html("")
+                .dialog("option", "title", "Edit Education")
+                .load("/Profile/Edit/EditEducation/" + id, function () { $("#education-dialog").dialog("open"); });
+        });
+        LoadProfileEducationList();
+    });
+    function LoadProfileEducationList() {
+        $("#divProfileEducationList").load("/Profile/Edit/ListEducations");
+    }
+</script>
+
+@Html.ActionLink("1.Basic", "Basic", "ProfileEdit")
+@Html.ActionLink("2.Education", "Education", "ProfileEdit")
+@Html.ActionLink("3.Work", "Work", "ProfileEdit")
+<h2>
+    Education Experience</h2>
+<p>
+    <button id="create-education">
+        Create new education</button>
+</p>
+<div id="divProfileEducationList">
+</div>
+<div id="education-dialog" title="" class="Hidden">
+</div>

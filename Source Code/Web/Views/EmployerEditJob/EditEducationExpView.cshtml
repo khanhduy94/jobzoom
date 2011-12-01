@@ -1,0 +1,35 @@
+﻿@model JobZoom.Business.Entities.Job_EducationExpRequirement
+
+@using (Html.BeginForm("SaveEducation", "EmployerEditJob", FormMethod.Post, new { id = "EditEducationExpView"})) 
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Job_EducationExpRequirement</legend>
+
+        @Html.HiddenFor(model => model.JobEducationExpRequirementId)
+        
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.JobPostingId)
+            @Html.ValidationMessageFor(model => model.JobPostingId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobAttributeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.JobAttributeName)
+            @Html.ValidationMessageFor(model => model.JobAttributeName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobAttributeValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.JobAttributeValue)
+            @Html.ValidationMessageFor(model => model.JobAttributeValue)
+        </div>        
+    </fieldset>
+}
+<script type="text/javascript">
+    $("#JobPostingId").val(educationexpid);
+</script>

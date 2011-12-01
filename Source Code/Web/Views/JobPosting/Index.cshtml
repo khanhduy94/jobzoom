@@ -1,0 +1,34 @@
+﻿@model IEnumerable<JobZoom.Business.Entities.Job_Posting>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>                
+        <th>
+            CompanyName
+        </th>
+        <th>
+            JobTitle
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>                
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>            
+            @Html.ActionLink("Details", "Details", new { id=item.JobPostingId })            
+        </td>
+    </tr>
+}
+
+</table>

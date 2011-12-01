@@ -1,0 +1,75 @@
+﻿@model IEnumerable<JobZoom.Business.Entities.Profile_Work>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            User
+        </th>
+        <th>
+            CompanyId
+        </th>
+        <th>
+            CompanyName
+        </th>
+        <th>
+            JobTitle
+        </th>
+        <th>
+            StartDate
+        </th>
+        <th>
+            EndDate
+        </th>
+        <th>
+            CurrentlyWork
+        </th>
+        <th>
+            Description
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentlyWork)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProfileWorkId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProfileWorkId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProfileWorkId })
+        </td>
+    </tr>
+}
+
+</table>

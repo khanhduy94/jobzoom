@@ -1,0 +1,11 @@
+﻿@model IEnumerable<JobZoom.Business.Entities.Job_EducationExpRequirement>
+
+@foreach (var item in Model) {
+    <fieldset>
+        <legend>
+            @Html.DisplayFor(modelItem => item.JobAttributeName)
+        </legend>
+        @Html.DisplayFor(modelItem => item.JobAttributeValue)
+        <span class="edit-education ButtonLink" profileeducationid="@item.JobEducationExpRequirementId">Edit</span>
+    </fieldset>
+}

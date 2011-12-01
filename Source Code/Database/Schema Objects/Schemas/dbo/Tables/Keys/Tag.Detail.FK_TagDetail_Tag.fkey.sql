@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[TagDetail]
+    ADD CONSTRAINT [FK_TagDetail_Tag] FOREIGN KEY ([TagID]) REFERENCES [dbo].[Tag] ([ID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
