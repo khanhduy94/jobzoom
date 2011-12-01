@@ -48,7 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cities.cs" />
+    <Compile Include="Industry.cs" />
+    <Compile Include="CompanySize.cs" />
     <Compile Include="Countries.cs" />
+    <Compile Include="DataValidation.cs" />
     <Compile Include="Genders.cs" />
     <Compile Include="JobZoomDataModel.Designer.cs">
       <AutoGen>True</AutoGen>

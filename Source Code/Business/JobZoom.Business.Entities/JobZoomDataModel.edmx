@@ -103,6 +103,7 @@
             <PropertyRef Name="CompanyId" />
           </Key>
           <Property Name="CompanyId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Industry" Type="nvarchar" MaxLength="256" />
           <Property Name="CompanySize" Type="nvarchar" MaxLength="128" />
@@ -266,7 +267,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID" Type="varchar" Nullable="false" MaxLength="36" />
           <Property Name="Keyword1" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Keyword2" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="Rate" Type="float" Nullable="false" />
@@ -443,7 +444,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="JobZoomModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="JobZoomEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Companies" EntityType="JobZoomModel.Company" />
           <EntitySet Name="DecisionTreeNodes" EntityType="JobZoomModel.DecisionTreeNode" />
           <EntitySet Name="DecisionTreeNodeDistributions" EntityType="JobZoomModel.DecisionTreeNodeDistribution" />
           <EntitySet Name="Job_EducationExpRequirement" EntityType="JobZoomModel.Job_EducationExpRequirement" />
@@ -489,32 +489,10 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="SimilarityTerms" EntityType="JobZoomModel.SimilarityTerm" />
           <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
+          <EntitySet Name="SimilarityTerms" EntityType="JobZoomModel.SimilarityTerm" />
+          <EntitySet Name="Companies" EntityType="JobZoomModel.Company" />
         </EntityContainer>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="CompanyId" />
-          </Key>
-          <Property Type="Guid" Name="CompanyId" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Industry" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="CompanySize" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AddressLine1" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="AddressLine2" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Country" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="City" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="State" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Phone" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="MobilePhone" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Fax" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Faceboook" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Twitter" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Linkedin" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Logo" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="DecisionTreeNode">
           <Key>
             <PropertyRef Name="NODEID" />
@@ -796,15 +774,6 @@
           <End Type="JobZoomModel.Role" Role="Role" Multiplicity="*" />
           <End Type="JobZoomModel.User" Role="User" Multiplicity="*" />
         </Association>
-        <EntityType Name="SimilarityTerm">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Guid" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Keyword1" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Keyword2" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Double" Name="Rate" Nullable="false" />
-        </EntityType>
         <EntityType Name="AttributeTag">
           <Key>
             <PropertyRef Name="AttributeTagId" />
@@ -822,36 +791,45 @@
           <Property Type="DateTime" Name="ModifiedDate" />
           <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SimilarityTerm">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="String" Name="ID" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Keyword1" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Keyword2" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Rate" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Type="Guid" Name="CompanyId" Nullable="false" />
+          <Property Type="String" Name="UserId" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Industry" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CompanySize" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine1" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddressLine2" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Country" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MobilePhone" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Website" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Faceboook" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Twitter" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Linkedin" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Logo" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="JobZoomModelStoreContainer" CdmEntityContainer="JobZoomEntities">
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="JobZoomModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
-                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
-                <ScalarProperty Name="Faceboook" ColumnName="Faceboook" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
-                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
-                <ScalarProperty Name="CompanySize" ColumnName="CompanySize" />
-                <ScalarProperty Name="Industry" ColumnName="Industry" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DecisionTreeNodes">
             <EntityTypeMapping TypeName="JobZoomModel.DecisionTreeNode">
               <MappingFragment StoreEntitySet="DecisionTreeNode">
@@ -1050,16 +1028,6 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="SimilarityTerms">
-            <EntityTypeMapping TypeName="JobZoomModel.SimilarityTerm">
-              <MappingFragment StoreEntitySet="SimilarityTerm">
-                <ScalarProperty Name="Rate" ColumnName="Rate" />
-                <ScalarProperty Name="Keyword2" ColumnName="Keyword2" />
-                <ScalarProperty Name="Keyword1" ColumnName="Keyword1" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AttributeTags">
             <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
               <MappingFragment StoreEntitySet="AttributeTag">
@@ -1075,6 +1043,41 @@
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
                 <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SimilarityTerms">
+            <EntityTypeMapping TypeName="JobZoomModel.SimilarityTerm">
+              <MappingFragment StoreEntitySet="SimilarityTerm">
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Keyword2" ColumnName="Keyword2" />
+                <ScalarProperty Name="Keyword1" ColumnName="Keyword1" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="JobZoomModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Faceboook" ColumnName="Faceboook" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="CompanySize" ColumnName="CompanySize" />
+                <ScalarProperty Name="Industry" ColumnName="Industry" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1099,7 +1102,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="JobZoomDataModel">
-        <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="10.75" PointY="0.75" Height="4.4802050781250031" />
         <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNode" Width="1.5" PointX="5.75" PointY="10" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNodeDistribution" Width="1.5" PointX="8" PointY="10.75" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="JobZoomModel.Job_EducationExpRequirement" Width="1.5" PointX="8" PointY="1.25" Height="1.9802864583333388" />
@@ -1148,8 +1150,9 @@
           <ConnectorPoint PointX="1.5" PointY="3.2206835937500031" />
           <ConnectorPoint PointX="1.5" PointY="4.5" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="JobZoomModel.SimilarityTerm" Width="1.5" PointX="13.375" PointY="9.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="10.375" PointY="9.75" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="JobZoomModel.SimilarityTerm" Width="1.5" PointX="12.375" PointY="4.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="12.375" PointY="7.75" Height="4.6725065104166674" />
       </Diagram>
     </Diagrams>
   </Designer>

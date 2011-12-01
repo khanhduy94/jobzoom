@@ -383,6 +383,7 @@
     </Content>
     <Content Include="Views\JobPosting\Delete.cshtml" />
     <Content Include="Views\JobPosting\Edit.cshtml" />
+    <Content Include="Views\Account\EmployerRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

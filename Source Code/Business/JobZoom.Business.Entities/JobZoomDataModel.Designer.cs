@@ -80,22 +80,6 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Company> Companies
-        {
-            get
-            {
-                if ((_Companies == null))
-                {
-                    _Companies = base.CreateObjectSet<Company>("Companies");
-                }
-                return _Companies;
-            }
-        }
-        private ObjectSet<Company> _Companies;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<DecisionTreeNode> DecisionTreeNodes
         {
             get
@@ -304,6 +288,22 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<AttributeTag> AttributeTags
+        {
+            get
+            {
+                if ((_AttributeTags == null))
+                {
+                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
+                }
+                return _AttributeTags;
+            }
+        }
+        private ObjectSet<AttributeTag> _AttributeTags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<SimilarityTerm> SimilarityTerms
         {
             get
@@ -320,29 +320,21 @@ namespace JobZoom.Business.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AttributeTag> AttributeTags
+        public ObjectSet<Company> Companies
         {
             get
             {
-                if ((_AttributeTags == null))
+                if ((_Companies == null))
                 {
-                    _AttributeTags = base.CreateObjectSet<AttributeTag>("AttributeTags");
+                    _Companies = base.CreateObjectSet<Company>("Companies");
                 }
-                return _AttributeTags;
+                return _Companies;
             }
         }
-        private ObjectSet<AttributeTag> _AttributeTags;
+        private ObjectSet<Company> _Companies;
 
         #endregion
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCompanies(Company company)
-        {
-            base.AddObject("Companies", company);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the DecisionTreeNodes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -449,6 +441,14 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttributeTags(AttributeTag attributeTag)
+        {
+            base.AddObject("AttributeTags", attributeTag);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the SimilarityTerms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSimilarityTerms(SimilarityTerm similarityTerm)
@@ -457,11 +457,11 @@ namespace JobZoom.Business.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the AttributeTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Companies EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToAttributeTags(AttributeTag attributeTag)
+        public void AddToCompanies(Company company)
         {
-            base.AddObject("AttributeTags", attributeTag);
+            base.AddObject("Companies", company);
         }
 
         #endregion
@@ -845,6 +845,30 @@ namespace JobZoom.Business.Entities
         private global::System.Guid _CompanyId;
         partial void OnCompanyIdChanging(global::System.Guid value);
         partial void OnCompanyIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
+        partial void OnUserIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4315,7 +4339,7 @@ namespace JobZoom.Business.Entities
         /// <param name="keyword1">Initial value of the Keyword1 property.</param>
         /// <param name="keyword2">Initial value of the Keyword2 property.</param>
         /// <param name="rate">Initial value of the Rate property.</param>
-        public static SimilarityTerm CreateSimilarityTerm(global::System.Guid id, global::System.String keyword1, global::System.String keyword2, global::System.Double rate)
+        public static SimilarityTerm CreateSimilarityTerm(global::System.String id, global::System.String keyword1, global::System.String keyword2, global::System.Double rate)
         {
             SimilarityTerm similarityTerm = new SimilarityTerm();
             similarityTerm.ID = id;
@@ -4333,7 +4357,7 @@ namespace JobZoom.Business.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid ID
+        public global::System.String ID
         {
             get
             {
@@ -4345,14 +4369,14 @@ namespace JobZoom.Business.Entities
                 {
                     OnIDChanging(value);
                     ReportPropertyChanging("ID");
-                    _ID = StructuralObject.SetValidValue(value);
+                    _ID = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("ID");
                     OnIDChanged();
                 }
             }
         }
-        private global::System.Guid _ID;
-        partial void OnIDChanging(global::System.Guid value);
+        private global::System.String _ID;
+        partial void OnIDChanging(global::System.String value);
         partial void OnIDChanged();
     
         /// <summary>

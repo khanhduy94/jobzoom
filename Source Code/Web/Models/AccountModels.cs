@@ -93,6 +93,56 @@ namespace JobZoom.Web.Models
 
     }
 
+    public class EmployerRegisterModel
+    {
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email address")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Company name")]
+        public string CompanyName { get; set; }
+
+        [Required]
+        [Display(Name = "Industry")]
+        public string Industry { get; set; }
+
+        [Required]
+        [Display(Name = "Company Size")]
+        public string CompanySize { get; set; }       
+
+        [Required]
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Required]
+        [Display(Name = "City")]
+        public string City { get; set; }
+        
+        [Display(Name = "Website")]
+        [DataType(DataType.Url)]
+        public string Website { get; set; }
+    }
+
     public class ActivatedEmailModel
     {
         [Required]

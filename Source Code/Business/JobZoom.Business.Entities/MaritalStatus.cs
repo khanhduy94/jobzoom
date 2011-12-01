@@ -7,7 +7,7 @@ namespace JobZoom.Business.Entities
 {
     public class MaritalStatus
     {
-        public List<string> MaritalStatusList
+        public List<string> GetMaritalStatus
         {
             set { }
             get

@@ -70,7 +70,7 @@ namespace JobZoom.Web.Controllers
             ViewBag.City = new SelectList(new City { }.GetCities);
             ViewBag.Country = new SelectList(new Countries { }.GetCountries);
             ViewBag.Gender = new SelectList(new Genders { }.GetGenders);
-            ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus { }.GetMaritalStatus);
             return View();
         }
 
@@ -119,7 +119,70 @@ namespace JobZoom.Web.Controllers
             ViewBag.Gender = new SelectList(new Genders { }.GetGenders, model.Gender);
             ViewBag.City = new SelectList(new City { }.GetCities, model.City);
             ViewBag.Country = new SelectList(new Countries { }.GetCountries, model.Country);
-            ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, model.MaritalStatus);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus { }.GetMaritalStatus, model.MaritalStatus);
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }                
+
+        //
+        // GET: /Account/EmployerRegister
+
+        public ActionResult EmployerRegister()
+        {
+            ViewBag.Industry = new SelectList(new Industry { }.GetIndustry);
+            ViewBag.CompanySize = new SelectList(new CompanySize().GetCompanySizes);
+            ViewBag.City = new SelectList(new City { }.GetCities);
+            ViewBag.Country = new SelectList(new Countries { }.GetCountries);
+            return View();
+        }
+
+        //
+        // POST: /Account/EmployerRegister
+
+        [HttpPost]
+        public ActionResult EmployerRegister(EmployerRegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    // Save basic information
+                    JobZoomEntities db = new JobZoomEntities();
+                    Company company = new Company();
+                    company.CompanyId = Guid.NewGuid();
+                    company.UserId = model.UserName;
+                    company.Name = model.CompanyName;
+                    company.Industry = model.Industry;
+                    company.CompanySize = model.CompanySize;                    
+                    company.Country = model.Country;
+                    company.State = model.State;
+                    company.City = model.City;
+                    company.Website = model.Website;
+                    db.Companies.AddObject(company);
+
+                    // Add user to Jobseeker role
+                    var user = db.Users.FirstOrDefault(u => u.UserId == model.UserName);
+                    var role = db.Roles.FirstOrDefault(r => r.RoleName == "Employer");
+                    role.Users.Add(user);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                }
+            }
+
+            ViewBag.Industry = new SelectList(new Industry { }.GetIndustry);
+            ViewBag.CompanySize = new SelectList(new CompanySize().GetCompanySizes);
+            ViewBag.City = new SelectList(new City { }.GetCities);
+            ViewBag.Country = new SelectList(new Countries { }.GetCountries);
 
             // If we got this far, something failed, redisplay form
             return View(model);

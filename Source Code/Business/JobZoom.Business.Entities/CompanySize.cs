@@ -5,9 +5,9 @@ using System.Text;
 
 namespace JobZoom.Business.Entities
 {
-    public class City
+    public class CompanySize
     {
-        public List<string> GetCities
+        public List<string> GetCompanySizes
         {
             set
             {
@@ -16,8 +16,14 @@ namespace JobZoom.Business.Entities
             {
                 return new List<string>
                 {
-                    "Tp.Hồ Chí Minh",
-                    "Hà Nội"
+                    "1-10",
+                    "11-50",
+                    "51-200",
+                    "201-500",
+                    "501-1000",
+                    "1001-5000",
+                    "5001-10,000",
+                    "10,000+"
                 };
             }
         }

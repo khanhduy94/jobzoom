@@ -13,13 +13,6 @@ namespace JobZoom.Web.Controllers
     {
         private JobZoomEntities db = new JobZoomEntities();
         private string userId;
-        //
-        // GET: /ProfileEdit/
-        
-        //public ActionResult Index()
-        //{   
-        //    return View();
-        //}
 
         //
         // GET: /Profile/Edit/Basic
@@ -42,7 +35,7 @@ namespace JobZoom.Web.Controllers
             ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
             ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
             ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
-            ViewBag.MaritalStatus = new SelectList(new MaritalStatus().MaritalStatusList, profile_basic.MaritalStatus);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus { }.GetMaritalStatus, profile_basic.MaritalStatus);
 
             return View(profile_basic);
         }
@@ -68,7 +61,13 @@ namespace JobZoom.Web.Controllers
                 }
                 
                 return RedirectToAction("Basic");
-            }            
+            }
+
+            ViewBag.City = new SelectList(new City { }.GetCities, profile_basic.City);
+            ViewBag.Country = new SelectList(new Countries { }.GetCountries, profile_basic.Country);
+            ViewBag.Gender = new SelectList(new Genders { }.GetGenders, profile_basic.Gender);
+            ViewBag.MaritalStatus = new SelectList(new MaritalStatus { }.GetMaritalStatus, profile_basic.MaritalStatus);
+
             return View(profile_basic);
         }
 
