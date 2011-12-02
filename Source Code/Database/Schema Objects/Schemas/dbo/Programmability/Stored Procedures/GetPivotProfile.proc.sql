@@ -14,9 +14,9 @@ BEGIN
 	IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = 'PivotProfile')
 	DROP VIEW PivotProfile
 
-	SET @SQLString = N'CREATE VIEW PivotProfile
+	SET @SQLString = N'CREATE VIEW PivotProfileView
 					AS
-					SELECT * FROM (
+					SELECT row_number() over (order by pvt.ProfileBasicId desc) as Id, pvt.* FROM (
 						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, AttributeTag.AttributeTagName
 						FROM [Profile.Basic]
 						INNER JOIN AttributeTag on [Profile.Basic].ProfileBasicId = AttributeTag.ObjectId
