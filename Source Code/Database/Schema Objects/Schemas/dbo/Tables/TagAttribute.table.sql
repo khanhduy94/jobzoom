@@ -1,7 +1,7 @@
-﻿CREATE TABLE [dbo].[AttributeTag]
+﻿CREATE TABLE [dbo].[TagAttribute]
 (
-	[AttributeTagId]	UNIQUEIDENTIFIER	NOT NULL,
-	[AttributeTagName]	NVARCHAR(256)		NOT NULL,
+	[TagId]				UNIQUEIDENTIFIER	NOT NULL,
+	[TagName]			NVARCHAR(256)		NOT NULL,
 	[Weight]			SMALLINT			NULL,
 	[Level]				SMALLINT			NULL,
 	[Required]			BIT					NULL,
