@@ -12,7 +12,8 @@ namespace JobZoom.Core
     using System;
     using System.Collections.Generic;
     
-    public partial class TagAttribute
+    [AttributeUsage(AttributeTargets.Class| AttributeTargets.Property, AllowMultiple=true, Inherited= true)]
+    public partial class TagAttribute: Attribute
     {
         public TagAttribute()
         {
