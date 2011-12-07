@@ -673,21 +673,21 @@ namespace JobZoom.Core
                     ScalarMiningStructureColumn column = new ScalarMiningStructureColumn(colName, colName);
                     switch (colName)
                     {
-                        case "ProfileBasicId":
+                        case "ID":
                             // ProfileBasicId column
                             column.Type = MiningStructureColumnTypes.Text;
                             column.Content = MiningStructureColumnContents.Key;
                             column.IsKey = true;
                             // Add the column to the mining structure
                             break;
-                        case "IsApproved":
-                            column.Type = MiningStructureColumnTypes.Boolean;
-                            column.Content = MiningStructureColumnContents.Discrete;
-                            break;
+                        case "ProfileBasicId":
+                        case "JobPostingId":
                         case "UserId":
                         case "JobTitle":
-                        case "JobPostingId":
-                            column.Type = MiningStructureColumnTypes.Text;
+                        case "CompanyId":
+                        case "CompanyName":
+                        case "IsApproved":
+                            column.Type = MiningStructureColumnTypes.Boolean;
                             column.Content = MiningStructureColumnContents.Discrete;
                             break;
                         default:
@@ -707,7 +707,7 @@ namespace JobZoom.Core
                 objMiningModel.Algorithm = MiningModelAlgorithms.MicrosoftDecisionTrees;
                 objMiningModel.AllowDrillThrough = true;
                 objMiningModel.Columns["IsApproved"].Usage = "Predict";
-                objMiningModel.Columns["ProfileBasicId"].Usage = "Key";
+                objMiningModel.Columns["ID"].Usage = "Key";
 
 
                 int i = 0;
@@ -719,7 +719,7 @@ namespace JobZoom.Core
                             objMiningModel.Columns["IsApproved"].Usage = "Predict";
                             break;
                         case "ProfileBasicId":
-                            objMiningModel.Columns["ProfileBasicId"].Usage = "Key";
+                            objMiningModel.Columns["ID"].Usage = "Key";
                             break;
                         default:
                             objMiningModel.Columns[i].Usage = "Input";
