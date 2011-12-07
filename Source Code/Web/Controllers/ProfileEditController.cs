@@ -140,7 +140,6 @@ namespace JobZoom.Web.Controllers
             return View();
         }
 
-
         [Authorize]
         [OutputCache(Duration = 0)]
         public ActionResult Work()
@@ -206,6 +205,11 @@ namespace JobZoom.Web.Controllers
         {
             Profile_Work profile_work = db.Profile_Work.Single(p => p.ProfileWorkId == id);
             return View(profile_work);
-        }        
+        }
+
+        public ActionResult SkillQualifications()
+        {
+            return View();
+        }
     }
 }

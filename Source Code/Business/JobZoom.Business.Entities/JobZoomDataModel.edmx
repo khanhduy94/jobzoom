@@ -29,6 +29,7 @@
           <EntitySet Name="Profile_Education" EntityType="JobZoomModel.Store.Profile_Education" store:Type="Tables" Schema="dbo" Table="Profile.Education" />
           <EntitySet Name="Profile_Work" EntityType="JobZoomModel.Store.Profile_Work" store:Type="Tables" Schema="dbo" Table="Profile.Work" />
           <EntitySet Name="Tag" EntityType="JobZoomModel.Store.Tag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TagAttribute" EntityType="JobZoomModel.Store.TagAttribute" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="JobZoomModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="JobRequirementView" EntityType="JobZoomModel.Store.JobRequirementView" store:Type="Views" store:Schema="dbo" store:Name="JobRequirementView">
             <DefiningQuery>SELECT 
@@ -42,7 +43,7 @@
       [JobRequirementView].[JobAttributeValue] AS [JobAttributeValue]
       FROM [dbo].[JobRequirementView] AS [JobRequirementView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__DecisionT__NODEI__2C3393D0" Association="JobZoomModel.Store.FK__DecisionT__NODEI__2C3393D0">
+          <AssociationSet Name="FK__DecisionT__NODEI__145C0A3F" Association="JobZoomModel.Store.FK__DecisionT__NODEI__145C0A3F">
             <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
             <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistribution" />
           </AssociationSet>
@@ -70,6 +71,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Profile_Work" EntitySet="Profile_Work" />
           </AssociationSet>
+          <AssociationSet Name="FK_TagAttribute_TagAttribute" Association="JobZoomModel.Store.FK_TagAttribute_TagAttribute">
+            <End Role="TagAttribute" EntitySet="TagAttribute" />
+            <End Role="TagAttribute1" EntitySet="TagAttribute" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AttributeTag">
           <Key>
@@ -84,6 +89,7 @@
           <Property Name="ObjectId" Type="uniqueidentifier" />
           <Property Name="ParentId" Type="uniqueidentifier" />
           <Property Name="ParentName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="200" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="Status" Type="varchar" MaxLength="128" />
         </EntityType>
@@ -257,6 +263,23 @@
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="IsUpToDate" Type="bit" />
         </EntityType>
+        <EntityType Name="TagAttribute">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Weight" Type="smallint" />
+          <Property Name="Level" Type="smallint" />
+          <Property Name="Required" Type="bit" />
+          <Property Name="TableReference" Type="varchar" MaxLength="128" />
+          <Property Name="ObjectId" Type="uniqueidentifier" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="ParentName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="200" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="128" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserId" />
@@ -286,7 +309,7 @@
           <Property Name="JobAttributeName" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="JobAttributeValue" Type="nvarchar" Nullable="false" MaxLength="256" />
         </EntityType>
-        <Association Name="FK__DecisionT__NODEI__2C3393D0">
+        <Association Name="FK__DecisionT__NODEI__145C0A3F">
           <End Role="DecisionTreeNode" Type="JobZoomModel.Store.DecisionTreeNode" Multiplicity="1" />
           <End Role="DecisionTreeNodeDistribution" Type="JobZoomModel.Store.DecisionTreeNodeDistribution" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -370,6 +393,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TagAttribute_TagAttribute">
+          <End Role="TagAttribute" Type="JobZoomModel.Store.TagAttribute" Multiplicity="0..1" />
+          <End Role="TagAttribute1" Type="JobZoomModel.Store.TagAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagAttribute">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagAttribute1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -418,6 +453,11 @@
           <EntitySet Name="JobRequirementViews" EntityType="JobZoomModel.JobRequirementView" />
           <EntitySet Name="Job_Approval" EntityType="JobZoomModel.Job_Approval" />
           <EntitySet Name="AttributeTags" EntityType="JobZoomModel.AttributeTag" />
+          <EntitySet Name="TagAttributes" EntityType="JobZoomModel.TagAttribute" />
+          <AssociationSet Name="FK_TagAttribute_TagAttribute" Association="JobZoomModel.FK_TagAttribute_TagAttribute">
+            <End Role="TagAttribute" EntitySet="TagAttributes" />
+            <End Role="TagAttribute1" EntitySet="TagAttributes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -720,7 +760,39 @@
           <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="ModifiedDate" />
           <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Attachment" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="TagAttribute">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Type="Guid" Name="TagId" Nullable="false" />
+          <Property Type="String" Name="TagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int16" Name="Weight" />
+          <Property Type="Int16" Name="Level" />
+          <Property Type="Boolean" Name="Required" />
+          <Property Type="String" Name="TableReference" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="ObjectId" />
+          <Property Type="Guid" Name="ParentId" />
+          <Property Type="String" Name="ParentName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Attachment" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDate" />
+          <Property Type="String" Name="Status" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TagAttribute1" Relationship="JobZoomModel.FK_TagAttribute_TagAttribute" FromRole="TagAttribute" ToRole="TagAttribute1" />
+          <NavigationProperty Name="TagAttribute2" Relationship="JobZoomModel.FK_TagAttribute_TagAttribute" FromRole="TagAttribute1" ToRole="TagAttribute" />
+        </EntityType>
+        <Association Name="FK_TagAttribute_TagAttribute">
+          <End Type="JobZoomModel.TagAttribute" Role="TagAttribute" Multiplicity="0..1" />
+          <End Type="JobZoomModel.TagAttribute" Role="TagAttribute1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagAttribute">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="TagAttribute1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -932,6 +1004,7 @@
           <EntitySetMapping Name="AttributeTags">
             <EntityTypeMapping TypeName="JobZoomModel.AttributeTag">
               <MappingFragment StoreEntitySet="AttributeTag">
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
                 <ScalarProperty Name="ParentName" ColumnName="ParentName" />
@@ -943,6 +1016,24 @@
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="AttributeTagName" ColumnName="AttributeTagName" />
                 <ScalarProperty Name="AttributeTagId" ColumnName="AttributeTagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagAttributes">
+            <EntityTypeMapping TypeName="JobZoomModel.TagAttribute">
+              <MappingFragment StoreEntitySet="TagAttribute">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="ParentName" ColumnName="ParentName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="TableReference" ColumnName="TableReference" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1014,6 +1105,13 @@
         <EntityTypeShape EntityType="JobZoomModel.JobRequirementView" Width="1.5" PointX="13.375" PointY="0.75" Height="2.5571907552083246" />
         <EntityTypeShape EntityType="JobZoomModel.Job_Approval" Width="1.5" PointX="10.375" PointY="6.75" Height="2.1725878906250031" />
         <EntityTypeShape EntityType="JobZoomModel.AttributeTag" Width="1.5" PointX="13.375" PointY="4.75" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="JobZoomModel.TagAttribute" Width="1.5" PointX="13.375" PointY="9.75" Height="3.7109993489583388" />
+        <AssociationConnector Association="JobZoomModel.FK_TagAttribute_TagAttribute" >
+          <ConnectorPoint PointX="13.906923076923077" PointY="13.460999348958339" />
+          <ConnectorPoint PointX="13.906923076923077" PointY="13.710999348958339" />
+          <ConnectorPoint PointX="14.353461538461538" PointY="13.710999348958339" />
+          <ConnectorPoint PointX="14.353461538461538" PointY="13.460999348958339" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

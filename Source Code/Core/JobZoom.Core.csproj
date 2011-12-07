@@ -61,6 +61,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="JobZoomMatching.cs" />
+    <Compile Include="MatchingResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TagAttribute.cs">
       <DependentUpon>CoreModel.tt</DependentUpon>

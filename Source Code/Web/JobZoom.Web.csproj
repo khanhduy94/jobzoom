@@ -378,6 +378,7 @@
     <Content Include="Views\EmployerEditJob\Work.cshtml" />
     <Content Include="Views\JobApply\ApplyConfirmView.cshtml" />
     <Content Include="Views\JobApply\AppliedJobs.cshtml" />
+    <Content Include="Views\ProfileEdit\SkillQualifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,6 +405,10 @@
     <ProjectReference Include="..\Business\JobZoom.Business.Entities\JobZoom.Business.Entities.csproj">
       <Project>{BE6D6375-F8CC-4BA4-86F0-3FEC263B7E12}</Project>
       <Name>JobZoom.Business.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\JobZoom.Core.csproj">
+      <Project>{6A0DD250-D2B5-49AA-B6D7-3A8714FEFCA0}</Project>
+      <Name>JobZoom.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

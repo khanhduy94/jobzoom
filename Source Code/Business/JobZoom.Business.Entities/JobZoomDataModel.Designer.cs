@@ -25,6 +25,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileBasic_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Basic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Basic), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileEducation_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Education", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Education), true)]
 [assembly: EdmRelationshipAttribute("JobZoomModel", "FK_ProfileWork_User", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(JobZoom.Business.Entities.User), "Profile_Work", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.Profile_Work), true)]
+[assembly: EdmRelationshipAttribute("JobZoomModel", "FK_TagAttribute_TagAttribute", "TagAttribute", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(JobZoom.Business.Entities.TagAttribute), "TagAttribute1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(JobZoom.Business.Entities.TagAttribute), true)]
 
 #endregion
 
@@ -315,6 +316,22 @@ namespace JobZoom.Business.Entities
             }
         }
         private ObjectSet<AttributeTag> _AttributeTags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<TagAttribute> TagAttributes
+        {
+            get
+            {
+                if ((_TagAttributes == null))
+                {
+                    _TagAttributes = base.CreateObjectSet<TagAttribute>("TagAttributes");
+                }
+                return _TagAttributes;
+            }
+        }
+        private ObjectSet<TagAttribute> _TagAttributes;
 
         #endregion
         #region AddTo Methods
@@ -437,6 +454,14 @@ namespace JobZoom.Business.Entities
         public void AddToAttributeTags(AttributeTag attributeTag)
         {
             base.AddObject("AttributeTags", attributeTag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the TagAttributes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTagAttributes(TagAttribute tagAttribute)
+        {
+            base.AddObject("TagAttributes", tagAttribute);
         }
 
         #endregion
@@ -739,6 +764,30 @@ namespace JobZoom.Business.Entities
         private global::System.String _Status;
         partial void OnStatusChanging(global::System.String value);
         partial void OnStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Attachment
+        {
+            get
+            {
+                return _Attachment;
+            }
+            set
+            {
+                OnAttachmentChanging(value);
+                ReportPropertyChanging("Attachment");
+                _Attachment = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Attachment");
+                OnAttachmentChanged();
+            }
+        }
+        private global::System.String _Attachment;
+        partial void OnAttachmentChanging(global::System.String value);
+        partial void OnAttachmentChanged();
 
         #endregion
     
@@ -4368,6 +4417,390 @@ namespace JobZoom.Business.Entities
 
         #endregion
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="JobZoomModel", Name="TagAttribute")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TagAttribute : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new TagAttribute object.
+        /// </summary>
+        /// <param name="tagId">Initial value of the TagId property.</param>
+        /// <param name="tagName">Initial value of the TagName property.</param>
+        public static TagAttribute CreateTagAttribute(global::System.Guid tagId, global::System.String tagName)
+        {
+            TagAttribute tagAttribute = new TagAttribute();
+            tagAttribute.TagId = tagId;
+            tagAttribute.TagName = tagName;
+            return tagAttribute;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid TagId
+        {
+            get
+            {
+                return _TagId;
+            }
+            set
+            {
+                if (_TagId != value)
+                {
+                    OnTagIdChanging(value);
+                    ReportPropertyChanging("TagId");
+                    _TagId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TagId");
+                    OnTagIdChanged();
+                }
+            }
+        }
+        private global::System.Guid _TagId;
+        partial void OnTagIdChanging(global::System.Guid value);
+        partial void OnTagIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TagName
+        {
+            get
+            {
+                return _TagName;
+            }
+            set
+            {
+                OnTagNameChanging(value);
+                ReportPropertyChanging("TagName");
+                _TagName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TagName");
+                OnTagNameChanged();
+            }
+        }
+        private global::System.String _TagName;
+        partial void OnTagNameChanging(global::System.String value);
+        partial void OnTagNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> Weight
+        {
+            get
+            {
+                return _Weight;
+            }
+            set
+            {
+                OnWeightChanging(value);
+                ReportPropertyChanging("Weight");
+                _Weight = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Weight");
+                OnWeightChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _Weight;
+        partial void OnWeightChanging(Nullable<global::System.Int16> value);
+        partial void OnWeightChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> Level
+        {
+            get
+            {
+                return _Level;
+            }
+            set
+            {
+                OnLevelChanging(value);
+                ReportPropertyChanging("Level");
+                _Level = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Level");
+                OnLevelChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _Level;
+        partial void OnLevelChanging(Nullable<global::System.Int16> value);
+        partial void OnLevelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> Required
+        {
+            get
+            {
+                return _Required;
+            }
+            set
+            {
+                OnRequiredChanging(value);
+                ReportPropertyChanging("Required");
+                _Required = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Required");
+                OnRequiredChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _Required;
+        partial void OnRequiredChanging(Nullable<global::System.Boolean> value);
+        partial void OnRequiredChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TableReference
+        {
+            get
+            {
+                return _TableReference;
+            }
+            set
+            {
+                OnTableReferenceChanging(value);
+                ReportPropertyChanging("TableReference");
+                _TableReference = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TableReference");
+                OnTableReferenceChanged();
+            }
+        }
+        private global::System.String _TableReference;
+        partial void OnTableReferenceChanging(global::System.String value);
+        partial void OnTableReferenceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ObjectId
+        {
+            get
+            {
+                return _ObjectId;
+            }
+            set
+            {
+                OnObjectIdChanging(value);
+                ReportPropertyChanging("ObjectId");
+                _ObjectId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ObjectId");
+                OnObjectIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ObjectId;
+        partial void OnObjectIdChanging(Nullable<global::System.Guid> value);
+        partial void OnObjectIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> ParentId
+        {
+            get
+            {
+                return _ParentId;
+            }
+            set
+            {
+                OnParentIdChanging(value);
+                ReportPropertyChanging("ParentId");
+                _ParentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentId");
+                OnParentIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _ParentId;
+        partial void OnParentIdChanging(Nullable<global::System.Guid> value);
+        partial void OnParentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ParentName
+        {
+            get
+            {
+                return _ParentName;
+            }
+            set
+            {
+                OnParentNameChanging(value);
+                ReportPropertyChanging("ParentName");
+                _ParentName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ParentName");
+                OnParentNameChanged();
+            }
+        }
+        private global::System.String _ParentName;
+        partial void OnParentNameChanging(global::System.String value);
+        partial void OnParentNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Attachment
+        {
+            get
+            {
+                return _Attachment;
+            }
+            set
+            {
+                OnAttachmentChanging(value);
+                ReportPropertyChanging("Attachment");
+                _Attachment = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Attachment");
+                OnAttachmentChanged();
+            }
+        }
+        private global::System.String _Attachment;
+        partial void OnAttachmentChanging(global::System.String value);
+        partial void OnAttachmentChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ModifiedDate
+        {
+            get
+            {
+                return _ModifiedDate;
+            }
+            set
+            {
+                OnModifiedDateChanging(value);
+                ReportPropertyChanging("ModifiedDate");
+                _ModifiedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ModifiedDate");
+                OnModifiedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ModifiedDate;
+        partial void OnModifiedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnModifiedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Status
+        {
+            get
+            {
+                return _Status;
+            }
+            set
+            {
+                OnStatusChanging(value);
+                ReportPropertyChanging("Status");
+                _Status = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Status");
+                OnStatusChanged();
+            }
+        }
+        private global::System.String _Status;
+        partial void OnStatusChanging(global::System.String value);
+        partial void OnStatusChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_TagAttribute_TagAttribute", "TagAttribute1")]
+        public EntityCollection<TagAttribute> TagAttribute1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TagAttribute>("JobZoomModel.FK_TagAttribute_TagAttribute", "TagAttribute1");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TagAttribute>("JobZoomModel.FK_TagAttribute_TagAttribute", "TagAttribute1", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("JobZoomModel", "FK_TagAttribute_TagAttribute", "TagAttribute")]
+        public TagAttribute TagAttribute2
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TagAttribute>("JobZoomModel.FK_TagAttribute_TagAttribute", "TagAttribute").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TagAttribute>("JobZoomModel.FK_TagAttribute_TagAttribute", "TagAttribute").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TagAttribute> TagAttribute2Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TagAttribute>("JobZoomModel.FK_TagAttribute_TagAttribute", "TagAttribute");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TagAttribute>("JobZoomModel.FK_TagAttribute_TagAttribute", "TagAttribute", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
