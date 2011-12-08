@@ -245,19 +245,10 @@
     <Build Include="Schema Objects\Schemas\dbo\Views\JobRequirementView.view.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\AttributeTag.table.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\AttributeTag.PK_AttributeTag.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\TagAttribute.table.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TagAttribute.PK_TagAttribute.pkey.sql">
-      <SubType>Code</SubType>
-    </Build>
-    <Build Include="Schema Objects\Schemas\dbo\Tables\Keys\TagAttribute.FK_TagAttribute_TagAttribute.fkey.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
