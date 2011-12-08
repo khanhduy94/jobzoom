@@ -46,25 +46,14 @@
   <ItemGroup>
     <Compile Include="AttributeManager.cs" />
     <Compile Include="AttributeObject.cs" />
-    <Compile Include="CoreModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CoreModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CoreModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CoreModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="TagAttribute.cs" />
     <Compile Include="CoreModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TagAttribute.cs">
-      <DependentUpon>CoreModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="TagAttributeComposite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -75,15 +64,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CoreModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="CoreModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CoreModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="CoreModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CoreModel.cs</LastGenOutput>
-    </None>
+    <None Include="JobZoomClassDiagram.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -31,6 +31,6 @@ namespace JobZoom.Core
                  where attributes != null && attributes.Length > 0
                  select new AttributeObject<TAttribute> { Type = type, Property = property, Attribute = attributes.Cast<TAttribute>().FirstOrDefault() })
                 .ToList();
-        }
+        }        
     }
 }
