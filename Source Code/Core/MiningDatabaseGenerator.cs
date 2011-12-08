@@ -61,7 +61,6 @@ namespace JobZoom.Core
             string strMiningDBName = "Job Zoom Mining"; //Mining database name
             string strMiningDataSourceName = "Data Source"; //Mining datasource name
             string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name
-            string strMiningStructureName = "PivotProfile"; //mining structure name (is also mining model name)
             string[] strFactTableName = getAllMiningTableName(strDBServerName, strDBName, strPrefix); //tables in datasource view to mining
             
             string[,] strTableNamesAndKeys = { { "PivotProfile", "ProfileBasicId", "PivotProfile", "ProfileBasicId" }, };
@@ -120,7 +119,7 @@ namespace JobZoom.Core
             Console.WriteLine("Step 7. Createing Mining Structures [with Decision Tree Algorithms]");
             Console.WriteLine("Step 7. Started!");
             
-            objMiningStructures = (MiningStructure[]) CreateMiningStructures(objDatabase, objDataSourceView, strMiningStructureName, strFactTableName);
+            objMiningStructures = (MiningStructure[]) CreateMiningStructures(objDatabase, objDataSourceView, strFactTableName);
             Console.WriteLine("Step 7. Finished!");
             Console.WriteLine("");
 
@@ -639,14 +638,14 @@ namespace JobZoom.Core
 
         #region Mining structure Generation.
 
-        private static object[] CreateMiningStructures(Database objDatabase, DataSourceView objDataSourceView, string strMiningStructureName, string[] strCaseTableNames)
+        private static object[] CreateMiningStructures(Database objDatabase, DataSourceView objDataSourceView, string[] strCaseTableNames)
         {
             MiningStructure[] miningStructures = new MiningStructure[strCaseTableNames.Length];
             try
             {
                 for (int i = 0; i < strCaseTableNames.Length; i++)
                 {
-                    miningStructures[i] = (MiningStructure) GenerateMiningStructure(objDatabase, objDataSourceView, strMiningStructureName, strCaseTableNames[i]);
+                    miningStructures[i] = (MiningStructure) GenerateMiningStructure(objDatabase, objDataSourceView, strCaseTableNames[i]);
                 }
                 return miningStructures;
             }
@@ -656,13 +655,13 @@ namespace JobZoom.Core
                 return null;
             }
         }
-        private static object GenerateMiningStructure(Database objDatabase, DataSourceView objDataSourceView, string strMiningStructureName, string strCaseTableName)
+        private static object GenerateMiningStructure(Database objDatabase, DataSourceView objDataSourceView, string strCaseTableName)
         {
             try
             {
                 
                 MiningStructure objMiningStructure = new MiningStructure();
-                objMiningStructure = objDatabase.MiningStructures.Add(objDatabase.MiningStructures.GetNewName(strMiningStructureName));
+                objMiningStructure = objDatabase.MiningStructures.Add(objDatabase.MiningStructures.GetNewName(strCaseTableName));
                 objMiningStructure.HoldoutMaxPercent = 30; //30% of testing
                 objMiningStructure.Source = new DataSourceViewBinding(objDataSourceView.ID);
                 objMiningStructure.CaseTableName = strCaseTableName;
@@ -675,21 +674,21 @@ namespace JobZoom.Core
                     {
                         case "ID":
                             // ProfileBasicId column
-                            column.Type = MiningStructureColumnTypes.Text;
+                            column.Type = MiningStructureColumnTypes.Long;
                             column.Content = MiningStructureColumnContents.Key;
                             column.IsKey = true;
                             // Add the column to the mining structure
                             break;
-                        case "ProfileBasicId":
+                        case "ProfileBasicId":                            
                         case "JobPostingId":
                         case "UserId":
                         case "JobTitle":
                         case "CompanyId":
                         case "CompanyName":
-                        case "IsApproved":
-                            column.Type = MiningStructureColumnTypes.Boolean;
+                            column.Type = MiningStructureColumnTypes.Text;
                             column.Content = MiningStructureColumnContents.Discrete;
                             break;
+                        case "IsApproved":
                         default:
                             column.Type = MiningStructureColumnTypes.Boolean;
                             column.Content = MiningStructureColumnContents.Discrete;
@@ -702,13 +701,10 @@ namespace JobZoom.Core
                     objMiningStructure.Columns.Add(column);
                 }
 
-                MiningModel objMiningModel = objMiningStructure.CreateMiningModel(true, strMiningStructureName);
+                MiningModel objMiningModel = objMiningStructure.CreateMiningModel(true, strCaseTableName);
                 //MiningModel objMiningModel = objMiningStructure.MiningModels.Add(objMiningStructure.MiningModels.GetNewName(strMiningStructureName));
                 objMiningModel.Algorithm = MiningModelAlgorithms.MicrosoftDecisionTrees;
                 objMiningModel.AllowDrillThrough = true;
-                objMiningModel.Columns["IsApproved"].Usage = "Predict";
-                objMiningModel.Columns["ID"].Usage = "Key";
-
 
                 int i = 0;
                 foreach(MiningModelColumn col in objMiningModel.Columns)
@@ -716,10 +712,10 @@ namespace JobZoom.Core
                     switch (col.Name)
                     {
                         case "IsApproved":
-                            objMiningModel.Columns["IsApproved"].Usage = "Predict";
+                            objMiningModel.Columns[i].Usage = "Predict";
                             break;
-                        case "ProfileBasicId":
-                            objMiningModel.Columns["ID"].Usage = "Key";
+                        case "ID":
+                            objMiningModel.Columns[i].Usage = "Key";
                             break;
                         default:
                             objMiningModel.Columns[i].Usage = "Input";
