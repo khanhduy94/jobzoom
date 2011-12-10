@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFramework.Console", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFramework.Web", "TestFramework.Web\TestFramework.Web.csproj", "{577F5A96-297F-4F23-8B82-DE4CBA349CB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobZoomAnalysisService", "Mining\JobZoomAnalysisService.csproj", "{276C50A9-D0EC-4342-86C1-ACC42FD818C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,16 @@ Global
 		{577F5A96-297F-4F23-8B82-DE4CBA349CB8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{577F5A96-297F-4F23-8B82-DE4CBA349CB8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{577F5A96-297F-4F23-8B82-DE4CBA349CB8}.Release|x86.ActiveCfg = Release|Any CPU
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Debug|x86.ActiveCfg = Debug|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Debug|x86.Build.0 = Debug|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|Any CPU.ActiveCfg = Release|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|x86.ActiveCfg = Release|x86
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,5 +160,6 @@ Global
 		{F3B55378-3ED6-4E89-A76E-D71F01C8FFD4} = {AB6132DC-2051-43F1-B7D2-017EF1EA00E9}
 		{82C9E700-7087-4FD1-AA7D-0BD9C11B7E10} = {AB6132DC-2051-43F1-B7D2-017EF1EA00E9}
 		{577F5A96-297F-4F23-8B82-DE4CBA349CB8} = {AB6132DC-2051-43F1-B7D2-017EF1EA00E9}
+		{276C50A9-D0EC-4342-86C1-ACC42FD818C8} = {AB6132DC-2051-43F1-B7D2-017EF1EA00E9}
 	EndGlobalSection
 EndGlobal

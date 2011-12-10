@@ -16,6 +16,9 @@
 		<CustomData Category="CompatibilityMode">
 			<Metadata Name="CompatibilityMode" Value="100" />
 		</CustomData>
+		<CustomData Category="Permissions" Type="XmlPermissions">
+			<Metadata Name="FileName" Value="D:\STUDY\QL092L\SUBJECTS\THESIS\SVN\SOURCE CODE\DATABASE\PROPERTIES\DATABASE.SQLPERMISSIONS" />
+		</CustomData>
 	</Header>
 	<Model>
 		<Element Type="ISql100DatabaseOptions">
