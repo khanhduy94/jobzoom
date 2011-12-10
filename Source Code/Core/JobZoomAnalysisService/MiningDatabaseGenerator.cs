@@ -8,7 +8,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Net;
 
-namespace JobZoom.Core
+namespace JobZoomAnalysisService
 {
     class MiningDatabaseGenerator
     {
