@@ -17,6 +17,8 @@ namespace JobZoom.Core
             //test();
             //Build();
             BuildMiningDatabase();
+            //Console.WriteLine(createLinkedServer("TRUNGHIEU-PC", "JobZoom"));
+            //Console.WriteLine(deleteLinkedServer("TRUNGHIEU-PC", "JobZoom"));
             Console.ReadLine();
         }
 
@@ -61,7 +63,7 @@ namespace JobZoom.Core
             string strMiningDBName = "Job Zoom Mining"; //Mining database name
             string strMiningDataSourceName = "Data Source"; //Mining datasource name
             string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name
-            string[] strFactTableName = getAllMiningTableName(strDBServerName, strDBName, strPrefix); //tables in datasource view to mining
+            string[] strFactTableNames = getAllMiningTableName(strDBServerName, strDBName, strPrefix); //tables in datasource view to mining
             
             string[,] strTableNamesAndKeys = { { "PivotProfile", "ProfileBasicId", "PivotProfile", "ProfileBasicId" }, };
 
@@ -72,7 +74,7 @@ namespace JobZoom.Core
             DataSourceView objDataSourceView = new DataSourceView();
             DataSet objDataSet = new DataSet();
             Dimension[] objDimensions = new Dimension[intDimensionTableCount];
-            MiningStructure[] objMiningStructures = new MiningStructure[strFactTableName.Length];
+            MiningStructure[] objMiningStructures = new MiningStructure[strFactTableNames.Length];
 
 
             Console.WriteLine("Mining creation process started.");
@@ -87,6 +89,7 @@ namespace JobZoom.Core
             Console.WriteLine("Step 2. Creating a Database.");
             Console.WriteLine("Step 2. Started!");
             objDatabase = (Database)CreateDatabase(objServer, strMiningDBName);
+            strMiningDBName = objDatabase.Name;
             Console.WriteLine("Step 2. Finished!");
             Console.WriteLine("");
 
@@ -118,8 +121,7 @@ namespace JobZoom.Core
 
             Console.WriteLine("Step 7. Createing Mining Structures [with Decision Tree Algorithms]");
             Console.WriteLine("Step 7. Started!");
-            
-            objMiningStructures = (MiningStructure[]) CreateMiningStructures(objDatabase, objDataSourceView, strFactTableName);
+            objMiningStructures = (MiningStructure[])CreateMiningStructures(objDatabase, objDataSourceView, strFactTableNames);
             Console.WriteLine("Step 7. Finished!");
             Console.WriteLine("");
 
@@ -141,34 +143,24 @@ namespace JobZoom.Core
 
             Console.WriteLine("Step 8. Export mining data to JobZoom Database (Database Engine)");
             Console.WriteLine("Step 8. Started!");
-            Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
-            if (existsLinkedServer(strDBServerName, strDBName))
-                Console.WriteLine("'Linked Server exists' is true!");
-            else
-            {
-                Console.WriteLine("'Linked Server exists' is false!");
-                Console.WriteLine("\nCreating a linked server...");
-                if (createLinkedServer(strDBServerName, strDBName))
-                    Console.WriteLine("Creating a linked server... Successfully!");
-                else
-                {
-                    Console.WriteLine("Creating a linked server... UN-SUCCESSFULLY!");
-                    Console.WriteLine("Failed to export mining data to database. Process is stopped!");
-                    return;
-                }
-            }
+            
             Console.WriteLine("Preparing... Put website to maintenance mode");
             //EXEC WEB SITE MAINTENANCE SERVICE METHOD
 
             Console.WriteLine("Preparing... Cleaning DecisionTreeNode and DecisionTreeNodeDistribution");
             Console.WriteLine("\nStep 8. Finished!");
             Console.WriteLine("");
-
+            exportMiningDataToDB(strDBServerName, strDBName, strFactTableNames);
             Console.WriteLine("Export completed! Release website to continuing for using");
             //WEBSITE CAN CONTINUE FOR USING
             Console.WriteLine("Saving...");
             objDatabase.Process(ProcessType.ProcessFull);
             Console.WriteLine("Analysis Service Database created successfully.");
+
+            Console.WriteLine("Removing Analysis Database ....");
+            Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
+            Console.WriteLine("Removing Analysis Database completely ...");
+
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
         }
@@ -215,7 +207,7 @@ namespace JobZoom.Core
         {
             try
             {
-                Console.WriteLine("Creating a Database ...");
+                Console.WriteLine("Creating a Analysis Database ...");
 
                 Database objDatabase = new Database();
                 //Add Database to the Analysis Services.
@@ -229,6 +221,20 @@ namespace JobZoom.Core
             {
                 Console.WriteLine("Error in Creating a Database. Error Message -> " + ex.Message);
                 return null;
+            }
+        }
+
+        private static bool deleteDatabase(Server objServer, string strDatabaseName)
+        {
+            try
+            {
+                objServer.Databases.GetByName(strDatabaseName).Drop();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Creating a Database. Error Message -> " + ex.Message);
+                return false;
             }
         }
         #endregion Creating a Database.
@@ -705,6 +711,12 @@ namespace JobZoom.Core
                 //MiningModel objMiningModel = objMiningStructure.MiningModels.Add(objMiningStructure.MiningModels.GetNewName(strMiningStructureName));
                 objMiningModel.Algorithm = MiningModelAlgorithms.MicrosoftDecisionTrees;
                 objMiningModel.AllowDrillThrough = true;
+                objMiningModel.AlgorithmParameters.Add("SCORE_METHOD", 4); //Entropy (1), Bayesian with K2 Prior (2), or Bayesian Dirichlet Equivalent (BDE) Prior (3)
+                objMiningModel.AlgorithmParameters.Add("COMPLEXITY_PENALTY", 0.1);
+                objMiningModel.AlgorithmParameters.Add("SPLIT_METHOD", 3); //Binary (1), Complete (2), or Both (3)
+                objMiningModel.AlgorithmParameters.Add("MAXIMUM_INPUT_ATTRIBUTES", 255);
+                objMiningModel.AlgorithmParameters.Add("MAXIMUM_OUTPUT_ATTRIBUTES", 255);
+                objMiningModel.AlgorithmParameters.Add("MINIMUM_SUPPORT", 10);
 
                 int i = 0;
                 foreach(MiningModelColumn col in objMiningModel.Columns)
@@ -723,9 +735,11 @@ namespace JobZoom.Core
                     }
                     ++i;
                 }
-
                 //objMiningModel.Update(UpdateOptions.ExpandFull);
                 objMiningStructure.Update(UpdateOptions.ExpandFull);
+                Console.WriteLine("Processing mining model " + objMiningStructure.Name + "...");
+                objMiningModel.Process(ProcessType.ProcessFull);
+                Console.WriteLine("Process " + objMiningStructure.Name + " finished!");
                 return objMiningStructure;
             }
             catch (Exception ex)
@@ -847,35 +861,116 @@ namespace JobZoom.Core
         #endregion
 
         #region Export Mining Data To Database
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="strDBServerName">Server Name (Analysis Service)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
-        /// <param name="objDatabase">Database (Analysis Service)</param>
-        /// <param name="strMiningStructureName">Mining structure name to export</param>
-        /// <param name="strIndustry">The root industry in DecisionTreeNode table</param>
-        private static void exportMiningDataToDB(string strDBServerName, string strDBName, Database objDatabase, string[] strMiningStructureName)
+
+        private static void exportMiningDataToDB(string strDBServerName, string strDBName, string[] strMiningStructureNames)
         {
-            Console.WriteLine("Open connection to database engine ...");
-            //Create the connection string.
-            string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
-            //Create the SqlConnection.
-            SqlConnection objConnection = new SqlConnection(conxString);
+            try
+            {
+                string strQuery;
+                string strLinkedServerName = "JobZoomMiningLinkedServer";
 
-            //Open Connection
-            //if (objConnection.State == ConnectionState.Closed)
-            objConnection.Open();
-            
-            SqlCommand command = objConnection.CreateCommand();
-            command.CommandText = "";
+                Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
+                if (existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                    Console.WriteLine("'Linked Server exists' is true!");
+                else
+                {
+                    Console.WriteLine("'Linked Server exists' is false!");
+                    Console.WriteLine("\nCreating a linked server...");
+                    if (createLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                        Console.WriteLine("Creating a linked server... Successfully!");
+                    else
+                    {
+                        Console.WriteLine("Creating a linked server... UN-SUCCESSFULLY!");
+                        Console.WriteLine("Failed to export mining data to database. Process is stopped!");
+                    }
+                }
 
+                //Delete all row in table DecisionTreeNode and DecisionTreeNodeDistribution
+                if (existsDecisionTreeNodeTable(strDBServerName, strDBName))
+                {
+                    strQuery = "TRUNCATE TABLE DecisionTreeNodeDistribution;"; //faster than DELETE FROM <Table>
+                    executeQuery(strDBServerName, strDBName, strQuery);
+                }
+                else
+                {
+                    createDecisionTreeNodeTable(strDBServerName, strDBName);
+                }
+                if (existsDecisionTreeNodeDistributionTable(strDBServerName, strDBName))
+                {
+                    strQuery = "DELETE FROM DecisionTreeNode;";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+                }
+                else
+                {
+                    createDecisionTreeNodeDistributionTable(strDBServerName, strDBName);
+                }
 
-        }
+                //Step 1. Create the root note for all jobs
+                strQuery = "INSERT INTO DecisionTreeNode(NODEID, NODE_TYPE, CHILDREN_CARDINALITY, NODE_SUPPORT, MSOLAP_NODE_SCORE) VALUES('0', 1, " + strMiningStructureNames.Length + ", 0, 0)";
+                executeQuery(strDBServerName, strDBName, strQuery);
 
-        private static bool preparingDecisionTreeTables(string strDBServerName, string strDBName)
-        {
-            return false;
+                strQuery = "INSERT INTO DecisionTreeNodeDistribution(NODEID) VALUES('0')";
+                executeQuery(strDBServerName, strDBName, strQuery);
+
+                foreach (string strMiningStructureName in strMiningStructureNames)
+                {
+                    strQuery = "INSERT INTO DecisionTreeNode " +
+                                    "SELECT * FROM " +
+                                    "OPENQUERY(" + strLinkedServerName + ", " +
+                                    "'SELECT FLATTENED " +
+                                    "[NODE_UNIQUE_NAME] AS [NODEID], " +
+                                    "[NODE_TYPE], " +
+                                    "[NODE_CAPTION], " +
+                                    "[CHILDREN_CARDINALITY], " +
+                                    "[PARENT_UNIQUE_NAME] AS [PARENTID], " +
+                                    "[NODE_DESCRIPTION], " +
+                                    "[NODE_RULE], " +
+                                    "[MARGINAL_RULE], " +
+                                    "[NODE_PROBABILITY], " +
+                                    "[MARGINAL_PROBABILITY], " +
+                                    "[NODE_SUPPORT], " +
+                                    "[MSOLAP_MODEL_COLUMN], " +
+                                    "[MSOLAP_NODE_SCORE], " +
+                                    "[MSOLAP_NODE_SHORT_CAPTION], " +
+                                    "[ATTRIBUTE_NAME] " +
+                                    "FROM [" + strMiningStructureName + "].CONTENT " +
+                                    "WHERE [NODE_UNIQUE_NAME] <> ''0''')";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+
+                    //Step 2. Insert data (except root node). (Rename node named "All" to strMiningStructureName
+                    strQuery = "UPDATE DecisionTreeNode SET [NODE_CAPTION] = '" + strMiningStructureName +
+                                                        "', [NODE_DESCRIPTION] ='" + strMiningStructureName +
+                                                        "', [MSOLAP_NODE_SHORT_CAPTION] ='" + strMiningStructureName +
+                                                        "' WHERE [NODE_CAPTION] = 'All';";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+
+                    strQuery = "INSERT INTO DecisionTreeNodeDistribution " +
+                                    "SELECT * FROM " +
+                                    "OPENQUERY(" + strLinkedServerName + ", " +
+                                    "'SELECT FLATTENED " +
+                                    "[NODE_UNIQUE_NAME] AS [NODEID], " +
+                                    "[NODE_DISTRIBUTION] " +
+                                    "FROM [" + strMiningStructureName + "].CONTENT " +
+                                    "WHERE [NODE_UNIQUE_NAME] <> ''0''')";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+
+                    string[] source = { "_x002E_", "_x002C_", "_x003B_", "_x0027_", "_x0060_", "_x003A_", "_x002F_", "_x005C_", "_x002A_", "_x007C_", "_x003F_", "_x0022_", "_x0026_", "_x0025_", "_x0024_", "_x0021_", "_x002B_", "_x003D_", "_x0028_", "_x0029_", "_x005B_", "_x005D_", "_x007B_", "_x007D_", "_x003C_", "_x003E_" };
+                    string[] target = { ".", ",", ";", "''", "`", ":", "/", @"\", "*", "|", "?", "\"", "&", "%", "$", "!", "+", "=", "(", ")", "[", "]", "{", "}", "<", ">" };
+                    //chu y kiem tra ky tu '
+                    for (int i = 0; i < source.Length; i++)
+                    {
+                        strQuery = "UPDATE DecisionTreeNode SET NODE_CAPTION = REPLACE(NODE_CAPTION, '" + source[i] + "', '" + target[i] + "'), " +
+                                "NODE_DESCRIPTION = REPLACE(cast(NODE_DESCRIPTION as NVARCHAR(MAX)), '" + source[i] + "', '" + target[i] + "')," + 
+                                "MSOLAP_NODE_SHORT_CAPTION = REPLACE(MSOLAP_NODE_SHORT_CAPTION, '" + source[i] + "', '" + target[i] + "');";
+                        executeQuery(strDBServerName, strDBName, strQuery);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error - exportMiningDataToDB. Error Message -> " + ex.Message);
+                throw new Exception(ex.Message);
+            }
         }
 
         private static bool existsDecisionTreeNodeTable(string strDBServerName, string strDBName)
@@ -1010,7 +1105,7 @@ namespace JobZoom.Core
         {
             try
             {
-                if (!existsLinkedServer(strDBServerName, strDBName, strLinkedServerName, strAnalysisDBName))
+                if (!existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
                 {
                     //Create the connection string.
                     string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
@@ -1021,7 +1116,7 @@ namespace JobZoom.Core
                     SqlCommand command = objConnection.CreateCommand();
                     command.CommandText = "EXEC master.dbo.sp_addlinkedserver @server='" + strLinkedServerName + "', @srvproduct='', @provider='MSOLAP', @datasrc='TRUNGHIEU-PC', @catalog='" + strAnalysisDBName + "';";
                     command.ExecuteNonQuery();
-                    return existsLinkedServer(strDBServerName, strDBName, strLinkedServerName, strAnalysisDBName);
+                    return existsLinkedServer(strDBServerName, strDBName, strLinkedServerName);
                 }
                 else
                 {
@@ -1034,10 +1129,9 @@ namespace JobZoom.Core
                 Console.WriteLine("Error in creating linked server - createLinkedServer. Error Message -> " + ex.Message);
                 return false;
             }
-
         }
 
-        public static bool existsLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer", string strAnalysisDBName = "Job Zoom Mining")
+        public static bool existsLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer")
         {
             try
             {
@@ -1057,6 +1151,64 @@ namespace JobZoom.Core
             {
                 Console.WriteLine("Error in checking linked server - existsLinkedServer. Error Message -> " + ex.Message);
                 throw new Exception(ex.Message);
+            }
+        }
+
+        public static bool deleteLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer")
+        {
+            try
+            {
+                if (existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                {
+                    //Create the connection string.
+                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
+                    //Create the SqlConnection.
+                    SqlConnection objConnection = new SqlConnection(conxString);
+
+                    objConnection.Open();
+                    SqlCommand command = objConnection.CreateCommand();
+                    command.CommandText = "sp_dropserver '" + strLinkedServerName + "', 'droplogins';";
+                    command.ExecuteNonQuery();
+                    return !existsLinkedServer(strDBServerName, strDBName, strLinkedServerName);
+                }
+                else
+                {
+                    Console.WriteLine("Linked server doesn't exist!");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in deleting linked server - deleteLinkedServer. Error Message -> " + ex.Message);
+                return false;
+            }
+
+        }
+        #endregion
+
+        #region Database Engine Query
+        private static bool executeQuery(string strDBServerName, string strDBName, string strQuery)
+        {
+            try
+            {
+                //Create the connection string.
+                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
+                //Create the SqlConnection.
+                SqlConnection objConnection = new SqlConnection(conxString);
+
+                //Open Connection
+                //if (objConnection.State == ConnectionState.Closed)
+                objConnection.Open();
+
+                SqlCommand command = objConnection.CreateCommand();
+                command.CommandText = strQuery;
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error - executeQuery " + strQuery + ". Error Message -> " + ex.Message);
+                return false;
             }
         }
         #endregion
