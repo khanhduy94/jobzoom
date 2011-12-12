@@ -50,11 +50,6 @@
       <DependentUpon>CoreModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Taxonomy\ComplexSubtree.cs" />
-    <Compile Include="Taxonomy\ComplexTree.cs" />
-    <Compile Include="Taxonomy\ComplexTreeNode.cs" />
-    <Compile Include="Taxonomy\ComplexTreeNodeList.cs" />
-    <Compile Include="Taxonomy\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -65,7 +60,9 @@
       <LastGenOutput>CoreModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.Config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
