@@ -65,39 +65,26 @@ GO
 */
 
 GO
-PRINT N'Creating [dbo].[Tag]...';
+PRINT N'Creating [dbo].[SimilarityTerm]...';
 
 
 GO
-CREATE TABLE [dbo].[Tag] (
-    [ID]           UNIQUEIDENTIFIER NOT NULL,
-    [TableName]    CHAR (128)       NULL,
-    [ObjectID]     CHAR (128)       NULL,
-    [TagName]      NVARCHAR (256)   NOT NULL,
-    [ParentId]     UNIQUEIDENTIFIER NULL,
-    [ParentName]   NVARCHAR (256)   NULL,
-    [ModifiedDate] DATETIME         NOT NULL,
-    [IsUpToDate]   BIT              NULL
+CREATE TABLE [dbo].[SimilarityTerm] (
+    [ID]       CHAR (36)      NOT NULL,
+    [Keyword1] NVARCHAR (128) NOT NULL,
+    [Keyword2] NVARCHAR (128) NOT NULL,
+    [Rate]     FLOAT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
 );
 
 
 GO
-PRINT N'Creating PK_Tag...';
+PRINT N'Creating FK_TagAttribute_TagAttribute...';
 
 
 GO
-ALTER TABLE [dbo].[Tag]
-    ADD CONSTRAINT [PK_Tag] PRIMARY KEY CLUSTERED ([ID] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
-
-
-GO
-PRINT N'Creating [dbo].[Tag].[IDX_ParentID]...';
-
-
-GO
-CREATE NONCLUSTERED INDEX [IDX_ParentID]
-    ON [dbo].[Tag]([ParentId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF, ONLINE = OFF, MAXDOP = 0)
-    ON [PRIMARY];
+ALTER TABLE [dbo].[TagAttribute] WITH NOCHECK
+    ADD CONSTRAINT [FK_TagAttribute_TagAttribute] FOREIGN KEY ([ParentId]) REFERENCES [dbo].[TagAttribute] ([TagId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 
 GO
@@ -112,5 +99,17 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+
+GO
+PRINT N'Checking existing data against newly created constraints';
+
+
+GO
+USE [$(DatabaseName)];
+
+
+GO
+ALTER TABLE [dbo].[TagAttribute] WITH CHECK CHECK CONSTRAINT [FK_TagAttribute_TagAttribute];
+
 
 GO

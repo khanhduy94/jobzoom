@@ -56,6 +56,25 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
 		</Element>
+		<Element Type="ISql100PrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="ISqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[SimilarityTerm].[ID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[SimilarityTerm]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+		</Element>
 		<Element Type="ISql90ForeignKeyConstraint">
 			<Relationship Name="Columns">
 				<Entry>
@@ -77,7 +96,7 @@
 					<References Name="[dbo].[DecisionTreeNode]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
 		</Element>
 		<Element Type="ISql90Route" Name="[AutoCreatedLocal]">
 			<Property Name="Address" Value="LOCAL" />
@@ -747,7 +766,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="4" />
+			<AttachedAnnotation Disambiguator="5" />
 		</Element>
 		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_JobEducationExpRequirement_JobPosting]">
 			<Relationship Name="Columns">
@@ -878,6 +897,28 @@
 			<Relationship Name="ForeignTable">
 				<Entry>
 					<References Name="[dbo].[User]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="ISql90ForeignKeyConstraint" Name="[dbo].[FK_TagAttribute_TagAttribute]">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[TagAttribute].[ParentId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[TagAttribute]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[TagAttribute].[TagId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[TagAttribute]" />
 				</Entry>
 			</Relationship>
 		</Element>
@@ -1448,206 +1489,6 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql100View" Name="[dbo].[JobRequirementView]">
-			<Property Name="QueryScript">
-				<Value><![CDATA[
-	SELECT W.JobWorkExpRequirementId Id, P.JobPostingId, P.UserId, P.CompanyId, P.CompanyName, P.JobTitle, W.JobAttributeName, W.JobAttributeValue
-	FROM [Job.Posting] P
-	INNER JOIN [Job.WorkExpRequirement] W
-	ON P.JobPostingId = W.JobPostingId
-	UNION
-	SELECT E.JobEducationExpRequirementId Id,P.JobPostingId, P.UserId, P.CompanyId, P.CompanyName, P.JobTitle, E.JobAttributeName, E.JobAttributeValue
-	FROM [Job.Posting] P
-	INNER JOIN [Job.EducationExpRequirement] E
-	ON P.JobPostingId = E.JobPostingId
-	UNION
-	SELECT O.JobOtherRequirementId Id ,P.JobPostingId, P.UserId, P.CompanyId, P.CompanyName, P.JobTitle, O.JobAttributeName, O.JobAttributeValue
-	FROM [Job.Posting] P
-	INNER JOIN [Job.OtherRequirement] O
-	ON P.JobPostingId = O.JobPostingId]]></Value>
-			</Property>
-			<Property Name="IsAnsiNullsOn" Value="True" />
-			<Relationship Name="Columns">
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[Id]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.WorkExpRequirement].[JobWorkExpRequirementId]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[JobPostingId]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.Posting].[JobPostingId]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[UserId]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.Posting].[UserId]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[CompanyId]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.Posting].[CompanyId]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[CompanyName]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.Posting].[CompanyName]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[JobTitle]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.Posting].[JobTitle]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[JobAttributeName]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.WorkExpRequirement].[JobAttributeName]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql90ComputedColumn" Name="[dbo].[JobRequirementView].[JobAttributeValue]">
-						<Relationship Name="ExpressionDependencies">
-							<Entry>
-								<References Name="[dbo].[Job.WorkExpRequirement].[JobAttributeValue]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="Owner">
-				<Entry>
-					<References ExternalSource="BuiltIns" Name="[dbo]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="QueryDependencies">
-				<Entry>
-					<References Name="[dbo].[Job.Posting]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.WorkExpRequirement]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[JobPostingId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.WorkExpRequirement].[JobPostingId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.WorkExpRequirement].[JobWorkExpRequirementId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[UserId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[CompanyId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[CompanyName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[JobTitle]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.WorkExpRequirement].[JobAttributeName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.WorkExpRequirement].[JobAttributeValue]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.EducationExpRequirement]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[JobPostingId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.EducationExpRequirement].[JobPostingId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.EducationExpRequirement].[JobEducationExpRequirementId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[UserId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[CompanyId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[CompanyName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[JobTitle]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.EducationExpRequirement].[JobAttributeName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.EducationExpRequirement].[JobAttributeValue]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.OtherRequirement]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[JobPostingId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.OtherRequirement].[JobPostingId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.OtherRequirement].[JobOtherRequirementId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[UserId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[CompanyId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[CompanyName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.Posting].[JobTitle]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.OtherRequirement].[JobAttributeName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Job.OtherRequirement].[JobAttributeValue]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="799" />
-				<Property Name="StartLine" Value="1" />
-				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE VIEW [dbo].[JobRequirementView]&#xD;&#xA;&#x9;AS" />
-			</Annotation>
-		</Element>
 		<Element Type="ISql100PrimaryKeyConstraint" Name="[dbo].[PK_Company]">
 			<Relationship Name="ColumnSpecifications">
 				<Entry>
@@ -1807,24 +1648,6 @@ END]]></Value>
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[Profile.Work]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="ISql100PrimaryKeyConstraint" Name="[dbo].[PK_Tag]">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="ISqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Tag].[ID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Tag]" />
 				</Entry>
 			</Relationship>
 		</Element>
@@ -2472,31 +2295,16 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
-		<Element Type="ISql100Table" Name="[dbo].[Tag]">
+		<Element Type="ISql100Table" Name="[dbo].[SimilarityTerm]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[ID]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[SimilarityTerm].[ID]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[TableName]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="128" />
+									<Property Name="Length" Value="36" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[char]" />
@@ -2505,31 +2313,16 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[ObjectID]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="128" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[char]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[TagName]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[SimilarityTerm].[Keyword1]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="256" />
+									<Property Name="Length" Value="128" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -2541,26 +2334,12 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[ParentId]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[SimilarityTerm].[Keyword2]">
+						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[uniqueidentifier]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[ParentName]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="256" />
+									<Property Name="Length" Value="128" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -2572,29 +2351,14 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[ModifiedDate]">
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[SimilarityTerm].[Rate]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[datetime]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[Tag].[IsUpToDate]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
+											<References ExternalSource="BuiltIns" Name="[float]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -2606,29 +2370,6 @@ END]]></Value>
 			<Relationship Name="Owner">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
-				</Entry>
-			</Relationship>
-		</Element>
-		<Element Type="ISql100Index" Name="[dbo].[Tag].[IDX_ParentID]">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="ISqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[Tag].[ParentId]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="Filegroup">
-				<Entry>
-					<References ExternalSource="BuiltIns" Name="[PRIMARY]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="IndexedObject">
-				<Entry>
-					<References Name="[dbo].[Tag]" />
 				</Entry>
 			</Relationship>
 		</Element>
