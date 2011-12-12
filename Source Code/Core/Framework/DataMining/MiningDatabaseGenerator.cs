@@ -14,21 +14,16 @@ namespace JobZoom.Core
     {
         static void Main(string[] args)
         {
-            //test();
-            //Build();
             BuildMiningDatabase();
             Console.ReadLine();
         }
 
-        private static void test()
-        {
-            //string s = StringEncode(".,;'`:/\\*|?\"&%$!+=()[]{}<>");
-            string s = StringEncode("C++");
-            Console.WriteLine(s);
-            s = StringDecode(s);
-            Console.WriteLine(s);
-        }
-
+        #region String Encryption
+        /// <summary>
+        ///     String encode before mining (Characters: .,;'`:/\*|?"&%$!+=()[]{}<>)
+        /// </summary>
+        /// <param name="input">Input string to encode</param>
+        /// <returns>Encoded string</returns>
         private static string StringEncode(string input)
         {
             string[] source = {".", ",", ";", "'", "`", ":", "/", @"\", "*", "|", "?", "\"", "&", "%", "$", "!", "+", "=", "(", ")", "[", "]", "{", "}", "<", ">" };
@@ -40,6 +35,11 @@ namespace JobZoom.Core
             return input;
         }
 
+        /// <summary>
+        ///     String decode after mining
+        /// </summary>
+        /// <param name="input">Input string to decode</param>
+        /// <returns>Decoded string</returns>
         private static string StringDecode(string input)
         {
             string[] target = { ".", ",", ";", "'", "`", ":", "/", @"\", "*", "|", "?", "\"", "&", "%", "$", "!", "+", "=", "(", ")", "[", "]", "{", "}", "<", ">" };
@@ -50,18 +50,22 @@ namespace JobZoom.Core
             }
             return input;
         }
-        #region Cube Generation.
+        #endregion
+
+        #region Mining Database Generation.
 
         private static void BuildMiningDatabase()
         {
             string strPrefix = "Pivot%";
-            string strDBServerName = "TRUNGHIEU-PC"; //Analysis service
+            string strDBServerName = "TRUNGHIEU-PC"; // Database Engine
+            string strASServerName = "TRUNGHIEU-PC"; //Analysis service
             string strProviderName = "msolap"; //Microsoft OLE DB Provider for Analysis Services 10.0
             string strDBName = "JobZoom"; // Database (Database Engine)
-            string strMiningDBName = "Job Zoom Mining"; //Mining database name
-            string strMiningDataSourceName = "Data Source"; //Mining datasource name
-            string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name
-            string[] strFactTableName = getAllMiningTableName(strDBServerName, strDBName, strPrefix); //tables in datasource view to mining
+            string strMiningDBName = "Job Zoom Mining"; //Mining database name (Analysis Service)
+            string strMiningDataSourceName = "Data Source"; //Mining datasource name (Analysis Service)
+            string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name (Analysis Service)
+
+            string[] strFactTableNames = getAllMiningTableNames(strDBServerName, strDBName, strPrefix); //tables in datasource view to mining
             
             string[,] strTableNamesAndKeys = { { "PivotProfile", "ProfileBasicId", "PivotProfile", "ProfileBasicId" }, };
 
@@ -72,7 +76,7 @@ namespace JobZoom.Core
             DataSourceView objDataSourceView = new DataSourceView();
             DataSet objDataSet = new DataSet();
             Dimension[] objDimensions = new Dimension[intDimensionTableCount];
-            MiningStructure[] objMiningStructures = new MiningStructure[strFactTableName.Length];
+            MiningStructure[] objMiningStructures = new MiningStructure[strFactTableNames.Length];
 
 
             Console.WriteLine("Mining creation process started.");
@@ -80,13 +84,14 @@ namespace JobZoom.Core
 
             Console.WriteLine("Step 1. Connecting to the Analysis Services.");
             Console.WriteLine("Step 1. Started!");
-            objServer = (Server) ConnectAnalysisServices(strDBServerName, strProviderName);
+            objServer = (Server) ConnectAnalysisServices(strASServerName, strProviderName);
             Console.WriteLine("Step 1. Finished!");
             Console.WriteLine("");
 
             Console.WriteLine("Step 2. Creating a Database.");
             Console.WriteLine("Step 2. Started!");
             objDatabase = (Database)CreateDatabase(objServer, strMiningDBName);
+            strMiningDBName = objDatabase.Name;
             Console.WriteLine("Step 2. Finished!");
             Console.WriteLine("");
 
@@ -104,90 +109,53 @@ namespace JobZoom.Core
             Console.WriteLine("Step 4. Finished!");
             Console.WriteLine("");
 
-            Console.WriteLine("Step 5. Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects.");
+            Console.WriteLine("Step 5. Createing Mining Structures [with Decision Tree Algorithms]");
             Console.WriteLine("Step 5. Started!");
-            //objDimensions = (Dimension[])CreateDimension(objDatabase, objDataSourceView, strTableNamesAndKeys, intDimensionTableCount);
+            objMiningStructures = (MiningStructure[])CreateMiningStructures(objDatabase, objDataSourceView, strFactTableNames);
             Console.WriteLine("Step 5. Finished!");
             Console.WriteLine("");
 
-            Console.WriteLine("Step 6. Creating the Cube, MeasureGroup, Measure, and Partition Objects.");
+            Console.WriteLine("Step 6. Export mining data to JobZoom Database (Database Engine)");
             Console.WriteLine("Step 6. Started!");
-            //CreateCube(objDatabase, objDataSourceView, objDataSource, objDimensions, strFactTableName, strTableNamesAndKeys, intDimensionTableCount);
-            Console.WriteLine("Step 6. Finished!");
-            Console.WriteLine("");
-
-            Console.WriteLine("Step 7. Createing Mining Structures [with Decision Tree Algorithms]");
-            Console.WriteLine("Step 7. Started!");
             
-            objMiningStructures = (MiningStructure[]) CreateMiningStructures(objDatabase, objDataSourceView, strFactTableName);
-            Console.WriteLine("Step 7. Finished!");
-            Console.WriteLine("");
-
-
-            //Console.WriteLine("Listing all mining tables and its columns");
-            //Console.WriteLine("Started!");
-            //string[] tableNames = getAllMiningTableName(strDBServerName, strDBName);
-            //foreach (string tableName in tableNames)
-            //{
-            //    Console.WriteLine(tableName + " is listing...");
-            //    string[] colNames = getAllColumnName(objDataSourceView, tableName);
-            //    foreach (string colName in colNames)
-            //    {
-            //        Console.WriteLine(colName);
-            //    }
-            //}            
-            //Console.WriteLine("Finished!");
-            //Console.WriteLine("");
-
-            Console.WriteLine("Step 8. Export mining data to JobZoom Database (Database Engine)");
-            Console.WriteLine("Step 8. Started!");
-            Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
-            if (existsLinkedServer(strDBServerName, strDBName))
-                Console.WriteLine("'Linked Server exists' is true!");
-            else
-            {
-                Console.WriteLine("'Linked Server exists' is false!");
-                Console.WriteLine("\nCreating a linked server...");
-                if (createLinkedServer(strDBServerName, strDBName))
-                    Console.WriteLine("Creating a linked server... Successfully!");
-                else
-                {
-                    Console.WriteLine("Creating a linked server... UN-SUCCESSFULLY!");
-                    Console.WriteLine("Failed to export mining data to database. Process is stopped!");
-                    return;
-                }
-            }
             Console.WriteLine("Preparing... Put website to maintenance mode");
             //EXEC WEB SITE MAINTENANCE SERVICE METHOD
 
             Console.WriteLine("Preparing... Cleaning DecisionTreeNode and DecisionTreeNodeDistribution");
-            Console.WriteLine("\nStep 8. Finished!");
+            Console.WriteLine("\nStep 6. Finished!");
             Console.WriteLine("");
-
+            exportMiningDataToDB(strDBServerName, strDBName, strASServerName, strFactTableNames);
             Console.WriteLine("Export completed! Release website to continuing for using");
             //WEBSITE CAN CONTINUE FOR USING
             Console.WriteLine("Saving...");
             objDatabase.Process(ProcessType.ProcessFull);
             Console.WriteLine("Analysis Service Database created successfully.");
+
+            Console.WriteLine("Step 7. Removing Analysis Database");
+            Console.WriteLine("Step 7. Started!");
+            Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
+            Console.WriteLine("Removing Analysis Database completely ...");
+            Console.WriteLine("\nStep 7. Finished!");
+
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
         }
 
         #region Connecting to the Analysis Services.
         /// <summary>
-        /// Connecting to the Analysis Services.
+        ///     Connecting to the Analysis Services.
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name.</param>
+        /// <param name="strASServerName">Analysis Service Server Name.</param>
         /// <param name="strProviderName">Provider Name.</param>
         /// <returns>Database Server instance.</returns>
-        private static object ConnectAnalysisServices(string strDBServerName, string strProviderName)
+        private static object ConnectAnalysisServices(string strASServerName, string strProviderName)
         {
             try
             {
                 Console.WriteLine("Connecting to the Analysis Services ...");
 
                 Server objServer = new Server();
-                string strConnection = "Data Source=" + strDBServerName + ";Provider=" + strProviderName + ";";
+                string strConnection = "Data Source=" + strASServerName + ";Provider=" + strProviderName + ";";
                 //Disconnect from current connection if it's currently connected.
                 if (objServer.Connected)
                     objServer.Disconnect();
@@ -204,22 +172,22 @@ namespace JobZoom.Core
         }
         #endregion Connecting to the Analysis Services.
 
-        #region Creating a Database.
+        #region Manage Databases in Analysis Service.
         /// <summary>
-        /// Creating a Database.
+        /// Creating a Database in Analysis service
         /// </summary>
-        /// <param name="objServer">Database Server Name.</param>
-        /// <param name="strCubeDBName">Cube DB Name.</param>
-        /// <returns>DB instance.</returns>
-        private static object CreateDatabase(Server objServer, string strCubeDBName)
+        /// <param name="objServer">Analysis Service Connection Instance</param>
+        /// <param name="strASDBName">Database name in analysis service to create</param>
+        /// <returns>Analysis Service Database instance.</returns>
+        private static object CreateDatabase(Server objServer, string strASDBName)
         {
             try
             {
-                Console.WriteLine("Creating a Database ...");
+                Console.WriteLine("Creating a Analysis Database ...");
 
                 Database objDatabase = new Database();
                 //Add Database to the Analysis Services.
-                objDatabase = objServer.Databases.Add(objServer.Databases.GetNewName(strCubeDBName));
+                objDatabase = objServer.Databases.Add(objServer.Databases.GetNewName(strASDBName));
                 //Save Database to the Analysis Services.
                 objDatabase.Update();                
 
@@ -231,17 +199,41 @@ namespace JobZoom.Core
                 return null;
             }
         }
-        #endregion Creating a Database.
 
-        private static object GetDatabase(Server objServer, string strCubeDBName)
+        /// <summary>
+        /// Delete a database in Analysis service
+        /// </summary>
+        /// <param name="objServer">Analysis Service Connection Instance</param>
+        /// <param name="strASDBName">Database name in analysis service to delete</param>
+        /// <returns>Result</returns>
+        private static bool deleteDatabase(Server objServer, string strASDBName)
         {
             try
             {
-                Console.WriteLine("Creating a Database ...");
+                objServer.Databases.GetByName(strASDBName).Drop();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in Creating a Database. Error Message -> " + ex.Message);
+                return false;
+            }
+        }
 
+
+        /// <summary>
+        /// Get a database instance in analysis service 
+        /// </summary>
+        /// <param name="objServer">Analysis Service Connection Instance</param>
+        /// <param name="strASDBName">Database name in analysis service to create</param>
+        /// <returns>Database instance in analysis service</returns>
+        private static object GetDatabase(Server objServer, string strASDBName)
+        {
+            try
+            {
                 Database objDatabase = new Database();
                 //Add Database to the Analysis Services.
-                objDatabase = objServer.Databases.GetByName(strCubeDBName);
+                objDatabase = objServer.Databases.GetByName(strASDBName);
                 //Save Database to the Analysis Services.
                 objDatabase.Update();
 
@@ -253,25 +245,26 @@ namespace JobZoom.Core
                 return null;
             }
         }
+        #endregion Manage Databases in Analysis Service.
 
-        #region Creating a DataSource.
+        #region Manage DataSources in Analysis Service
         /// <summary>
-        /// Creating a DataSource.
+        /// Creating a DataSource in Analysis Service
         /// </summary>
-        /// <param name="objServer">Database Server Name.</param>
-        /// <param name="objDatabase">Database Name.</param>
-        /// <param name="strCubeDataSourceName">Cube DataSource Name.</param>
-        /// <param name="strDBServerName">DB Server Name.</param>
-        /// <param name="strDBName">DB Name.</param>
-        /// <returns>DataSource instance.</returns>
-        private static object CreateDataSource(Server objServer, Database objDatabase, string strCubeDataSourceName, string strDBServerName, string strDBName)
+        /// <param name="objServer">Analysis Service Connection Instance</param>
+        /// <param name="objDatabase">Database instance in Analysis Service</param>
+        /// <param name="strMiningDataSourceName">Mining DataSource Name to create</param>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database's name in Database engine</param>
+        /// <returns>Analysis Service DataSource instance.</returns>
+        private static object CreateDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string strDBServerName, string strDBName)
         {
             try
             {
                 Console.WriteLine("Creating a DataSource ...");
                 RelationalDataSource objDataSource = new RelationalDataSource();
                 //Add Data Source to the Database.
-                objDataSource = objDatabase.DataSources.Add(objServer.Databases.GetNewName(strCubeDataSourceName));                
+                objDataSource = objDatabase.DataSources.Add(objServer.Databases.GetNewName(strMiningDataSourceName));                
                 objDataSource.ConnectionString = "Provider=SQLNCLI11.1; Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=SSPI;";
                 objDataSource.Update();
 
@@ -283,16 +276,24 @@ namespace JobZoom.Core
                 return null;
             }
         }
-        #endregion Creating a DataSource.
 
-        private static object GetDataSource(Server objServer, Database objDatabase, string strCubeDataSourceName, string strDBServerName, string strDBName)
+        /// <summary>
+        /// Get a DataSource in Analysis Service
+        /// </summary>
+        /// <param name="objServer">Analysis Service Connection Instance</param>
+        /// <param name="objDatabase">Database instance in Analysis Service</param>
+        /// <param name="strMiningDataSourceName">Mining DataSource Name to get</param>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database's name in Database engine</param>
+        /// <returns>Analysis Service Datasource instance</returns>
+        private static object GetDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string strDBServerName, string strDBName)
         {
             try
             {
                 Console.WriteLine("Creating a DataSource ...");
                 DataSource objDataSource;
                 //Add Data Source to the Database.
-                objDataSource = objDatabase.DataSources.GetByName(strCubeDataSourceName);
+                objDataSource = objDatabase.DataSources.GetByName(strMiningDataSourceName);
                 objDataSource.ConnectionString = "Provider=SQLNCLI11.1; Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=SSPI;";
                 objDataSource.Update();
 
@@ -304,14 +305,15 @@ namespace JobZoom.Core
                 return null;
             }
         }
+        #endregion Manage DataSources in Analysis Service
 
-        #region Creating a DataSourceView.
+        #region Manage DataSourceViews in Analysis Service
         /// <summary>
         /// Creating a DataSourceView.
         /// </summary>
-        /// <param name="strDBServerName">DB Server Name.</param>
-        /// <param name="strDBName">DB Name.</param>
-        /// <param name="strFactTableName">FactTable Name.</param>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="strFactTableName">FactTable Name</param>
         /// <param name="strTableNamesAndKeys">Array of TableNames and Keys.</param>
         /// <param name="intDimensionTableCount">Dimension Table Count.</param>
         /// <returns>DataSet instance.</returns>
@@ -328,6 +330,7 @@ namespace JobZoom.Core
                 DataSet objDataSet = new DataSet();
                 //Add FactTable in DataSet.
                 objDataSet = (DataSet)FillDataSet(objConnection, objDataSet, strFactTableName);
+
                 //Add table in DataSet and Relation between them.
                 for (int i = 0; i < intDimensionTableCount; i++)
                 {
@@ -346,6 +349,13 @@ namespace JobZoom.Core
             }
         }
 
+        /// <summary>
+        /// Creating a DataSourceView.
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="strPrefix">Table with this prefix will be added to DataSource View</param>
+        /// <returns>Dataset instance</returns>
         private static object GenerateDWSchema(string strDBServerName, string strDBName, string strPrefix = "Pivot%")
         {
             try
@@ -358,27 +368,12 @@ namespace JobZoom.Core
                 objConnection.Open();
                 DataSet objDataSet = new DataSet();
 
-                //Do tat ca cac bang vao dataset
-                string[] miningTables = getAllMiningTableName(strDBServerName, strDBName, strPrefix);
+                //Fill all tables begin with prefix to dataset
+                string[] miningTables = getAllMiningTableNames(strDBServerName, strDBName, strPrefix);
                 foreach (string miningTable in miningTables)
                 {
                     objDataSet = (DataSet)FillDataSet(objConnection, objDataSet, miningTable);
                 }
-
-                //Add FactTable in DataSet.
-                
-
-                //objDataSet = (DataSet)FillDataSet(objConnection, objDataSet, strFactTableName2);
-
-                ////Add table in DataSet and Relation between them.
-                //for (int i = 0; i < intDimensionTableCount; i++)
-                //{
-                //    //Retrieve table's schema and assign the table's schema to the DataSet.
-                //    //Add primary key to the schema according to the primary key in the tables.
-                //    objDataSet = (DataSet)FillDataSet(objConnection, objDataSet, strTableNamesAndKeys[i, 0]);
-                //    //objDataSet = (DataSet)AddDataTableRelation(objDataSet, strTableNamesAndKeys[i, 0], strTableNamesAndKeys[i, 1], strTableNamesAndKeys[i, 2], strTableNamesAndKeys[i, 3]);
-                //}
-
                 return objDataSet;
             }
             catch (Exception ex)
@@ -390,7 +385,7 @@ namespace JobZoom.Core
         /// <summary>
         /// Fill the DataSet with DataTables.
         /// </summary>
-        /// <param name="objConnection">Connection instance.</param>
+        /// <param name="objConnection">Database Engine Connection instance.</param>
         /// <param name="objDataSet">DataSet instance.</param>
         /// <param name="strTableName">TableName.</param>
         /// <returns>DataSet instance.</returns>
@@ -439,18 +434,18 @@ namespace JobZoom.Core
         /// <summary>
         /// Creating a DataSourceView.
         /// </summary>
-        /// <param name="objDatabase">DB instance.</param>
-        /// <param name="objDataSource">DataSource instance.</param>
-        /// <param name="objDataSet">DataSet instance.</param>
-        /// <param name="strCubeDataSourceViewName">Cube DataSourceView Name.</param>
+        /// <param name="objDatabase">Analysis Service Database intance</param>
+        /// <param name="objDataSource">Analysis Service DataSource instance</param>
+        /// <param name="objDataSet">Dataset</param>
+        /// <param name="strMiningDataSourceViewName">Mining DataSourceView Name.</param>
         /// <returns>DataSourceView instance.</returns>
-        private static object CreateDataSourceView(Database objDatabase, RelationalDataSource objDataSource, DataSet objDataSet, string strCubeDataSourceViewName)
+        private static object CreateDataSourceView(Database objDatabase, RelationalDataSource objDataSource, DataSet objDataSet, string strMiningDataSourceViewName)
         {
             try
             {
                 DataSourceView objDataSourceView = new DataSourceView();
                 //Add Data Source View to the Database.
-                objDataSourceView = objDatabase.DataSourceViews.Add(objDatabase.DataSourceViews.GetNewName(strCubeDataSourceViewName));
+                objDataSourceView = objDatabase.DataSourceViews.Add(objDatabase.DataSourceViews.GetNewName(strMiningDataSourceViewName));
                 objDataSourceView.DataSourceID = objDataSource.ID;
                 objDataSourceView.Schema = objDataSet;
                 objDataSourceView.Update();
@@ -463,181 +458,16 @@ namespace JobZoom.Core
                 return null;
             }
         }
-        #endregion Creating a DataSourceView.
-
-        #region Creating a Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects.
-        /// <summary>
-        /// Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects.
-        /// </summary>
-        /// <param name="objDatabase">DB instance.</param>
-        /// <param name="objDataSourceView">DataSource instance.</param>
-        /// <param name="strTableNamesAndKeys">Array of Table names and keys.</param>
-        /// <param name="intDimensionTableCount">Dimension table count.</param>
-        /// <returns>Dimension Array.</returns>
-        private static object[] CreateDimension(Database objDatabase, DataSourceView objDataSourceView, string[,] strTableNamesAndKeys, int intDimensionTableCount)
-        {
-            try
-            {
-                Console.WriteLine("Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects ...");
-
-                Dimension[] objDimensions = new Dimension[intDimensionTableCount];
-                for (int i = 0; i < intDimensionTableCount; i++)
-                {
-                    objDimensions[i] = (Dimension)GenerateDimension(objDatabase, objDataSourceView, strTableNamesAndKeys[i, 0], strTableNamesAndKeys[i, 1]);
-                }
-
-                ////Add Hierarchy and Level
-                //Hierarchy objHierarchy = objDimension.Hierarchies.Add("ProductByCategory");
-                //objHierarchy.Levels.Add("Category").SourceAttributeID = objCatKeyAttribute.ID;
-                //objHierarchy.Levels.Add("Product").SourceAttributeID = objProdKeyAttribute.ID;
-                ////Add Member Property
-                ////objProdKeyAttribute.AttributeRelationships.Add(objProdDescAttribute.ID);
-                //objDimension.Update();
-
-                return objDimensions;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects. Error Message -> " + ex.Message);
-                return null;
-            }
-        }
-        /// <summary>
-        /// Generate single dimension.
-        /// </summary>
-        /// <param name="objDatabase">DB instance.</param>
-        /// <param name="objDataSourceView">DataSourceView instance.</param>
-        /// <param name="strTableName">Table name.</param>
-        /// <param name="strTableKeyName">Table key.</param>
-        /// <returns>Dimension instance.</returns>
-        private static object GenerateDimension(Database objDatabase, DataSourceView objDataSourceView, string strTableName, string strTableKeyName)
-        {
-            try
-            {
-                Dimension objDimension = new Dimension();
-
-                //Add Dimension to the Database
-                objDimension = objDatabase.Dimensions.Add(strTableName);
-                objDimension.Source = new DataSourceViewBinding(objDataSourceView.ID);
-                DimensionAttributeCollection objDimensionAttributesColl = objDimension.Attributes;
-                //Add Dimension Attributes
-                DimensionAttribute objAttribute = objDimensionAttributesColl.Add(strTableKeyName);
-                //Set Attribute usage and source
-                objAttribute.Usage = AttributeUsage.Key;
-                objAttribute.KeyColumns.Add(strTableName, strTableKeyName, OleDbType.Integer);
-
-                objDimension.Update();
-
-                return objDimension;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects - GenerateDimension. Error Message -> " + ex.Message);
-                return null;
-            }
-        }
-        #endregion Creating a Creating the Dimension, Attribute, Hierarchy, and MemberProperty Objects.
-
-        #region Creating the Cube, MeasureGroup, Measure, and Partition Objects.
-        /// <summary>
-        /// Creating the Cube, MeasureGroup, Measure, and Partition Objects.
-        /// </summary>
-        /// <param name="objDatabase">DB instance.</param>
-        /// <param name="objDataSourceView">DataSourceView instance.</param>
-        /// <param name="objDataSource">DataSource instance.</param>
-        /// <param name="objDimensions">Dimensions array instance.</param>
-        /// <param name="strFactTableName">FactTable Name.</param>
-        /// <param name="strTableNamesAndKeys">Array of Table Names and Keys.</param>
-        /// <param name="intDimensionTableCount">DimensionTable Count.</param>
-        private static void CreateCube(Database objDatabase, DataSourceView objDataSourceView, RelationalDataSource objDataSource, Dimension[] objDimensions, string strFactTableName, string[,] strTableNamesAndKeys, int intDimensionTableCount)
-        {
-            try
-            {
-                Console.WriteLine("Creating the Cube, MeasureGroup, Measure, and Partition Objects ...");
-                Cube objCube = new Cube();
-                Measure objSales = new Measure();
-                Measure objQuantity = new Measure();
-                MdxScript objTotal = new MdxScript();
-                String strScript;
-
-                Partition objPartition = new Partition();
-                Command objCommand = new Command();
-                //Add Cube to the Database and set Cube source to the Data Source View
-                objCube = objDatabase.Cubes.Add("SampleCube");
-                objCube.Source = new DataSourceViewBinding(objDataSourceView.ID);
-                //Add Measure Group to the Cube
-                //MeasureGroup objMeasureGroup = objCube.MeasureGroups.Add("FactSales");
-                MeasureGroup objMeasureGroup = objCube.MeasureGroups.Add(strFactTableName);
-
-                //Add Measure to the Measure Group and set Measure source
-                objSales = objMeasureGroup.Measures.Add("Amount");
-                objSales.Source = new DataItem(strFactTableName, "SalesAmount", OleDbType.Currency);
-
-                objQuantity = objMeasureGroup.Measures.Add("Quantity");
-                objQuantity.Source = new DataItem(strFactTableName, "OrderQuantity", OleDbType.Integer);
-
-                ////Calculated Member Definition
-                //strScript = "Calculated; Create Member CurrentCube.[Measures].[Total] As [Measures].[Quantity] * [Measures].[Amount]";
-                ////Add Calculated Member
-                //objTotal.Name = "Total Sales";
-                //objCommand.Text = strScript;
-                //objTotal.Commands.Add(objCommand);
-                //objCube.MdxScripts.Add(objTotal);
-
-                for (int i = 0; i < intDimensionTableCount; i++)
-                {
-                    GenerateCube(objCube, objDimensions[i], objMeasureGroup, strFactTableName, strTableNamesAndKeys[i, 3]);
-                }
-
-                objPartition = objMeasureGroup.Partitions.Add(strFactTableName);
-                objPartition.Source = new TableBinding(objDataSource.ID, "dbo", strFactTableName);
-
-                objPartition.ProcessingMode = ProcessingMode.Regular;
-                objPartition.StorageMode = StorageMode.Molap;
-                //Save Cube and all major objects to the Analysis Services
-                objCube.Update(UpdateOptions.ExpandFull);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in Creating the Cube, MeasureGroup, Measure, and Partition Objects. Error Message -> " + ex.Message);
-            }
-        }
-        /// <summary>
-        /// Generate cube.
-        /// </summary>
-        /// <param name="objCube">Cube instance.</param>
-        /// <param name="objDimension">Dimension instance.</param>
-        /// <param name="objMeasureGroup">MeasureGroup instance.</param>
-        /// <param name="strFactTableName">FactTable Name.</param>
-        /// <param name="strTableKey">Table Key.</param>
-        private static void GenerateCube(Cube objCube, Dimension objDimension, MeasureGroup objMeasureGroup, string strFactTableName, string strTableKey)
-        {
-            try
-            {                
-                CubeDimension objCubeDim = new CubeDimension();
-                RegularMeasureGroupDimension objRegMGDim = new RegularMeasureGroupDimension();
-                MeasureGroupAttribute objMGA = new MeasureGroupAttribute();
-                //Add Dimension to the Cube
-                objCubeDim = objCube.Dimensions.Add(objDimension.ID);
-                //Use Regular Relationship Between Dimension and FactTable Measure Group
-                objRegMGDim = objMeasureGroup.Dimensions.Add(objCubeDim.ID);
-                //Link TableKey in DimensionTable with TableKey in FactTable Measure Group
-                objMGA = objRegMGDim.Attributes.Add(objDimension.KeyAttribute.ID);
-
-                objMGA.Type = MeasureGroupAttributeType.Granularity;
-                objMGA.KeyColumns.Add(strFactTableName, strTableKey, OleDbType.Integer);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error in Creating the Cube, MeasureGroup, Measure, and Partition Objects - GenerateCube. Error Message -> " + ex.Message);
-            }
-        }
-        #endregion Creating the Cube, MeasureGroup, Measure, and Partition Objects.
-
-        #endregion Cube Generation.
+        #endregion Manage DataSourceViews in Analysis Service
 
         #region Mining structure Generation.
-
+        /// <summary>
+        ///     Create Mining Structures in Analysis Service
+        /// </summary>
+        /// <param name="objDatabase">Analysis Service Database instance</param>
+        /// <param name="objDataSourceView">Analysis Service DataSourceView instance</param>
+        /// <param name="strCaseTableNames">Array of mining tables</param>
+        /// <returns>Array of created Mining Structures</returns>
         private static object[] CreateMiningStructures(Database objDatabase, DataSourceView objDataSourceView, string[] strCaseTableNames)
         {
             MiningStructure[] miningStructures = new MiningStructure[strCaseTableNames.Length];
@@ -655,6 +485,14 @@ namespace JobZoom.Core
                 return null;
             }
         }
+
+        /// <summary>
+        ///     Generate a mining structure and full process it
+        /// </summary>
+        /// <param name="objDatabase">Analysis Service Database instance</param>
+        /// <param name="objDataSourceView">Analysis Service DataSourceView instance</param>
+        /// <param name="strCaseTableName">Mining table name</param>
+        /// <returns>Mining structure</returns>
         private static object GenerateMiningStructure(Database objDatabase, DataSourceView objDataSourceView, string strCaseTableName)
         {
             try
@@ -705,6 +543,12 @@ namespace JobZoom.Core
                 //MiningModel objMiningModel = objMiningStructure.MiningModels.Add(objMiningStructure.MiningModels.GetNewName(strMiningStructureName));
                 objMiningModel.Algorithm = MiningModelAlgorithms.MicrosoftDecisionTrees;
                 objMiningModel.AllowDrillThrough = true;
+                objMiningModel.AlgorithmParameters.Add("SCORE_METHOD", 4); //Entropy (1), Bayesian with K2 Prior (2), or Bayesian Dirichlet Equivalent (BDE) Prior (3)
+                objMiningModel.AlgorithmParameters.Add("COMPLEXITY_PENALTY", 0.1);
+                objMiningModel.AlgorithmParameters.Add("SPLIT_METHOD", 3); //Binary (1), Complete (2), or Both (3)
+                objMiningModel.AlgorithmParameters.Add("MAXIMUM_INPUT_ATTRIBUTES", 255);
+                objMiningModel.AlgorithmParameters.Add("MAXIMUM_OUTPUT_ATTRIBUTES", 255);
+                objMiningModel.AlgorithmParameters.Add("MINIMUM_SUPPORT", 10);
 
                 int i = 0;
                 foreach(MiningModelColumn col in objMiningModel.Columns)
@@ -723,9 +567,11 @@ namespace JobZoom.Core
                     }
                     ++i;
                 }
-
                 //objMiningModel.Update(UpdateOptions.ExpandFull);
                 objMiningStructure.Update(UpdateOptions.ExpandFull);
+                Console.WriteLine("Processing mining model " + objMiningStructure.Name + "...");
+                objMiningModel.Process(ProcessType.ProcessFull);
+                Console.WriteLine("Process " + objMiningStructure.Name + " finished!");
                 return objMiningStructure;
             }
             catch (Exception ex)
@@ -736,6 +582,12 @@ namespace JobZoom.Core
         
         }
 
+        /// <summary>
+        /// Get all table column names
+        /// </summary>
+        /// <param name="objDataSourceView">Analysis Serivce Datasource View</param>
+        /// <param name="tableName">Table's name to get its column names</param>
+        /// <returns>Array of column names</returns>
         private static string[] getAllColumnName(DataSourceView objDataSourceView, string tableName)
         {
             
@@ -751,6 +603,13 @@ namespace JobZoom.Core
             return columnNames;
         }
 
+        /// <summary>
+        /// Get all table columns name
+        /// </summary>
+        /// <param name="strDBServerName">Database Server (Database Engine)</param>
+        /// <param name="strDBName">Database name (Database Engine)</param>
+        /// <param name="tableName">Table's name to get its column names</param>
+        /// <returns>Array of column names</returns>
         private static string[] getAllColumnName(string strDBServerName, string strDBName, string tableName)
         {
             try
@@ -788,7 +647,13 @@ namespace JobZoom.Core
             }            
         }
 
-        private static string[] getAllMiningTableName(DataSourceView dsv, string strPrefix = "Pivot%")
+        /// <summary>
+        /// Get all mining table names
+        /// </summary>
+        /// <param name="dsv">DataSource View (Analysis Service)</param>
+        /// <param name="strPrefix">Prefix</param>
+        /// <returns>Array of mining table names</returns>
+        private static string[] getAllMiningTableNames(DataSourceView dsv, string strPrefix = "Pivot%")
         {
             if (dsv.Schema.Tables.Count > 0)
             {
@@ -807,7 +672,14 @@ namespace JobZoom.Core
             }
         }
 
-        private static string[] getAllMiningTableName(string strDBServerName, string strDBName, string strPrefix = "Pivot%")
+        /// <summary>
+        /// Get all mining table names
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="strPrefix">Prefix</param>
+        /// <returns>Array of mining table names</returns>
+        private static string[] getAllMiningTableNames(string strDBServerName, string strDBName, string strPrefix = "Pivot%")
         {
             try
             {
@@ -848,36 +720,129 @@ namespace JobZoom.Core
 
         #region Export Mining Data To Database
         /// <summary>
-        /// 
+        /// Export mining data to DecisionTreeNode and DecisionTreeNodeDistribution table
         /// </summary>
-        /// <param name="strDBServerName">Server Name (Analysis Service)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
-        /// <param name="objDatabase">Database (Analysis Service)</param>
-        /// <param name="strMiningStructureName">Mining structure name to export</param>
-        /// <param name="strIndustry">The root industry in DecisionTreeNode table</param>
-        private static void exportMiningDataToDB(string strDBServerName, string strDBName, Database objDatabase, string[] strMiningStructureName)
+        /// <param name="strDBServerName">Target Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Target Database Name (Database Engine)</param>
+        /// <param name="strMiningStructureNames">Mining Structure Names to export</param>
+        private static void exportMiningDataToDB(string strDBServerName, string strDBName, string strASServerName, string[] strMiningStructureNames)
         {
-            Console.WriteLine("Open connection to database engine ...");
-            //Create the connection string.
-            string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
-            //Create the SqlConnection.
-            SqlConnection objConnection = new SqlConnection(conxString);
+            try
+            {
+                string strQuery;
+                string strLinkedServerName = "JobZoomMiningLinkedServer";
 
-            //Open Connection
-            //if (objConnection.State == ConnectionState.Closed)
-            objConnection.Open();
-            
-            SqlCommand command = objConnection.CreateCommand();
-            command.CommandText = "";
+                Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
+                if (existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                {
+                    Console.WriteLine("'Linked Server exists' is true!");
+                    Console.WriteLine("Deleting ... Result is " + deleteLinkedServer(strDBServerName, strDBName, strLinkedServerName));
+                }
 
+                Console.WriteLine("\nCreating a linked server...");
+                if (createLinkedServer(strDBServerName, strDBName, strASServerName, strLinkedServerName))
+                    Console.WriteLine("Creating a linked server... Successfully!");
+                else
+                {
+                    Console.WriteLine("Creating a linked server... UN-SUCCESSFULLY!");
+                    Console.WriteLine("Failed to export mining data to database. Process is stopped!");
+                }
 
+                //Delete all row in table DecisionTreeNode and DecisionTreeNodeDistribution
+                if (existsDecisionTreeNodeTable(strDBServerName, strDBName))
+                {
+                    strQuery = "TRUNCATE TABLE DecisionTreeNodeDistribution;"; //faster than DELETE FROM <Table>
+                    executeQuery(strDBServerName, strDBName, strQuery);
+                }
+                else
+                {
+                    createDecisionTreeNodeTable(strDBServerName, strDBName);
+                }
+                if (existsDecisionTreeNodeDistributionTable(strDBServerName, strDBName))
+                {
+                    strQuery = "DELETE FROM DecisionTreeNode;";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+                }
+                else
+                {
+                    createDecisionTreeNodeDistributionTable(strDBServerName, strDBName);
+                }
+
+                //Step 1. Create the root note for all jobs
+                strQuery = "INSERT INTO DecisionTreeNode(NODEID, NODE_TYPE, CHILDREN_CARDINALITY, NODE_SUPPORT, MSOLAP_NODE_SCORE) VALUES('0', 1, " + strMiningStructureNames.Length + ", 0, 0)";
+                executeQuery(strDBServerName, strDBName, strQuery);
+
+                strQuery = "INSERT INTO DecisionTreeNodeDistribution(NODEID) VALUES('0')";
+                executeQuery(strDBServerName, strDBName, strQuery);
+
+                foreach (string strMiningStructureName in strMiningStructureNames)
+                {
+                    strQuery = "INSERT INTO DecisionTreeNode " +
+                                    "SELECT * FROM " +
+                                    "OPENQUERY(" + strLinkedServerName + ", " +
+                                    "'SELECT FLATTENED " +
+                                    "[NODE_UNIQUE_NAME] AS [NODEID], " +
+                                    "[NODE_TYPE], " +
+                                    "[NODE_CAPTION], " +
+                                    "[CHILDREN_CARDINALITY], " +
+                                    "[PARENT_UNIQUE_NAME] AS [PARENTID], " +
+                                    "[NODE_DESCRIPTION], " +
+                                    "[NODE_RULE], " +
+                                    "[MARGINAL_RULE], " +
+                                    "[NODE_PROBABILITY], " +
+                                    "[MARGINAL_PROBABILITY], " +
+                                    "[NODE_SUPPORT], " +
+                                    "[MSOLAP_MODEL_COLUMN], " +
+                                    "[MSOLAP_NODE_SCORE], " +
+                                    "[MSOLAP_NODE_SHORT_CAPTION], " +
+                                    "[ATTRIBUTE_NAME] " +
+                                    "FROM [" + strMiningStructureName + "].CONTENT " +
+                                    "WHERE [NODE_UNIQUE_NAME] <> ''0''')";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+
+                    //Step 2. Insert data (except root node). (Rename node named "All" to strMiningStructureName
+                    strQuery = "UPDATE DecisionTreeNode SET [NODE_CAPTION] = '" + strMiningStructureName +
+                                                        "', [NODE_DESCRIPTION] ='" + strMiningStructureName +
+                                                        "', [MSOLAP_NODE_SHORT_CAPTION] ='" + strMiningStructureName +
+                                                        "' WHERE [NODE_CAPTION] = 'All';";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+
+                    strQuery = "INSERT INTO DecisionTreeNodeDistribution " +
+                                    "SELECT * FROM " +
+                                    "OPENQUERY(" + strLinkedServerName + ", " +
+                                    "'SELECT FLATTENED " +
+                                    "[NODE_UNIQUE_NAME] AS [NODEID], " +
+                                    "[NODE_DISTRIBUTION] " +
+                                    "FROM [" + strMiningStructureName + "].CONTENT " +
+                                    "WHERE [NODE_UNIQUE_NAME] <> ''0''')";
+                    executeQuery(strDBServerName, strDBName, strQuery);
+
+                    //String Decode
+                    string[] source = { "_x002E_", "_x002C_", "_x003B_", "_x0027_", "_x0060_", "_x003A_", "_x002F_", "_x005C_", "_x002A_", "_x007C_", "_x003F_", "_x0022_", "_x0026_", "_x0025_", "_x0024_", "_x0021_", "_x002B_", "_x003D_", "_x0028_", "_x0029_", "_x005B_", "_x005D_", "_x007B_", "_x007D_", "_x003C_", "_x003E_" };
+                    string[] target = { ".", ",", ";", "''", "`", ":", "/", @"\", "*", "|", "?", "\"", "&", "%", "$", "!", "+", "=", "(", ")", "[", "]", "{", "}", "<", ">" };
+                    //chu y kiem tra ky tu '
+                    for (int i = 0; i < source.Length; i++)
+                    {
+                        strQuery = "UPDATE DecisionTreeNode SET NODE_CAPTION = REPLACE(NODE_CAPTION, '" + source[i] + "', '" + target[i] + "'), " +
+                                "NODE_DESCRIPTION = REPLACE(cast(NODE_DESCRIPTION as NVARCHAR(MAX)), '" + source[i] + "', '" + target[i] + "')," + 
+                                "MSOLAP_NODE_SHORT_CAPTION = REPLACE(MSOLAP_NODE_SHORT_CAPTION, '" + source[i] + "', '" + target[i] + "');";
+                        executeQuery(strDBServerName, strDBName, strQuery);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error - exportMiningDataToDB. Error Message -> " + ex.Message);
+                throw new Exception(ex.Message);
+            }
         }
 
-        private static bool preparingDecisionTreeTables(string strDBServerName, string strDBName)
-        {
-            return false;
-        }
-
+        /// <summary>
+        ///     Is DecisionTreeNode table exists?
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name</param>
+        /// <returns>True if DecisionTreeNode table is exists and reverse</returns>
         private static bool existsDecisionTreeNodeTable(string strDBServerName, string strDBName)
         {
             try
@@ -901,6 +866,12 @@ namespace JobZoom.Core
             }
         }
 
+        /// <summary>
+        ///     Is DecisionTreeNodeDistribution table exists?
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name</param>
+        /// <returns>True if DecisionTreeNodeDistribution table is exists and reverse</returns>
         private static bool existsDecisionTreeNodeDistributionTable(string strDBServerName, string strDBName)
         {
             try
@@ -924,6 +895,12 @@ namespace JobZoom.Core
             }
         }
 
+        /// <summary>
+        /// Create DecisionTreeNode table
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <returns>Result</returns>
         private static bool createDecisionTreeNodeTable(string strDBServerName, string strDBName)
         {
             try
@@ -967,6 +944,12 @@ namespace JobZoom.Core
             }
         }
 
+        /// <summary>
+        /// Create DecisionTreeNodeDistribution table
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <returns>Result/returns>
         private static bool createDecisionTreeNodeDistributionTable(string strDBServerName, string strDBName)
         {
             try
@@ -1006,11 +989,19 @@ namespace JobZoom.Core
         #endregion
 
         #region Linked Server
-        public static bool createLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer", string strAnalysisDBName = "Job Zoom Mining")
+        /// <summary>
+        /// Create linked server on Database Engine to get data from Analysis Service by MDX language
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="strLinkedServerName">Linked Server Name to create</param>
+        /// <param name="strAnalysisDBName">Analysis Service Database Name</param>
+        /// <returns></returns>
+        public static bool createLinkedServer(string strDBServerName, string strDBName, string strASServerName, string strLinkedServerName = "JobZoomMiningLinkedServer", string strAnalysisDBName = "Job Zoom Mining")
         {
             try
             {
-                if (!existsLinkedServer(strDBServerName, strDBName, strLinkedServerName, strAnalysisDBName))
+                if (!existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
                 {
                     //Create the connection string.
                     string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
@@ -1019,9 +1010,9 @@ namespace JobZoom.Core
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
-                    command.CommandText = "EXEC master.dbo.sp_addlinkedserver @server='" + strLinkedServerName + "', @srvproduct='', @provider='MSOLAP', @datasrc='TRUNGHIEU-PC', @catalog='" + strAnalysisDBName + "';";
+                    command.CommandText = "EXEC master.dbo.sp_addlinkedserver @server='" + strLinkedServerName + "', @srvproduct='', @provider='MSOLAP', @datasrc='" + strASServerName + "', @catalog='" + strAnalysisDBName + "';";
                     command.ExecuteNonQuery();
-                    return existsLinkedServer(strDBServerName, strDBName, strLinkedServerName, strAnalysisDBName);
+                    return existsLinkedServer(strDBServerName, strDBName, strLinkedServerName);
                 }
                 else
                 {
@@ -1034,10 +1025,16 @@ namespace JobZoom.Core
                 Console.WriteLine("Error in creating linked server - createLinkedServer. Error Message -> " + ex.Message);
                 return false;
             }
-
         }
 
-        public static bool existsLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer", string strAnalysisDBName = "Job Zoom Mining")
+        /// <summary>
+        /// Is Linked Server exist?
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="strLinkedServerName">Linked server name to check</param>
+        /// <returns>Result</returns>
+        public static bool existsLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer")
         {
             try
             {
@@ -1059,6 +1056,80 @@ namespace JobZoom.Core
                 throw new Exception(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Delete linked server
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="strLinkedServerName">Linked server name to delete</param>
+        /// <returns>Result</returns>
+        public static bool deleteLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer")
+        {
+            try
+            {
+                if (existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                {
+                    //Create the connection string.
+                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
+                    //Create the SqlConnection.
+                    SqlConnection objConnection = new SqlConnection(conxString);
+
+                    objConnection.Open();
+                    SqlCommand command = objConnection.CreateCommand();
+                    command.CommandText = "sp_dropserver '" + strLinkedServerName + "', 'droplogins';";
+                    command.ExecuteNonQuery();
+                    return !existsLinkedServer(strDBServerName, strDBName, strLinkedServerName);
+                }
+                else
+                {
+                    Console.WriteLine("Linked server doesn't exist!");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error in deleting linked server - deleteLinkedServer. Error Message -> " + ex.Message);
+                return false;
+            }
+
+        }
         #endregion
+
+        #region Database Engine Query
+        /// <summary>
+        /// Execute query (Database Engine Query)
+        /// </summary>
+        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
+        /// <param name="strDBName">Database Name</param>
+        /// <param name="strQuery">Query to execute</param>
+        /// <returns>True if exexute sucessfully and reverse</returns>
+        private static bool executeQuery(string strDBServerName, string strDBName, string strQuery)
+        {
+            try
+            {
+                //Create the connection string.
+                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
+                //Create the SqlConnection.
+                SqlConnection objConnection = new SqlConnection(conxString);
+
+                //Open Connection
+                //if (objConnection.State == ConnectionState.Closed)
+                objConnection.Open();
+
+                SqlCommand command = objConnection.CreateCommand();
+                command.CommandText = strQuery;
+                command.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error - executeQuery " + strQuery + ". Error Message -> " + ex.Message);
+                return false;
+            }
+        }
+        #endregion
+
+        #endregion Mining Database Generation.
     }
 }
