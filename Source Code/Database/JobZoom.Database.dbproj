@@ -252,9 +252,4 @@
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
-  <ItemGroup>
-    <NotInBuild Include="Data Generation Plans\DataGenerationPlan1.dgen">
-      <SubType>NotInBuild</SubType>
-    </NotInBuild>
-  </ItemGroup>
 </Project>

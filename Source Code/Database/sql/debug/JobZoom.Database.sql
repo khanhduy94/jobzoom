@@ -65,6 +65,42 @@ GO
 */
 
 GO
+PRINT N'Creating [dbo].[Tag]...';
+
+
+GO
+CREATE TABLE [dbo].[Tag] (
+    [ID]           UNIQUEIDENTIFIER NOT NULL,
+    [TableName]    CHAR (128)       NULL,
+    [ObjectID]     CHAR (128)       NULL,
+    [TagName]      NVARCHAR (256)   NOT NULL,
+    [ParentId]     UNIQUEIDENTIFIER NULL,
+    [ParentName]   NVARCHAR (256)   NULL,
+    [ModifiedDate] DATETIME         NOT NULL,
+    [IsUpToDate]   BIT              NULL
+);
+
+
+GO
+PRINT N'Creating PK_Tag...';
+
+
+GO
+ALTER TABLE [dbo].[Tag]
+    ADD CONSTRAINT [PK_Tag] PRIMARY KEY CLUSTERED ([ID] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
+
+
+GO
+PRINT N'Creating [dbo].[Tag].[IDX_ParentID]...';
+
+
+GO
+CREATE NONCLUSTERED INDEX [IDX_ParentID]
+    ON [dbo].[Tag]([ParentId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF, ONLINE = OFF, MAXDOP = 0)
+    ON [PRIMARY];
+
+
+GO
 /*
 Post-Deployment Script Template							
 --------------------------------------------------------------------------------------

@@ -888,29 +888,40 @@ BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-	DECLARE @listCol VARCHAR(MAX)
-	DECLARE @SQLString NVARCHAR(MAX)
+	DECLARE @listCol VARCHAR(MAX),
+			@SQLString NVARCHAR(MAX),
+			@viewName NVARCHAR(128)
+
+	SET @viewName = @Prefix + @JobTitle
+	SET @viewName = REPLACE(@viewName,' ','')
+
 	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(TagName)
 							FROM TagAttribute
 							INNER JOIN [Profile.Basic] on [Profile.Basic].ProfileBasicId = TagAttribute.ObjectId
+							LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId
+							INNER JOIN [Job.Posting] ON [Job.Posting].JobPostingId = [Job.Approval].JobPostingId
+							WHERE [Job.Posting].JobTitle = @JobTitle
 							ORDER BY '],[' + ltrim(TagName)
 							FOR XML PATH('')), 1, 2, '') + ']'
-	IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS WHERE TABLE_NAME = 'PivotProfile')
-	DROP VIEW PivotProfile
 
-	SET @SQLString = N'CREATE VIEW PivotProfileView
-					AS
-					SELECT row_number() over (order by pvt.ProfileBasicId desc) as Id, pvt.* FROM (
+	SET @SQLString = N'IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS 
+						WHERE TABLE_NAME =''' + @viewName +  ''')
+						DROP VIEW '+  @viewName
+	EXECUTE (@SQLString)
+
+	SET @SQLString = N'CREATE VIEW ' + @viewName + ' AS
+					SELECT row_number() over (order by pvt.ProfileBasicId desc) as ID, pvt.* FROM (
 						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, TagAttribute.TagName
 						FROM [Profile.Basic]
 						INNER JOIN TagAttribute on [Profile.Basic].ProfileBasicId = TagAttribute.ObjectId
 						LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId
 						INNER JOIN [Job.Posting] ON [Job.Posting].JobPostingId = [Job.Approval].JobPostingId
+						WHERE [Job.Posting].JobTitle = '''+ @JobTitle + '''
 						GROUP BY [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, TagAttribute.TagName					
 					)t
 					PIVOT (COUNT(TagName) FOR TagName
 					IN ('+@listCol+')) AS pvt'
-						
+				
 	EXECUTE (@SQLString)
 END]]></Value>
 			</Property>
@@ -921,6 +932,15 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetPivotProfile].[@Prefix]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetPivotProfile].[@JobTitle]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[TagAttribute]" />
@@ -935,22 +955,74 @@ END]]></Value>
 					<References Name="[dbo].[TagAttribute].[ObjectId]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Job.Approval]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Job.Approval].[ProfileID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Profile.Basic].[ProfileBasicId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Job.Posting]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Job.Posting].[JobPostingId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Job.Approval].[JobPostingId]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[TagAttribute].[TagName]" />
 				</Entry>
-				<Entry />
-				<Entry />
-				<Entry />
+				<Entry>
+					<References Name="[dbo].[Job.Posting].[JobTitle]" />
+				</Entry>
 			</Relationship>
 			<Relationship Name="Owner">
 				<Entry>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="ISql100SubroutineParameter" Name="[dbo].[GetPivotProfile].[@Prefix]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SubroutineParameter" Name="[dbo].[GetPivotProfile].[@JobTitle]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1543" />
+				<Property Name="Length" Value="2056" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetPivotProfile]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetPivotProfile]&#xD;&#xA;&#x9;@Prefix NVARCHAR(50),&#xD;&#xA;&#x9;@JobTitle&#x9;NVARCHAR(128)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql100Table" Name="[dbo].[Job.Approval]">
