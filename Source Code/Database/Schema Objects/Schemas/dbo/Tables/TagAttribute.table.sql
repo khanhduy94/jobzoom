@@ -2,6 +2,7 @@
 (
 	[TagId]				UNIQUEIDENTIFIER	NOT NULL,
 	[TagName]			NVARCHAR(256)		NOT NULL,
+	[TagValue]			NVARCHAR(256)		NULL,
 	[Weight]			SMALLINT			NULL,
 	[Level]				SMALLINT			NULL,
 	[Required]			BIT					NULL,

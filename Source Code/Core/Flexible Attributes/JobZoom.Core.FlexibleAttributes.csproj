@@ -43,13 +43,19 @@
     <Compile Include="AttributeManager.cs" />
     <Compile Include="AttributeObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagAttribute.cs" />
     <Compile Include="TagAttributeComposite.cs" />
+    <Compile Include="TagMemberAttribute.cs" />
+    <Compile Include="TagMemberEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JobZoom.Core.Entities\JobZoom.Core.Entities.csproj">
       <Project>{EC617434-5C06-4293-932B-B30A0902CA09}</Project>
       <Name>JobZoom.Core.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

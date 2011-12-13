@@ -13,7 +13,7 @@ namespace Services
     [ServiceContract]
     public interface IJobZoomService
     {
-        [OperationContract]
+        [OperationContract]       
         bool ValidateUser(string username, string password);
 
         [OperationContract(Name= "GetProfileBasicByUserId")]

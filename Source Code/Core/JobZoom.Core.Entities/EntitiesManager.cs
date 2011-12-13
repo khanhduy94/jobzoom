@@ -5,8 +5,8 @@ using System.Text;
 
 namespace JobZoom.Core.Entities
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
-    partial class TagAttribute: Attribute
-    {
-    }
+    //[AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
+    //partial class TagAttribute: Attribute
+    //{
+    //}
 }

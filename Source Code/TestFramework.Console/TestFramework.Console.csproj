@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,17 +50,78 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Job_EducationExpRequirement.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Job_OtherRequirement.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Job_Posting.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Job_WorkExpRequirement.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile_Basic.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile_Education.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Profile_Work.cs">
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestFrameworkDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestFrameworkDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestFrameworkDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestFrameworkDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestFrameworkDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestFrameworkDataModel.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Flexible Attributes\JobZoom.Core.FlexibleAttributes.csproj">
+      <Project>{75F734EB-4366-4C3D-BD9F-F2D9789DD7AA}</Project>
+      <Name>JobZoom.Core.FlexibleAttributes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Framework\JobZoom.Core.Framework.csproj">
       <Project>{6A0DD250-D2B5-49AA-B6D7-3A8714FEFCA0}</Project>
       <Name>JobZoom.Core.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\JobZoom.Core.Entities\JobZoom.Core.Entities.csproj">
+      <Project>{EC617434-5C06-4293-932B-B30A0902CA09}</Project>
+      <Name>JobZoom.Core.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="TestFrameworkDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestFrameworkDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="TestFrameworkDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestFrameworkDataModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="TestFrameworkDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestFrameworkDataModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
