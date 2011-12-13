@@ -100,12 +100,10 @@ insert into JobApproval values(NEWID(), '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8', 
 DECLARE @jobID char(36),
 		@profileID char(36),
 		@Major char(36),
-		@Skill char(36),
-		@ID char(36);
 set @ID = NEWID()
 set @Major = 'B67DB5C2-5891-4DF9-88CF-3D502E9B499B'
 set @Skill = 'E38556A2-9FA3-4783-8EDE-07DFF1EBA7A5'
-SET @profileID = '44CD50DE-8F7B-4C9A-8E0F-C0CDF37986F8'
+set @jobID = ''
 DECLARE job_cursor CURSOR FOR 
 SELECT Job.ID
 FROM Job
