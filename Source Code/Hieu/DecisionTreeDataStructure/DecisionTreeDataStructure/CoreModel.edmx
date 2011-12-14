@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CoreModelStoreContainer">
+          <EntitySet Name="DecisionTreeNode" EntityType="CoreModel.Store.DecisionTreeNode" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DecisionTreeNodeDistribution" EntityType="CoreModel.Store.DecisionTreeNodeDistribution" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Node_NodeDistribution" Association="CoreModel.Store.FK_Node_NodeDistribution">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
+            <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistribution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentNode_Node" Association="CoreModel.Store.FK_ParentNode_Node">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
+            <End Role="DecisionTreeNode1" EntitySet="DecisionTreeNode" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DecisionTreeNode">
+          <Key>
+            <PropertyRef Name="NODE_ID" />
+          </Key>
+          <Property Name="NODE_ID" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MODEL_NAME" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="NODE_TYPE" Type="int" Nullable="false" />
+          <Property Name="NODE_CAPTION" Type="nvarchar" MaxLength="256" />
+          <Property Name="CHILDREN_CARDINALITY" Type="int" Nullable="false" />
+          <Property Name="PARENT_ID" Type="varchar" MaxLength="100" />
+          <Property Name="NODE_DESCRIPTION" Type="ntext" />
+          <Property Name="NODE_RULE" Type="ntext" />
+          <Property Name="MARGINAL_RULE" Type="ntext" />
+          <Property Name="NODE_PROBABILITY" Type="float" Nullable="false" />
+          <Property Name="MARGINAL_PROBABILITY" Type="float" />
+          <Property Name="NODE_SUPPORT" Type="float" Nullable="false" />
+          <Property Name="MSOLAP_MODEL_COLUMN" Type="nvarchar" MaxLength="256" />
+          <Property Name="MSOLAP_NODE_SCORE" Type="float" />
+          <Property Name="MSOLAP_NODE_SHORT_CAPTION" Type="nvarchar" MaxLength="256" />
+          <Property Name="ATTRIBUTE_NAME" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="DecisionTreeNodeDistribution">
+          <Key>
+            <PropertyRef Name="NODE_ID" />
+            <PropertyRef Name="ATTRIBUTE_VALUE" />
+          </Key>
+          <Property Name="NODE_ID" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="ATTRIBUTE_NAME" Type="nvarchar" MaxLength="256" />
+          <Property Name="ATTRIBUTE_VALUE" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="SUPPORT" Type="float" Nullable="false" />
+          <Property Name="PROBABILITY" Type="float" Nullable="false" />
+          <Property Name="VARIANCE" Type="float" Nullable="false" />
+          <Property Name="VALUETYPE" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Node_NodeDistribution">
+          <End Role="DecisionTreeNode" Type="CoreModel.Store.DecisionTreeNode" Multiplicity="1" />
+          <End Role="DecisionTreeNodeDistribution" Type="CoreModel.Store.DecisionTreeNodeDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNodeDistribution">
+              <PropertyRef Name="NODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentNode_Node">
+          <End Role="DecisionTreeNode" Type="CoreModel.Store.DecisionTreeNode" Multiplicity="0..1" />
+          <End Role="DecisionTreeNode1" Type="CoreModel.Store.DecisionTreeNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNode1">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CoreModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DecisionTreeNodes" EntityType="CoreModel.DecisionTreeNode" />
+          <EntitySet Name="DecisionTreeNodeDistributions" EntityType="CoreModel.DecisionTreeNodeDistribution" />
+          <AssociationSet Name="FK_Node_NodeDistribution" Association="CoreModel.FK_Node_NodeDistribution">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
+            <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistributions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentNode_Node" Association="CoreModel.FK_ParentNode_Node">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
+            <End Role="DecisionTreeNode1" EntitySet="DecisionTreeNodes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DecisionTreeNode">
+          <Key>
+            <PropertyRef Name="NODE_ID" />
+          </Key>
+          <Property Name="NODE_ID" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="MODEL_NAME" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NODE_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="NODE_CAPTION" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CHILDREN_CARDINALITY" Type="Int32" Nullable="false" />
+          <Property Name="PARENT_ID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NODE_DESCRIPTION" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NODE_RULE" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="MARGINAL_RULE" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="NODE_PROBABILITY" Type="Double" Nullable="false" />
+          <Property Name="MARGINAL_PROBABILITY" Type="Double" />
+          <Property Name="NODE_SUPPORT" Type="Double" Nullable="false" />
+          <Property Name="MSOLAP_MODEL_COLUMN" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="MSOLAP_NODE_SCORE" Type="Double" />
+          <Property Name="MSOLAP_NODE_SHORT_CAPTION" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ATTRIBUTE_NAME" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="DecisionTreeNodeDistributions" Relationship="CoreModel.FK_Node_NodeDistribution" FromRole="DecisionTreeNode" ToRole="DecisionTreeNodeDistribution" />
+          <NavigationProperty Name="DecisionTreeNode_Childs" Relationship="CoreModel.FK_ParentNode_Node" FromRole="DecisionTreeNode" ToRole="DecisionTreeNode1" />
+          <NavigationProperty Name="DecisionTreeNode_Parent" Relationship="CoreModel.FK_ParentNode_Node" FromRole="DecisionTreeNode1" ToRole="DecisionTreeNode" />
+        </EntityType>
+        <EntityType Name="DecisionTreeNodeDistribution">
+          <Key>
+            <PropertyRef Name="NODE_ID" />
+            <PropertyRef Name="ATTRIBUTE_VALUE" />
+          </Key>
+          <Property Name="NODE_ID" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ATTRIBUTE_NAME" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="ATTRIBUTE_VALUE" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="SUPPORT" Type="Double" Nullable="false" />
+          <Property Name="PROBABILITY" Type="Double" Nullable="false" />
+          <Property Name="VARIANCE" Type="Double" Nullable="false" />
+          <Property Name="VALUETYPE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DecisionTreeNode" Relationship="CoreModel.FK_Node_NodeDistribution" FromRole="DecisionTreeNodeDistribution" ToRole="DecisionTreeNode" />
+        </EntityType>
+        <Association Name="FK_Node_NodeDistribution">
+          <End Role="DecisionTreeNode" Type="CoreModel.DecisionTreeNode" Multiplicity="1" />
+          <End Role="DecisionTreeNodeDistribution" Type="CoreModel.DecisionTreeNodeDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNodeDistribution">
+              <PropertyRef Name="NODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentNode_Node">
+          <End Role="DecisionTreeNode" Type="CoreModel.DecisionTreeNode" Multiplicity="0..1" />
+          <End Role="DecisionTreeNode1" Type="CoreModel.DecisionTreeNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNode1">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CoreModelStoreContainer" CdmEntityContainer="CoreEntities">
+          <EntitySetMapping Name="DecisionTreeNodes"><EntityTypeMapping TypeName="CoreModel.DecisionTreeNode"><MappingFragment StoreEntitySet="DecisionTreeNode">
+            <ScalarProperty Name="NODE_ID" ColumnName="NODE_ID" />
+            <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
+            <ScalarProperty Name="NODE_TYPE" ColumnName="NODE_TYPE" />
+            <ScalarProperty Name="NODE_CAPTION" ColumnName="NODE_CAPTION" />
+            <ScalarProperty Name="CHILDREN_CARDINALITY" ColumnName="CHILDREN_CARDINALITY" />
+            <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+            <ScalarProperty Name="NODE_DESCRIPTION" ColumnName="NODE_DESCRIPTION" />
+            <ScalarProperty Name="NODE_RULE" ColumnName="NODE_RULE" />
+            <ScalarProperty Name="MARGINAL_RULE" ColumnName="MARGINAL_RULE" />
+            <ScalarProperty Name="NODE_PROBABILITY" ColumnName="NODE_PROBABILITY" />
+            <ScalarProperty Name="MARGINAL_PROBABILITY" ColumnName="MARGINAL_PROBABILITY" />
+            <ScalarProperty Name="NODE_SUPPORT" ColumnName="NODE_SUPPORT" />
+            <ScalarProperty Name="MSOLAP_MODEL_COLUMN" ColumnName="MSOLAP_MODEL_COLUMN" />
+            <ScalarProperty Name="MSOLAP_NODE_SCORE" ColumnName="MSOLAP_NODE_SCORE" />
+            <ScalarProperty Name="MSOLAP_NODE_SHORT_CAPTION" ColumnName="MSOLAP_NODE_SHORT_CAPTION" />
+            <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DecisionTreeNodeDistributions"><EntityTypeMapping TypeName="CoreModel.DecisionTreeNodeDistribution"><MappingFragment StoreEntitySet="DecisionTreeNodeDistribution">
+            <ScalarProperty Name="NODE_ID" ColumnName="NODE_ID" />
+            <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
+            <ScalarProperty Name="ATTRIBUTE_VALUE" ColumnName="ATTRIBUTE_VALUE" />
+            <ScalarProperty Name="SUPPORT" ColumnName="SUPPORT" />
+            <ScalarProperty Name="PROBABILITY" ColumnName="PROBABILITY" />
+            <ScalarProperty Name="VARIANCE" ColumnName="VARIANCE" />
+            <ScalarProperty Name="VALUETYPE" ColumnName="VALUETYPE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="CoreModel">
+        <EntityTypeShape EntityType="CoreModel.DecisionTreeNode" Width="1.5" PointX="0.75" PointY="1" Height="4.6725065104166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoreModel.DecisionTreeNodeDistribution" Width="1.5" PointX="3" PointY="2.125" Height="2.5571907552083322" IsExpanded="true" />
+        <AssociationConnector Association="CoreModel.FK_Node_NodeDistribution" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.4035953776041659" />
+          <ConnectorPoint PointX="3" PointY="3.4035953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="CoreModel.FK_ParentNode_Node" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.2819230769230767" PointY="5.6725065104166656" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="5.9225065104166656" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="5.9225065104166656" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="5.6725065104166656" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
