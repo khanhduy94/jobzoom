@@ -7,11 +7,11 @@ using JobZoom.Core.Entities;
 
 namespace JobZoom.Core.FlexibleAttributes
 {
-    public class AttributeManager
+    public static class AttributeManager
     {
-        public void GetAllTypesFromAssemblyByAttribute<TAttribute>(Assembly[] assemblies)
+        public static void GetAllTypesFromAssemblyByAttribute<TAttribute>(Assembly[] assemblies)
             where TAttribute : Attribute
-        {
+        {            
             List<AttributeObject<TAttribute>> typesWithMyAttribute =
                 (from assembly in assemblies
                  from type in assembly.GetTypes()
@@ -21,17 +21,30 @@ namespace JobZoom.Core.FlexibleAttributes
                  ToList();
         }
 
-        public void GetProperiesFromTypeByAttribute<TAttribute>(Assembly[] assemblies)
+        public static void GetProperiesFromTypeByAttribute<TAttribute>(Assembly[] assemblies)
             where TAttribute : Attribute
         {
             List<AttributeObject<TAttribute>> methodsWithAttributes =
                 (from assembly in assemblies
                  from type in assembly.GetTypes()                 
                  from property in type.GetProperties()
-                 let attributes = property.GetCustomAttributes(typeof(TagAttribute), true)
+                 let attributes = property.GetCustomAttributes(typeof(TAttribute), true)
                  where attributes != null && attributes.Length > 0
                  select new AttributeObject<TAttribute> { Type = type, Property = property, Attribute = attributes.Cast<TAttribute>().FirstOrDefault() })
                 .ToList();
         }        
+
+        public static List<AttributeObject<TAttribute>> GetProperiesFromTypeByAttribute<TAttribute>(object instance)
+            where TAttribute : Attribute
+        {
+            List<AttributeObject<TAttribute>> propertysWithAttributes =
+                (from property in  instance.GetType().GetProperties()
+                 let attributes = property.GetCustomAttributes(typeof(TAttribute), true)
+                 where attributes != null && attributes.Length > 0
+                 select new AttributeObject<TAttribute> { Type = instance.GetType(), Property = property, PropertyValue = property.GetValue(instance, null), Attribute = attributes.Cast<TAttribute>().FirstOrDefault() })
+                .ToList();
+
+            return propertysWithAttributes;
+        }   
     }
 }
