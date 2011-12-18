@@ -13,5 +13,5 @@ namespace JobZoom.Core.Taxonomy
     public class ComplexTree<T> : ComplexTreeNode<T> where T : ComplexTreeNode<T>
     {
         public ComplexTree() { }
-    }
+    }    
 }

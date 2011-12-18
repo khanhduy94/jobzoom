@@ -71,6 +71,12 @@ namespace JobZoom.Web
                 new { controller = "ProfileEdit", action = "Basic", id = UrlParameter.Optional }
                 );
 
+            routes.MapRoute(
+                "ProfileResume",
+                "Profile/Resume/{action}/{id}",
+                new { controller = "ProfileResume", action = "Index", id = UrlParameter.Optional }
+                );
+
             //Job Applying
             routes.MapRoute("JobApply",
                 "Job/Apply/{action}/{id}",

@@ -65,84 +65,6 @@ GO
 */
 
 GO
-PRINT N'Dropping FK_TagAttribute_TagAttribute...';
-
-
-GO
-ALTER TABLE [dbo].[TagAttribute] DROP CONSTRAINT [FK_TagAttribute_TagAttribute];
-
-
-GO
-PRINT N'Starting rebuilding table [dbo].[TagAttribute]...';
-
-
-GO
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
-
-SET XACT_ABORT ON;
-
-BEGIN TRANSACTION;
-
-CREATE TABLE [dbo].[tmp_ms_xx_TagAttribute] (
-    [TagId]          UNIQUEIDENTIFIER NOT NULL,
-    [TagName]        NVARCHAR (256)   NOT NULL,
-    [TagValue]       NVARCHAR (256)   NULL,
-    [Weight]         SMALLINT         NULL,
-    [Level]          SMALLINT         NULL,
-    [Required]       BIT              NULL,
-    [TableReference] VARCHAR (128)    NULL,
-    [ObjectId]       UNIQUEIDENTIFIER NULL,
-    [ParentId]       UNIQUEIDENTIFIER NULL,
-    [ParentName]     NVARCHAR (256)   NULL,
-    [Attachment]     NVARCHAR (200)   NULL,
-    [ModifiedDate]   DATETIME         NULL,
-    [Status]         VARCHAR (128)    NULL
-);
-
-ALTER TABLE [dbo].[tmp_ms_xx_TagAttribute]
-    ADD CONSTRAINT [tmp_ms_xx_clusteredindex_PK_TagAttribute] PRIMARY KEY CLUSTERED ([TagId] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF);
-
-IF EXISTS (SELECT TOP 1 1
-           FROM   [dbo].[TagAttribute])
-    BEGIN
-        INSERT INTO [dbo].[tmp_ms_xx_TagAttribute] ([TagId], [TagName], [Weight], [Level], [Required], [TableReference], [ObjectId], [ParentId], [ParentName], [Attachment], [ModifiedDate], [Status])
-        SELECT   [TagId],
-                 [TagName],
-                 [Weight],
-                 [Level],
-                 [Required],
-                 [TableReference],
-                 [ObjectId],
-                 [ParentId],
-                 [ParentName],
-                 [Attachment],
-                 [ModifiedDate],
-                 [Status]
-        FROM     [dbo].[TagAttribute]
-        ORDER BY [TagId] ASC;
-    END
-
-DROP TABLE [dbo].[TagAttribute];
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_TagAttribute]', N'TagAttribute';
-
-EXECUTE sp_rename N'[dbo].[tmp_ms_xx_clusteredindex_PK_TagAttribute]', N'PK_TagAttribute', N'OBJECT';
-
-COMMIT TRANSACTION;
-
-SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-
-
-GO
-PRINT N'Creating FK_TagAttribute_TagAttribute...';
-
-
-GO
-ALTER TABLE [dbo].[TagAttribute] WITH NOCHECK
-    ADD CONSTRAINT [FK_TagAttribute_TagAttribute] FOREIGN KEY ([ParentId]) REFERENCES [dbo].[TagAttribute] ([TagId]) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
-GO
 /*
 Post-Deployment Script Template							
 --------------------------------------------------------------------------------------
@@ -154,17 +76,5 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
-GO
-PRINT N'Checking existing data against newly created constraints';
-
-
-GO
-USE [$(DatabaseName)];
-
-
-GO
-ALTER TABLE [dbo].[TagAttribute] WITH CHECK CHECK CONSTRAINT [FK_TagAttribute_TagAttribute];
-
 
 GO

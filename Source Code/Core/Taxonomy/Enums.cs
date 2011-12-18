@@ -16,6 +16,6 @@ namespace JobZoom.Core.Taxonomy
     public enum TreeTraversalDirection
     {
         TopDown,
-        BottomUp
+        BottomUp,        
     }
 }

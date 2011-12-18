@@ -101,6 +101,7 @@
     <Compile Include="Controllers\ProfileBasicController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
+    <Compile Include="Controllers\ProfileResumeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -118,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\jquery.tagit.css" />
+    <Content Include="Content\FancySliding.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -184,6 +186,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Scripts\sliding.form.js" />
     <Content Include="Scripts\tag-it.js" />
     <Content Include="Scripts\ui\i18n\jquery-ui-i18n.js" />
     <Content Include="Scripts\ui\i18n\jquery.ui.datepicker-af.js" />
@@ -379,6 +382,7 @@
     <Content Include="Views\JobApply\ApplyConfirmView.cshtml" />
     <Content Include="Views\JobApply\AppliedJobs.cshtml" />
     <Content Include="Views\ProfileEdit\SkillQualifications.cshtml" />
+    <Content Include="Views\ProfileResume\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -405,6 +409,10 @@
     <ProjectReference Include="..\Business\JobZoom.Business.Entities\JobZoom.Business.Entities.csproj">
       <Project>{BE6D6375-F8CC-4BA4-86F0-3FEC263B7E12}</Project>
       <Name>JobZoom.Business.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Framework\JobZoom.Core.Framework.csproj">
+      <Project>{6A0DD250-D2B5-49AA-B6D7-3A8714FEFCA0}</Project>
+      <Name>JobZoom.Core.Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

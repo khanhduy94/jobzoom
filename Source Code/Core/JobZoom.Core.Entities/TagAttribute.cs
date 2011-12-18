@@ -21,6 +21,7 @@ namespace JobZoom.Core.Entities
     
         public System.Guid TagId { get; set; }
         public string TagName { get; set; }
+        public string TagValue { get; set; }
         public Nullable<short> Weight { get; set; }
         public Nullable<short> Level { get; set; }
         public Nullable<bool> Required { get; set; }

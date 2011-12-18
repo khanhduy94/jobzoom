@@ -79,6 +79,7 @@
           </Key>
           <Property Name="TagId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="TagValue" Type="nvarchar" MaxLength="256" />
           <Property Name="Weight" Type="smallint" />
           <Property Name="Level" Type="smallint" />
           <Property Name="Required" Type="bit" />
@@ -182,6 +183,7 @@
           </Key>
           <Property Name="TagId" Type="Guid" Nullable="false" />
           <Property Name="TagName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="TagValue" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="Weight" Type="Int16" />
           <Property Name="Level" Type="Int16" />
           <Property Name="Required" Type="Boolean" />
@@ -260,6 +262,7 @@
           <EntitySetMapping Name="TagAttributes"><EntityTypeMapping TypeName="JobZoomCoreModel.TagAttribute"><MappingFragment StoreEntitySet="TagAttribute">
             <ScalarProperty Name="TagId" ColumnName="TagId" />
             <ScalarProperty Name="TagName" ColumnName="TagName" />
+            <ScalarProperty Name="TagValue" ColumnName="TagValue" />
             <ScalarProperty Name="Weight" ColumnName="Weight" />
             <ScalarProperty Name="Level" ColumnName="Level" />
             <ScalarProperty Name="Required" ColumnName="Required" />
@@ -293,19 +296,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="CoreEntitiesModel">
-        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNode" Width="1.5" PointX="2.75" PointY="0.75" Height="4.0956022135416656" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNodeDistribution" Width="1.5" PointX="5" PointY="1.5" Height="2.5571907552083331" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomCoreModel.SimilarityTerm" Width="1.5" PointX="0.75" PointY="5.25" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomCoreModel.TagAttribute" Width="1.5" PointX="0.75" PointY="0.75" Height="3.7109993489583335" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNode" Width="1.5" PointX="2.75" PointY="1" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNodeDistribution" Width="1.5" PointX="5" PointY="1.75" Height="2.5571907552083331" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomCoreModel.SimilarityTerm" Width="1.5" PointX="4.75" PointY="5.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomCoreModel.TagAttribute" Width="1.5" PointX="0.75" PointY="0.75" Height="3.9033007812499996" IsExpanded="true" />
         <AssociationConnector Association="JobZoomCoreModel.FK__DecisionT__NODEI__145C0A3F" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.25" PointY="2.7785953776041667" />
-          <ConnectorPoint PointX="5" PointY="2.7785953776041667" />
+          <ConnectorPoint PointX="4.25" PointY="3.0285953776041667" />
+          <ConnectorPoint PointX="5" PointY="3.0285953776041667" />
         </AssociationConnector>
         <AssociationConnector Association="JobZoomCoreModel.FK_TagAttribute_TagAttribute" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.2819230769230767" PointY="4.4609993489583335" />
-          <ConnectorPoint PointX="1.2819230769230767" PointY="4.7109993489583335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="4.7109993489583335" />
-          <ConnectorPoint PointX="1.7284615384615383" PointY="4.4609993489583335" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="4.65330078125" />
+          <ConnectorPoint PointX="1.2819230769230767" PointY="4.90330078125" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="4.90330078125" />
+          <ConnectorPoint PointX="1.7284615384615383" PointY="4.65330078125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
