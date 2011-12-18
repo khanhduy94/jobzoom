@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="../../Content/FancySliding.css">
+
+<div id="content">
+            <h1>Resume Zoom</h1>
+            <div id="wrapper">
+                <div id="steps">
+                    <form method="post" action="" name="formElem" id="formElem">
+                        <fieldset class="step">
+                            <legend>Account</legend>
+                            <p>
+                                <label for="username">User name</label>
+                                <input name="username" id="username">
+                            </p>
+                            <p>
+                                <label for="email">Email</label>
+                                <input type="email" autocomplete="OFF" placeholder="info@tympanus.net" name="email" id="email">
+                            </p>
+                            <p>
+                                <label for="password">Password</label>
+                                <input type="password" autocomplete="OFF" name="password" id="password">
+                            </p>
+                        </fieldset>
+                        <fieldset class="step">
+                            <legend>Personal Details</legend>
+                            <p>
+                                <label for="name">Full Name</label>
+                                <input type="text" autocomplete="OFF" name="name" id="name">
+                            </p>
+                            <p>
+                                <label for="country">Country</label>
+                                <input type="text" autocomplete="OFF" name="country" id="country">
+                            </p>
+                            <p>
+                                <label for="phone">Phone</label>
+                                <input type="tel" autocomplete="OFF" placeholder="e.g. +351215555555" name="phone" id="phone">
+                            </p>
+                            <p>
+                                <label for="website">Website</label>
+                                <input type="tel" autocomplete="OFF" placeholder="e.g. http://www.codrops.com" name="website" id="website">
+                            </p>
+                        </fieldset>
+                        <fieldset class="step">
+                            <legend>Payment</legend>
+                            <p>
+                                <label for="cardtype">Card</label>
+                                <select name="cardtype" id="cardtype">
+                                    <option>Visa</option>
+                                    <option>Mastercard</option>
+                                    <option>American Express</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label for="cardnumber">Card number</label>
+                                <input type="number" autocomplete="OFF" name="cardnumber" id="cardnumber">
+                            </p>
+                            <p>
+                                <label for="secure">Security code</label>
+                                <input type="number" autocomplete="OFF" name="secure" id="secure">
+                            </p>
+                            <p>
+                                <label for="namecard">Name on Card</label>
+                                <input type="text" autocomplete="OFF" name="namecard" id="namecard">
+                            </p>
+                        </fieldset>
+                        <fieldset class="step">
+                            <legend>Settings</legend>
+                            <p>
+                                <label for="newsletter">Newsletter</label>
+                                <select name="newsletter" id="newsletter">
+                                    <option selected="" value="Daily">Daily</option>
+                                    <option value="Weekly">Weekly</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Never">Never</option>
+                                </select>
+                            </p>
+                            <p>
+                                <label for="updates">Updates</label>
+                                <select name="updates" id="updates">
+                                    <option selected="" value="1">Package 1</option>
+                                    <option value="2">Package 2</option>
+                                    <option value="0">Don't send updates</option>
+                                </select>
+                            </p>
+							<p>
+                                <label for="tagname">Newsletter Tag</label>
+                                <input type="text" autocomplete="OFF" name="tagname" id="tagname">
+                            </p>
+                        </fieldset>
+						<fieldset class="step">
+                            <legend>Confirm</legend>
+							<p>
+								Everything in the form was correctly filled 
+								if all the steps have a green checkmark icon.
+								A red checkmark icon indicates that some field 
+								is missing or filled out with invalid data. In this
+								last step the user can confirm the submission of
+								the form.
+							</p>
+                            <p class="submit">
+                                <button type="submit" id="registerButton">Register</button>
+                            </p>
+                        </fieldset>
+                    </form>
+                </div>
+                <div style="display:none;" id="navigation">
+                    <ul>
+                        <li class="selected">
+                            <a href="#">ASP.NET Developer</a>
+                        </li>
+                        <li>
+                            <a href="#">Database Lecture</a>
+                        </li>
+                        <li>
+                            <a href="#">Microsoft Developer Evangelist</a>
+                        </li>
+                        <li>
+                            <a href="#">Android Developer</a>
+                        </li>
+						<li>
+                            <a href="#">.NET Developer</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
