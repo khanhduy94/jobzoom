@@ -4,7 +4,14 @@
 }
 
 <link rel="stylesheet" href="../../Content/FancySliding.css">
+@Html.ActionLink("Profile", "Home", "Profile")
+@Html.ActionLink("Resume", "Index", "ProfileResume")
 
+<h3>1. Recommend CV tương ứng với các Job Title đã check-out</h3>
+<h5> &nbsp; &nbsp;1.1 Generate những thông tin mặc định từ Profile</h5>
+<h5> &nbsp; &nbsp;1.2 Suggest các Field nên điền khai báo (áp dụng Decision Tree)</h5>
+<h3>2. Kèm thêm Graph của Decision Tree mỗi Job Title</h3>
+<h5> &nbsp; &nbsp;2.1 Tỷ lệ các xác xuất của các node trong Decision Tree</h5>
 <div id="content">
             <h1>Resume Zoom</h1>
             <div id="wrapper">
