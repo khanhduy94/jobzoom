@@ -1058,7 +1058,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="JobZoomDataModel">
-        <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="10.75" PointY="0.75" Height="4.4802050781250031" />
+        <EntityTypeShape EntityType="JobZoomModel.Company" Width="1.5" PointX="10.75" PointY="0.75" Height="4.5002050781249991" />
         <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNode" Width="1.5" PointX="5.75" PointY="10" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="JobZoomModel.DecisionTreeNodeDistribution" Width="1.5" PointX="8" PointY="10.75" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="JobZoomModel.Job_EducationExpRequirement" Width="1.5" PointX="8" PointY="1.25" Height="1.9802864583333388" />

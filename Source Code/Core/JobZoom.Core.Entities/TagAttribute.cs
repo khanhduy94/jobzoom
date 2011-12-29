@@ -35,5 +35,16 @@ namespace JobZoom.Core.Entities
     
         public virtual ICollection<TagAttribute> TagAttribute1 { get; set; }
         public virtual TagAttribute TagAttribute2 { get; set; }
+
+        public TagAttributeComposite TagAttributeComposite
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
+        }
     }
 }
