@@ -1,4 +1,5 @@
-﻿@{
+﻿@model JobZoom.Business.Entities.Profile_Basic
+@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -40,12 +41,18 @@
 </script>
 @Html.ActionLink("Edit Profile", "Basic", "ProfileEdit")
 @Html.ActionLink("Resume", "index", "ProfileResume")
+<input id="hidden-userid" type="hidden" profilebasicid="@Model.ProfileBasicId" />
 <h3>
     1. Thông tin cơ bản của Profile</h3>
 <h3>
-    2. Kèm thêm Graph của cây Job Title --> Mô hình hóa theo cây --> phục vụ demo matching</h3>
+    2. Kèm thêm Graph của cây Profile --> Mô hình hóa theo cây --> phục vụ demo matching</h3>
 <h2>
     Trang Chủ Profile của Job Seeker</h2>
+@*<script type="text/javascript">
+    var id = $("#hidden-userid").attr("profilebasicid");
+    var initvalue = "myfirstnode=http://localhost:21358/GenerateICEData.aspx?id=" + "A" + ",myModeFile =http://localhost:21358/iceSettings.xml";
+    $("#initParams").val(initvalue);        
+</script>*@
 <div id="silverlightControlHost">
     <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
         width="100%" height="700">
@@ -54,9 +61,7 @@
         <param name="background" value="white" />
         <param name="minRuntimeVersion" value="3.0.40818.0" />
         <param name="autoUpgrade" value="true" />
-        <param name="initParams" value="
-            myfirstnode=http://localhost:21358/GenerateICEData.aspx?id=A,
-            myModeFile =http://localhost:21358/iceSettings.xml" />
+        <param name="initParams" id="initParams" value="myfirstnode=http://localhost:21358/GenerateICEData.aspx?id=@Model.ProfileBasicId,myModeFile =http://localhost:21358/iceSettings.xml"/>
         <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=3.0.40818.0" style="text-decoration: none">
             <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight"
                 style="border-style: none" />
