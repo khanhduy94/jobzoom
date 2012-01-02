@@ -155,9 +155,9 @@
           <position>top</position>
           <size>10</size>
         </textLayout>
-        <objectLayout xmlns="InformationConnectionsEngine.defaultTemplate">
+        <!--<objectLayout xmlns="InformationConnectionsEngine.defaultTemplate">
           <image>http://www.google.com/images/nav_logo6.png</image>
-        </objectLayout>
+        </objectLayout>-->
       </drawingInformation>
 
       <!-- (Optional) Specify the relative size of this style compare to the default size. Default size is 100%. Examples: 50% or 0.5 will display this style half the size of the normal size for a style of the same style; 200% or 2 will be twice the size -->

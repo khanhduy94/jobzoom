@@ -26,7 +26,14 @@ namespace JobZoom.Web
 
             try
             {
-                Root root = CreateDataFile();
+                // ensure the id argument is not null
+                if (Request["id"] == null)
+                {
+                    throw new Exception("Not a valid \"id\" argument");
+                }
+
+                string id = Request["id"];
+                Root root = CreateDataFile(id);
 
                 XmlSerializer serializer =
                     new XmlSerializer(typeof(Root));
@@ -52,7 +59,7 @@ namespace JobZoom.Web
 
         }
 
-        private Root CreateDataFile()
+        private Root CreateDataFile(string id)
         {
             // we create the xml structure
             Root root = new Root();
@@ -63,9 +70,8 @@ namespace JobZoom.Web
             List<Node> neighbors = new List<Node>();
             List<Link> links = new List<Link>();
 
-            // this function creates a node
-            string parameter = Request.QueryString["node"];
-            root.currentNode.node = CreateNodeFromObject(parameter);
+            // this function creates a node                 
+            root.currentNode.node = CreateNodeFromObject(id);
 
             // we finalize the structure
             root.neighbors = neighbors.ToArray();
@@ -74,9 +80,9 @@ namespace JobZoom.Web
             return root;
         }
 
-        private Node CreateNodeFromObject(string parameter)
+        private Node CreateNodeFromObject(string id)
         {
-            return new Node { id = Guid.NewGuid().ToString(), title = parameter, type = "Profile", url = "congphuc.net" };
+            return new Node { id = Guid.NewGuid().ToString(), title = id, type = "Profile", url = "congphuc.net" };
         }
     }
 }

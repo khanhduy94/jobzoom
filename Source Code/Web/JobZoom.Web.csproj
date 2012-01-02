@@ -163,7 +163,6 @@
     <Content Include="Global.asax" />
     <Content Include="iceConstants.xml" />
     <Content Include="iceSettings.xml" />
-    <Content Include="ICETestPage.aspx" />
     <Content Include="ICETestPage.html" />
     <Content Include="IconLibrary.dll" />
     <Content Include="Images\background-tile.jpg" />
