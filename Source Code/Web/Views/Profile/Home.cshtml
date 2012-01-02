@@ -2,10 +2,66 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    function onSilverlightError(sender, args) {
+        var appSource = "";
+        if (sender != null && sender != 0) {
+            appSource = sender.getHost().Source;
+        }
 
+        var errorType = args.ErrorType;
+        var iErrorCode = args.ErrorCode;
+
+        if (errorType == "ImageError" || errorType == "MediaError") {
+            return;
+        }
+
+        var errMsg = "Unhandled Error in Silverlight Application " + appSource + "\n";
+
+        errMsg += "Code: " + iErrorCode + "    \n";
+        errMsg += "Category: " + errorType + "       \n";
+        errMsg += "Message: " + args.ErrorMessage + "     \n";
+
+        if (errorType == "ParserError") {
+            errMsg += "File: " + args.xamlFile + "     \n";
+            errMsg += "Line: " + args.lineNumber + "     \n";
+            errMsg += "Position: " + args.charPosition + "     \n";
+        }
+        else if (errorType == "RuntimeError") {
+            if (args.lineNumber != 0) {
+                errMsg += "Line: " + args.lineNumber + "     \n";
+                errMsg += "Position: " + args.charPosition + "     \n";
+            }
+            errMsg += "MethodName: " + args.methodName + "     \n";
+        }
+
+        throw new Error(errMsg);
+    }
+</script>
 @Html.ActionLink("Edit Profile", "Basic", "ProfileEdit")
 @Html.ActionLink("Resume", "index", "ProfileResume")
-<h3>1. Thông tin cơ bản của Profile</h3>
-<h3>2. Kèm thêm Graph của cây Job Title --> Mô hình hóa theo cây --> phục vụ demo matching</h3>
-
-<h2>Trang Chủ Profile của Job Seeker</h2>
+<h3>
+    1. Thông tin cơ bản của Profile</h3>
+<h3>
+    2. Kèm thêm Graph của cây Job Title --> Mô hình hóa theo cây --> phục vụ demo matching</h3>
+<h2>
+    Trang Chủ Profile của Job Seeker</h2>
+<div id="silverlightControlHost">
+    <object data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+        width="100%" height="700">
+        <param name="source" value="ClientBin/ICE.xap" />
+        <param name="onError" value="onSilverlightError" />
+        <param name="background" value="white" />
+        <param name="minRuntimeVersion" value="3.0.40818.0" />
+        <param name="autoUpgrade" value="true" />
+        <param name="initParams" value="
+            myfirstnode=http://localhost:21358/GenerateICEData.aspx?id=A,
+            myModeFile =http://localhost:21358/iceSettings.xml" />
+        <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=3.0.40818.0" style="text-decoration: none">
+            <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight"
+                style="border-style: none" />
+        </a>
+    </object>
+    <iframe id="_sl_historyFrame" style="visibility: hidden; height: 0px; width: 0px;
+        border: 0px"></iframe>
+</div>

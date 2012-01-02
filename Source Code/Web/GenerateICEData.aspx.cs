@@ -73,6 +73,21 @@ namespace JobZoom.Web
             // this function creates a node                 
             root.currentNode.node = CreateNodeFromObject(id);
 
+            // populate the neighbors list
+            Node nodeAfter = CreateNodeFromObject("D");
+            neighbors.Add(nodeAfter);
+
+            Node nodeBefore = CreateNodeFromObject("E");
+            neighbors.Add(nodeBefore);
+
+            // populate the links list
+            Link relationWithAfter = CreateLinkBetween(nodeAfter, root.currentNode.node);
+            links.Add(relationWithAfter);
+
+            Link relationWithBefore = CreateLinkBetween(root.currentNode.node, nodeBefore);
+            links.Add(relationWithBefore);
+
+
             // we finalize the structure
             root.neighbors = neighbors.ToArray();
             root.currentNode.link = links.ToArray();
@@ -80,9 +95,37 @@ namespace JobZoom.Web
             return root;
         }
 
+        private Link CreateLinkBetween(Node from, Node to)
+        {
+            Link link = new Link();            
+
+            // As for nodes, links have an unique ID
+            link.id =
+    "myDataOnIce.isAfterInAlphabeticOrder[" + from.id + "]to[" + to.id + "]";
+
+            // We have to specify the ID reference of the two nodes
+            link.from = from.id;
+            link.to = to.id;
+
+            // We must also qualify the relation to make it human readable
+            link.grammar = new LinkGrammar();
+            link.grammar.verb = "is after";
+            link.grammar.complement = "in alphabetical order";
+
+            // (optional) To finish the definition of a relation,
+            // we COULD  quantify the relation with the strength of this relation
+            // this strength is between 1 and 100
+            // the higher the strength, the more the two node will try to stay together
+            link.strength = 50f;
+
+            return link;
+
+        }
+
         private Node CreateNodeFromObject(string id)
         {
-            return new Node { id = Guid.NewGuid().ToString(), title = id, type = "Profile", url = "congphuc.net" };
+            return new Node { id = Guid.NewGuid().ToString(), title = id, type = "Profile", url = "http://congphuc.net" };
         }
+       
     }
 }

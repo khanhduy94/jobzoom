@@ -152,7 +152,7 @@
             <alpha>FF</alpha>
           </color>
           <font>Verdana</font>
-          <position>top</position>
+          <position>center</position>
           <size>10</size>
         </textLayout>
         <!--<objectLayout xmlns="InformationConnectionsEngine.defaultTemplate">
