@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    This file is part of "Information Connections Engine".
+
+    "Information Connections Engine" is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    "Information Connections Engine" is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with "Information Connections Engine".  If not, see http://www.gnu.org/license.
+-->
+
+<!-- This is a setting file for ICE v1.01 (compatibility ensured for v1.00)-->
+<iceSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="InformationConnectionsEngine.settings">
+
+  <!-- (Optional) Activate some special modes for ICE -->
+  <!-- Comment out any of the option to disable this particular option -->
+  <modes>
+    <!-- Enable debug message-->
+    <debug/>
+    
+    <!-- Enable to select more than one node at a time.-->
+    <multiNodeSelection/>
+    
+    <!-- Add a navigation bar -->
+    <navigationBar/>
+
+    <!-- Add a navigation menu -->
+    <navigationMenu/>
+  </modes>
+
+  <!-- (Optional) Constants have a default value, so you don't have to redefine them all. -->
+  <constants>
+    <drawingConstants>
+
+      <!-- (Optional) change the color of the circle around available actions -->
+      <actionsCircleColor>
+        <red>FF</red>
+        <green>7F</green>
+        <blue>00</blue>
+        <alpha>FF</alpha>
+      </actionsCircleColor>
+      
+      <!--(Recommended) this is the background of the graph (in Xaml)-->
+      <!-- Warning : don't forget to add all namespace used in the Xaml definition root-->
+      <background>
+        <![CDATA[ 
+			    <Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+              mc:Ignorable="d">	
+			    </Grid>
+        ]]>
+      </background>
+      
+      <!-- (Optional) Initial zoom value (this is a decimal coefficient and could be expressed in percent E.G.; 4.6749 or 467.49%) -->
+      <initialZoomRatio>10.0000</initialZoomRatio>
+
+      <!-- (Optional) Initial depth of visibility (non-negative integer). 
+      To know which node should be visible and which shouldn't, we start from the selected nodes and we explore the graph. 
+      The depth is the number of level we will explore from the starting nodes. 
+      For Example: 0 means you will see only the selected nodes and 1 means you will see all selected nodes and their direct neighbors. -->
+      <initialGraphVisibilityDepth>1</initialGraphVisibilityDepth>
+
+      <!-- (Optional) Maximum thickness of every link -->
+      <linkMaximalThickness>1.0</linkMaximalThickness>
+
+      <!-- (Optional) Minimum thickness of every link -->
+      <linkMinimalThickness>0.2</linkMinimalThickness>
+
+      <!-- (Recommended) This Constant is used to increase or decrease the size of all nodes. 
+      If you want to change the ratio Node/Link on your map, this constant is the one you must use -->
+      <nodeSize>0.1</nodeSize>
+
+      <!-- (Optional) When the program adds an node in the graph, this object will progressively become visible. 
+      Value is between 0.0001 and 1. If you want object to be directly visible, set this constant to 1. 
+      If you want object to appear really slowly, set this constant to 0.01 or less-->
+      <opacityChangeStep>0.1</opacityChangeStep>
+      
+    </drawingConstants>
+
+    <downloadConstants>
+
+      <!-- (Optional) Maximum authorized download per minute. (should avoid "DoS attack" banishment) -->
+      <maximumDownloadPerMinute>100</maximumDownloadPerMinute>
+
+      <!-- (Optional) Maximum authorized download at the same time. -->
+      <maximumSimultaneousDownload>30</maximumSimultaneousDownload>
+
+      <!-- (Optional) Maximum time allowed to every download process. (in milliseconds) -->
+      <timeout>10000</timeout>
+      
+    </downloadConstants>
+    
+    <modelConstants>
+
+      <!-- (Optional) This parameter helps improve speed. Specify at which level of depth objects can be disposed in memory.  -->
+      <cleanUpAdditionalDepth>1</cleanUpAdditionalDepth>
+
+      <!-- (Optional) Maximum number of nodes you want on the client at the same time-->
+      <maximumNodes>200</maximumNodes>
+
+    </modelConstants>
+
+    <!-- Warning : may cause unexpected behavior, be careful! At the same time, you might find it fun to experiment with different parameters :) -->
+    <physicsConstants>
+
+      <!-- (Optional) Drag force that acts on all objects equally, and proportional to velocity. The higher the value, the quicker particules will stop moving around. Null or negative value may lead to a crash of the physics engine-->
+      <fluidResistance>0.25</fluidResistance>
+      
+      <!-- (Optional) Gravity goes between -10 and 10 (integer). Use negative number to see nodes "flying" instead of dropping. Use 0 for no gravity. -->
+      <gravity>0</gravity>
+
+      <!-- (Optional) Rest length is the optimal distance between to related nodes.-->
+      <springRestLenght>5</springRestLenght>
+
+      <!-- (Optional) Repultion strength define the force of repultion between each particle-->
+      <repultionStrength>1000</repultionStrength>
+      
+    </physicsConstants>
+  </constants>
+
+  <!-- (Recommended) List of all node styles you may use in your graph. 
+      "default" value specifies which style is used if the style reference in a node doesn't exist-->
+  <nodeStyles default="defaultStyle">
+
+    <!-- This is the definition of a node style. "id" value is used to find which style must be use on a specific node-->
+    <nodeStyle id="defaultStyle">
+
+      <!--(Recommended) This is the full name off the UserControl (also called template) you want to use to represent a node. Your UserControl is one of the silverlight libraries you have passed as an argument to ICE XAP file (initParams)-->
+      <className>myNameSpace.myNodeView</className>
+
+      <!--(Recommended) You can override some default values of the theme, for this particular style. For example, the template could be a black circle, but you can define here a style that would force the color to blue, and then another style using the same the template with the color red -->
+      <drawingInformation>
+        <color xmlns="InformationConnectionsEngine.defaultTemplate">
+          <red>8E</red>
+          <green>8E</green>
+          <blue>8E</blue>
+          <alpha>FF</alpha>
+        </color>
+        <textLayout xmlns="InformationConnectionsEngine.defaultTemplate">
+          <color>
+            <red>8E</red>
+            <green>00</green>
+            <blue>8E</blue>
+            <alpha>FF</alpha>
+          </color>
+          <font>Verdana</font>
+          <position>top</position>
+          <size>10</size>
+        </textLayout>
+        <objectLayout xmlns="InformationConnectionsEngine.defaultTemplate">
+          <image>http://www.google.com/images/nav_logo6.png</image>
+        </objectLayout>
+      </drawingInformation>
+
+      <!-- (Optional) Specify the relative size of this style compare to the default size. Default size is 100%. Examples: 50% or 0.5 will display this style half the size of the normal size for a style of the same style; 200% or 2 will be twice the size -->
+      <relativeSize>200%</relativeSize>
+    </nodeStyle>
+  </nodeStyles>
+
+  <!-- (Recommended) List of all link styles you may use in your graph. 
+      "default" value specify which style will be use if the style reference in a link doesn't exist-->
+  <linkStyles default="defaultLinkStyle">
+
+    <!-- This is the definition of a link style-->
+    <linkStyle id="defaultLinkStyle">
+
+      <!--(Recommended) This is the full name off the UserControl (also called template) you want to use to represent a link. Your UserControl will be search into all silverlight library give in argument to ICE-->
+      <className>myNameSpace.myLinkView</className>
+
+      <!--(Recommended) You can override some default values of the theme, for this particular style. For example, the template for the link  could be a black link, but you can define here a style that would force the color to blue, and then another style using the same the template with the color red -->
+      <drawingInformation>
+        <color xmlns="InformationConnectionsEngine.defaultTemplate">
+          <red>00</red>
+          <green>00</green>
+          <blue>FF</blue>
+          <alpha>8E</alpha>
+        </color>
+      </drawingInformation>
+    </linkStyle>
+  </linkStyles>
+
+  <!--(Recommended) List of all actions-->
+  <actions>
+
+    <!--(Recommended) This is the definition of an action.
+    "id" is used to witch action must be called. A target of an action could be a link or a node. Target of an action is the entity that called the action. To do so, the entity have in it's XML description that we call an "ActionCall". It's a reference to the current action this customized parameter. (see node or link Xml definition) -->
+    <action id="myActionId">
+
+      <!-- The description of your action -->
+      <description>This is my personal action.</description>
+      
+      <!-- This is the Icon that describe the action-->
+      <iconURL>http://myServer/myIcon.png</iconURL>
+
+      <!-- here we put all tasks we want to execute when the action is called-->
+      <tasks>
+        <!-- (Optional) This is a "GUI Task". When executing this task the program will call the function "performTask("myGUITaskName",myActionCall)" of the target's template. The first argument of performTask function is the "name" of your GUI Task. The second argument will be the Action call included in target definition (see node or link Xml definition)-->
+        <guiTask name="myGUITaskName"/>
+        <!-- (Optional) This is a "JavaScript Task". When executing this task the program will call the JavaScript function with the name in argument. E.G.; "myJavascriptFunctionName(myActionCall)". In other words, tha web page hosting the ICE application is expected to implement this javascript function. -->
+        <javascriptTask name="myJavascriptFunctionName"/>
+      </tasks>
+    </action>
+
+    <!--(Recommended) This is the definition of an action for a group of objects.
+    "id" is used to witch action must be called. A target of an action could be a group of nodes or links. Target of an action is the entity that called the action. To do so, the entity have in it's XML description that we call an "ActionCall". It's a reference to the current action this customized parameter. (see node or link Xml definition) -->
+    <groupAction id="myGroupActionId">
+
+      <!-- The description of your action -->
+      <description>This is my personal action.</description>
+
+      <!-- This is the Icon that describes the action-->
+      <iconURL>http://myServer/myIcon.png</iconURL>
+
+      <!-- here we put all tasks we want to execute when the action is called-->
+      <tasks>
+        <!-- (Optional) This is a "GUI Task". When executing this task the program will call the function "performTask("myGUITaskName",myActionCall)" of the target's template. The first argument of performTask function is the "name" of your GUI Task. The second argument will be the Action call included in target definition (see node or link Xml definition)-->
+        <guiTask name="myGUITaskName"/>
+        <!-- (Optional) This is a "JavaScript Task". When executing this task the program will call the JavaScript function with the name in argument. E.G.; "myJavascriptFunctionName(myActionCall)". In other words, tha web page hosting the ICE application is expected to implement this javascript function. -->
+        <javascriptTask name="myJavascriptFunctionName"/>
+      </tasks>
+    </groupAction>
+  </actions>
+</iceSettings>

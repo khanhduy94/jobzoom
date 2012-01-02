@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- This is a setting file for ICE 1.00 -->
+<iceSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns="InformationConnectionsEngine.settings">
+  <!-- (Optional) Constants have a default value, 
+    so you don't have to redefine them all. -->
+  <constants>
+    <drawingConstants>
+      <!-- (Optional) Initial zoom value (this is a decimal 
+        coefficient and could be expressed in percent 
+        E.G.; 4.6749 or 467.49%) -->
+      <initialZoomRatio>1.0</initialZoomRatio>
+
+      <!-- (Recommended) This Constant is used to increase 
+        or decrease the size of all nodes. If you want to 
+        change the ratio Node/Link on your map, this constant 
+        is the one you must use -->
+      <nodeSize>1.5</nodeSize>
+
+      <!-- (Optional) Maximum thickness of every link -->
+      <linkMaximalThickness>1.0</linkMaximalThickness>
+
+      <!-- (Optional) Minimum thickness of every link -->
+      <linkMinimalThickness>0.2</linkMinimalThickness>
+
+      <!--(Recommended) this is the background 
+        of the graph (in Xaml)-->
+      <!-- Warning : don't forget to add all 
+        namespace used in the Xaml definition's root-->
+      <background>
+        <![CDATA[ 
+		<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+          mc:Ignorable="d">	
+		</Canvas>
+        ]]>
+      </background>
+    </drawingConstants>
+
+    <physicsConstants>
+
+      <!--  (Optional) Gravity goes between -10 and 10 (integer). Use negative number to see nodes "flying" instead of dropping. Use 0 for no gravity. -->
+      <gravity>0</gravity>
+      <!-- (Optional) Drag force that acts on all objects equally, and proportional to velocity. The higher the value, the quicker particules will stop moving around. Null or negative value may lead to a crash of the physics engine-->
+      <fluidResistance>0.25</fluidResistance>
+      <!-- (Optional) set the drag force -->
+      <dragForce>10</dragForce>
+
+      <!-- (Optional) the minimal size of a link-->
+      <linkRestLenght>10</linkRestLenght>
+      <!-- (Optional) Repultion strength define the force of repultion between each particle-->
+      <repultionStrength>1000</repultionStrength>
+    </physicsConstants>
+  </constants>
+</iceSettings>
+
