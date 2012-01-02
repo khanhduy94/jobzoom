@@ -44,13 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FlexibleAttributes\AttributeManager.cs" />
+    <Compile Include="FlexibleAttributes\AttributeMappingManager.cs" />
+    <Compile Include="FlexibleAttributes\AttributeObject.cs" />
+    <Compile Include="FlexibleAttributes\TagAttributeComposite.cs" />
+    <Compile Include="FlexibleAttributes\TagContractAttribute.cs" />
+    <Compile Include="FlexibleAttributes\TagMemberAttribute.cs" />
+    <Compile Include="FlexibleAttributes\TagMemberEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Taxonomy.cs" />
+    <Compile Include="Taxonomy\ComplexSubtree.cs" />
+    <Compile Include="Taxonomy\ComplexTree.cs" />
+    <Compile Include="Taxonomy\ComplexTreeNode.cs" />
+    <Compile Include="Taxonomy\ComplexTreeNodeList.cs" />
+    <Compile Include="Taxonomy\Enums.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JobZoom.Core.Entities\JobZoom.Core.Entities.csproj">
+      <Project>{EC617434-5C06-4293-932B-B30A0902CA09}</Project>
+      <Name>JobZoom.Core.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Taxonomy\JobZoom.Core.Taxonomy.csproj">
       <Project>{C48A13FA-2BA9-4115-9DE4-36FFCB5D6582}</Project>
       <Name>JobZoom.Core.Taxonomy</Name>
