@@ -47,7 +47,6 @@
     <Compile Include="FlexibleAttributes\AttributeManager.cs" />
     <Compile Include="FlexibleAttributes\AttributeMappingManager.cs" />
     <Compile Include="FlexibleAttributes\AttributeObject.cs" />
-    <Compile Include="FlexibleAttributes\TagAttributeComposite.cs" />
     <Compile Include="FlexibleAttributes\TagContractAttribute.cs" />
     <Compile Include="FlexibleAttributes\TagMemberAttribute.cs" />
     <Compile Include="FlexibleAttributes\TagMemberEnum.cs" />
@@ -57,6 +56,8 @@
     <Compile Include="Taxonomy\ComplexTreeNode.cs" />
     <Compile Include="Taxonomy\ComplexTreeNodeList.cs" />
     <Compile Include="Taxonomy\Enums.cs" />
+    <Compile Include="Taxonomy\IComplexTreeNode.cs" />
+    <Compile Include="Taxonomy\Tag.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -66,10 +67,9 @@
       <Project>{EC617434-5C06-4293-932B-B30A0902CA09}</Project>
       <Name>JobZoom.Core.Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Taxonomy\JobZoom.Core.Taxonomy.csproj">
-      <Project>{C48A13FA-2BA9-4115-9DE4-36FFCB5D6582}</Project>
-      <Name>JobZoom.Core.Taxonomy</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Matching\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

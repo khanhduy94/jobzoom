@@ -74,10 +74,10 @@ namespace JobZoom.Web
             root.currentNode.node = CreateNodeFromObject(id);
 
             // populate the neighbors list
-            Node nodeAfter = CreateNodeFromObject("D");
+            Node nodeAfter = CreateNodeFromObject("Basic");
             neighbors.Add(nodeAfter);
 
-            Node nodeBefore = CreateNodeFromObject("E");
+            Node nodeBefore = CreateNodeFromObject("Education");
             neighbors.Add(nodeBefore);
 
             // populate the links list

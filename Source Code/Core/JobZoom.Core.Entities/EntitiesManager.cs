@@ -7,6 +7,7 @@ namespace JobZoom.Core.Entities
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
     partial class TagAttribute : Attribute
-    {
+    {        
+        
     }
 }

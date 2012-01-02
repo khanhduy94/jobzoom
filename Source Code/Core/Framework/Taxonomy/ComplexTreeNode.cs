@@ -10,7 +10,7 @@ namespace JobZoom.Core.Taxonomy
     /// <summary>
     /// Represents a node in a Tree structure, with a parent node and zero or more child nodes.
     /// </summary>
-    public class ComplexTreeNode<T> : IDisposable where T : ComplexTreeNode<T>
+    public class ComplexTreeNode<T> :IDisposable where T : ComplexTreeNode<T>
     {
         private T _Parent;
         public T Parent
@@ -180,5 +180,6 @@ namespace JobZoom.Core.Taxonomy
         }
 
         #endregion
+
     }
 }

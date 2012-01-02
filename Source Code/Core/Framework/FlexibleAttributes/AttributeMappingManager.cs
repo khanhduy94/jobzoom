@@ -26,7 +26,8 @@ namespace JobZoom.Core.FlexibleAttributes
                     tagValue = i.ToString();
                 }
 
-                TagAttribute tag = new TagAttribute();
+                TagAttribute tag = new TagAttribute();                
+                
                 tag.TagId = Guid.NewGuid();
                 tag.TagName = i.Property.Name;
                 tag.TagValue = tagValue;

@@ -188,41 +188,8 @@
     			</Canvas>
     		</Canvas>
     		<Grid Height="123.44" Width="131.911" RenderTransformOrigin="0.189,0.152" Canvas.Left="266.647" Canvas.Top="136.134">
-    			<Grid.RenderTransform>
-    				<TransformGroup>
-    					<ScaleTransform/>
-    					<SkewTransform AngleX="0"/>
-    					<RotateTransform/>
-    					<TranslateTransform/>
-    				</TransformGroup>
-    			</Grid.RenderTransform>
-    			<Path Height="53" x:Name="Text_ICE" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Fill="#FF006BDB" Stretch="Fill" Stroke="#A08BD7FE" Data="M41.925884,18.103958 L51.066509,18.103958 L51.066509,69.607864 L41.925884,69.607864 z M82.919006,17.225052 C88.825256,17.225052 93.547913,18.432083 97.086975,20.846146 L93.325256,28.404739 C91.286194,26.365677 88.004944,25.346146 83.481506,25.346146 C79.192444,25.346146 75.676819,27.144974 72.934631,30.74263 C70.192444,34.340286 68.82135,38.893021 68.82135,44.400833 C68.82135,49.908646 70.092834,54.279739 72.635803,57.514114 C75.178772,60.748489 78.57135,62.365677 82.813538,62.365677 C87.6651,62.365677 91.461975,60.631302 94.204163,57.162552 L98.458069,64.545364 C94.731506,68.506302 89.270569,70.486771 82.075256,70.486771 C74.879944,70.486771 69.2901,68.119583 65.305725,63.385208 C61.321354,58.650833 59.329166,52.193802 59.329166,44.014114 C59.329166,36.396927 61.538151,30.027786 65.956116,24.906693 C70.374084,19.785599 76.028381,17.225052 82.919006,17.225052 z M105.8401,18.103958 L138.7112,18.103958 L138.7112,26.225052 L114.98073,26.225052 L114.98073,38.283646 L131.99635,38.283646 L131.99635,46.053177 L114.98073,46.053177 L114.98073,61.486771 L138.32448,61.486771 L138.32448,69.607864 L105.8401,69.607864 z">
-    				<Path.RenderTransform>
-    					<TransformGroup>
-    						<ScaleTransform/>
-    						<SkewTransform/>
-    						<RotateTransform/>
-    						<TranslateTransform/>
-    					</TransformGroup>
-    				</Path.RenderTransform>
-    			</Path>
-    			<Path Height="31" Margin="0,0.17,0,0" x:Name="Text_Gloss" VerticalAlignment="Top" RenderTransformOrigin="0.499999959275512,0.845583711590864" Stretch="Fill" Stroke="#A08BD7FE" StrokeThickness="1" Data="M64.056,0.87458855 L97.000008,0.87458855 L97.000008,8.9557772 L73.216896,8.9557772 L73.216896,20.955116 L90.270264,20.955116 L90.270264,25.113258 L88.608017,25.653528 C84.879204,26.754017 80.849922,27.72896 76.570786,28.560261 L75.838173,28.68647 L73.216896,28.68647 L73.216896,29.138044 L69.971008,29.697222 L64.056,30.353848 z M0,0.87458855 L9.1609011,0.87458855 L9.1609011,29.346802 L4.5952206,28.560261 L0,27.561916 z M41.084053,0 C47.003407,7.75111E-07 51.736538,1.2011009 55.283451,3.6033022 L51.51339,11.124753 C49.469803,9.0957108 46.181274,8.0811892 41.6478,8.0811882 C37.349224,8.0811892 33.825802,9.8711786 31.077532,13.451156 C28.329262,17.031134 26.955126,21.561497 26.955126,27.042244 C26.955126,28.41243 27.034769,29.711922 27.194057,30.940718 L27.276291,31.339298 L25.367121,31.270472 L17.685301,30.417711 L17.441887,26.657427 C17.441887,19.077667 19.655771,12.739825 24.083536,7.6438956 C28.511305,2.5479658 34.178146,7.75111E-07 41.084053,0 z">
-    				<Path.RenderTransform>
-    					<TransformGroup>
-    						<ScaleTransform/>
-    						<SkewTransform/>
-    						<RotateTransform/>
-    						<TranslateTransform/>
-    					</TransformGroup>
-    				</Path.RenderTransform>
-    				<Path.Fill>
-    					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-    						<GradientStop Color="#00000000"/>
-    						<GradientStop Color="#A0FFFFFF" Offset="1"/>
-    					</LinearGradientBrush>
-    				</Path.Fill>
-    			</Path>
-    		</Grid>
+                <TextBlock Text="JOBZOOM" FontSize="25" Foreground="DarkBlue"/>
+            </Grid>
     		<ProgressBar Height="14.286" x:Name="progressBar" Width="236.175" IsIndeterminate="True" Canvas.Left="217" Canvas.Top="84.13" />
     	</Canvas>
     	<TextBlock Height="Auto" x:Name="TextError" Width="Auto" TextWrapping="Wrap" FontSize="10" Foreground="#FFFFC070" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.Row="1" Margin="50,0,50,15"/>
