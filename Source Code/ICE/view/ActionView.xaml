@@ -1,0 +1,35 @@
+﻿<!--
+    This file is part of "Information Connections Engine".
+
+    "Information Connections Engine" is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    "Information Connections Engine" is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with "Information Connections Engine".  If not, see http://www.gnu.org/license.
+-->
+<UserControl x:Class="ICE.view.ActionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="LayoutRoot">
+        <Ellipse Stroke="#FF000000" StrokeThickness="0" Margin="1,1,1,1" >
+            <Ellipse.Fill>
+                <ImageBrush x:Name="image"  Stretch="UniformToFill"></ImageBrush>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Path Height="27" HorizontalAlignment="Left" VerticalAlignment="Top" Width="27" Stretch="Fill" Stroke="#C0C1C1C1" Data="M27,2.5 C13.469024,2.5 2.5,13.469024 2.5,27 C2.5,40.530975 13.469024,51.5 27,51.5 C40.530975,51.5 51.5,40.530975 51.5,27 C51.5,13.469024 40.530975,2.5 27,2.5 z M27,0.5 C41.635548,0.5 53.5,12.364454 53.5,27 C53.5,41.635548 41.635548,53.5 27,53.5 C12.364454,53.5 0.5,41.635548 0.5,27 C0.5,12.364454 12.364454,0.5 27,0.5 z" x:Name="Ring">
+            <Path.Fill>
+                <LinearGradientBrush EndPoint="0.318,0.319" StartPoint="0.731,0.818">
+                    <GradientStop Color="#FF8C8C8C"/>
+                    <GradientStop Color="#FFF2F2F2" Offset="1"/>
+                </LinearGradientBrush>
+            </Path.Fill>
+        </Path>
+    </Grid>
+</UserControl>

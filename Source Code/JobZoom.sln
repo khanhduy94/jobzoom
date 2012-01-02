@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecisionTreeDataStructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobZoomAnalysisService", "Core\JobZoomAnalysisService\JobZoomAnalysisService.csproj", "{276C50A9-D0EC-4342-86C1-ACC42FD818C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICE", "ICE\ICE.csproj", "{107266E5-D211-40AE-B582-90009BE051D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -171,12 +173,23 @@ Global
 		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|x86.ActiveCfg = Release|x86
 		{276C50A9-D0EC-4342-86C1-ACC42FD818C8}.Release|x86.Build.0 = Release|x86
+		{107266E5-D211-40AE-B582-90009BE051D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{107266E5-D211-40AE-B582-90009BE051D7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{364A4151-7636-4912-B73B-95594D86A56F} = {3C0DE4D3-6132-4F1F-924B-90F61481854F}
+		{107266E5-D211-40AE-B582-90009BE051D7} = {3C0DE4D3-6132-4F1F-924B-90F61481854F}
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {DB0F19B0-8FA6-46CD-A37C-04AD717CCB37}
 		{5E76213F-808E-4C90-A2C5-B15B129133E3} = {D6D84F62-DAB7-4D09-8A58-BDA730FCF498}
 		{BE6D6375-F8CC-4BA4-86F0-3FEC263B7E12} = {6CF02858-4F6E-4F90-BA3D-DD19EA19C9E1}

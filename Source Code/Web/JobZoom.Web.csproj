@@ -15,6 +15,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <SilverlightApplicationList>{107266E5-D211-40AE-B582-90009BE051D7}|..\ICE\ICE.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -102,10 +103,20 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ProfileEditController.cs" />
     <Compile Include="Controllers\ProfileResumeController.cs" />
+    <Compile Include="GenerateICEData.aspx.cs">
+      <DependentUpon>GenerateICEData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GenerateICEData.aspx.designer.cs">
+      <DependentUpon>GenerateICEData.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CustomMembershipProvider.cs" />
+    <Compile Include="iceDataSchema.cs">
+      <DependentUpon>iceDataSchema.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApplyJobConfirmViewModel.cs" />
     <Compile Include="Models\ProfileWorkViewModel.cs" />
@@ -118,6 +129,7 @@
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientBin\ICE.xap" />
     <Content Include="Content\jquery.tagit.css" />
     <Content Include="Content\FancySliding.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -147,7 +159,13 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="GenerateICEData.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="iceConstants.xml" />
+    <Content Include="iceSettings.xml" />
+    <Content Include="ICETestPage.aspx" />
+    <Content Include="ICETestPage.html" />
+    <Content Include="IconLibrary.dll" />
     <Content Include="Images\background-tile.jpg" />
     <Content Include="Images\backgroundGradient_students.jpg" />
     <Content Include="Images\gclpbg.png" />
@@ -169,6 +187,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <None Include="iceDataSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\JobZoom.Business.Entities.Profile_Basic.datasource" />
     <None Include="Service References\JobZoomServiceReference\JobZoomService.disco" />
     <None Include="Service References\JobZoomServiceReference\configuration91.svcinfo" />
@@ -313,6 +334,7 @@
     <Content Include="Scripts\ui\minified\jquery.ui.sortable.min.js" />
     <Content Include="Scripts\ui\minified\jquery.ui.tabs.min.js" />
     <Content Include="Scripts\ui\minified\jquery.ui.widget.min.js" />
+    <Content Include="Silverlight.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
