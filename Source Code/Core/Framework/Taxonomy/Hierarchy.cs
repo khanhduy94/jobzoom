@@ -60,7 +60,6 @@ namespace JobZoom.Core.Taxonomy
                     secondLevelTag.Children.Add(thirdLevelTag);
                 }
             }
-
             return tag;            
         }
     }

@@ -8,11 +8,11 @@ namespace JobZoom.Core.FlexibleAttributes
 {
     public class TagAttributeMappingManager
     {
-        JobZoomCoreEntities db = new JobZoomCoreEntities();
+        JobZoomCoreEntities db = new JobZoomCoreEntities();        
 
         private List<TagMemberAttribute> _listTagMemberAttributes = new List<TagMemberAttribute>();
 
-        public void AddAttributeObject(object attributeObject, Guid objectId, string objectType, Guid parentId)
+        public void AddAttributeObject(object attributeObject, Guid objectId, string objectType, Guid classificationId, string classificationName)
         {
             var listAttributeObjects = AttributeManager.GetProperiesFromTypeByAttribute<TagMemberAttribute>(attributeObject);            
 
@@ -43,8 +43,9 @@ namespace JobZoom.Core.FlexibleAttributes
                 tag.TagId = Guid.NewGuid();                                
                 tag.ObjectId = objectId;
                 tag.ObjectType = objectType;
-                tag.ParentId = parentId;
-                tag.ModifiedDate = DateTime.Now;
+                tag.ParentId = classificationId;
+                tag.ParentName = classificationName;
+                tag.ModifiedDate = DateTime.Now;                
 
                 lisTagAttributes.Add(tag);
             }
@@ -52,19 +53,14 @@ namespace JobZoom.Core.FlexibleAttributes
             SaveChanges(lisTagAttributes);
         }
 
-        public void UpdateAttributeObject(object attributeObject)
-        {   
-         
-        }
-
         private void SaveChanges(List<TagAttribute> listTagAttributes)
-        {
+        {            
             foreach (var tag in listTagAttributes)
-            {                
+            {
+                db.TagAttributes.Add(tag);                
             }
 
             db.SaveChanges();
-
         }
     }    
 }

@@ -24,7 +24,7 @@ namespace TestFramework.Console
             };
 
             TagAttributeMappingManager test = new TagAttributeMappingManager();
-            test.AddAttributeObject(basic, basic.ProfileBasicId, "Profile", Guid.Empty);
+            //test.AddAttributeObject(basic, basic.ProfileBasicId, "Profile", Guid.Empty);
         }
     }
 }

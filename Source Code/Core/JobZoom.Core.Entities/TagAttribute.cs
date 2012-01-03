@@ -22,14 +22,17 @@ namespace JobZoom.Core.Entities
         public System.Guid TagId { get; set; }
         public string TagName { get; set; }
         public string TagValue { get; set; }
-        public Nullable<short> Weight { get; set; }
-        public Nullable<short> Level { get; set; }
-        public Nullable<bool> Required { get; set; }
-        public string TableReference { get; set; }
         public Nullable<System.Guid> ObjectId { get; set; }
         public string ObjectType { get; set; }
+        public Nullable<int> ObjectDeepLevel { get; set; }
         public Nullable<System.Guid> ParentId { get; set; }
         public string ParentName { get; set; }
+        public Nullable<short> Weight { get; set; }
+        public Nullable<bool> Required { get; set; }
+        public string ValueType { get; set; }
+        public string TagValueMetric { get; set; }
+        public string Criteria { get; set; }
+        public string TableReference { get; set; }
         public string Attachment { get; set; }
         public Nullable<System.DateTime> ModifiedDate { get; set; }
         public string Status { get; set; }

@@ -56,7 +56,7 @@
     <Compile Include="Taxonomy\ComplexTreeNode.cs" />
     <Compile Include="Taxonomy\ComplexTreeNodeList.cs" />
     <Compile Include="Taxonomy\Enums.cs" />
-    <Compile Include="Taxonomy\Tag.cs" />
+    <Compile Include="Taxonomy\Hierarchy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

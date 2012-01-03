@@ -44,11 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoreEntitiesModel..Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CoreEntitiesModel..edmx</DependentUpon>
-    </Compile>
     <Compile Include="CoreEntitiesModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -58,6 +53,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CoreEntitiesModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreEntitiesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DecisionTreeNode.cs">
       <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
@@ -78,11 +78,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
-    <EntityDeploy Include="CoreEntitiesModel..edmx">
+    <EntityDeploy Include="CoreEntitiesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CoreEntitiesModel..Designer.cs</LastGenOutput>
+      <LastGenOutput>CoreEntitiesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
     <None Include="CoreEntitiesModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CoreEntitiesModel.Context.cs</LastGenOutput>

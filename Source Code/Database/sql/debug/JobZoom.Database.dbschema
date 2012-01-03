@@ -2426,67 +2426,6 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[Weight]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[smallint]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[Level]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[smallint]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[Required]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[bit]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[TableReference]">
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="128" />
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[varchar]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[ObjectId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -2518,6 +2457,21 @@ END]]></Value>
 					</Element>
 				</Entry>
 				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[ObjectDeepLevel]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
 					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[ParentId]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -2541,6 +2495,100 @@ END]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[Weight]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[smallint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[Required]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[ValueType]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[TagValueMetric]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="256" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[Criteria]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="ISql100SimpleColumn" Name="[dbo].[TagAttribute].[TableReference]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="ISql90TypeSpecifier">
+									<Property Name="Length" Value="128" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
