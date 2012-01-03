@@ -42,12 +42,41 @@
 @Html.ActionLink("Edit Profile", "Basic", "ProfileEdit")
 @Html.ActionLink("Resume", "index", "ProfileResume")
 <input id="hidden-userid" type="hidden" profilebasicid="@Model.ProfileBasicId" />
+
+<fieldset style="width: 600px;margin-top:10px">
+<div style="margin-left:20px">
+    <div style="font-size:medium; font-weight:bold; padding-top:5px">
+        @Model.FirstName @Model.LastName
+    </div>
+    <div style="padding-top:5px">
+        @Model.City - @Model.Country
+    </div>
+    <div style="padding-top:5px">
+        Address: @Model.AddressLine1
+    </div>
+    <div style="padding-top:5px">
+        Phone: @Model.Phone
+    </div>
+    <div style="padding-top:5px">
+        Mobile: @Model.MobilePhone
+    </div>
+    <div style="padding-top:5px">
+        Website: @Model.Website
+    </div>
+    <div style="padding-top:5px">
+        Facebook: @Model.Facebook
+    </div>
+    <div style="padding-top:5px">
+        Twitter: @Model.Twitter
+    </div>
+</div>
+</fieldset>
 <h3>
-    1. Thông tin cơ bản của Profile</h3>    
-<h3>------------------------ NGUYÊN ----------------------------</h3>
+    ------------------------ NGUYÊN ----------------------------</h3>
 <h3>
     2. Kèm thêm Graph của cây Profile --> Mô hình hóa theo cây --> phục vụ demo matching</h3>
-<h3>--------------------------PHÚC ------------------------------</h3>
+<h3>
+    --------------------------PHÚC ------------------------------</h3>
 <h2>
     Trang Chủ Profile của Job Seeker</h2>
 @*<script type="text/javascript">

@@ -49,7 +49,7 @@
         <td>
             @Html.ActionLink("Edit", "Basic", "EmployerEditJob", new { id = item.JobPostingId }, null) |
             @Html.ActionLink("Details", "Details", new { id=item.JobPostingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.JobPostingId })
+            @Html.ActionLink("Delete", "Delete", new { id = item.JobPostingId }, new { onclick = "return confirm('Are you sure to delete this job?')" })
         </td>
     </tr>
 }

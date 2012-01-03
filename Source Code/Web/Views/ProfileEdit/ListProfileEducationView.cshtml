@@ -4,13 +4,10 @@
 {
     <fieldset>
         <legend>
-            @item.SchoolUniversityName
+            @item.SchoolUniversityName <span class="edit-education ButtonLink" profileeducationid="@item.ProfileEducationId">Edit</span>
         </legend>
-        @item.Major
-        @item.StartDate
-        @item.EndDate
-        @item.Description
-        @item.ProfileEducationId
-        <span class="edit-education ButtonLink" profileeducationid="@item.ProfileEducationId">Edit</span>
+        <div>@item.Major</div>
+        <div>@item.StartDate - @item.EndDate</div>
+        <div>@item.Description</div>        
     </fieldset>
 }
