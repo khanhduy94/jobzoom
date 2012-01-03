@@ -432,6 +432,10 @@
       <Project>{6A0DD250-D2B5-49AA-B6D7-3A8714FEFCA0}</Project>
       <Name>JobZoom.Core.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\JobZoom.Core.Entities\JobZoom.Core.Entities.csproj">
+      <Project>{EC617434-5C06-4293-932B-B30A0902CA09}</Project>
+      <Name>JobZoom.Core.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
