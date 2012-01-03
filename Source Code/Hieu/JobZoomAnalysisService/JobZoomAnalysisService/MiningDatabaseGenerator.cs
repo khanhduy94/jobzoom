@@ -17,7 +17,6 @@ namespace JobZoomAnalysisService
             string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
             string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
             string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
-            //string strASServerName = AnalysisServerConnectionString.Split(';').First(c => c.Contains("Data Source=")).Split('=').ElementAt(1);
 
             BuildMiningDatabase(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
             Console.ReadLine();
@@ -58,14 +57,19 @@ namespace JobZoomAnalysisService
         #endregion
 
         #region Mining Database Generation.
-
-        private static void BuildMiningDatabase(string MainServerConnectionString, string AnalysisServerConnectionString, string TempServerConnectionString, string strPrefix = "PF", DecisionTreeAlgorithmParameters dt_parametters = new DecisionTreeAlgorithmParameters())
+        
+        /// <summary>
+        /// Build mining database
+        /// </summary>
+        /// <param name="MainServerConnectionString">Main server connection string</param>
+        /// <param name="AnalysisServerConnectionString">Analysis services connection string</param>
+        /// <param name="TempServerConnectionString">Temp server connection string (contain views)</param>
+        /// <param name="strPrefix">Prefix</param>
+        /// <param name="dt_parametters">Decision Tree Parametters</param>
+        private static void BuildMiningDatabase(string MainServerConnectionString, string AnalysisServerConnectionString, string TempServerConnectionString, string strPrefix = "PF", DecisionTreeAlgorithmParameters dt_parametter = null)
         {
-            string strDBServerName = "TRUNGHIEU-PC"; // Database Engine
-            string strASServerName = "TRUNGHIEU-PC"; //Analysis service
-            string strProviderName = "msolap"; //Microsoft OLE DB Provider for Analysis Services 10.0
-
-            string strDBName = "JobZoom"; // Database (Database Engine)
+            if (dt_parametter == null)
+                dt_parametter = new DecisionTreeAlgorithmParameters();
             string strMiningDBName = "Job Zoom Mining"; //Mining database name (Analysis Service)
             string strMiningDataSourceName = "Data Source"; //Mining datasource name (Analysis Service)
             string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name (Analysis Service)
@@ -139,11 +143,11 @@ namespace JobZoomAnalysisService
             //objDatabase.Process(ProcessType.ProcessFull);
             Console.WriteLine("Analysis Service Database created successfully.");
 
-            Console.WriteLine("Step 7. Removing Analysis Database");
-            Console.WriteLine("Step 7. Started!");
-            Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
-            Console.WriteLine("Removing Analysis Database completely ...");
-            Console.WriteLine("\nStep 7. Finished!");
+            //Console.WriteLine("Step 7. Removing Analysis Database");
+            //Console.WriteLine("Step 7. Started!");
+            //Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
+            //Console.WriteLine("Removing Analysis Database completely ...");
+            //Console.WriteLine("\nStep 7. Finished!");
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
@@ -392,7 +396,7 @@ namespace JobZoomAnalysisService
         {
             try
             {
-                string strCommand = "Select * from [" + strTableName + "];";
+                string strCommand = "SELECT * FROM [" + strTableName + "];";
                 SqlDataAdapter objEmpData = new SqlDataAdapter(strCommand, objConnection);
                 objEmpData.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                 objEmpData.FillSchema(objDataSet, SchemaType.Source, strTableName);
@@ -499,7 +503,7 @@ namespace JobZoomAnalysisService
             {
                 
                 MiningStructure objMiningStructure = new MiningStructure();
-                objMiningStructure = objDatabase.MiningStructures.Add(objDatabase.MiningStructures.GetNewName(strCaseTableName));
+                objMiningStructure = objDatabase.MiningStructures.Add(objDatabase.MiningStructures.GetNewName(StringEncode(strCaseTableName)));
                 objMiningStructure.HoldoutMaxPercent = dtParams.HoldoutMaxPercent; // Percent for testing
                 objMiningStructure.Source = new DataSourceViewBinding(objDataSourceView.ID);
                 objMiningStructure.CaseTableName = strCaseTableName;
@@ -515,7 +519,11 @@ namespace JobZoomAnalysisService
                             column.Type = MiningStructureColumnTypes.Long;
                             column.Content = MiningStructureColumnContents.Key;
                             column.IsKey = true;
+
+                            // Add data binding to the column
+                            column.KeyColumns.Add(strCaseTableName, name);
                             // Add the column to the mining structure
+                            objMiningStructure.Columns.Add(column);
                             break;
                         case "ProfileBasicId":                            
                         case "JobPostingId":
@@ -523,23 +531,24 @@ namespace JobZoomAnalysisService
                         case "JobTitle":
                         case "CompanyId":
                         case "CompanyName":
-                            column.Type = MiningStructureColumnTypes.Text;
-                            column.Content = MiningStructureColumnContents.Discrete;
+                            //column.Type = MiningStructureColumnTypes.Text;
+                            //column.Content = MiningStructureColumnContents.Discrete;
                             break;
                         case "IsApproved":
                         default:
                             column.Type = MiningStructureColumnTypes.Boolean;
                             column.Content = MiningStructureColumnContents.Discrete;
+
+                            // Add data binding to the column
+                            column.KeyColumns.Add(strCaseTableName, name);
+                            // Add the column to the mining structure
+                            objMiningStructure.Columns.Add(column);
                             break;
                     }
-                    // Add data binding to the column
-                    //ProfileBasicId.KeyColumns.Add(strCaseTableName, "ProfileBasicId", OleDbType.WChar);
-                    column.KeyColumns.Add(strCaseTableName, name);
-                    // Add the column to the mining structure
-                    objMiningStructure.Columns.Add(column);
+                    
                 }
 
-                MiningModel objMiningModel = objMiningStructure.CreateMiningModel(true, strCaseTableName);
+                MiningModel objMiningModel = objMiningStructure.CreateMiningModel(true, StringEncode(strCaseTableName));
                 //MiningModel objMiningModel = objMiningStructure.MiningModels.Add(objMiningStructure.MiningModels.GetNewName(strMiningStructureName));
                 objMiningModel.Algorithm = MiningModelAlgorithms.MicrosoftDecisionTrees;
                 objMiningModel.AllowDrillThrough = true;
@@ -788,17 +797,18 @@ namespace JobZoomAnalysisService
                                     "[MSOLAP_NODE_SCORE], " +
                                     "[MSOLAP_NODE_SHORT_CAPTION], " +
                                     "[ATTRIBUTE_NAME] " +
-                                    "FROM [" + strMiningStructureName + "].CONTENT " +
+                                    "FROM [" + StringEncode(strMiningStructureName) +"].CONTENT " +
                                     "WHERE [NODE_UNIQUE_NAME] <> ''0'' ORDER BY [NODE_UNIQUE_NAME] ASC')";
                     executeQuery(DatabaseConnectionString, strQuery);
 
                     //Step 2. Insert data (except root node). (Rename node named "All" to strMiningStructureName
                     strQuery = "UPDATE DecisionTreeNode SET [NODE_CAPTION] = '" + strMiningStructureName +
+                                                        "', [MODEL_NAME] ='" + strMiningStructureName +
                                                         "', [NODE_DESCRIPTION] ='" + strMiningStructureName +
                                                         "', [MSOLAP_NODE_SHORT_CAPTION] ='" + strMiningStructureName +
                                                         "', [PARENT_ID] = '0'" +
                                                         " WHERE [NODE_CAPTION] = 'All' AND [NODE_TYPE] = 2;";
-                    executeQuery(DatabaseConnectionStringe, strQuery);
+                    executeQuery(DatabaseConnectionString, strQuery);
 
                     strQuery = "INSERT INTO DecisionTreeNodeDistribution " +
                                     "SELECT * FROM " +
@@ -806,7 +816,7 @@ namespace JobZoomAnalysisService
                                     "'SELECT FLATTENED " +
                                     "''" + strPrefix + count + "_'' + [NODE_UNIQUE_NAME] AS [NODE_ID], " +
                                     "[NODE_DISTRIBUTION] " +
-                                    "FROM [" + strMiningStructureName + "].CONTENT " +
+                                    "FROM [" + StringEncode(strMiningStructureName) + "].CONTENT " +
                                     "WHERE [NODE_UNIQUE_NAME] <> ''0''')";
                     executeQuery(DatabaseConnectionString, strQuery);
 

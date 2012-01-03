@@ -16,12 +16,15 @@ namespace DecisionTreeDataStructure
 
         private static void test()
         {
-            string[] att = new string[] { ".net" };
-            string[] ex_att = new string[] { "C#" };
+            //string[] att = new string[] { ".net" };
+            //string[] ex_att = new string[] { "C#" };
+
+            string[] att = new string[] { };
+            string[] ex_att = new string[] { };
 
             List<DecisionTreeAnalysisResult> results = new List<DecisionTreeAnalysisResult>();
             //results = getAnalysisResults("Developer Evangelist", CompareType.GreaterThanOrEqualTo, 0.5);
-            results = getAnalysisResults(convertJobTitleNameToModelName("Developer Evangelist", "Pivot"), att, ex_att, CompareType.GreaterThanOrEqualTo, 0.5);
+            results = getAnalysisResults(convertJobTitleNameToModelName("Developer Evangelist", "PF"), att, ex_att, CompareType.GreaterThanOrEqualTo, 0.5);
 
             foreach (var result in results)
             {

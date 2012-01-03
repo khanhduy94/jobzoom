@@ -1,5 +1,0 @@
-C:\Users\Trung Hieu\Documents\Visual Studio 2010\Projects\ExportViewToMining\ExportViewToMining\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Trung Hieu\Documents\Visual Studio 2010\Projects\ExportViewToMining\ExportViewToMining\bin\Debug\ExportViewToMining.exe
-C:\Users\Trung Hieu\Documents\Visual Studio 2010\Projects\ExportViewToMining\ExportViewToMining\bin\Debug\ExportViewToMining.pdb
-C:\Users\Trung Hieu\Documents\Visual Studio 2010\Projects\ExportViewToMining\ExportViewToMining\obj\x86\Debug\ExportViewToMining.exe
-C:\Users\Trung Hieu\Documents\Visual Studio 2010\Projects\ExportViewToMining\ExportViewToMining\obj\x86\Debug\ExportViewToMining.pdb
