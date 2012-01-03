@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JobZoom.Core.FlexibleAttributes;
+using JobZoom.Core.Taxonomy;
 
 namespace TestFramework.Console
 {
@@ -23,8 +24,12 @@ namespace TestFramework.Console
                 City = "848"
             };
 
-            TagAttributeMappingManager test = new TagAttributeMappingManager();
+            //TagAttributeMappingManager test = new TagAttributeMappingManager();
             //test.AddAttributeObject(basic, basic.ProfileBasicId, "Profile", Guid.Empty);
+
+            Hierarchy hierarchy = new Hierarchy();
+            Tag tag = hierarchy.GetHierarchicalTreeByObject(new Guid("B121BDDF-7A43-4DE4-9048-7FF1C90EAD9B"), "JobSeekerProfile");
+
         }
     }
 }

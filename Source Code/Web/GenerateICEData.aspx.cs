@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Text;
+using JobZoom.Core.Entities;
+using JobZoom.Core.Taxonomy;
 
 namespace JobZoom.Web
 {
@@ -61,6 +63,10 @@ namespace JobZoom.Web
 
         private Root CreateDataFile(string id)
         {
+
+            //JobZoom Core
+            Tag tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id), "JobSeekerProfile");            
+
             // we create the xml structure
             Root root = new Root();
             root.currentNode = new RootCurrentNode();
@@ -70,22 +76,39 @@ namespace JobZoom.Web
             List<Node> neighbors = new List<Node>();
             List<Link> links = new List<Link>();
 
-            // this function creates a node                 
-            root.currentNode.node = CreateNodeFromObject(id);
+            // this function creates a node                             
+            root.currentNode.node = CreateNodeFromObject(tag.TagAttribute);
 
-            // populate the neighbors list
-            Node nodeAfter = CreateNodeFromObject("Basic");
-            neighbors.Add(nodeAfter);
+            foreach (Tag secondLevelTag in tag.Children)
+            {
+                TagAttribute secondLevelNode = secondLevelTag.TagAttribute;
 
-            Node nodeBefore = CreateNodeFromObject("Education");
-            neighbors.Add(nodeBefore);
+                Node nodeBefore = CreateNodeFromObject(secondLevelNode);
+                neighbors.Add(nodeBefore);
 
-            // populate the links list
-            Link relationWithAfter = CreateLinkBetween(nodeAfter, root.currentNode.node);
-            links.Add(relationWithAfter);
+                Link relationWithBefore = CreateLinkBetween(root.currentNode.node, nodeBefore);
+                links.Add(relationWithBefore);
 
-            Link relationWithBefore = CreateLinkBetween(root.currentNode.node, nodeBefore);
-            links.Add(relationWithBefore);
+                foreach (Tag thirdLevelTag in secondLevelTag.Children)
+                {
+                    TagAttribute thirdLevelNode = thirdLevelTag.TagAttribute;
+                    Node thirdNodeBefore = CreateNodeFromObject(thirdLevelNode);
+                    neighbors.Add(thirdNodeBefore);
+
+                    Link relationWithBeforeThirdLevel = CreateLinkBetween(nodeBefore, thirdNodeBefore);
+                    links.Add(relationWithBeforeThirdLevel);
+                }
+            }
+
+            // populate the neighbors list            
+
+            //Node nodeBefore = CreateNodeFromObject("Education");
+            //neighbors.Add(nodeBefore);
+
+            // populate the links list            
+
+            //Link relationWithBefore = CreateLinkBetween(root.currentNode.node, nodeBefore);
+            //links.Add(relationWithBefore);
 
 
             // we finalize the structure
@@ -123,9 +146,13 @@ namespace JobZoom.Web
         }
 
         private Node CreateNodeFromObject(string id)
-        {
-            return new Node { id = Guid.NewGuid().ToString(), title = id, type = "Profile", url = "http://congphuc.net" };
+        {            
+            return new Node { id = Guid.NewGuid().ToString(), title = id, type = "Profile", url = "" };
         }
-       
+
+        private Node CreateNodeFromObject(TagAttribute tagAttribute)
+        {
+            return new Node { id = tagAttribute.TagId.ToString(), title = tagAttribute.TagName, type = "Profile", url = "" };
+        }
     }
 }

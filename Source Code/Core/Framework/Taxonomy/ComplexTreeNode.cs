@@ -52,13 +52,6 @@ namespace JobZoom.Core.Taxonomy
             }
         }
 
-        private ComplexTreeNodeList<T> _ClassificationNodes;
-        public virtual ComplexTreeNodeList<T> ClassificationNodes
-        {
-            get { return _ClassificationNodes; }
-            set { _ClassificationNodes = value; }
-        }
-
         private ComplexTreeNodeList<T> _Children;
         public virtual ComplexTreeNodeList<T> Children
         {
@@ -105,22 +98,25 @@ namespace JobZoom.Core.Taxonomy
         /// <summary>
         /// Reports a depth of nesting in the tree, starting at 0 for the root.
         /// </summary>
-        public int Depth
-        {
-            get
-            {
-                //return (Parent == null ? -1 : Parent.Depth) + 1;
+        //public int Depth
+        //{
+        //    get
+        //    {
+        //        //return (Parent == null ? -1 : Parent.Depth) + 1;
 
-                int depth = 0;
-                ComplexTreeNode<T> node = this;
-                while (node.Parent != null)
-                {
-                    node = node.Parent;
-                    depth++;
-                }
-                return depth;
-            }
-        }
+        //        int depth = 0;
+        //        ComplexTreeNode<T> node = this;
+        //        while (node.Parent != null)
+        //        {
+        //            node = node.Parent;
+        //            depth++;
+        //        }
+        //        return depth;
+        //    }
+        //    set { };
+        //}
+
+        public int Depth { get; set; }
 
         public override string ToString()
         {

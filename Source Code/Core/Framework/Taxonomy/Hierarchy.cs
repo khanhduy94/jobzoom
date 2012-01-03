@@ -33,7 +33,7 @@ namespace JobZoom.Core.Taxonomy
         {
             TagAttribute = tagAttribute;
             Completed = false;
-        }               
+        }                      
     }
 
     public class Hierarchy
@@ -46,18 +46,21 @@ namespace JobZoom.Core.Taxonomy
             List<TagAttribute> classificationNodes = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ObjectDeepLevel == 2).ToList();
 
             Tag tag = new Tag(rootNode);
+            tag.Depth = 1;
 
             foreach (var i in classificationNodes)
             {
-                Tag secondLevelTag = new Tag(i);
+                Tag secondLevelTag = new Tag(i);                
+                tag.Children.Add(secondLevelTag);
+                tag.Depth = 2;
 
-                List<TagAttribute> thirdLevelNodes = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ParentId == i.ObjectId && x.ObjectDeepLevel == 3).ToList();
+                List<TagAttribute> thirdLevelNodes = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ParentId == i.TagId && x.ObjectDeepLevel == 3).ToList();
 
                 foreach (var j in thirdLevelNodes)
                 {
                     Tag thirdLevelTag = new Tag(j);
-
                     secondLevelTag.Children.Add(thirdLevelTag);
+                    tag.Depth = 3;
                 }
             }
             return tag;            
