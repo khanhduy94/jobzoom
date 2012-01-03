@@ -14,7 +14,12 @@ namespace JobZoomAnalysisService
     {
         static void Main(string[] args)
         {
-            BuildMiningDatabase();
+            string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+            string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+            string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
+            //string strASServerName = AnalysisServerConnectionString.Split(';').First(c => c.Contains("Data Source=")).Split('=').ElementAt(1);
+
+            BuildMiningDatabase(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
             Console.ReadLine();
         }
 
@@ -54,19 +59,19 @@ namespace JobZoomAnalysisService
 
         #region Mining Database Generation.
 
-        private static void BuildMiningDatabase()
+        private static void BuildMiningDatabase(string MainServerConnectionString, string AnalysisServerConnectionString, string TempServerConnectionString, string strPrefix = "PF", DecisionTreeAlgorithmParameters dt_parametters = new DecisionTreeAlgorithmParameters())
         {
-            string strPrefix = "Pivot";
             string strDBServerName = "TRUNGHIEU-PC"; // Database Engine
             string strASServerName = "TRUNGHIEU-PC"; //Analysis service
             string strProviderName = "msolap"; //Microsoft OLE DB Provider for Analysis Services 10.0
+
             string strDBName = "JobZoom"; // Database (Database Engine)
             string strMiningDBName = "Job Zoom Mining"; //Mining database name (Analysis Service)
             string strMiningDataSourceName = "Data Source"; //Mining datasource name (Analysis Service)
             string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name (Analysis Service)
 
-            string[] strFactTableNames = getAllMiningTableNames(strDBServerName, strDBName, strPrefix); //tables in datasource view to mining
-            
+            string[] strFactTableNames = getAllMiningTableNames(TempServerConnectionString, strPrefix); //tables in datasource view to mining
+
             string[,] strTableNamesAndKeys = { { "PivotProfile", "ProfileBasicId", "PivotProfile", "ProfileBasicId" }, };
 
             int intDimensionTableCount = 0;
@@ -84,7 +89,7 @@ namespace JobZoomAnalysisService
 
             Console.WriteLine("Step 1. Connecting to the Analysis Services.");
             Console.WriteLine("Step 1. Started!");
-            objServer = (Server) ConnectAnalysisServices(strASServerName, strProviderName);
+            objServer = (Server)ConnectAnalysisServices(AnalysisServerConnectionString);
             Console.WriteLine("Step 1. Finished!");
             Console.WriteLine("");
 
@@ -97,14 +102,14 @@ namespace JobZoomAnalysisService
 
             Console.WriteLine("Step 3. Creating a DataSource.");
             Console.WriteLine("Step 3. Started!");
-            objDataSource = (RelationalDataSource) CreateDataSource(objServer, objDatabase, strMiningDataSourceName, strDBServerName, strDBName);
+            objDataSource = (RelationalDataSource)CreateDataSource(objServer, objDatabase, strMiningDataSourceName, TempServerConnectionString);
             Console.WriteLine("Step 3. Finished!");
             Console.WriteLine("");
 
             Console.WriteLine("Step 4. Creating a DataSourceView.");
             Console.WriteLine("Step 4. Started!");
             //objDataSet = (DataSet)GenerateDWSchema(strDBServerName, strDBName, strFactTableName, strTableNamesAndKeys, intDimensionTableCount);
-            objDataSet = (DataSet)GenerateDWSchema(strDBServerName, strDBName, strPrefix); //Get all mining views
+            objDataSet = (DataSet)GenerateDWSchema(TempServerConnectionString, strPrefix); //Get all mining views
             objDataSourceView = (DataSourceView)CreateDataSourceView(objDatabase, objDataSource, objDataSet, strMiningDataSourceViewName);
             Console.WriteLine("Step 4. Finished!");
             Console.WriteLine("");
@@ -112,30 +117,33 @@ namespace JobZoomAnalysisService
             Console.WriteLine("Step 5. Createing Mining Structures [with Decision Tree Algorithms]");
             Console.WriteLine("Step 5. Started!");
             objMiningStructures = (MiningStructure[])CreateMiningStructures(objDatabase, objDataSourceView, strFactTableNames, new DecisionTreeAlgorithmParameters());
+            //objDatabase.Process(ProcessType.ProcessFull);
             Console.WriteLine("Step 5. Finished!");
             Console.WriteLine("");
 
+
+
             Console.WriteLine("Step 6. Export mining data to JobZoom Database (Database Engine)");
             Console.WriteLine("Step 6. Started!");
-            
+
             Console.WriteLine("Preparing... Put website to maintenance mode");
             //EXEC WEB SITE MAINTENANCE SERVICE METHOD
 
             Console.WriteLine("Preparing... Cleaning DecisionTreeNode and DecisionTreeNodeDistribution");
             Console.WriteLine("\nStep 6. Finished!");
             Console.WriteLine("");
-            exportMiningDataToDB(strDBServerName, strDBName, strASServerName, strFactTableNames, strPrefix);
+            exportMiningDataToDB(MainServerConnectionString, AnalysisServerConnectionString, strFactTableNames, strPrefix);
             Console.WriteLine("Export completed! Release website to continuing for using");
             //WEBSITE CAN CONTINUE FOR USING
             Console.WriteLine("Process Full...");
             //objDatabase.Process(ProcessType.ProcessFull);
             Console.WriteLine("Analysis Service Database created successfully.");
 
-            //Console.WriteLine("Step 7. Removing Analysis Database");
-            //Console.WriteLine("Step 7. Started!");
-            //Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
-            //Console.WriteLine("Removing Analysis Database completely ...");
-            //Console.WriteLine("\nStep 7. Finished!");
+            Console.WriteLine("Step 7. Removing Analysis Database");
+            Console.WriteLine("Step 7. Started!");
+            Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
+            Console.WriteLine("Removing Analysis Database completely ...");
+            Console.WriteLine("\nStep 7. Finished!");
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
@@ -145,22 +153,19 @@ namespace JobZoomAnalysisService
         /// <summary>
         ///     Connecting to the Analysis Services.
         /// </summary>
-        /// <param name="strASServerName">Analysis Service Server Name.</param>
-        /// <param name="strProviderName">Provider Name.</param>
+        /// <param name="AnalysisServicesConnectionString">Analysis Services Connection String.</param>
         /// <returns>Database Server instance.</returns>
-        private static object ConnectAnalysisServices(string strASServerName, string strProviderName)
+        private static object ConnectAnalysisServices(string AnalysisServicesConnectionString)
         {
             try
             {
                 Console.WriteLine("Connecting to the Analysis Services ...");
-
                 Server objServer = new Server();
-                string strConnection = "Data Source=" + strASServerName + ";Provider=" + strProviderName + ";";
                 //Disconnect from current connection if it's currently connected.
                 if (objServer.Connected)
                     objServer.Disconnect();
                 else
-                    objServer.Connect(strConnection);
+                    objServer.Connect(AnalysisServicesConnectionString);
 
                 return objServer;
             }
@@ -177,9 +182,9 @@ namespace JobZoomAnalysisService
         /// Creating a Database in Analysis service
         /// </summary>
         /// <param name="objServer">Analysis Service Connection Instance</param>
-        /// <param name="strASDBName">Database name in analysis service to create</param>
+        /// <param name="strAnalysisServicesDatabaseName">Database name in analysis service to create</param>
         /// <returns>Analysis Service Database instance.</returns>
-        private static object CreateDatabase(Server objServer, string strASDBName)
+        private static object CreateDatabase(Server objServer, string strAnalysisServicesDatabaseName)
         {
             try
             {
@@ -187,7 +192,7 @@ namespace JobZoomAnalysisService
 
                 Database objDatabase = new Database();
                 //Add Database to the Analysis Services.
-                objDatabase = objServer.Databases.Add(objServer.Databases.GetNewName(strASDBName));
+                objDatabase = objServer.Databases.Add(objServer.Databases.GetNewName(strAnalysisServicesDatabaseName));
                 //Save Database to the Analysis Services.
                 objDatabase.Update();                
 
@@ -225,15 +230,15 @@ namespace JobZoomAnalysisService
         /// Get a database instance in analysis service 
         /// </summary>
         /// <param name="objServer">Analysis Service Connection Instance</param>
-        /// <param name="strASDBName">Database name in analysis service to create</param>
+        /// <param name="strASDatabaseName">Database name in analysis service to create</param>
         /// <returns>Database instance in analysis service</returns>
-        private static object GetDatabase(Server objServer, string strASDBName)
+        private static object GetDatabase(Server objServer, string strASDatabaseName)
         {
             try
             {
                 Database objDatabase = new Database();
                 //Add Database to the Analysis Services.
-                objDatabase = objServer.Databases.GetByName(strASDBName);
+                objDatabase = objServer.Databases.GetByName(strASDatabaseName);
                 //Save Database to the Analysis Services.
                 objDatabase.Update();
 
@@ -254,18 +259,17 @@ namespace JobZoomAnalysisService
         /// <param name="objServer">Analysis Service Connection Instance</param>
         /// <param name="objDatabase">Database instance in Analysis Service</param>
         /// <param name="strMiningDataSourceName">Mining DataSource Name to create</param>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database's name in Database engine</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>Analysis Service DataSource instance.</returns>
-        private static object CreateDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string strDBServerName, string strDBName)
+        private static object CreateDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string DatabaseConnectionString)
         {
             try
             {
                 Console.WriteLine("Creating a DataSource ...");
                 RelationalDataSource objDataSource = new RelationalDataSource();
                 //Add Data Source to the Database.
-                objDataSource = objDatabase.DataSources.Add(objServer.Databases.GetNewName(strMiningDataSourceName));                
-                objDataSource.ConnectionString = "Provider=SQLNCLI11.1; Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=SSPI;";
+                objDataSource = objDatabase.DataSources.Add(objServer.Databases.GetNewName(strMiningDataSourceName));
+                objDataSource.ConnectionString = "Provider=SQLNCLI11.1; " + DatabaseConnectionString;
                 objDataSource.Update();
 
                 return objDataSource;
@@ -283,10 +287,9 @@ namespace JobZoomAnalysisService
         /// <param name="objServer">Analysis Service Connection Instance</param>
         /// <param name="objDatabase">Database instance in Analysis Service</param>
         /// <param name="strMiningDataSourceName">Mining DataSource Name to get</param>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database's name in Database engine</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>Analysis Service Datasource instance</returns>
-        private static object GetDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string strDBServerName, string strDBName)
+        private static object GetDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string DatabaseConnectionString)
         {
             try
             {
@@ -294,7 +297,7 @@ namespace JobZoomAnalysisService
                 DataSource objDataSource;
                 //Add Data Source to the Database.
                 objDataSource = objDatabase.DataSources.GetByName(strMiningDataSourceName);
-                objDataSource.ConnectionString = "Provider=SQLNCLI11.1; Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=SSPI;";
+                objDataSource.ConnectionString = "Provider=SQLNCLI11.1; " + DatabaseConnectionString; //SSPI
                 objDataSource.Update();
 
                 return objDataSource;
@@ -311,21 +314,19 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Creating a DataSourceView.
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strFactTableName">FactTable Name</param>
         /// <param name="strTableNamesAndKeys">Array of TableNames and Keys.</param>
         /// <param name="intDimensionTableCount">Dimension Table Count.</param>
         /// <returns>DataSet instance.</returns>
-        private static object GenerateDWSchema(string strDBServerName, string strDBName, string strFactTableName, string[,] strTableNamesAndKeys, int intDimensionTableCount)
+        private static object GenerateDWSchema(string DatabaseConnectionString, string strFactTableName, string[,] strTableNamesAndKeys, int intDimensionTableCount)
         {
             try
             {
                 Console.WriteLine("Creating a DataSourceView ...");
                 //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
                 objConnection.Open();
                 DataSet objDataSet = new DataSet();
                 //Add FactTable in DataSet.
@@ -352,24 +353,21 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Creating a DataSourceView.
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strPrefix">Table with this prefix will be added to DataSource View</param>
         /// <returns>Dataset instance</returns>
-        private static object GenerateDWSchema(string strDBServerName, string strDBName, string strPrefix = "Pivot")
+        private static object GenerateDWSchema(string DatabaseConnectionString, string strPrefix = "PF")
         {
             try
             {
                 Console.WriteLine("Creating a DataSourceView ...");
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
                 objConnection.Open();
                 DataSet objDataSet = new DataSet();
 
                 //Fill all tables begin with prefix to dataset
-                string[] miningTables = getAllMiningTableNames(strDBServerName, strDBName, strPrefix);
+                string[] miningTables = getAllMiningTableNames(DatabaseConnectionString, strPrefix);
                 foreach (string miningTable in miningTables)
                 {
                     objDataSet = (DataSet)FillDataSet(objConnection, objDataSet, miningTable);
@@ -382,6 +380,7 @@ namespace JobZoomAnalysisService
                 return null;
             }
         }
+
         /// <summary>
         /// Fill the DataSet with DataTables.
         /// </summary>
@@ -393,7 +392,7 @@ namespace JobZoomAnalysisService
         {
             try
             {
-                string strCommand = "Select * from " + strTableName;
+                string strCommand = "Select * from [" + strTableName + "];";
                 SqlDataAdapter objEmpData = new SqlDataAdapter(strCommand, objConnection);
                 objEmpData.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                 objEmpData.FillSchema(objDataSet, SchemaType.Source, strTableName);
@@ -406,6 +405,7 @@ namespace JobZoomAnalysisService
                 return null;
             }
         }
+
         /// <summary>
         /// Add relations between DataTables of DataSet.
         /// </summary>
@@ -606,18 +606,15 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Get all table columns name
         /// </summary>
-        /// <param name="strDBServerName">Database Server (Database Engine)</param>
-        /// <param name="strDBName">Database name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="tableName">Table's name to get its column names</param>
         /// <returns>Array of column names</returns>
-        private static string[] getAllColumnName(string strDBServerName, string strDBName, string tableName)
+        private static string[] getAllColumnName(string DatabaseConnectionString, string tableName)
         {
             try
             {
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
                 objConnection.Open();
 
                 SqlCommand command = objConnection.CreateCommand();
@@ -653,7 +650,7 @@ namespace JobZoomAnalysisService
         /// <param name="dsv">DataSource View (Analysis Service)</param>
         /// <param name="strPrefix">Prefix</param>
         /// <returns>Array of mining table names</returns>
-        private static string[] getAllMiningTableNames(DataSourceView dsv, string strPrefix = "Pivot")
+        private static string[] getAllMiningTableNames(DataSourceView dsv, string strPrefix = "PF")
         {
             if (dsv.Schema.Tables.Count > 0)
             {
@@ -675,18 +672,15 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Get all mining table names
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strPrefix">Prefix</param>
         /// <returns>Array of mining table names</returns>
-        private static string[] getAllMiningTableNames(string strDBServerName, string strDBName, string strPrefix = "Pivot")
+        private static string[] getAllMiningTableNames(string DatabaseConnectionString, string strPrefix = "PF")
         {
             try
             {
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
                 objConnection.Open();
 
                 SqlCommand command = objConnection.CreateCommand();
@@ -716,17 +710,16 @@ namespace JobZoomAnalysisService
                 return null;
             }
         }
-        #endregion
+        #endregion Mining structure Generation.
 
         #region Export Mining Data To Database
         /// <summary>
         /// Export mining data to DecisionTreeNode and DecisionTreeNodeDistribution table
         /// </summary>
-        /// <param name="strDBServerName">Target Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Target Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Target Database Server Connection String (Database Engine)</param>
         /// <param name="strMiningStructureNames">Mining Structure Names to export</param>
         /// <param name="strPrefix">Table Prefix</param>
-        private static void exportMiningDataToDB(string strDBServerName, string strDBName, string strASServerName, string[] strMiningStructureNames, string strPrefix)
+        private static void exportMiningDataToDB(string DatabaseConnectionString, string AnalysisServicesConnectionString, string[] strMiningStructureNames, string strPrefix)
         {
             try
             {
@@ -734,14 +727,14 @@ namespace JobZoomAnalysisService
                 string strLinkedServerName = "JobZoomMiningLinkedServer";
 
                 Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
-                if (existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                if (existsLinkedServer(DatabaseConnectionString, strLinkedServerName))
                 {
                     Console.WriteLine("'Linked Server exists' is true!");
-                    Console.WriteLine("Deleting ... Result is " + deleteLinkedServer(strDBServerName, strDBName, strLinkedServerName));
+                    Console.WriteLine("Deleting ... Result is " + deleteLinkedServer(DatabaseConnectionString, strLinkedServerName));
                 }
 
                 Console.WriteLine("\nCreating a linked server...");
-                if (createLinkedServer(strDBServerName, strDBName, strASServerName, strLinkedServerName))
+                if (createLinkedServer(DatabaseConnectionString, AnalysisServicesConnectionString, strLinkedServerName))
                     Console.WriteLine("Creating a linked server... Successfully!");
                 else
                 {
@@ -750,26 +743,26 @@ namespace JobZoomAnalysisService
                 }
 
                 //drop table DecisionTreeNode and DecisionTreeNodeDistribution and create new
-                if (existsDecisionTreeNodeDistributionTable(strDBServerName, strDBName))
-                    deleteDecisionTreeNodeDistributionTable(strDBServerName, strDBName);
+                if (existsDecisionTreeNodeDistributionTable(DatabaseConnectionString))
+                    deleteDecisionTreeNodeDistributionTable(DatabaseConnectionString);
 
 
-                if (existsDecisionTreeNodeTable(strDBServerName, strDBName))
-                    deleteDecisionTreeNodeTable(strDBServerName, strDBName);
+                if (existsDecisionTreeNodeTable(DatabaseConnectionString))
+                    deleteDecisionTreeNodeTable(DatabaseConnectionString);
 
                 Console.WriteLine("Create DecisionTreeNode table ...");
-                createDecisionTreeNodeTable(strDBServerName, strDBName);
+                createDecisionTreeNodeTable(DatabaseConnectionString);
 
                 Console.WriteLine("Create DecisionTreeNodeDistribution table ...");
-                createDecisionTreeNodeDistributionTable(strDBServerName, strDBName);
+                createDecisionTreeNodeDistributionTable(DatabaseConnectionString);
 
 
                 //Step 1. Create the root note for all jobs
                 strQuery = "INSERT INTO DecisionTreeNode(NODE_ID, MODEL_NAME, NODE_TYPE, CHILDREN_CARDINALITY, NODE_SUPPORT, MSOLAP_NODE_SCORE, NODE_PROBABILITY) VALUES('0', '0', 1, " + strMiningStructureNames.Length + ", 0, 0, 0)";
-                executeQuery(strDBServerName, strDBName, strQuery);
+                executeQuery(DatabaseConnectionString, strQuery);
 
                 strQuery = "INSERT INTO DecisionTreeNodeDistribution([NODE_ID],[ATTRIBUTE_NAME],[ATTRIBUTE_VALUE],[SUPPORT],[PROBABILITY],[VARIANCE],[VALUETYPE]) VALUES('0', '0','0', 0, 0, 0, 0)";
-                executeQuery(strDBServerName, strDBName, strQuery);
+                executeQuery(DatabaseConnectionString, strQuery);
 
                 int count = 0;
                 foreach (string strMiningStructureName in strMiningStructureNames)
@@ -797,7 +790,7 @@ namespace JobZoomAnalysisService
                                     "[ATTRIBUTE_NAME] " +
                                     "FROM [" + strMiningStructureName + "].CONTENT " +
                                     "WHERE [NODE_UNIQUE_NAME] <> ''0'' ORDER BY [NODE_UNIQUE_NAME] ASC')";
-                    executeQuery(strDBServerName, strDBName, strQuery);
+                    executeQuery(DatabaseConnectionString, strQuery);
 
                     //Step 2. Insert data (except root node). (Rename node named "All" to strMiningStructureName
                     strQuery = "UPDATE DecisionTreeNode SET [NODE_CAPTION] = '" + strMiningStructureName +
@@ -805,7 +798,7 @@ namespace JobZoomAnalysisService
                                                         "', [MSOLAP_NODE_SHORT_CAPTION] ='" + strMiningStructureName +
                                                         "', [PARENT_ID] = '0'" +
                                                         " WHERE [NODE_CAPTION] = 'All' AND [NODE_TYPE] = 2;";
-                    executeQuery(strDBServerName, strDBName, strQuery);
+                    executeQuery(DatabaseConnectionStringe, strQuery);
 
                     strQuery = "INSERT INTO DecisionTreeNodeDistribution " +
                                     "SELECT * FROM " +
@@ -815,7 +808,7 @@ namespace JobZoomAnalysisService
                                     "[NODE_DISTRIBUTION] " +
                                     "FROM [" + strMiningStructureName + "].CONTENT " +
                                     "WHERE [NODE_UNIQUE_NAME] <> ''0''')";
-                    executeQuery(strDBServerName, strDBName, strQuery);
+                    executeQuery(DatabaseConnectionString, strQuery);
 
                     //String Decode
                     string[] source = { "_x002E_", "_x002C_", "_x003B_", "_x0027_", "_x0060_", "_x003A_", "_x002F_", "_x005C_", "_x002A_", "_x007C_", "_x003F_", "_x0022_", "_x0026_", "_x0025_", "_x0024_", "_x0021_", "_x002B_", "_x003D_", "_x0028_", "_x0029_", "_x005B_", "_x005D_", "_x007B_", "_x007D_", "_x003C_", "_x003E_" };
@@ -826,12 +819,12 @@ namespace JobZoomAnalysisService
                         strQuery = "UPDATE DecisionTreeNode SET NODE_CAPTION = REPLACE(NODE_CAPTION, '" + source[i] + "', '" + target[i] + "'), " +
                                 "NODE_DESCRIPTION = REPLACE(cast(NODE_DESCRIPTION as NVARCHAR(MAX)), '" + source[i] + "', '" + target[i] + "')," + 
                                 "MSOLAP_NODE_SHORT_CAPTION = REPLACE(MSOLAP_NODE_SHORT_CAPTION, '" + source[i] + "', '" + target[i] + "');";
-                        executeQuery(strDBServerName, strDBName, strQuery);
+                        executeQuery(DatabaseConnectionString, strQuery);
                     }
                 }
 
                 strQuery = "ALTER TABLE DecisionTreeNode ADD constraint [FK_ParentNode_Node] FOREIGN KEY (PARENT_ID) REFERENCES DecisionTreeNode(NODE_ID);";
-                executeQuery(strDBServerName, strDBName, strQuery);
+                executeQuery(DatabaseConnectionString, strQuery);
             }
             catch (Exception ex)
             {
@@ -843,17 +836,14 @@ namespace JobZoomAnalysisService
         /// <summary>
         ///     Is DecisionTreeNode table exists?
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNode table is exists and reverse</returns>
-        private static bool existsDecisionTreeNodeTable(string strDBServerName, string strDBName)
+        private static bool existsDecisionTreeNodeTable(string DatabaseConnectionString)
         {
             try
             {
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                 objConnection.Open();
                 SqlCommand command = objConnection.CreateCommand();
@@ -872,17 +862,14 @@ namespace JobZoomAnalysisService
         /// <summary>
         ///     Is DecisionTreeNodeDistribution table exists?
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNodeDistribution table is exists and reverse</returns>
-        private static bool existsDecisionTreeNodeDistributionTable(string strDBServerName, string strDBName)
+        private static bool existsDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
         {
             try
             {
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                 objConnection.Open();
                 SqlCommand command = objConnection.CreateCommand();
@@ -901,19 +888,16 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Create DecisionTreeNode table
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>Result</returns>
-        private static bool createDecisionTreeNodeTable(string strDBServerName, string strDBName)
+        private static bool createDecisionTreeNodeTable(string DatabaseConnectionString)
         {
             try
             {
-                if (!existsDecisionTreeNodeTable(strDBServerName, strDBName))
+                if (!existsDecisionTreeNodeTable(DatabaseConnectionString))
                 {
-                    //Create the connection string.
-                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                     //Create the SqlConnection.
-                    SqlConnection objConnection = new SqlConnection(conxString);
+                    SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
@@ -951,19 +935,16 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Create DecisionTreeNodeDistribution table
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Name (Database Engine)</param>
         /// <returns>Result/returns>
-        private static bool createDecisionTreeNodeDistributionTable(string strDBServerName, string strDBName)
+        private static bool createDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
         {
             try
             {
-                if (!existsDecisionTreeNodeDistributionTable(strDBServerName, strDBName) && existsDecisionTreeNodeTable(strDBServerName, strDBName))
+                if (!existsDecisionTreeNodeDistributionTable(DatabaseConnectionString) && existsDecisionTreeNodeTable(DatabaseConnectionString))
                 {
-                    //Create the connection string.
-                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                     //Create the SqlConnection.
-                    SqlConnection objConnection = new SqlConnection(conxString);
+                    SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
@@ -994,19 +975,16 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Delete DecisionTreeNode Table
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNode table deleted sucessfully and reverse</returns>
-        private static bool deleteDecisionTreeNodeTable(string strDBServerName, string strDBName)
+        private static bool deleteDecisionTreeNodeTable(string DatabaseConnectionString)
         {
             try
             {
-                if (!existsDecisionTreeNodeDistributionTable(strDBServerName, strDBName) && existsDecisionTreeNodeTable(strDBServerName, strDBName))
+                if (!existsDecisionTreeNodeDistributionTable(DatabaseConnectionString) && existsDecisionTreeNodeTable(DatabaseConnectionString))
                 {
-                    //Create the connection string.
-                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                     //Create the SqlConnection.
-                    SqlConnection objConnection = new SqlConnection(conxString);
+                    SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
@@ -1027,19 +1005,16 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Delete DecisionTreeNodeDistribution Table
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNodeDistribution table deleted sucessfully and reverse</returns>
-        private static bool deleteDecisionTreeNodeDistributionTable(string strDBServerName, string strDBName)
+        private static bool deleteDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
         {
             try
             {
-                if (existsDecisionTreeNodeDistributionTable(strDBServerName, strDBName))
+                if (existsDecisionTreeNodeDistributionTable(DatabaseConnectionString))
                 {
-                    //Create the connection string.
-                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                     //Create the SqlConnection.
-                    SqlConnection objConnection = new SqlConnection(conxString);
+                    SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
@@ -1057,33 +1032,34 @@ namespace JobZoomAnalysisService
             }
         }
 
-        #endregion
+        #endregion Export Mining Data To Database
 
         #region Linked Server
         /// <summary>
         /// Create linked server on Database Engine to get data from Analysis Service by MDX language
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
-        /// <param name="strLinkedServerName">Linked Server Name to create</param>
-        /// <param name="strAnalysisDBName">Analysis Service Database Name</param>
-        /// <returns></returns>
-        public static bool createLinkedServer(string strDBServerName, string strDBName, string strASServerName, string strLinkedServerName = "JobZoomMiningLinkedServer", string strAnalysisDBName = "Job Zoom Mining")
+        /// <param name="DatabaseConnectionString">Database Connection String (Database Engine)</param>
+        /// <param name="AnalysisServicesConnectionString">Analysis Services Connection String</param>
+        /// <param name="strLinkedServerName">Linked Server Name</param>
+        /// <param name="strAnalysisDBName">Analysis Services Database Name</param>
+        /// <returns>True if sucess and reverse</returns>
+        public static bool createLinkedServer(string DatabaseConnectionString, string AnalysisServicesConnectionString, string strLinkedServerName = "JobZoomMiningLinkedServer", string strAnalysisDBName = "Job Zoom Mining")
         {
             try
             {
-                if (!existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                if (!existsLinkedServer(DatabaseConnectionString, strLinkedServerName))
                 {
-                    //Create the connection string.
-                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
+                    //Get Analysis Services Server Name
+                    string strASServerName = AnalysisServicesConnectionString.Split(';').First(c => c.Contains("Data Source=")).Split('=').ElementAt(1);
+
                     //Create the SqlConnection.
-                    SqlConnection objConnection = new SqlConnection(conxString);
+                    SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
                     command.CommandText = "EXEC master.dbo.sp_addlinkedserver @server='" + strLinkedServerName + "', @srvproduct='', @provider='MSOLAP', @datasrc='" + strASServerName + "', @catalog='" + strAnalysisDBName + "';";
                     command.ExecuteNonQuery();
-                    return existsLinkedServer(strDBServerName, strDBName, strLinkedServerName);
+                    return existsLinkedServer(DatabaseConnectionString, strLinkedServerName);
                 }
                 else
                 {
@@ -1101,18 +1077,15 @@ namespace JobZoomAnalysisService
         /// <summary>
         /// Is Linked Server exist?
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name (Database Engine)</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strLinkedServerName">Linked server name to check</param>
         /// <returns>Result</returns>
-        public static bool existsLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer")
+        public static bool existsLinkedServer(string DatabaseConnectionString, string strLinkedServerName = "JobZoomMiningLinkedServer")
         {
             try
             {
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                 objConnection.Open();
                 SqlCommand command = objConnection.CreateCommand();
@@ -1135,22 +1108,20 @@ namespace JobZoomAnalysisService
         /// <param name="strDBName">Database Name (Database Engine)</param>
         /// <param name="strLinkedServerName">Linked server name to delete</param>
         /// <returns>Result</returns>
-        public static bool deleteLinkedServer(string strDBServerName, string strDBName, string strLinkedServerName = "JobZoomMiningLinkedServer")
+        public static bool deleteLinkedServer(string DatabaseConnectionString, string strLinkedServerName = "JobZoomMiningLinkedServer")
         {
             try
             {
-                if (existsLinkedServer(strDBServerName, strDBName, strLinkedServerName))
+                if (existsLinkedServer(DatabaseConnectionString, strLinkedServerName))
                 {
-                    //Create the connection string.
-                    string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                     //Create the SqlConnection.
-                    SqlConnection objConnection = new SqlConnection(conxString);
+                    SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                     objConnection.Open();
                     SqlCommand command = objConnection.CreateCommand();
                     command.CommandText = "sp_dropserver '" + strLinkedServerName + "', 'droplogins';";
                     command.ExecuteNonQuery();
-                    return !existsLinkedServer(strDBServerName, strDBName, strLinkedServerName);
+                    return !existsLinkedServer(DatabaseConnectionString, strLinkedServerName);
                 }
                 else
                 {
@@ -1165,24 +1136,21 @@ namespace JobZoomAnalysisService
             }
 
         }
-        #endregion
+        #endregion Linked Server
 
         #region Database Engine Query
         /// <summary>
         /// Execute query (Database Engine Query)
         /// </summary>
-        /// <param name="strDBServerName">Database Server Name (Database Engine)</param>
-        /// <param name="strDBName">Database Name</param>
+        /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strQuery">Query to execute</param>
         /// <returns>True if exexute sucessfully and reverse</returns>
-        private static bool executeQuery(string strDBServerName, string strDBName, string strQuery)
+        private static bool executeQuery(string DatabaseConnectionString, string strQuery)
         {
             try
             {
-                //Create the connection string.
-                string conxString = "Data Source=" + strDBServerName + "; Initial Catalog=" + strDBName + "; Integrated Security=True;";
                 //Create the SqlConnection.
-                SqlConnection objConnection = new SqlConnection(conxString);
+                SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                 //Open Connection
                 //if (objConnection.State == ConnectionState.Closed)
@@ -1205,7 +1173,7 @@ namespace JobZoomAnalysisService
 
         #region Algorithm Parameters
 
-        public class DecisionTreeAlgorithmParameters
+        public sealed class DecisionTreeAlgorithmParameters
         {
             private int _HoldoutMaxPercent = 10; //Default .Net 30%
             private int _SCORE_METHOD = 4; //Entropy (1), Bayesian with K2 Prior (2), or Bayesian Dirichlet Equivalent (BDE) Prior (4 - .Net Default)
