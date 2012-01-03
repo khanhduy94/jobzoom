@@ -12,7 +12,7 @@ namespace JobZoom.Core.FlexibleAttributes
 
         private List<TagMemberAttribute> _listTagMemberAttributes = new List<TagMemberAttribute>();
 
-        public void AddAttributeObject(object attributeObject, Guid objectId, Guid parentId)
+        public void AddAttributeObject(object attributeObject, Guid objectId, string objectType, Guid parentId)
         {
             var listAttributeObjects = AttributeManager.GetProperiesFromTypeByAttribute<TagMemberAttribute>(attributeObject);            
 
@@ -24,14 +24,25 @@ namespace JobZoom.Core.FlexibleAttributes
                 if (i.PropertyValue != null)
                 {
                     tagValue = i.ToString();
-                }
+                }                
 
-                TagAttribute tag = new TagAttribute();                
+                TagAttribute tag = new TagAttribute();
+
+                switch (i.TaggingType)
+                {
+                    case TaggingType.ColumnNameAsTag:
+                        tag.TagName = i.Property.Name;
+                        tag.TagValue = i.PropertyValue.ToString();
+                        break;
+                    case TaggingType.ValueAsTag:
+                        tag.TagName = i.PropertyValue.ToString();
+                        tag.TagValue = i.PropertyValue.ToString();
+                        break;
+                }
                 
-                tag.TagId = Guid.NewGuid();
-                tag.TagName = i.Property.Name;
-                tag.TagValue = tagValue;
+                tag.TagId = Guid.NewGuid();                                
                 tag.ObjectId = objectId;
+                tag.ObjectType = objectType;
                 tag.ParentId = parentId;
                 tag.ModifiedDate = DateTime.Now;
 

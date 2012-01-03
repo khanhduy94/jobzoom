@@ -56,7 +56,6 @@
     <Compile Include="Taxonomy\ComplexTreeNode.cs" />
     <Compile Include="Taxonomy\ComplexTreeNodeList.cs" />
     <Compile Include="Taxonomy\Enums.cs" />
-    <Compile Include="Taxonomy\IComplexTreeNode.cs" />
     <Compile Include="Taxonomy\Tag.cs" />
   </ItemGroup>
   <ItemGroup>

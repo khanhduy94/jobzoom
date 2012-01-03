@@ -8,6 +8,7 @@
 	[Required]			BIT					NULL,
 	[TableReference]	VARCHAR(128)		NULL,
 	[ObjectId]			UNIQUEIDENTIFIER	NULL,
+	[ObjectType]		NVARCHAR(256)		NULL,
 	[ParentId]			UNIQUEIDENTIFIER	NULL,
 	[ParentName]		NVARCHAR(256)		NULL,
 	[Attachment]		NVARCHAR(200)		NULL,

@@ -90,10 +90,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Flexible Attributes\JobZoom.Core.FlexibleAttributes.csproj">
-      <Project>{75F734EB-4366-4C3D-BD9F-F2D9789DD7AA}</Project>
-      <Name>JobZoom.Core.FlexibleAttributes</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Core\Framework\JobZoom.Core.Framework.csproj">
       <Project>{6A0DD250-D2B5-49AA-B6D7-3A8714FEFCA0}</Project>
       <Name>JobZoom.Core.Framework</Name>

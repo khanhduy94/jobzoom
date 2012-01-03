@@ -52,6 +52,13 @@ namespace JobZoom.Core.Taxonomy
             }
         }
 
+        private ComplexTreeNodeList<T> _ClassificationNodes;
+        public virtual ComplexTreeNodeList<T> ClassificationNodes
+        {
+            get { return _ClassificationNodes; }
+            set { _ClassificationNodes = value; }
+        }
+
         private ComplexTreeNodeList<T> _Children;
         public virtual ComplexTreeNodeList<T> Children
         {

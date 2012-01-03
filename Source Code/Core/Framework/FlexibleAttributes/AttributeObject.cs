@@ -12,5 +12,9 @@ namespace JobZoom.Core.FlexibleAttributes
         public T Attribute { get; set; }
         public PropertyInfo Property { get; set; }
         public object PropertyValue { get; set; }
+        public TaggingType TaggingType
+        {
+            get { return (this.Attribute as TagMemberAttribute).TaggingType; }            
+        }
     }
 }

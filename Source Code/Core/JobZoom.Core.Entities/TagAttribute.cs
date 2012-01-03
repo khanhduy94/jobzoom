@@ -27,6 +27,7 @@ namespace JobZoom.Core.Entities
         public Nullable<bool> Required { get; set; }
         public string TableReference { get; set; }
         public Nullable<System.Guid> ObjectId { get; set; }
+        public string ObjectType { get; set; }
         public Nullable<System.Guid> ParentId { get; set; }
         public string ParentName { get; set; }
         public string Attachment { get; set; }
@@ -35,16 +36,5 @@ namespace JobZoom.Core.Entities
     
         public virtual ICollection<TagAttribute> TagAttribute1 { get; set; }
         public virtual TagAttribute TagAttribute2 { get; set; }
-
-        public TagAttributeComposite TagAttributeComposite
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     }
 }

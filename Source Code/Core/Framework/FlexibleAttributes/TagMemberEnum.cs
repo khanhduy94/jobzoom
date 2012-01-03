@@ -5,9 +5,9 @@ using System.Text;
 
 namespace JobZoom.Core.FlexibleAttributes
 {
-    public enum TagMemberType
+    public enum TaggingType
     {        
-        SingleValue,
-        DictionaryValue            
+        ColumnNameAsTag,
+        ValueAsTag            
     }
 }
