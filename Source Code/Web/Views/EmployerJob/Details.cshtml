@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.MobilePhone)
             </td>
             <td>
-                @Html.ActionLink("View", "Profile", "View", new { id = item.ProfileBasicId }, null)
+                @Html.ActionLink("View", "Candidate", "EmployerJob", new { id = item.ProfileBasicId }, null)
             </td>
         </tr>
     }

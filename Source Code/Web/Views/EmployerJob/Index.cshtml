@@ -1,0 +1,58 @@
+﻿@model IEnumerable<JobZoom.Business.Entities.Job_Posting>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Hiển thị tất cả các Job Title mà 1 Employer đã đăng</h2>
+<h2>NEW 1: Khi click vào Detail của 1 Job -> Hiển thị 1 Trang: thông tin cơ bản Job đó + danh sách các ứng viên đã Apply</h2>
+<h2>NEW 2: Khi Click vào 1 thằng ứng viên -> Chấm điểm ứng viên</h2>
+<h3>------------------------------------NGUYÊN -----------------------------------</h3>
+
+
+<h2>Home</h2>
+
+<p>
+    @Html.ActionLink("Posting Job", "Basic", "EmployerJobPost")
+</p>
+<table>
+    <tr>
+        <th>
+            UserId
+        </th>
+        <th>
+            CompanyId
+        </th>
+        <th>
+            CompanyName
+        </th>
+        <th>
+            JobTitle
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Basic", "EmployerEditJob", new { id = item.JobPostingId }, null) |
+            @Html.ActionLink("Details", "Details", new { id=item.JobPostingId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.JobPostingId }, new { onclick = "return confirm('Are you sure to delete this job?')" })
+        </td>
+    </tr>
+}
+
+</table>
+
