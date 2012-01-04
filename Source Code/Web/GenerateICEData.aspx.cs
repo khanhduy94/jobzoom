@@ -83,19 +83,19 @@ namespace JobZoom.Web
             {
                 TagAttribute secondLevelNode = secondLevelTag.TagAttribute;
 
-                Node nodeBefore = CreateNodeFromObject(secondLevelNode);
-                neighbors.Add(nodeBefore);
+                Node secondLevelNodeBefore = CreateNodeFromObject(secondLevelNode);
+                neighbors.Add(secondLevelNodeBefore);
 
-                Link relationWithBefore = CreateLinkBetween(root.currentNode.node, nodeBefore);
-                links.Add(relationWithBefore);
+                Link relationWithBeforeSecondLevel = CreateLinkBetween(root.currentNode.node, secondLevelNodeBefore);
+                links.Add(relationWithBeforeSecondLevel);
 
                 foreach (Tag thirdLevelTag in secondLevelTag.Children)
                 {
                     TagAttribute thirdLevelNode = thirdLevelTag.TagAttribute;
-                    Node thirdNodeBefore = CreateNodeFromObject(thirdLevelNode);
-                    neighbors.Add(thirdNodeBefore);
+                    Node thirdLevelNodeBefore = CreateNodeFromObject(thirdLevelNode);
+                    neighbors.Add(thirdLevelNodeBefore);
 
-                    Link relationWithBeforeThirdLevel = CreateLinkBetween(nodeBefore, thirdNodeBefore);
+                    Link relationWithBeforeThirdLevel = CreateLinkBetween(secondLevelNodeBefore, thirdLevelNodeBefore);
                     links.Add(relationWithBeforeThirdLevel);
                 }
             }
@@ -152,7 +152,7 @@ namespace JobZoom.Web
 
         private Node CreateNodeFromObject(TagAttribute tagAttribute)
         {
-            return new Node { id = tagAttribute.TagId.ToString(), title = tagAttribute.TagName, type = "Profile", url = "" };
+            return new Node { id = tagAttribute.TagId.ToString(), title = tagAttribute.TagName, type = "Profile", url = "http://congphuc.net" };
         }
     }
 }

@@ -44,7 +44,13 @@ namespace JobZoom.Web
                 "EmployerEditJob",
                 "Employer/Job/Edit/{action}/{id}",
                 new { controller = "EmployerEditJob", action = "Basic", id = UrlParameter.Optional }
-                );            
+                );
+
+            routes.MapRoute(
+                "EmployerJob",
+                "Employer/Job/{action}/{id}",
+                new { controller = "EmployerJob", action = "Index", id = UrlParameter.Optional }
+                );      
 
             routes.MapRoute(
                 "ProfileDefault",
