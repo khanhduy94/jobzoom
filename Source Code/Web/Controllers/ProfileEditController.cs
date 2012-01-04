@@ -62,13 +62,15 @@ namespace JobZoom.Web.Controllers
                 if (profile_basic.ProfileBasicId != Guid.Empty)
                 {
                     db.Profile_Basic.Attach(profile_basic);
-                    db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
+                    db.Entry(profile_basic).State = EntityState.Modified;
                     db.SaveChanges();
                 }
                 else
                 {
                     profile_basic.ProfileBasicId = Guid.NewGuid();
-                    db.Profile_Basic.AddObject(profile_basic);
+                    //db.Profile_Basic.AddObject(profile_basic);
+                    db.Profile_Basic.Add(profile_basic);
                     db.SaveChanges();
                 }
                 
@@ -121,13 +123,15 @@ namespace JobZoom.Web.Controllers
                 if (profile_education.ProfileEducationId == Guid.Empty)
                 {
                     profile_education.ProfileEducationId = Guid.NewGuid();
-                    db.Profile_Education.AddObject(profile_education);
+                    //db.Profile_Education.AddObject(profile_education);
+                    db.Profile_Education.Add(profile_education);
                     db.SaveChanges();
                 }
                 else
                 {
                     db.Profile_Education.Attach(profile_education);
-                    db.ObjectStateManager.ChangeObjectState(profile_education, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(profile_education, EntityState.Modified);
+                    db.Entry(profile_education).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -187,13 +191,15 @@ namespace JobZoom.Web.Controllers
                 if (profile_work.ProfileWorkId == Guid.Empty)
                 {                    
                     profile_work.ProfileWorkId = Guid.NewGuid();
-                    db.Profile_Work.AddObject(profile_work);
+                    //db.Profile_Work.AddObject(profile_work);
+                    db.Profile_Work.Add(profile_work);
                     db.SaveChanges();
                 }
                 else
                 {
                     db.Profile_Work.Attach(profile_work);
-                    db.ObjectStateManager.ChangeObjectState(profile_work, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(profile_work, EntityState.Modified);
+                    db.Entry(profile_work).State = EntityState.Modified;
                     db.SaveChanges();
                 }                             
             }                        

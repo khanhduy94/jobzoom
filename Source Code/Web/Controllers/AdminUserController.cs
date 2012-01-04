@@ -46,7 +46,8 @@ namespace JobZoom.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.AddObject(user);
+                //db.Users.AddObject(user);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -72,7 +73,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Users.Attach(user);
-                db.ObjectStateManager.ChangeObjectState(user, EntityState.Modified);
+                //db.ObjectStateManager.ChangeObjectState(user, EntityState.Modified);
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -95,7 +97,8 @@ namespace JobZoom.Web.Controllers
         public ActionResult DeleteConfirmed(string id)
         {            
             User user = db.Users.Single(u => u.UserId == id);
-            db.Users.DeleteObject(user);
+            //db.Users.DeleteObject(user);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

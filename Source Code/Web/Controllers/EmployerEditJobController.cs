@@ -28,7 +28,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Job_Posting.Attach(job_posting);
-                db.ObjectStateManager.ChangeObjectState(job_posting, EntityState.Modified);
+                //db.ObjectStateManager.ChangeObjectState(job_posting, EntityState.Modified);
+                db.Entry(job_posting).State = EntityState.Modified;
                 db.SaveChanges();                
             }
             return View(job_posting);
@@ -80,7 +81,8 @@ namespace JobZoom.Web.Controllers
                 if(workExp.JobWorkExpRequirementId == Guid.Empty)
                 {
                     workExp.JobWorkExpRequirementId = Guid.NewGuid();                    
-                    db.Job_WorkExpRequirement.AddObject(workExp);
+                    //db.Job_WorkExpRequirement.AddObject(workExp);
+                    db.Job_WorkExpRequirement.Add(workExp);
 
                     //Tag tag = new Tag{ 
                     //    ID= Guid.NewGuid(), 
@@ -95,7 +97,8 @@ namespace JobZoom.Web.Controllers
                 else
                 {
                     db.Job_WorkExpRequirement.Attach(workExp);
-                    db.ObjectStateManager.ChangeObjectState(workExp, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(workExp, EntityState.Modified);
+                    db.Entry(workExp).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -127,13 +130,15 @@ namespace JobZoom.Web.Controllers
                 if (educationExp.JobEducationExpRequirementId == Guid.Empty)
                 {
                     educationExp.JobEducationExpRequirementId = Guid.NewGuid();
-                    db.Job_EducationExpRequirement.AddObject(educationExp);
+                    //db.Job_EducationExpRequirement.AddObject(educationExp);
+                    db.Job_EducationExpRequirement.Add(educationExp);
                     db.SaveChanges();
                 }
                 else
                 {
                     db.Job_EducationExpRequirement.Attach(educationExp);
-                    db.ObjectStateManager.ChangeObjectState(educationExp, EntityState.Modified);
+                    //db.ObjectStateManager.ChangeObjectState(educationExp, EntityState.Modified);
+                    db.Entry(educationExp).State = EntityState.Modified;
                     db.SaveChanges();
                 }
             }

@@ -35,7 +35,8 @@ namespace JobZoom.Web.Controllers
                 UserId = User.Identity.Name
             };
 
-            db.Job_Approval.AddObject(job_approval);
+            //db.Job_Approval.AddObject(job_approval);
+            db.Job_Approval.Add(job_approval);
             db.SaveChanges();
 
             return RedirectToAction("AppliedJobs");

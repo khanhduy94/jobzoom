@@ -47,7 +47,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 job_posting.JobPostingId = Guid.NewGuid();
-                db.Job_Posting.AddObject(job_posting);
+                //db.Job_Posting.AddObject(job_posting);
+                db.Job_Posting.Add(job_posting);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -73,7 +74,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Job_Posting.Attach(job_posting);
-                db.ObjectStateManager.ChangeObjectState(job_posting, EntityState.Modified);
+                //db.ObjectStateManager.ChangeObjectState(job_posting, EntityState.Modified);
+                db.Entry(job_posting).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -96,7 +98,8 @@ namespace JobZoom.Web.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {            
             Job_Posting job_posting = db.Job_Posting.Single(j => j.JobPostingId == id);
-            db.Job_Posting.DeleteObject(job_posting);
+            //db.Job_Posting.DeleteObject(job_posting);
+            db.Job_Posting.Remove(job_posting);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

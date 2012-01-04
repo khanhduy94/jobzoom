@@ -35,7 +35,8 @@ namespace JobZoom.Web.Controllers
         public ActionResult Delete(Guid id)
         {
             var job = db.Job_Posting.FirstOrDefault(x => x.JobPostingId == id);
-            db.DeleteObject(job);
+            //db.DeleteObject(job);
+            db.Job_Posting.Remove(job);  
             db.SaveChanges();
             return RedirectToAction("Home");
         }

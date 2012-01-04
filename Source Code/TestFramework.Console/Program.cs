@@ -22,7 +22,7 @@ namespace TestFramework.Console
                 AddressLine2 = "93 Cao Thắng",
                 Country = "Vietnam",
                 City = "848"
-            };
+            };            
 
             //TagAttributeMappingManager test = new TagAttributeMappingManager();
             //test.AddAttributeObject(basic, basic.ProfileBasicId, "Profile", Guid.Empty);

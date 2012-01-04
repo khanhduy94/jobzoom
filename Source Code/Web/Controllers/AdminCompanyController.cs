@@ -47,7 +47,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 company.CompanyId = Guid.NewGuid();
-                db.Companies.AddObject(company);
+                //db.Companies.AddObject(company);
+                db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -73,7 +74,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Companies.Attach(company);
-                db.ObjectStateManager.ChangeObjectState(company, EntityState.Modified);
+                //db.ObjectStateManager.ChangeObjectState(company, EntityState.Modified);
+                db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -96,7 +98,8 @@ namespace JobZoom.Web.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {            
             Company company = db.Companies.Single(c => c.CompanyId == id);
-            db.Companies.DeleteObject(company);
+            //db.Companies.DeleteObject(company);
+            db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

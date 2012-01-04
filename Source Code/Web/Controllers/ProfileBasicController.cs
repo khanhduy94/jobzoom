@@ -49,7 +49,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 profile_basic.ProfileBasicId = Guid.NewGuid();
-                db.Profile_Basic.AddObject(profile_basic);
+                //db.Profile_Basic.AddObject(profile_basic);
+                db.Profile_Basic.Add(profile_basic);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -77,7 +78,8 @@ namespace JobZoom.Web.Controllers
             if (ModelState.IsValid)
             {
                 db.Profile_Basic.Attach(profile_basic);
-                db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
+                //db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
+                db.Entry(profile_basic).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -101,7 +103,8 @@ namespace JobZoom.Web.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {            
             Profile_Basic profile_basic = db.Profile_Basic.Single(p => p.ProfileBasicId == id);
-            db.Profile_Basic.DeleteObject(profile_basic);
+            //db.Profile_Basic.DeleteObject(profile_basic);
+            db.Profile_Basic.Remove(profile_basic);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
