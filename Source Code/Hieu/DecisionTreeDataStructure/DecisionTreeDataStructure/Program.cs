@@ -20,7 +20,7 @@ namespace DecisionTreeDataStructure
             //string[] ex_att = new string[] { "C#" };
 
             string[] att = new string[] { };
-            string[] ex_att = new string[] { };
+            string[] ex_att = new string[] { "C#" };
 
             List<DecisionTreeAnalysisResult> results = new List<DecisionTreeAnalysisResult>();
             //results = getAnalysisResults("Developer Evangelist", CompareType.GreaterThanOrEqualTo, 0.5);
