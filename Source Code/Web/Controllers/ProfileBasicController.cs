@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using JobZoom.Business.Entities;
+using JobZoom.Core.FlexibleAttributes;
 
 namespace JobZoom.Web.Controllers
 { 
@@ -52,6 +53,14 @@ namespace JobZoom.Web.Controllers
                 //db.Profile_Basic.AddObject(profile_basic);
                 db.Profile_Basic.Add(profile_basic);
                 db.SaveChanges();
+
+                //Mapping
+                Guid objectId = profile_basic.ProfileBasicId;
+                TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                mapping.AddRootAttribute(objectId, profile_basic.UserId, "JobSeekerProfile");
+                mapping.AddSecondLevelAttribute(objectId, "Basic", "JobSeekerProfile");
+                mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile");
+
                 return RedirectToAction("Index");  
             }
 
@@ -81,6 +90,14 @@ namespace JobZoom.Web.Controllers
                 //db.ObjectStateManager.ChangeObjectState(profile_basic, EntityState.Modified);
                 db.Entry(profile_basic).State = EntityState.Modified;
                 db.SaveChanges();
+
+                //Mapping
+                Guid objectId = profile_basic.ProfileBasicId;
+                TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                mapping.AddRootAttribute(objectId, profile_basic.UserId, "JobSeekerProfile");
+                mapping.AddSecondLevelAttribute(objectId, "Basic", "JobSeekerProfile");
+                mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile");
+
                 return RedirectToAction("Index");
             }
             ViewBag.UserId = new SelectList(db.Users, "UserId", "Email", profile_basic.UserId);

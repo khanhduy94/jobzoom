@@ -408,6 +408,7 @@
     <Content Include="Views\EmployerJob\Details.cshtml" />
     <Content Include="Views\EmployerHome\Home.cshtml" />
     <Content Include="Views\EmployerJob\Candidate.cshtml" />
+    <Content Include="Views\EmployerEditJob\GraphView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

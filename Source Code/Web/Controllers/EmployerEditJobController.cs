@@ -154,6 +154,14 @@ namespace JobZoom.Web.Controllers
             return PartialView("ListEducationExpView", listEducationExp);
         }
 
+        [OutputCache(Duration = 0)]
+        [HttpGet]
+        public ActionResult CreateGraph()
+        {
+
+            return PartialView("GraphView", null);
+        }
+
 
     }
 }

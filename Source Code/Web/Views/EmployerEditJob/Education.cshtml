@@ -29,7 +29,7 @@
                     $(this).dialog("close");
                 }
             }
-        });
+        });        
 
         $("#create-education").click(function () {
             $("#education-dialog").html("")
@@ -43,6 +43,21 @@
                 .load("/Employer/Job/Edit/EditEducation/" + id, function () { $("#education-dialog").dialog("open"); });
         });
         LoadProfileWorkList();
+
+        $("#graph-dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode"
+        });
+        $("#view-graph").click(function () {
+            $("#graph-dialog").html("")
+                .dialog("option", "title", "Create Education")
+                .load("/Employer/Job/Edit/CreateGraph/", function () { $("#graph-dialog").dialog("open"); });
+        });
+
+
     });
     function LoadProfileWorkList() {
         $("#divEducationExpList").load("/Employer/Job/Edit/ListEducations/" + educationexpid);
@@ -58,8 +73,12 @@
 <p>
     <button id="create-education">
         Create new education</button>
+    <button id="view-graph">
+        View Graph</button>
 </p>
 <div id="divEducationExpList">
 </div>
 <div id="education-dialog" title="" class="Hidden">
+</div>
+<div id="graph-dialog" title="" class="Hidden">
 </div>

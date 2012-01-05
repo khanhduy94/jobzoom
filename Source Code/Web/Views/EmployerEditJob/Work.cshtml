@@ -43,6 +43,19 @@
                 .load("/Employer/Job/Edit/EditWork/" + id, function () { $("#work-dialog").dialog("open"); });
         });
         LoadProfileWorkList();
+
+        $("#graph-dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode"
+        });
+        $("#view-graph").click(function () {
+            $("#graph-dialog").html("")
+                .dialog("option", "title", "Create Education")
+                .load("/Employer/Job/Edit/CreateGraph/", function () { $("#graph-dialog").dialog("open"); });
+        });
     });
     function LoadProfileWorkList() {
         $("#divWorkExpList").load("/Employer/Job/Edit/ListWorks/" + workexpid);
@@ -58,8 +71,12 @@
 <p>
     <button id="create-work">
         Create new work</button>
+    <button id="view-graph">
+        View Graph</button>
 </p>
 <div id="divWorkExpList">
 </div>
 <div id="work-dialog" title="" class="Hidden">
+</div>
+<div id="graph-dialog" title="" class="Hidden">
 </div>
