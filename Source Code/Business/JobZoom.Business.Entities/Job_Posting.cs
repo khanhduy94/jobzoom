@@ -11,7 +11,9 @@ namespace JobZoom.Business.Entities
 {
     using System;
     using System.Collections.Generic;
-    
+    using JobZoom.Core.FlexibleAttributes;
+
+    [TagContract]
     public partial class Job_Posting
     {
         public Job_Posting()
@@ -24,7 +26,10 @@ namespace JobZoom.Business.Entities
         public System.Guid JobPostingId { get; set; }
         public string UserId { get; set; }
         public Nullable<System.Guid> CompanyId { get; set; }
+
+        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string CompanyName { get; set; }
+        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string JobTitle { get; set; }
     
         public virtual ICollection<Job_EducationExpRequirement> Job_EducationExpRequirement { get; set; }
