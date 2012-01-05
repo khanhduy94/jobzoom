@@ -49,75 +49,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cities.cs" />
-    <Compile Include="Company.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Countries.cs" />
     <Compile Include="Genders.cs" />
-    <Compile Include="JobZoomDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobZoomDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="JobZoomDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="JobZoomDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>JobZoomDataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Job_Approval.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Job_EducationExpRequirement.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Job_OtherRequirement.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Job_Posting.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Job_WorkExpRequirement.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="MaritalStatus.cs" />
-    <Compile Include="Profile_Basic.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Profile_Education.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Profile_Work.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs">
-      <DependentUpon>JobZoomDataModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="JobZoomDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JobZoomDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="JobZoomDataModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>JobZoomDataModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="JobZoomDataModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>JobZoomDataModel.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Framework\JobZoom.Core.Framework.csproj">
