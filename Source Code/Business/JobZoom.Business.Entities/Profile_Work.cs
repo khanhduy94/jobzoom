@@ -11,19 +11,13 @@ namespace JobZoom.Business.Entities
 {
     using System;
     using System.Collections.Generic;
-    using JobZoom.Core.FlexibleAttributes;
     
-    [TagContract]
     public partial class Profile_Work
     {
         public System.Guid ProfileWorkId { get; set; }
         public string UserId { get; set; }
         public Nullable<System.Guid> CompanyId { get; set; }
-
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string CompanyName { get; set; }
-
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string JobTitle { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }

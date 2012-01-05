@@ -11,33 +11,21 @@ namespace JobZoom.Business.Entities
 {
     using System;
     using System.Collections.Generic;
-    using JobZoom.Core.FlexibleAttributes;
     
-    [TagContract()]
     public partial class Profile_Basic
     {
         public System.Guid ProfileBasicId { get; set; }
         public string UserId { get; set; }
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string FirstName { get; set; }
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string LastName { get; set; }
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string Gender { get; set; }
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public System.DateTime Birthdate { get; set; }
-
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string MaritalStatus { get; set; }
         public string ProfilePictureUrl { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
-
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string Country { get; set; }
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public string City { get; set; }
-        [TagMember(TaggingType = TaggingType.ColumnNameAsTag)]
         public Nullable<int> ZipCode { get; set; }
         public string Phone { get; set; }
         public string MobilePhone { get; set; }
