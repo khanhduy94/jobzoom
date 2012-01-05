@@ -1,6 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[GetPivotProfile]
+﻿CREATE PROCEDURE [dbo].[GetPivotProfileByCompany]
 	@Prefix NVARCHAR(50),
-	@JobTitle	NVARCHAR(128)
+	@JobTitle	NVARCHAR(128),
+	@CompanyName NVARCHAR(128)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -10,7 +11,7 @@ BEGIN
 			@SQLString NVARCHAR(MAX),
 			@viewName NVARCHAR(128)
 
-	SET @viewName = @Prefix + @JobTitle
+	SET @viewName = @Prefix + @JobTitle + @CompanyName
 	SET @viewName = REPLACE(@viewName,' ','')
 
 	SELECT  @listCol = STUFF(( SELECT DISTINCT '],[' + ltrim(TagName)
@@ -19,6 +20,7 @@ BEGIN
 							LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId
 							INNER JOIN [Job.Posting] ON [Job.Posting].JobPostingId = [Job.Approval].JobPostingId
 							WHERE [Job.Posting].JobTitle = @JobTitle
+							AND [Job.Posting].CompanyName = @CompanyName
 							ORDER BY '],[' + ltrim(TagName)
 							FOR XML PATH('')), 1, 2, '') + ']'
 
@@ -35,6 +37,7 @@ BEGIN
 						LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId
 						INNER JOIN [Job.Posting] ON [Job.Posting].JobPostingId = [Job.Approval].JobPostingId
 						WHERE [Job.Posting].JobTitle = '''+ @JobTitle + '''
+						AND [Job.Posting].CompanyName = '''+ @CompanyName + '''
 						GROUP BY [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, TagAttribute.TagName					
 					)t
 					PIVOT (COUNT(TagName) FOR TagName
