@@ -64,11 +64,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JobZoomDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobZoomDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JobZoomDataModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Job_Approval.cs">
       <DependentUpon>JobZoomDataModel.tt</DependentUpon>
     </Compile>

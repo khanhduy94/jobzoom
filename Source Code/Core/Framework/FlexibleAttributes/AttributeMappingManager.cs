@@ -53,6 +53,7 @@ namespace JobZoom.Core.FlexibleAttributes
                 db.SaveChanges();                
             }
             this.ClassificationId = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ObjectDeepLevel == 2 && x.TagName == tagName).SingleOrDefault().TagId;
+            this.ClassificationName = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ObjectDeepLevel == 2 && x.TagName == tagName).SingleOrDefault().TagName;
         }                
 
         public void AddThirdLevelAttribute(object attributeObject, Guid objectId, string objectType, string tableReference)
@@ -81,6 +82,14 @@ namespace JobZoom.Core.FlexibleAttributes
                         tag.TagName = i.PropertyValue.ToString();
                         tag.TagValue = i.PropertyValue.ToString();
                         break;
+                    case TaggingType.ReferenceColumnNameAsTag:
+                        string referenceValueProperty = i.ReferenceValueProperty;
+                        string value = listAttributeObjects.Where(x=>x.Property.Name == referenceValueProperty).FirstOrDefault().PropertyValue.ToString();
+                        tag.TagName = i.PropertyValue.ToString();
+                        tag.TagValue = value;
+                        break;
+                    case TaggingType.ReferenceValueAsTag:
+                        break;                    
                 }
                 
                 tag.TagId = Guid.NewGuid();                                
@@ -92,7 +101,10 @@ namespace JobZoom.Core.FlexibleAttributes
                 tag.ModifiedDate = DateTime.Now;
                 tag.TableReference = tableReference;
 
-                lisTagAttributes.Add(tag);
+                if (i.TaggingType != TaggingType.ReferenceValueAsTag)
+                {
+                    lisTagAttributes.Add(tag);
+                }                
             }            
 
             ///Save TagAttribute List

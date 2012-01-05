@@ -16,5 +16,10 @@ namespace JobZoom.Core.FlexibleAttributes
         {
             get { return (this.Attribute as TagMemberAttribute).TaggingType; }            
         }
+
+        public string ReferenceValueProperty
+        {
+            get { return (this.Attribute as TagMemberAttribute).ReferenceValueProperty; }
+        }
     }
 }

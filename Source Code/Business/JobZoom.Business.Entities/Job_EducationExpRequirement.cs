@@ -11,12 +11,18 @@ namespace JobZoom.Business.Entities
 {
     using System;
     using System.Collections.Generic;
+    using JobZoom.Core.FlexibleAttributes;
     
+    [TagContract]
     public partial class Job_EducationExpRequirement
     {
         public System.Guid JobEducationExpRequirementId { get; set; }
         public System.Guid JobPostingId { get; set; }
+
+        [TagMember(TaggingType = TaggingType.ReferenceColumnNameAsTag, ReferenceValueProperty = "JobAttributeValue")]
         public string JobAttributeName { get; set; }
+
+        [TagMember(TaggingType = TaggingType.ReferenceValueAsTag)]
         public string JobAttributeValue { get; set; }
     
         public virtual Job_Posting Job_Posting { get; set; }

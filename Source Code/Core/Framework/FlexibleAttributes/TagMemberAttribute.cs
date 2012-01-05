@@ -10,6 +10,6 @@ namespace JobZoom.Core.FlexibleAttributes
     {
         public TaggingType TaggingType { get; set; }
 
-
+        public string ReferenceValueProperty { get; set; }
     }
 }

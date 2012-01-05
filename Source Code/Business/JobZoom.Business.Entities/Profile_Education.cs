@@ -11,7 +11,9 @@ namespace JobZoom.Business.Entities
 {
     using System;
     using System.Collections.Generic;
+    using JobZoom.Core.FlexibleAttributes;
     
+    [TagContract]
     public partial class Profile_Education
     {
         public System.Guid ProfileEducationId { get; set; }

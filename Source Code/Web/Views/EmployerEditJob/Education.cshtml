@@ -46,17 +46,15 @@
 
         $("#graph-dialog").dialog({
             autoOpen: false,
-            height: 600,
-            width: 700,
-            show: "blind",
-            hide: "explode"
+            height: 700,
+            width: 900,
+            show: "blind"
         });
         $("#view-graph").click(function () {
             $("#graph-dialog").html("")
                 .dialog("option", "title", "Create Education")
-                .load("/Employer/Job/Edit/CreateGraph/", function () { $("#graph-dialog").dialog("open"); });
+                .load("/Employer/Job/Edit/CreateGraph/" + educationexpid, function () { $("#graph-dialog").dialog("open"); });
         });
-
 
     });
     function LoadProfileWorkList() {

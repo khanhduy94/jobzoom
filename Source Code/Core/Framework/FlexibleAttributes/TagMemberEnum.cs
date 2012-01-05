@@ -9,6 +9,7 @@ namespace JobZoom.Core.FlexibleAttributes
     {        
         ColumnNameAsTag,
         ValueAsTag,
-        ReferenceAsTag,
+        ReferenceColumnNameAsTag,
+        ReferenceValueAsTag
     }
 }
