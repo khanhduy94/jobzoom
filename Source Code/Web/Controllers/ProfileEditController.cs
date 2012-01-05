@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using JobZoom.Business.Entities;
 using System.Data;
 using JobZoom.Web.Models;
+using JobZoom.Core.FlexibleAttributes;
 
 namespace JobZoom.Web.Controllers
 {
@@ -194,13 +195,27 @@ namespace JobZoom.Web.Controllers
                     //db.Profile_Work.AddObject(profile_work);
                     db.Profile_Work.Add(profile_work);
                     db.SaveChanges();
+
+                    //Mapping
+                    Guid objectId = db.Profile_Basic.Where(x => x.UserId == profile_work.UserId).SingleOrDefault().ProfileBasicId;
+                    TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                    mapping.AddRootAttribute(objectId, profile_work.UserId, "JobSeekerProfile");
+                    mapping.AddSecondLevelAttribute(objectId, "Work Experience", "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_work, objectId, "JobSeekerProfile");
                 }
                 else
                 {
                     db.Profile_Work.Attach(profile_work);
                     //db.ObjectStateManager.ChangeObjectState(profile_work, EntityState.Modified);
                     db.Entry(profile_work).State = EntityState.Modified;
-                    db.SaveChanges();
+                    db.SaveChanges();                                       
+
+                    //Mapping
+                    Guid objectId = db.Profile_Basic.Where(x=>x.UserId == profile_work.UserId).SingleOrDefault().ProfileBasicId;                                       
+                    TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                    mapping.AddRootAttribute(objectId, profile_work.UserId, "JobSeekerProfile");
+                    mapping.AddSecondLevelAttribute(objectId, "Work Experience", "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_work, objectId, "JobSeekerProfile");
                 }                             
             }                        
             var listProfileWork = db.Profile_Work.Where(x => x.UserId == userId);

@@ -119,6 +119,12 @@
       <LastGenOutput>JobZoomDataModel.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Framework\JobZoom.Core.Framework.csproj">
+      <Project>{6A0DD250-D2B5-49AA-B6D7-3A8714FEFCA0}</Project>
+      <Name>JobZoom.Core.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
