@@ -40,7 +40,7 @@ namespace JobZoom.Core.Taxonomy
     {
         JobZoomCoreEntities db = new JobZoomCoreEntities();
 
-        public Tag GetHierarchicalTreeByObject(Guid objectId, string objectType)
+        public Tag GetHierarchicalTreeByObject(Guid objectId)
         {
             TagAttribute rootNode = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ObjectDeepLevel == 1).SingleOrDefault();
             List<TagAttribute> classificationNodes = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ObjectDeepLevel == 2).ToList();

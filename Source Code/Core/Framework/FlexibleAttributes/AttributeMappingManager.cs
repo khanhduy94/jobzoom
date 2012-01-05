@@ -55,7 +55,7 @@ namespace JobZoom.Core.FlexibleAttributes
             this.ClassificationId = db.TagAttributes.Where(x => x.ObjectId == objectId && x.ObjectDeepLevel == 2 && x.TagName == tagName).SingleOrDefault().TagId;
         }                
 
-        public void AddThirdLevelAttribute(object attributeObject, Guid objectId, string objectType)
+        public void AddThirdLevelAttribute(object attributeObject, Guid objectId, string objectType, string tableReference)
         {
             var listAttributeObjects = AttributeManager.GetProperiesFromTypeByAttribute<TagMemberAttribute>(attributeObject);            
 
@@ -90,7 +90,7 @@ namespace JobZoom.Core.FlexibleAttributes
                 tag.ParentId = this.ClassificationId;
                 tag.ParentName = this.ClassificationName;
                 tag.ModifiedDate = DateTime.Now;
-                tag.TableReference = "Profile.Work";
+                tag.TableReference = tableReference;
 
                 lisTagAttributes.Add(tag);
             }            

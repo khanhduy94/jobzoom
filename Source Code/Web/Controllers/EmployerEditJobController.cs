@@ -5,19 +5,21 @@ using System.Web;
 using System.Web.Mvc;
 using JobZoom.Business.Entities;
 using System.Data;
+using JobZoom.Web.Models;
+using JobZoom.Core.FlexibleAttributes;
 
 namespace JobZoom.Web.Controllers
 {
     public class EmployerEditJobController : Controller
     {
-        private JobZoomEntities db = new JobZoomEntities();
-        private string userId;
+        private JobZoomEntities db = new JobZoomEntities();        
         private Guid jobPosingId;
         //
         // GET: /EmployerEditJob/
 
         public ActionResult Basic(Guid id)
         {
+            //jobPosingId = new Guid(Url.RequestContext.RouteData.Values["id"].ToString());            
             Job_Posting job_posting = db.Job_Posting.Single(x => x.JobPostingId == id);
             return View(job_posting);
         }
@@ -30,21 +32,27 @@ namespace JobZoom.Web.Controllers
                 db.Job_Posting.Attach(job_posting);
                 //db.ObjectStateManager.ChangeObjectState(job_posting, EntityState.Modified);
                 db.Entry(job_posting).State = EntityState.Modified;
-                db.SaveChanges();                
+                db.SaveChanges();
+
+                //Mapping
+                Guid objectId = job_posting.JobPostingId;
+                TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                mapping.AddRootAttribute(objectId, job_posting.JobTitle, "JobTitle");
+                mapping.AddSecondLevelAttribute(objectId, "Basic", "JobTitle");
+                mapping.AddThirdLevelAttribute(job_posting, objectId, "JobTitle","Job.Posting");
             }
             return View(job_posting);
         }
 
         public ActionResult Education(Guid id)
         {
-            var test = Url.RequestContext.RouteData.Values["id"];
+            //jobPosingId = new Guid(Url.RequestContext.RouteData.Values["id"].ToString());            
             List<Job_EducationExpRequirement> model = db.Job_EducationExpRequirement.Where(x => x.JobPostingId == id).ToList();            
             return View(model);
         }
 
         public ActionResult Work(Guid id)
-        {
-            jobPosingId = id;
+        {            
             return View();
         }
 
@@ -70,7 +78,6 @@ namespace JobZoom.Web.Controllers
         {
             Job_WorkExpRequirement workExp = db.Job_WorkExpRequirement.FirstOrDefault(x=>x.JobWorkExpRequirementId == id);
             return PartialView("EditWorkExpView", workExp);
-
         }
         
         [HttpPost]
@@ -93,6 +100,14 @@ namespace JobZoom.Web.Controllers
                     //    IsUpToDate = true,
                     
                     db.SaveChanges();
+
+                    //Mapping
+                    Guid objectId = workExp.JobPostingId;
+                    TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                    string jobTitle = db.Job_Posting.Where(x=>x.JobPostingId == workExp.JobPostingId).FirstOrDefault().JobTitle;
+                    mapping.AddRootAttribute(objectId, jobTitle , "JobTitle");
+                    mapping.AddSecondLevelAttribute(objectId, "Work Experience", "JobTitle");
+                    mapping.AddThirdLevelAttribute(workExp, objectId, "JobTitle", "Job.WorkExpRequirement");
                 }
                 else
                 {
@@ -100,6 +115,14 @@ namespace JobZoom.Web.Controllers
                     //db.ObjectStateManager.ChangeObjectState(workExp, EntityState.Modified);
                     db.Entry(workExp).State = EntityState.Modified;
                     db.SaveChanges();
+
+                    //Mapping
+                    Guid objectId = workExp.JobPostingId;
+                    TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                    string jobTitle = db.Job_Posting.Where(x => x.JobPostingId == workExp.JobPostingId).FirstOrDefault().JobTitle;
+                    mapping.AddRootAttribute(objectId, jobTitle, "JobTitle");
+                    mapping.AddSecondLevelAttribute(objectId, "Work Experience", "JobTitle");
+                    mapping.AddThirdLevelAttribute(workExp, objectId, "JobTitle", "Job.WorkExpRequirement");
                 }
             }
             var listWorkExp = db.Job_WorkExpRequirement.Where(x => x.JobPostingId == workExp.JobPostingId);
@@ -133,6 +156,14 @@ namespace JobZoom.Web.Controllers
                     //db.Job_EducationExpRequirement.AddObject(educationExp);
                     db.Job_EducationExpRequirement.Add(educationExp);
                     db.SaveChanges();
+
+                    //Mapping
+                    Guid objectId = educationExp.JobPostingId;
+                    TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                    string jobTitle = db.Job_Posting.Where(x => x.JobPostingId == educationExp.JobPostingId).FirstOrDefault().JobTitle;
+                    mapping.AddRootAttribute(objectId, jobTitle, "JobTitle");
+                    mapping.AddSecondLevelAttribute(objectId, "Education Experience", "JobTitle");
+                    mapping.AddThirdLevelAttribute(educationExp, objectId, "JobTitle", "Job.EducationExpRequirement");
                 }
                 else
                 {
@@ -140,6 +171,14 @@ namespace JobZoom.Web.Controllers
                     //db.ObjectStateManager.ChangeObjectState(educationExp, EntityState.Modified);
                     db.Entry(educationExp).State = EntityState.Modified;
                     db.SaveChanges();
+
+                    //Mapping
+                    Guid objectId = educationExp.JobPostingId;
+                    TagAttributeMappingManager mapping = new TagAttributeMappingManager();
+                    string jobTitle = db.Job_Posting.Where(x => x.JobPostingId == educationExp.JobPostingId).FirstOrDefault().JobTitle;
+                    mapping.AddRootAttribute(objectId, jobTitle, "JobTitle");
+                    mapping.AddSecondLevelAttribute(objectId, "Education Experience", "JobTitle");
+                    mapping.AddThirdLevelAttribute(educationExp, objectId, "JobTitle", "Job.EducationExpRequirement");
                 }
             }
             var listEducationExp = db.Job_EducationExpRequirement.Where(x => x.JobPostingId == educationExp.JobPostingId);
@@ -156,12 +195,10 @@ namespace JobZoom.Web.Controllers
 
         [OutputCache(Duration = 0)]
         [HttpGet]
-        public ActionResult CreateGraph()
-        {
-
-            return PartialView("GraphView", null);
+        public ActionResult CreateGraph(Guid id)
+        {                        
+            JobGraphViewModel model = new JobGraphViewModel(id);
+            return PartialView("GraphView", model);
         }
-
-
     }
 }

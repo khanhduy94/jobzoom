@@ -8,6 +8,7 @@ namespace JobZoom.Core.FlexibleAttributes
     public enum TaggingType
     {        
         ColumnNameAsTag,
-        ValueAsTag            
+        ValueAsTag,
+        ReferenceAsTag,
     }
 }

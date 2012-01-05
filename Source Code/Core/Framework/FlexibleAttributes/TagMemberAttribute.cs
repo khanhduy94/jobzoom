@@ -9,5 +9,7 @@ namespace JobZoom.Core.FlexibleAttributes
     public class TagMemberAttribute: Attribute
     {
         public TaggingType TaggingType { get; set; }
+
+
     }
 }

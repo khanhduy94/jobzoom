@@ -59,7 +59,7 @@ namespace JobZoom.Web.Controllers
                 TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                 mapping.AddRootAttribute(objectId, profile_basic.UserId, "JobSeekerProfile");
                 mapping.AddSecondLevelAttribute(objectId, "Basic", "JobSeekerProfile");
-                mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile");
+                mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile", "Profile.Basic");
 
                 return RedirectToAction("Index");  
             }
@@ -96,7 +96,7 @@ namespace JobZoom.Web.Controllers
                 TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                 mapping.AddRootAttribute(objectId, profile_basic.UserId, "JobSeekerProfile");
                 mapping.AddSecondLevelAttribute(objectId, "Basic", "JobSeekerProfile");
-                mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile");
+                mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile", "Profile.Basic");
 
                 return RedirectToAction("Index");
             }

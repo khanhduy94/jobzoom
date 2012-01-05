@@ -65,7 +65,7 @@ namespace JobZoom.Web
         {
 
             //JobZoom Core
-            Tag tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id), "JobSeekerProfile");            
+            Tag tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id));            
 
             // we create the xml structure
             Root root = new Root();

@@ -72,7 +72,7 @@ namespace JobZoom.Web.Controllers
                     TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                     mapping.AddRootAttribute(objectId, profile_basic.UserId, "JobSeekerProfile");
                     mapping.AddSecondLevelAttribute(objectId, "Basic", "JobSeekerProfile");
-                    mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile", "Profile.Basic");
                 }
                 else
                 {
@@ -86,7 +86,7 @@ namespace JobZoom.Web.Controllers
                     TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                     mapping.AddRootAttribute(objectId, profile_basic.UserId, "JobSeekerProfile");
                     mapping.AddSecondLevelAttribute(objectId, "Basic", "JobSeekerProfile");
-                    mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_basic, objectId, "JobSeekerProfile", "Profile.Basic");
                 }
                 
                 return RedirectToAction("Basic");
@@ -147,7 +147,7 @@ namespace JobZoom.Web.Controllers
                     TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                     mapping.AddRootAttribute(objectId, profile_education.UserId, "JobSeekerProfile");
                     mapping.AddSecondLevelAttribute(objectId, "Education Experience", "JobSeekerProfile");
-                    mapping.AddThirdLevelAttribute(profile_education, objectId, "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_education, objectId, "JobSeekerProfile", "Profile.Education");
                 }
                 else
                 {
@@ -161,7 +161,7 @@ namespace JobZoom.Web.Controllers
                     TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                     mapping.AddRootAttribute(objectId, profile_education.UserId, "JobSeekerProfile");
                     mapping.AddSecondLevelAttribute(objectId, "Education Experience", "JobSeekerProfile");
-                    mapping.AddThirdLevelAttribute(profile_education, objectId, "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_education, objectId, "JobSeekerProfile", "Profile.Education");
                 }
             }
             var listProfileEducation = db.Profile_Education.Where(x => x.UserId == userId);
@@ -229,7 +229,7 @@ namespace JobZoom.Web.Controllers
                     TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                     mapping.AddRootAttribute(objectId, profile_work.UserId, "JobSeekerProfile");
                     mapping.AddSecondLevelAttribute(objectId, "Work Experience", "JobSeekerProfile");
-                    mapping.AddThirdLevelAttribute(profile_work, objectId, "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_work, objectId, "JobSeekerProfile", "Profile.Work");
                 }
                 else
                 {
@@ -243,7 +243,7 @@ namespace JobZoom.Web.Controllers
                     TagAttributeMappingManager mapping = new TagAttributeMappingManager();
                     mapping.AddRootAttribute(objectId, profile_work.UserId, "JobSeekerProfile");
                     mapping.AddSecondLevelAttribute(objectId, "Work Experience", "JobSeekerProfile");
-                    mapping.AddThirdLevelAttribute(profile_work, objectId, "JobSeekerProfile");
+                    mapping.AddThirdLevelAttribute(profile_work, objectId, "JobSeekerProfile", "Profile.Work");
                 }                             
             }                        
             var listProfileWork = db.Profile_Work.Where(x => x.UserId == userId);
