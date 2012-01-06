@@ -11,17 +11,24 @@ namespace JobZoom.Core.Matching
     {
         public int RequirePoint { get; private set; }
         public int MatchingPoint { get; private set; }
-        public IEnumerable<MatchingResult> Results { get; set; }       
+        public IEnumerable<MatchingResult> Results { get; private set; }       
 
         public void Match(Guid sourceId, Guid targetId)
         {
-            JobZoomCoreEntities db = new JobZoomCoreEntities();
-            List<TagAttribute> sourceTag = db.TagAttributes.Where(i => i.ObjectId == sourceId).ToList();
-            List<TagAttribute> targetTag = db.TagAttributes.Where(i => i.ObjectId == targetId).ToList();
+            try
+            {
+                JobZoomCoreEntities db = new JobZoomCoreEntities();
+                List<TagAttribute> sourceTag = db.TagAttributes.Where(i => i.ObjectId == sourceId).ToList();
+                List<TagAttribute> targetTag = db.TagAttributes.Where(i => i.ObjectId == targetId).ToList();
 
-            RequirePoint = targetTag.Sum(i => (i.Weight != null ? i.Weight.Value : 0));
-            Results = Process(sourceTag, targetTag);
-            MatchingPoint = Results.Where(i => i.IsMatchAbsolute == true).Sum(i => (i.TagMatch.Weight != null ? i.TagMatch.Weight.Value : 0));
+                RequirePoint = targetTag.Sum(i => (i.Weight != null ? i.Weight.Value : 0));
+                Results = Process(sourceTag, targetTag);
+                MatchingPoint = Results.Where(i => i.IsMatchAbsolute == true).Sum(i => (i.TagMatch.Weight != null ? i.TagMatch.Weight.Value : 0));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private IEnumerable<MatchingResult> Process(List<TagAttribute> sourceTag, List<TagAttribute> targetTag)
@@ -91,6 +98,12 @@ namespace JobZoom.Core.Matching
                                     }
                                     break;
                                 case "GT":
+                                    if (sourceValue > targetValue)
+                                    {
+                                        result.IsMatchAbsolute = true;
+                                    }
+                                    break;
+                                default:
                                     if (sourceValue > targetValue)
                                     {
                                         result.IsMatchAbsolute = true;
