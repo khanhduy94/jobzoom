@@ -1,6 +1,60 @@
-﻿@{
+﻿@model JobZoom.Web.Models.ResumeViewModel
+@{
     ViewBag.Title = "Candidate";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Candidate</h2>
+<h2>Candidate Profile</h2>
+<fieldset style="width: 600px;margin-top:10px">
+<div style="margin-left:20px">
+    <div style="font-size:medium; font-weight:bold; padding-top:5px">
+        @Model.Basic.FirstName @Model.Basic.LastName
+    </div>
+    <div style="padding-top:5px">
+        @Model.Basic.City - @Model.Basic.Country
+    </div>
+    <div style="padding-top:5px">
+        Address: @Model.Basic.AddressLine1
+    </div>
+    <div style="padding-top:5px">
+        Phone: @Model.Basic.Phone
+    </div>
+    <div style="padding-top:5px">
+        Mobile: @Model.Basic.MobilePhone
+    </div>
+    <div style="padding-top:5px">
+        Website: @Model.Basic.Website
+    </div>
+    <div style="padding-top:5px">
+        Facebook: @Model.Basic.Facebook
+    </div>
+    <div style="padding-top:5px">
+        Twitter: @Model.Basic.Twitter
+    </div>
+</div>
+</fieldset>
+
+<h3>Education</h3>
+@foreach (var item in Model.Education)
+{
+    <fieldset>
+        <legend>
+            @item.SchoolUniversityName
+        </legend>
+        <div>@item.Major</div>
+        <div>@item.StartDate - @item.EndDate</div>
+        <div>@item.Description</div>        
+    </fieldset>
+}
+
+<h3>Work experience</h3>
+@foreach (var item in Model.Experience)
+{                
+    <fieldset>
+        <legend>@item.CompanyName                               
+        </legend>
+        <div>@item.JobTitle</div>
+        <div>@item.StartDate - @item.EndDate</div>
+        <div>@item.Description</div>        
+    </fieldset>
+}

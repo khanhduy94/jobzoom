@@ -44,7 +44,12 @@ namespace JobZoom.Web.Controllers
         [Authorize]
         public ActionResult Candidate(Guid id)
         {
-            return View();
+            ResumeViewModel resume = new ResumeViewModel();
+            resume.Basic = db.Profile_Basic.FirstOrDefault(x => x.ProfileBasicId == id);
+            resume.Education = db.Profile_Education.Where(x => x.UserId == resume.Basic.UserId);
+            resume.Experience = db.Profile_Work.Where(x => x.UserId == resume.Basic.UserId);
+
+            return View(resume);
         }
     }
 }
