@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using JobZoom.Web.Models;
 using JobZoom.Business.Entities;
+using JobZoom.Core.Matching;
 
 namespace JobZoom.Web.Controllers
 {
@@ -42,12 +43,17 @@ namespace JobZoom.Web.Controllers
         }
 
         [Authorize]
-        public ActionResult Candidate(Guid id)
+        public ActionResult Candidate(Guid id, Guid jobid)
         {
             ResumeViewModel resume = new ResumeViewModel();
             resume.Basic = db.Profile_Basic.FirstOrDefault(x => x.ProfileBasicId == id);
             resume.Education = db.Profile_Education.Where(x => x.UserId == resume.Basic.UserId);
             resume.Experience = db.Profile_Work.Where(x => x.UserId == resume.Basic.UserId);
+
+            // Matching profile with job
+            MatchingTool tool = new MatchingTool();
+            tool.Match(id, jobid);            
+            ViewBag.MatchRate = tool.MatchingPoint / tool.RequirePoint * 100;
 
             return View(resume);
         }

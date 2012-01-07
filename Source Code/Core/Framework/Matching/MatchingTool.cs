@@ -9,8 +9,8 @@ namespace JobZoom.Core.Matching
 {
     public class MatchingTool
     {
-        public int RequirePoint { get; private set; }
-        public int MatchingPoint { get; private set; }
+        public double RequirePoint { get; private set; }
+        public double MatchingPoint { get; private set; }
         public IEnumerable<MatchingResult> Results { get; private set; }       
 
         public void Match(Guid sourceId, Guid targetId)
