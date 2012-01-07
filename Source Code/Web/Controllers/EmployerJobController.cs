@@ -45,17 +45,17 @@ namespace JobZoom.Web.Controllers
         [Authorize]
         public ActionResult Candidate(Guid id, Guid jobid)
         {
-            ResumeViewModel resume = new ResumeViewModel();
-            resume.Basic = db.Profile_Basic.FirstOrDefault(x => x.ProfileBasicId == id);
-            resume.Education = db.Profile_Education.Where(x => x.UserId == resume.Basic.UserId);
-            resume.Experience = db.Profile_Work.Where(x => x.UserId == resume.Basic.UserId);
+            CandidateViewModel profile = new CandidateViewModel();
+            profile.Basic = db.Profile_Basic.FirstOrDefault(x => x.ProfileBasicId == id);
+            profile.Education = db.Profile_Education.Where(x => x.UserId == profile.Basic.UserId);
+            profile.Experience = db.Profile_Work.Where(x => x.UserId == profile.Basic.UserId);
 
             // Matching profile with job
             MatchingTool tool = new MatchingTool();
             tool.Match(id, jobid);            
             ViewBag.MatchRate = tool.MatchingPoint / tool.RequirePoint * 100;
 
-            return View(resume);
+            return View(profile);
         }
     }
 }

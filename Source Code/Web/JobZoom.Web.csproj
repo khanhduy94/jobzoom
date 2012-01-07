@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApplyJobConfirmViewModel.cs" />
+    <Compile Include="Models\CandidateViewModel.cs" />
     <Compile Include="Models\JobGraphViewModel.cs" />
     <Compile Include="Models\JobViewModel.cs" />
     <Compile Include="Models\ProfileWorkViewModel.cs" />
