@@ -8,19 +8,18 @@ using System.Data;
 using System.Data.OleDb;
 using System.Net;
 
-namespace JobZoom.Core.DataMining
+namespace JobZoom.Core.Framework.DataMining
 {
-    class MiningDatabaseGenerator
+    public class MiningDatabaseGenerator
     {
-        static void Main(string[] args)
-        {
-            string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
+        //static void Main(string[] args)
+        //{
+        //    string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+        //    string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+        //    string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
 
-            BuildMiningDatabase(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
-            Console.ReadLine();
-        }
+        //    BuildMiningDatabase(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
+        //}
 
         #region String Encryption
         /// <summary>
@@ -28,7 +27,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="input">Input string to encode</param>
         /// <returns>Encoded string</returns>
-        private static string StringEncode(string input)
+        public static string StringEncode(string input)
         {
             string[] source = {".", ",", ";", "'", "`", ":", "/", @"\", "*", "|", "?", "\"", "&", "%", "$", "!", "+", "=", "(", ")", "[", "]", "{", "}", "<", ">" };
             string[] target = { "_x002E_", "_x002C_", "_x003B_", "_x0027_", "_x0060_", "_x003A_", "_x002F_", "_x005C_", "_x002A_", "_x007C_", "_x003F_", "_x0022_", "_x0026_", "_x0025_", "_x0024_", "_x0021_", "_x002B_", "_x003D_", "_x0028_", "_x0029_", "_x005B_", "_x005D_", "_x007B_", "_x007D_", "_x003C_", "_x003E_" };
@@ -44,7 +43,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="input">Input string to decode</param>
         /// <returns>Decoded string</returns>
-        private static string StringDecode(string input)
+        public static string StringDecode(string input)
         {
             string[] target = { ".", ",", ";", "'", "`", ":", "/", @"\", "*", "|", "?", "\"", "&", "%", "$", "!", "+", "=", "(", ")", "[", "]", "{", "}", "<", ">" };
             string[] source = { "_x002E_", "_x002C_", "_x003B_", "_x0027_", "_x0060_", "_x003A_", "_x002F_", "_x005C_", "_x002A_", "_x007C_", "_x003F_", "_x0022_", "_x0026_", "_x0025_", "_x0024_", "_x0021_", "_x002B_", "_x003D_", "_x0028_", "_x0029_", "_x005B_", "_x005D_", "_x007B_", "_x007D_", "_x003C_", "_x003E_" };
@@ -57,28 +56,27 @@ namespace JobZoom.Core.DataMining
         #endregion
 
         #region Mining Database Generation.
-        
-        /// <summary>
-        /// Build mining database
-        /// </summary>
-        /// <param name="MainServerConnectionString">Main server connection string</param>
-        /// <param name="AnalysisServerConnectionString">Analysis services connection string</param>
-        /// <param name="TempServerConnectionString">Temp server connection string (contain views)</param>
-        /// <param name="strPrefix">Prefix</param>
-        /// <param name="dt_parametters">Decision Tree Parametters</param>
-        private static void BuildMiningDatabase(string MainServerConnectionString, string AnalysisServerConnectionString, string TempServerConnectionString, string strPrefix = "PF", DecisionTreeAlgorithmParameters dt_parametter = null)
+
+        public static void BuildMiningDatabase_Console(string MainServerConnectionString, string AnalysisServerConnectionString, string TempServerConnectionString, string strPrefix = "PF", DecisionTreeAlgorithmParameters dt_parametters = null)
         {
-            if (dt_parametter == null)
-                dt_parametter = new DecisionTreeAlgorithmParameters();
+
+            if (String.IsNullOrEmpty(MainServerConnectionString))
+                throw new Exception("Main Server Connection String is null!");
+            if (String.IsNullOrEmpty(AnalysisServerConnectionString))
+                throw new Exception("Analysis Server Connection String is null!");
+            if (String.IsNullOrEmpty(TempServerConnectionString))
+                throw new Exception("Temporary Server Connection String is null!");
+
+            if (dt_parametters == null)
+                dt_parametters = new DecisionTreeAlgorithmParameters();
+
             string strMiningDBName = "Job Zoom Mining"; //Mining database name (Analysis Service)
             string strMiningDataSourceName = "Data Source"; //Mining datasource name (Analysis Service)
             string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name (Analysis Service)
-
             string[] strFactTableNames = getAllMiningTableNames(TempServerConnectionString, strPrefix); //tables in datasource view to mining
 
-            string[,] strTableNamesAndKeys = { { "PivotProfile", "ProfileBasicId", "PivotProfile", "ProfileBasicId" }, };
-
             int intDimensionTableCount = 0;
+
             Server objServer = new Server();
             Database objDatabase = new Database();
             RelationalDataSource objDataSource = new RelationalDataSource();
@@ -120,12 +118,9 @@ namespace JobZoom.Core.DataMining
 
             Console.WriteLine("Step 5. Createing Mining Structures [with Decision Tree Algorithms]");
             Console.WriteLine("Step 5. Started!");
-            objMiningStructures = (MiningStructure[])CreateMiningStructures(objDatabase, objDataSourceView, strFactTableNames, new DecisionTreeAlgorithmParameters());
-            //objDatabase.Process(ProcessType.ProcessFull);
+            objMiningStructures = (MiningStructure[])CreateMiningStructures(objDatabase, objDataSourceView, strFactTableNames, dt_parametters);
             Console.WriteLine("Step 5. Finished!");
             Console.WriteLine("");
-
-
 
             Console.WriteLine("Step 6. Export mining data to JobZoom Database (Database Engine)");
             Console.WriteLine("Step 6. Started!");
@@ -152,6 +147,102 @@ namespace JobZoom.Core.DataMining
             Console.WriteLine("Press any key to exit.");
             Console.ReadLine();
         }
+        
+        /// <summary>
+        /// Build mining database
+        /// </summary>
+        /// <param name="MainServerConnectionString">Main server connection string</param>
+        /// <param name="AnalysisServerConnectionString">Analysis services connection string</param>
+        /// <param name="TempServerConnectionString">Temp server connection string (contain views)</param>
+        /// <param name="strPrefix">Prefix</param>
+        /// <param name="dt_parametters">Decision Tree Parametters</param>
+        public static void BuildMiningDatabase(string MainServerConnectionString, string AnalysisServerConnectionString, string TempServerConnectionString, string strPrefix = "PF", DecisionTreeAlgorithmParameters dt_parametter = null)
+        {
+            if (dt_parametter == null)
+                dt_parametter = new DecisionTreeAlgorithmParameters();
+            string strMiningDBName = "Job Zoom Mining"; //Mining database name (Analysis Service)
+            string strMiningDataSourceName = "Data Source"; //Mining datasource name (Analysis Service)
+            string strMiningDataSourceViewName = "Data Source View"; //Mining datasource view name (Analysis Service)
+
+            string[] strFactTableNames = getAllMiningTableNames(TempServerConnectionString, strPrefix); //tables in datasource view to mining
+
+            string[,] strTableNamesAndKeys = { { "PivotProfile", "ProfileBasicId", "PivotProfile", "ProfileBasicId" }, };
+
+            int intDimensionTableCount = 0;
+            Server objServer = new Server();
+            Database objDatabase = new Database();
+            RelationalDataSource objDataSource = new RelationalDataSource();
+            DataSourceView objDataSourceView = new DataSourceView();
+            DataSet objDataSet = new DataSet();
+            Dimension[] objDimensions = new Dimension[intDimensionTableCount];
+            MiningStructure[] objMiningStructures = new MiningStructure[strFactTableNames.Length];
+
+
+            //Console.WriteLine("Mining creation process started.");
+            //Console.WriteLine("");
+
+            //Console.WriteLine("Step 1. Connecting to the Analysis Services.");
+            //Console.WriteLine("Step 1. Started!");
+            objServer = (Server)ConnectAnalysisServices(AnalysisServerConnectionString);
+            //Console.WriteLine("Step 1. Finished!");
+            //Console.WriteLine("");
+
+            //Console.WriteLine("Step 2. Creating a Database.");
+            //Console.WriteLine("Step 2. Started!");
+            objDatabase = (Database)CreateDatabase(objServer, strMiningDBName);
+            strMiningDBName = objDatabase.Name;
+            //Console.WriteLine("Step 2. Finished!");
+            //Console.WriteLine("");
+
+            //Console.WriteLine("Step 3. Creating a DataSource.");
+            //Console.WriteLine("Step 3. Started!");
+            objDataSource = (RelationalDataSource)CreateDataSource(objServer, objDatabase, strMiningDataSourceName, TempServerConnectionString);
+            //Console.WriteLine("Step 3. Finished!");
+            //Console.WriteLine("");
+
+            //Console.WriteLine("Step 4. Creating a DataSourceView.");
+            //Console.WriteLine("Step 4. Started!");
+            //objDataSet = (DataSet)GenerateDWSchema(strDBServerName, strDBName, strFactTableName, strTableNamesAndKeys, intDimensionTableCount);
+            objDataSet = (DataSet)GenerateDWSchema(TempServerConnectionString, strPrefix); //Get all mining views
+            objDataSourceView = (DataSourceView)CreateDataSourceView(objDatabase, objDataSource, objDataSet, strMiningDataSourceViewName);
+            //Console.WriteLine("Step 4. Finished!");
+            //Console.WriteLine("");
+
+            //Console.WriteLine("Step 5. Createing Mining Structures [with Decision Tree Algorithms]");
+            //Console.WriteLine("Step 5. Started!");
+            objMiningStructures = (MiningStructure[])CreateMiningStructures(objDatabase, objDataSourceView, strFactTableNames, new DecisionTreeAlgorithmParameters());
+            //objDatabase.Process(ProcessType.ProcessFull);
+            //Console.WriteLine("Step 5. Finished!");
+            //Console.WriteLine("");
+
+
+
+            //Console.WriteLine("Step 6. Export mining data to JobZoom Database (Database Engine)");
+            //Console.WriteLine("Step 6. Started!");
+
+            //Console.WriteLine("Preparing... Put website to maintenance mode");
+            //EXEC WEB SITE MAINTENANCE SERVICE METHOD
+
+            //Console.WriteLine("Preparing... Cleaning DecisionTreeNode and DecisionTreeNodeDistribution");
+            //Console.WriteLine("\nStep 6. Finished!");
+            //Console.WriteLine("");
+            exportMiningDataToDB(MainServerConnectionString, AnalysisServerConnectionString, strFactTableNames, strPrefix);
+            //Console.WriteLine("Export completed! Release website to continuing for using");
+            //WEBSITE CAN CONTINUE FOR USING
+            //Console.WriteLine("Process Full...");
+            //objDatabase.Process(ProcessType.ProcessFull);
+            //Console.WriteLine("Analysis Service Database created successfully.");
+
+            //Console.WriteLine("Step 7. Removing Analysis Database");
+            //Console.WriteLine("Step 7. Started!");
+            //Console.WriteLine(deleteDatabase(objServer, objDatabase.Name));
+            deleteDatabase(objServer, objDatabase.Name);
+            //Console.WriteLine("Removing Analysis Database completely ...");
+            //Console.WriteLine("\nStep 7. Finished!");
+
+            //Console.WriteLine("Press any key to exit.");
+            //Console.ReadLine();
+        }
 
         #region Connecting to the Analysis Services.
         /// <summary>
@@ -159,11 +250,11 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="AnalysisServicesConnectionString">Analysis Services Connection String.</param>
         /// <returns>Database Server instance.</returns>
-        private static object ConnectAnalysisServices(string AnalysisServicesConnectionString)
+        public static object ConnectAnalysisServices(string AnalysisServicesConnectionString)
         {
             try
             {
-                Console.WriteLine("Connecting to the Analysis Services ...");
+                //Console.WriteLine("Connecting to the Analysis Services ...");
                 Server objServer = new Server();
                 //Disconnect from current connection if it's currently connected.
                 if (objServer.Connected)
@@ -175,8 +266,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Connecting to the Analysis Services. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Connecting to the Analysis Services. Error Message -> " + ex.Message);
             }
         }
         #endregion Connecting to the Analysis Services.
@@ -188,12 +278,11 @@ namespace JobZoom.Core.DataMining
         /// <param name="objServer">Analysis Service Connection Instance</param>
         /// <param name="strAnalysisServicesDatabaseName">Database name in analysis service to create</param>
         /// <returns>Analysis Service Database instance.</returns>
-        private static object CreateDatabase(Server objServer, string strAnalysisServicesDatabaseName)
+        public static object CreateDatabase(Server objServer, string strAnalysisServicesDatabaseName)
         {
             try
             {
-                Console.WriteLine("Creating a Analysis Database ...");
-
+                //Console.WriteLine("Creating a Analysis Database ...");
                 Database objDatabase = new Database();
                 //Add Database to the Analysis Services.
                 objDatabase = objServer.Databases.Add(objServer.Databases.GetNewName(strAnalysisServicesDatabaseName));
@@ -204,8 +293,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a Database. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a Database. Error Message -> " + ex.Message);
             }
         }
 
@@ -215,7 +303,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objServer">Analysis Service Connection Instance</param>
         /// <param name="strASDBName">Database name in analysis service to delete</param>
         /// <returns>Result</returns>
-        private static bool deleteDatabase(Server objServer, string strASDBName)
+        public static bool deleteDatabase(Server objServer, string strASDBName)
         {
             try
             {
@@ -224,8 +312,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a Database. Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error in Creating a Database. Error Message -> " + ex.Message);
             }
         }
 
@@ -236,7 +323,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objServer">Analysis Service Connection Instance</param>
         /// <param name="strASDatabaseName">Database name in analysis service to create</param>
         /// <returns>Database instance in analysis service</returns>
-        private static object GetDatabase(Server objServer, string strASDatabaseName)
+        public static object GetDatabase(Server objServer, string strASDatabaseName)
         {
             try
             {
@@ -250,8 +337,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a Database. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a Database. Error Message -> " + ex.Message);
             }
         }
         #endregion Manage Databases in Analysis Service.
@@ -265,11 +351,11 @@ namespace JobZoom.Core.DataMining
         /// <param name="strMiningDataSourceName">Mining DataSource Name to create</param>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>Analysis Service DataSource instance.</returns>
-        private static object CreateDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string DatabaseConnectionString)
+        public static object CreateDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string DatabaseConnectionString)
         {
             try
             {
-                Console.WriteLine("Creating a DataSource ...");
+                //Console.WriteLine("Creating a DataSource ...");
                 RelationalDataSource objDataSource = new RelationalDataSource();
                 //Add Data Source to the Database.
                 objDataSource = objDatabase.DataSources.Add(objServer.Databases.GetNewName(strMiningDataSourceName));
@@ -280,8 +366,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSource. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a DataSource. Error Message -> " + ex.Message);
             }
         }
 
@@ -293,11 +378,11 @@ namespace JobZoom.Core.DataMining
         /// <param name="strMiningDataSourceName">Mining DataSource Name to get</param>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>Analysis Service Datasource instance</returns>
-        private static object GetDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string DatabaseConnectionString)
+        public static object GetDataSource(Server objServer, Database objDatabase, string strMiningDataSourceName, string DatabaseConnectionString)
         {
             try
             {
-                Console.WriteLine("Creating a DataSource ...");
+                //Console.WriteLine("Creating a DataSource ...");
                 DataSource objDataSource;
                 //Add Data Source to the Database.
                 objDataSource = objDatabase.DataSources.GetByName(strMiningDataSourceName);
@@ -308,8 +393,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSource. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a DataSource. Error Message -> " + ex.Message);
             }
         }
         #endregion Manage DataSources in Analysis Service
@@ -323,11 +407,11 @@ namespace JobZoom.Core.DataMining
         /// <param name="strTableNamesAndKeys">Array of TableNames and Keys.</param>
         /// <param name="intDimensionTableCount">Dimension Table Count.</param>
         /// <returns>DataSet instance.</returns>
-        private static object GenerateDWSchema(string DatabaseConnectionString, string strFactTableName, string[,] strTableNamesAndKeys, int intDimensionTableCount)
+        public static object GenerateDWSchema(string DatabaseConnectionString, string strFactTableName, string[,] strTableNamesAndKeys, int intDimensionTableCount)
         {
             try
             {
-                Console.WriteLine("Creating a DataSourceView ...");
+                //Console.WriteLine("Creating a DataSourceView ...");
                 //Create the connection string.
                 //Create the SqlConnection.
                 SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
@@ -349,8 +433,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSourceView - GenerateDWSchema. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a DataSourceView - GenerateDWSchema. Error Message -> " + ex.Message);
             }
         }
 
@@ -360,7 +443,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strPrefix">Table with this prefix will be added to DataSource View</param>
         /// <returns>Dataset instance</returns>
-        private static object GenerateDWSchema(string DatabaseConnectionString, string strPrefix = "PF")
+        public static object GenerateDWSchema(string DatabaseConnectionString, string strPrefix = "PF")
         {
             try
             {
@@ -380,8 +463,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSourceView - GenerateDWSchema. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a DataSourceView - GenerateDWSchema. Error Message -> " + ex.Message);
             }
         }
 
@@ -392,7 +474,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objDataSet">DataSet instance.</param>
         /// <param name="strTableName">TableName.</param>
         /// <returns>DataSet instance.</returns>
-        private static object FillDataSet(SqlConnection objConnection, DataSet objDataSet, string strTableName)
+        public static object FillDataSet(SqlConnection objConnection, DataSet objDataSet, string strTableName)
         {
             try
             {
@@ -405,8 +487,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSourceView - FillDataSet. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a DataSourceView - FillDataSet. Error Message -> " + ex.Message);
             }
         }
 
@@ -419,7 +500,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="strChildTableName">Child Table Name (Fact Table).</param>
         /// <param name="strChildTableKey">Child Table Key.</param>
         /// <returns>DataSet instance.</returns>
-        private static object AddDataTableRelation(DataSet objDataSet, string strParentTableName, string strParentTableKey, string strChildTableName, string strChildTableKey)
+        public static object AddDataTableRelation(DataSet objDataSet, string strParentTableName, string strParentTableKey, string strChildTableName, string strChildTableKey)
         {
             try
             {
@@ -429,8 +510,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSourceView - AddDataTableRelation. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a DataSourceView - AddDataTableRelation. Error Message -> " + ex.Message);
             }
         }
 
@@ -443,7 +523,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objDataSet">Dataset</param>
         /// <param name="strMiningDataSourceViewName">Mining DataSourceView Name.</param>
         /// <returns>DataSourceView instance.</returns>
-        private static object CreateDataSourceView(Database objDatabase, RelationalDataSource objDataSource, DataSet objDataSet, string strMiningDataSourceViewName)
+        public static object CreateDataSourceView(Database objDatabase, RelationalDataSource objDataSource, DataSet objDataSet, string strMiningDataSourceViewName)
         {
             try
             {
@@ -458,7 +538,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a DataSourceView - CreateDataSourceView. Error Message -> " + ex.Message);
+                throw new Exception("Error in Creating a DataSourceView - CreateDataSourceView. Error Message -> " + ex.Message);
                 return null;
             }
         }
@@ -472,7 +552,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objDataSourceView">Analysis Service DataSourceView instance</param>
         /// <param name="strCaseTableNames">Array of mining tables</param>
         /// <returns>Array of created Mining Structures</returns>
-        private static object[] CreateMiningStructures(Database objDatabase, DataSourceView objDataSourceView, string[] strCaseTableNames, DecisionTreeAlgorithmParameters dtParams)
+        public static object[] CreateMiningStructures(Database objDatabase, DataSourceView objDataSourceView, string[] strCaseTableNames, DecisionTreeAlgorithmParameters dtParams)
         {
             MiningStructure[] miningStructures = new MiningStructure[strCaseTableNames.Length];
             try
@@ -485,8 +565,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a Mining structure - GenerateMiningStructure. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a Mining structure - GenerateMiningStructure. Error Message -> " + ex.Message);
             }
         }
 
@@ -497,7 +576,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objDataSourceView">Analysis Service DataSourceView instance</param>
         /// <param name="strCaseTableName">Mining table name</param>
         /// <returns>Mining structure</returns>
-        private static object GenerateMiningStructure(Database objDatabase, DataSourceView objDataSourceView, string strCaseTableName, DecisionTreeAlgorithmParameters dtParams)
+        public static object GenerateMiningStructure(Database objDatabase, DataSourceView objDataSourceView, string strCaseTableName, DecisionTreeAlgorithmParameters dtParams)
         {
             try
             {
@@ -529,6 +608,7 @@ namespace JobZoom.Core.DataMining
                         case "JobPostingId":
                         case "UserId":
                         case "JobTitle":
+                        case "JobName":
                         case "CompanyId":
                         case "CompanyName":
                             //column.Type = MiningStructureColumnTypes.Text;
@@ -585,8 +665,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in Creating a Mining structure - GenerateMiningStructure. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in Creating a Mining structure - GenerateMiningStructure. Error Message -> " + ex.Message);
             }
         
         }
@@ -597,7 +676,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="objDataSourceView">Analysis Serivce Datasource View</param>
         /// <param name="tableName">Table's name to get its column names</param>
         /// <returns>Array of column names</returns>
-        private static string[] getAllColumnName(DataSourceView objDataSourceView, string tableName)
+        public static string[] getAllColumnName(DataSourceView objDataSourceView, string tableName)
         {
             
             DataTable allCols = objDataSourceView.Schema.Tables[tableName];
@@ -618,7 +697,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="tableName">Table's name to get its column names</param>
         /// <returns>Array of column names</returns>
-        private static string[] getAllColumnName(string DatabaseConnectionString, string tableName)
+        public static string[] getAllColumnName(string DatabaseConnectionString, string tableName)
         {
             try
             {
@@ -648,8 +727,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in getting all mining tables - getAllMiningTableName. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in getting all mining tables - getAllMiningTableName. Error Message -> " + ex.Message);
             }            
         }
 
@@ -659,7 +737,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="dsv">DataSource View (Analysis Service)</param>
         /// <param name="strPrefix">Prefix</param>
         /// <returns>Array of mining table names</returns>
-        private static string[] getAllMiningTableNames(DataSourceView dsv, string strPrefix = "PF")
+        public static string[] getAllMiningTableNames(DataSourceView dsv, string strPrefix = "PF")
         {
             if (dsv.Schema.Tables.Count > 0)
             {
@@ -673,8 +751,7 @@ namespace JobZoom.Core.DataMining
             }
             else
             {
-                Console.WriteLine("Don't have any mining table with suffix " + strPrefix + " in database!");
-                return null;
+                throw new Exception("Don't have any mining table with suffix " + strPrefix + " in database!");
             }
         }
 
@@ -684,7 +761,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strPrefix">Prefix</param>
         /// <returns>Array of mining table names</returns>
-        private static string[] getAllMiningTableNames(string DatabaseConnectionString, string strPrefix = "PF")
+        public static string[] getAllMiningTableNames(string DatabaseConnectionString, string strPrefix = "PF")
         {
             try
             {
@@ -709,14 +786,12 @@ namespace JobZoom.Core.DataMining
                 }
                 else
                 {
-                    Console.WriteLine("Don't have any mining table with suffix " + strPrefix + " in database!");
-                    return null;
+                    throw new Exception("Don't have any mining table with suffix " + strPrefix + " in database!");
                 }
 
             }catch(Exception ex)
             {
-                Console.WriteLine("Error in getting all mining tables - getAllMiningTableName. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error in getting all mining tables - getAllMiningTableName. Error Message -> " + ex.Message);
             }
         }
         #endregion Mining structure Generation.
@@ -728,27 +803,30 @@ namespace JobZoom.Core.DataMining
         /// <param name="DatabaseConnectionString">Target Database Server Connection String (Database Engine)</param>
         /// <param name="strMiningStructureNames">Mining Structure Names to export</param>
         /// <param name="strPrefix">Table Prefix</param>
-        private static void exportMiningDataToDB(string DatabaseConnectionString, string AnalysisServicesConnectionString, string[] strMiningStructureNames, string strPrefix)
+        public static void exportMiningDataToDB(string DatabaseConnectionString, string AnalysisServicesConnectionString, string[] strMiningStructureNames, string strPrefix)
         {
             try
             {
                 string strQuery;
                 string strLinkedServerName = "JobZoomMiningLinkedServer";
 
-                Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
+                //Console.WriteLine("Preparing... Exists the linked server (Analysis Server)!");
                 if (existsLinkedServer(DatabaseConnectionString, strLinkedServerName))
                 {
-                    Console.WriteLine("'Linked Server exists' is true!");
-                    Console.WriteLine("Deleting ... Result is " + deleteLinkedServer(DatabaseConnectionString, strLinkedServerName));
+                    //Console.WriteLine("'Linked Server exists' is true!");
+                    //Console.WriteLine("Deleting ... Result is " + deleteLinkedServer(DatabaseConnectionString, strLinkedServerName));
+                    deleteLinkedServer(DatabaseConnectionString, strLinkedServerName);
                 }
 
-                Console.WriteLine("\nCreating a linked server...");
+                //Console.WriteLine("\nCreating a linked server...");
                 if (createLinkedServer(DatabaseConnectionString, AnalysisServicesConnectionString, strLinkedServerName))
-                    Console.WriteLine("Creating a linked server... Successfully!");
+                {
+                    //Console.WriteLine("Creating a linked server... Successfully!");
+                }
                 else
                 {
-                    Console.WriteLine("Creating a linked server... UN-SUCCESSFULLY!");
-                    Console.WriteLine("Failed to export mining data to database. Process is stopped!");
+                    //Console.WriteLine("Creating a linked server... UN-SUCCESSFULLY!");
+                    //Console.WriteLine("Failed to export mining data to database. Process is stopped!");
                 }
 
                 //drop table DecisionTreeNode and DecisionTreeNodeDistribution and create new
@@ -759,10 +837,10 @@ namespace JobZoom.Core.DataMining
                 if (existsDecisionTreeNodeTable(DatabaseConnectionString))
                     deleteDecisionTreeNodeTable(DatabaseConnectionString);
 
-                Console.WriteLine("Create DecisionTreeNode table ...");
+                //Console.WriteLine("Create DecisionTreeNode table ...");
                 createDecisionTreeNodeTable(DatabaseConnectionString);
 
-                Console.WriteLine("Create DecisionTreeNodeDistribution table ...");
+                //Console.WriteLine("Create DecisionTreeNodeDistribution table ...");
                 createDecisionTreeNodeDistributionTable(DatabaseConnectionString);
 
 
@@ -838,7 +916,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - exportMiningDataToDB. Error Message -> " + ex.Message);
+                throw new Exception("Error - exportMiningDataToDB. Error Message -> " + ex.Message);
                 throw new Exception(ex.Message);
             }
         }
@@ -848,7 +926,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNode table is exists and reverse</returns>
-        private static bool existsDecisionTreeNodeTable(string DatabaseConnectionString)
+        public static bool existsDecisionTreeNodeTable(string DatabaseConnectionString)
         {
             try
             {
@@ -856,7 +934,7 @@ namespace JobZoom.Core.DataMining
                 SqlConnection objConnection = new SqlConnection(DatabaseConnectionString);
 
                 objConnection.Open();
-                SqlCommand command = objConnection.CreateCommand();
+                SqlCommand command = objConnection.CreateCommand();                
                 command.CommandText = "select 1 from INFORMATION_SCHEMA.Tables where TABLE_TYPE = 'BASE TABLE' AND [TABLE_NAME] = 'DecisionTreeNode'";
                 if (command.ExecuteReader(CommandBehavior.CloseConnection).Read())
                     return true;
@@ -864,8 +942,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - existsDecisionTreeNodeTable. Error Message -> " + ex.Message);
-                throw new Exception(ex.Message);
+                throw new Exception("Error - existsDecisionTreeNodeTable. Error Message -> " + ex.Message);
             }
         }
 
@@ -874,7 +951,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNodeDistribution table is exists and reverse</returns>
-        private static bool existsDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
+        public static bool existsDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
         {
             try
             {
@@ -890,8 +967,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - existsDecisionTreeNodeTable. Error Message -> " + ex.Message);
-                throw new Exception(ex.Message);
+                throw new Exception("Error - existsDecisionTreeNodeTable. Error Message -> " + ex.Message);
             }
         }
 
@@ -900,7 +976,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>Result</returns>
-        private static bool createDecisionTreeNodeTable(string DatabaseConnectionString)
+        public static bool createDecisionTreeNodeTable(string DatabaseConnectionString)
         {
             try
             {
@@ -936,9 +1012,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Table has already existed or error - createDecisionTreeNodeTable. Error Message -> " + ex.Message);
-                //throw new Exception(ex.Message);
-                return false;
+                throw new Exception("Table has already existed or error - createDecisionTreeNodeTable. Error Message -> " + ex.Message);
             }
         }
 
@@ -947,7 +1021,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="DatabaseConnectionString">Database Server Name (Database Engine)</param>
         /// <returns>Result/returns>
-        private static bool createDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
+        public static bool createDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
         {
             try
             {
@@ -976,9 +1050,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Table has already existed or error - createDecisionTreeNodeDistributionTable. Error Message -> " + ex.Message);
-                //throw new Exception(ex.Message);
-                return false;
+                throw new Exception("Table has already existed or error - createDecisionTreeNodeDistributionTable. Error Message -> " + ex.Message);
             }
         }
 
@@ -987,7 +1059,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNode table deleted sucessfully and reverse</returns>
-        private static bool deleteDecisionTreeNodeTable(string DatabaseConnectionString)
+        public static bool deleteDecisionTreeNodeTable(string DatabaseConnectionString)
         {
             try
             {
@@ -1006,9 +1078,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - deleteDecisionTreeNodeTable. Error Message -> " + ex.Message);
-                //throw new Exception(ex.Message);
-                return false;
+                throw new Exception("Error - deleteDecisionTreeNodeTable. Error Message -> " + ex.Message);
             }
         }
 
@@ -1017,7 +1087,7 @@ namespace JobZoom.Core.DataMining
         /// </summary>
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <returns>True if DecisionTreeNodeDistribution table deleted sucessfully and reverse</returns>
-        private static bool deleteDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
+        public static bool deleteDecisionTreeNodeDistributionTable(string DatabaseConnectionString)
         {
             try
             {
@@ -1036,9 +1106,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - deleteDecisionTreeNodeDistributionTable. Error Message -> " + ex.Message);
-                //throw new Exception(ex.Message);
-                return false;
+                throw new Exception("Error - deleteDecisionTreeNodeDistributionTable. Error Message -> " + ex.Message);
             }
         }
 
@@ -1073,14 +1141,12 @@ namespace JobZoom.Core.DataMining
                 }
                 else
                 {
-                    Console.WriteLine("Linked server existed!");
-                    return false;
+                    throw new Exception("Linked server existed!");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in creating linked server - createLinkedServer. Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error in creating linked server - createLinkedServer. Error Message -> " + ex.Message);
             }
         }
 
@@ -1106,8 +1172,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in checking linked server - existsLinkedServer. Error Message -> " + ex.Message);
-                throw new Exception(ex.Message);
+                throw new Exception("Error in checking linked server - existsLinkedServer. Error Message -> " + ex.Message);
             }
         }
 
@@ -1135,14 +1200,12 @@ namespace JobZoom.Core.DataMining
                 }
                 else
                 {
-                    Console.WriteLine("Linked server doesn't exist!");
-                    return false;
+                    throw new Exception("Linked server doesn't exist!");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in deleting linked server - deleteLinkedServer. Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error in deleting linked server - deleteLinkedServer. Error Message -> " + ex.Message);
             }
 
         }
@@ -1155,7 +1218,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="DatabaseConnectionString">Database Server Connection String (Database Engine)</param>
         /// <param name="strQuery">Query to execute</param>
         /// <returns>True if exexute sucessfully and reverse</returns>
-        private static bool executeQuery(string DatabaseConnectionString, string strQuery)
+        public static bool executeQuery(string DatabaseConnectionString, string strQuery)
         {
             try
             {
@@ -1168,96 +1231,20 @@ namespace JobZoom.Core.DataMining
 
                 SqlCommand command = objConnection.CreateCommand();
                 command.CommandText = strQuery;
+                command.CommandTimeout = 0;
                 command.ExecuteNonQuery();
+                objConnection.Dispose();
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - executeQuery " + strQuery + ". Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error - executeQuery " + strQuery + ". Error Message -> " + ex.Message);
             }
         }
         #endregion
 
         #endregion Mining Database Generation.
 
-        #region Algorithm Parameters
-
-        public sealed class DecisionTreeAlgorithmParameters
-        {
-            private int _HoldoutMaxPercent = 10; //Default .Net 30%
-            private int _SCORE_METHOD = 4; //Entropy (1), Bayesian with K2 Prior (2), or Bayesian Dirichlet Equivalent (BDE) Prior (4 - .Net Default)
-            private float _COMPLEXITY_PENALTY = 0.1f; //Default 0.5
-            private int _SPLIT_METHOD = 3; //.Net Default 3
-            private int _MAXIMUM_INPUT_ATTRIBUTES = 255; //.Net Default 255
-            private int _MAXIMUM_OUTPUT_ATTRIBUTES = 255; //.NetDefault 255
-            private float _MINIMUM_SUPPORT = 0.05f; //.NetDefault 10
-
-            /// <summary>
-            /// Holdout Max Percent - Default is 10 (10%)
-            /// </summary>
-            public int HoldoutMaxPercent { get { return _HoldoutMaxPercent; } }
-
-            /// <summary>
-            /// SCORE_METHOD value must be 1 / 2 / 4 (default)
-            /// </summary>
-            public int SCORE_METHOD { get { return _SCORE_METHOD; } }
-
-            /// <summary>
-            /// COMPLEXITY_PENALTY - default: 0.1
-            /// </summary>
-            public float COMPLEXITY_PENALTY { get { return _COMPLEXITY_PENALTY; } }
-
-            /// <summary>
-            /// SPLIT_METHOD - default 3
-            /// </summary>
-            public int SPLIT_METHOD { get { return _SPLIT_METHOD; } }
-
-            /// <summary>
-            /// MAXIMUM_INPUT_ATTRIBUTES - default 255
-            /// </summary>
-            public int MAXIMUM_INPUT_ATTRIBUTES { get { return _MAXIMUM_INPUT_ATTRIBUTES; } }
-
-            /// <summary>
-            /// MAXIMUM_OUTPUT_ATTRIBUTES - default 255
-            /// </summary>
-            public int MAXIMUM_OUTPUT_ATTRIBUTES { get { return _MAXIMUM_OUTPUT_ATTRIBUTES; } }
-
-            /// <summary>
-            /// MINIMUM_SUPPORT - default 0.05
-            /// </summary>
-            public float MINIMUM_SUPPORT { get { return _MINIMUM_SUPPORT; } }
-
-            public DecisionTreeAlgorithmParameters(int HoldoutMaxPercent, int SCORE_METHOD, float COMPLEXITY_PENALTY, int SPLIT_METHOD, int MAXIMUM_INPUT_ATTRIBUTES, int MAXIMUM_OUTPUT_ATTRIBUTES, float MINIMUM_SUPPORT)
-            {
-                if (SCORE_METHOD != 1 || SCORE_METHOD != 2 || SCORE_METHOD != 4)
-                {
-                    SCORE_METHOD = 4;
-                }
-                _HoldoutMaxPercent = HoldoutMaxPercent;
-                _SCORE_METHOD = SCORE_METHOD;
-                _COMPLEXITY_PENALTY = COMPLEXITY_PENALTY;
-                _SPLIT_METHOD = SPLIT_METHOD;
-                _MAXIMUM_INPUT_ATTRIBUTES = MAXIMUM_INPUT_ATTRIBUTES;
-                _MAXIMUM_OUTPUT_ATTRIBUTES = MAXIMUM_OUTPUT_ATTRIBUTES;
-                _MINIMUM_SUPPORT = MINIMUM_SUPPORT;
-            }
-
-            /// <summary>
-            /// DecisionTree Mining with default AlgorithmParameters
-            /// </summary>
-            public DecisionTreeAlgorithmParameters()
-            {
-                _HoldoutMaxPercent = 10;
-                _SCORE_METHOD = 4;
-                _COMPLEXITY_PENALTY = 0.1f;
-                _SPLIT_METHOD = 3;
-                _MAXIMUM_INPUT_ATTRIBUTES = 255;
-                _MAXIMUM_OUTPUT_ATTRIBUTES = 255;
-                _MINIMUM_SUPPORT = 0.05f;
-            }
-        }
-
-        #endregion
+        
     }
 }

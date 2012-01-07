@@ -4,31 +4,27 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 
-namespace JobZoom.Core.DataMining
+namespace JobZoom.Core.Framework.DataMining
 {
-    class ExportViewToMining
+    public class ExportViewToMining
     {
 
-        static void Main(string[] args)
-        {
-            string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            string TargetServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+        //static void Main(string[] args)
+        //{
+        //    string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+        //    string TargetServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
 
-            ExportJobs(MainServerConnectionString, TargetServerConnectionString);
-
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadLine();
-        }
-
+        //    ExportJobs(MainServerConnectionString, TargetServerConnectionString);
+        //}
         /// <summary>
-        /// Export all jobs to view (use Pivot Transformation)
+        /// Export all profiles to view (use Pivot Transformation)
         /// </summary>
         /// <param name="MainServerConnectionString">Source Database Server</param>
         /// <param name="TargetServerConnectionString">Target Database Server</param>
         /// <param name="strJobTitles">Job Titles Array</param>
         /// <param name="strSPName">Store Procedure name</param>
         /// <param name="strPrefix">Prefix</param>
-        public static void ExportJobs(string MainServerConnectionString, string TargetServerConnectionString, string[] strJobTitles = null, string strSPName = "GetPivotProfile", string strPrefix = "PF")
+        public static void Export(string MainServerConnectionString, string TargetServerConnectionString, string[] strJobTitles = null, string strSPName = "GetPivotJob", string strPrefix = "JB")
         {
             try
             {
@@ -64,7 +60,7 @@ namespace JobZoom.Core.DataMining
         /// <param name="strJobTitles">Job Titles Array</param>
         /// <param name="strSPName">Store Procedure name</param>
         /// <param name="strPrefix">Prefix</param>
-        public static void ExportProfiles(string DatabaseConnectionString, string[] strJobTitles, string strSPName = "GetPivotProfile", string strPrefix = "PF")
+        public static void Export(string DatabaseConnectionString, string[] strJobTitles, string strSPName = "GetPivotJob", string strPrefix = "JB")
         {
             try
             {
@@ -81,7 +77,7 @@ namespace JobZoom.Core.DataMining
             {
                 throw ex;
             }
-        }        
+        }    
 
         #region Database Engine Query
         /// <summary>
@@ -111,8 +107,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - executeQuery. Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error - executeQuery. Error Message -> " + ex.Message);
             }
         }
 
@@ -160,8 +155,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - executeQuery. Error Message -> " + ex.Message);
-                return null;
+                throw new Exception("Error - executeQuery. Error Message -> " + ex.Message);
             }
         }
         #endregion
@@ -194,14 +188,12 @@ namespace JobZoom.Core.DataMining
                 }
                 else
                 {
-                    Console.WriteLine("Linked server existed!");
-                    return false;
+                    throw new Exception("Linked server existed!");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in creating linked server - createLinkedServer. Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error in creating linked server - createLinkedServer. Error Message -> " + ex.Message);
             }
         }
 
@@ -227,8 +219,7 @@ namespace JobZoom.Core.DataMining
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in checking linked server - existsLinkedServer. Error Message -> " + ex.Message);
-                throw new Exception(ex.Message);
+                throw new Exception("Error in checking linked server - existsLinkedServer. Error Message -> " + ex.Message);
             }
         }
 
@@ -255,14 +246,12 @@ namespace JobZoom.Core.DataMining
                 }
                 else
                 {
-                    Console.WriteLine("Linked server doesn't exist!");
-                    return false;
+                    throw new Exception("Linked server doesn't exist!");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error in deleting linked server - deleteLinkedServer. Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error in deleting linked server - deleteLinkedServer. Error Message -> " + ex.Message);
             }
 
         }
@@ -289,12 +278,12 @@ namespace JobZoom.Core.DataMining
                 SqlCommand command = objConnection.CreateCommand();
                 command.CommandText = strQuery;
                 command.ExecuteNonQuery();
+                objConnection.Dispose();
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error - executeQuery " + strQuery + ". Error Message -> " + ex.Message);
-                return false;
+                throw new Exception("Error - executeQuery " + strQuery + ". Error Message -> " + ex.Message);
             }
         }
         #endregion

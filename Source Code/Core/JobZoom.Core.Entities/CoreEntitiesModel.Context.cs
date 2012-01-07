@@ -25,9 +25,9 @@ namespace JobZoom.Core.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<DecisionTreeNode> DecisionTreeNodes { get; set; }
-        public DbSet<DecisionTreeNodeDistribution> DecisionTreeNodeDistributions { get; set; }
         public DbSet<SimilarityTerm> SimilarityTerms { get; set; }
         public DbSet<TagAttribute> TagAttributes { get; set; }
+        public DbSet<DecisionTreeNode> DecisionTreeNodes { get; set; }
+        public DbSet<DecisionTreeNodeDistribution> DecisionTreeNodeDistributions { get; set; }
     }
 }

@@ -14,13 +14,13 @@ namespace JobZoom.Core.Entities
     
     public partial class DecisionTreeNodeDistribution
     {
-        public string NODEID { get; set; }
+        public string NODE_ID { get; set; }
         public string ATTRIBUTE_NAME { get; set; }
         public string ATTRIBUTE_VALUE { get; set; }
-        public Nullable<double> SUPPORT { get; set; }
-        public Nullable<double> PROBABILITY { get; set; }
-        public Nullable<double> VARIANCE { get; set; }
-        public Nullable<int> VALUETYPE { get; set; }
+        public double SUPPORT { get; set; }
+        public double PROBABILITY { get; set; }
+        public double VARIANCE { get; set; }
+        public int VALUETYPE { get; set; }
     
         public virtual DecisionTreeNode DecisionTreeNode { get; set; }
     }

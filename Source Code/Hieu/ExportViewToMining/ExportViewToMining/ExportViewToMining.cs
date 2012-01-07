@@ -14,7 +14,8 @@ namespace ExportViewToMining
             string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
             string TargetServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
 
-            ExportJobs(MainServerConnectionString, TargetServerConnectionString);
+            Export(MainServerConnectionString, TargetServerConnectionString, null, "GetPivotProfile", "PF");
+            Export(MainServerConnectionString, TargetServerConnectionString, null, "GetPivotJob", "JB");
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadLine();
@@ -28,7 +29,7 @@ namespace ExportViewToMining
         /// <param name="strJobTitles">Job Titles Array</param>
         /// <param name="strSPName">Store Procedure name</param>
         /// <param name="strPrefix">Prefix</param>
-        public static void ExportJobs(string MainServerConnectionString, string TargetServerConnectionString, string[] strJobTitles = null, string strSPName = "GetPivotProfile", string strPrefix = "PF")
+        public static void Export(string MainServerConnectionString, string TargetServerConnectionString, string[] strJobTitles = null, string strSPName = "GetPivotJob", string strPrefix = "JB")
         {
             try
             {
@@ -64,7 +65,7 @@ namespace ExportViewToMining
         /// <param name="strJobTitles">Job Titles Array</param>
         /// <param name="strSPName">Store Procedure name</param>
         /// <param name="strPrefix">Prefix</param>
-        public static void ExportProfiles(string DatabaseConnectionString, string[] strJobTitles, string strSPName = "GetPivotProfile", string strPrefix = "PF")
+        public static void Export(string DatabaseConnectionString, string[] strJobTitles, string strSPName = "GetPivotJob", string strPrefix = "JB")
         {
             try
             {

@@ -35,6 +35,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Library\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AnalysisServices, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Library\Microsoft.AnalysisServices.DLL</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -48,7 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataMining\DecisionTreeDataStructure.cs" />
+    <Compile Include="DataMining\enumAttributeValue.cs" />
+    <Compile Include="DataMining\enumCompareType.cs" />
+    <Compile Include="DataMining\DecisionTreeAlgorithmParameters.cs" />
+    <Compile Include="DataMining\DecisionTreeAnalysis.cs" />
+    <Compile Include="DataMining\DecisionTreeAnalysisResult.cs" />
+    <Compile Include="DataMining\enumDecisionTreeNodeType.cs" />
     <Compile Include="DataMining\ExportViewToMining.cs" />
     <Compile Include="DataMining\MiningDatabaseGenerator.cs" />
     <Compile Include="FlexibleAttributes\AttributeManager.cs" />

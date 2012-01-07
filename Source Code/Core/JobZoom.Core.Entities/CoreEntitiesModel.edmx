@@ -4,25 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JobZoomCoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="JobZoomCoreModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="JobZoomCoreModelStoreContainer">
           <EntitySet Name="DecisionTreeNode" EntityType="JobZoomCoreModel.Store.DecisionTreeNode" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DecisionTreeNodeDistribution" EntityType="JobZoomCoreModel.Store.DecisionTreeNodeDistribution" store:Type="Tables" store:Schema="dbo" store:Name="DecisionTreeNodeDistribution">
-            <DefiningQuery>SELECT 
-      [DecisionTreeNodeDistribution].[NODEID] AS [NODEID], 
-      [DecisionTreeNodeDistribution].[ATTRIBUTE_NAME] AS [ATTRIBUTE_NAME], 
-      [DecisionTreeNodeDistribution].[ATTRIBUTE_VALUE] AS [ATTRIBUTE_VALUE], 
-      [DecisionTreeNodeDistribution].[SUPPORT] AS [SUPPORT], 
-      [DecisionTreeNodeDistribution].[PROBABILITY] AS [PROBABILITY], 
-      [DecisionTreeNodeDistribution].[VARIANCE] AS [VARIANCE], 
-      [DecisionTreeNodeDistribution].[VALUETYPE] AS [VALUETYPE]
-      FROM [dbo].[DecisionTreeNodeDistribution] AS [DecisionTreeNodeDistribution]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="DecisionTreeNodeDistribution" EntityType="JobZoomCoreModel.Store.DecisionTreeNodeDistribution" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SimilarityTerm" EntityType="JobZoomCoreModel.Store.SimilarityTerm" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TagAttribute" EntityType="JobZoomCoreModel.Store.TagAttribute" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__DecisionT__NODEI__145C0A3F" Association="JobZoomCoreModel.Store.FK__DecisionT__NODEI__145C0A3F">
+          <AssociationSet Name="FK_Node_NodeDistribution" Association="JobZoomCoreModel.Store.FK_Node_NodeDistribution">
             <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
             <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistribution" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentNode_Node" Association="JobZoomCoreModel.Store.FK_ParentNode_Node">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNode" />
+            <End Role="DecisionTreeNode1" EntitySet="DecisionTreeNode" />
           </AssociationSet>
           <AssociationSet Name="FK_TagAttribute_TagAttribute" Association="JobZoomCoreModel.Store.FK_TagAttribute_TagAttribute">
             <End Role="TagAttribute" EntitySet="TagAttribute" />
@@ -31,38 +25,37 @@
         </EntityContainer>
         <EntityType Name="DecisionTreeNode">
           <Key>
-            <PropertyRef Name="NODEID" />
+            <PropertyRef Name="NODE_ID" />
           </Key>
-          <Property Name="NODEID" Type="varchar" Nullable="false" MaxLength="100" />
-          <Property Name="NODE_TYPE" Type="int" />
+          <Property Name="NODE_ID" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MODEL_NAME" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="NODE_TYPE" Type="int" Nullable="false" />
           <Property Name="NODE_CAPTION" Type="nvarchar" MaxLength="256" />
-          <Property Name="CHILDREN_CARDINALITY" Type="int" />
-          <Property Name="PARENTID" Type="varchar" MaxLength="100" />
+          <Property Name="CHILDREN_CARDINALITY" Type="int" Nullable="false" />
+          <Property Name="PARENT_ID" Type="varchar" MaxLength="100" />
           <Property Name="NODE_DESCRIPTION" Type="ntext" />
           <Property Name="NODE_RULE" Type="ntext" />
           <Property Name="MARGINAL_RULE" Type="ntext" />
-          <Property Name="NODE_PROBABILITY" Type="float" />
+          <Property Name="NODE_PROBABILITY" Type="float" Nullable="false" />
           <Property Name="MARGINAL_PROBABILITY" Type="float" />
-          <Property Name="NODE_SUPPORT" Type="float" />
+          <Property Name="NODE_SUPPORT" Type="float" Nullable="false" />
           <Property Name="MSOLAP_MODEL_COLUMN" Type="nvarchar" MaxLength="256" />
           <Property Name="MSOLAP_NODE_SCORE" Type="float" />
           <Property Name="MSOLAP_NODE_SHORT_CAPTION" Type="nvarchar" MaxLength="256" />
           <Property Name="ATTRIBUTE_NAME" Type="nvarchar" MaxLength="256" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'JobZoom.dbo.DecisionTreeNodeDistribution' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
         <EntityType Name="DecisionTreeNodeDistribution">
           <Key>
-            <PropertyRef Name="NODEID" />
+            <PropertyRef Name="NODE_ID" />
+            <PropertyRef Name="ATTRIBUTE_VALUE" />
           </Key>
-          <Property Name="NODEID" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="NODE_ID" Type="varchar" Nullable="false" MaxLength="100" />
           <Property Name="ATTRIBUTE_NAME" Type="nvarchar" MaxLength="256" />
-          <Property Name="ATTRIBUTE_VALUE" Type="nvarchar" MaxLength="7" />
-          <Property Name="SUPPORT" Type="float" />
-          <Property Name="PROBABILITY" Type="float" />
-          <Property Name="VARIANCE" Type="float" />
-          <Property Name="VALUETYPE" Type="int" />
+          <Property Name="ATTRIBUTE_VALUE" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="SUPPORT" Type="float" Nullable="false" />
+          <Property Name="PROBABILITY" Type="float" Nullable="false" />
+          <Property Name="VARIANCE" Type="float" Nullable="false" />
+          <Property Name="VALUETYPE" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SimilarityTerm">
           <Key>
@@ -87,23 +80,35 @@
           <Property Name="ParentName" Type="nvarchar" MaxLength="256" />
           <Property Name="Weight" Type="smallint" />
           <Property Name="Required" Type="bit" />
-          <Property Name="ValueType" Type="nvarchar" MaxLength="1" />
+          <Property Name="ValueType" Type="nvarchar" MaxLength="10" />
           <Property Name="TagValueMetric" Type="nvarchar" MaxLength="256" />
-          <Property Name="Criteria" Type="nvarchar" MaxLength="1" />
+          <Property Name="Criteria" Type="nvarchar" MaxLength="10" />
           <Property Name="TableReference" Type="varchar" MaxLength="128" />
           <Property Name="Attachment" Type="nvarchar" MaxLength="200" />
           <Property Name="ModifiedDate" Type="datetime" />
           <Property Name="Status" Type="varchar" MaxLength="128" />
         </EntityType>
-        <Association Name="FK__DecisionT__NODEI__145C0A3F">
+        <Association Name="FK_Node_NodeDistribution">
           <End Role="DecisionTreeNode" Type="JobZoomCoreModel.Store.DecisionTreeNode" Multiplicity="1" />
-          <End Role="DecisionTreeNodeDistribution" Type="JobZoomCoreModel.Store.DecisionTreeNodeDistribution" Multiplicity="0..1" />
+          <End Role="DecisionTreeNodeDistribution" Type="JobZoomCoreModel.Store.DecisionTreeNodeDistribution" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DecisionTreeNode">
-              <PropertyRef Name="NODEID" />
+              <PropertyRef Name="NODE_ID" />
             </Principal>
             <Dependent Role="DecisionTreeNodeDistribution">
-              <PropertyRef Name="NODEID" />
+              <PropertyRef Name="NODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentNode_Node">
+          <End Role="DecisionTreeNode" Type="JobZoomCoreModel.Store.DecisionTreeNode" Multiplicity="0..1" />
+          <End Role="DecisionTreeNode1" Type="JobZoomCoreModel.Store.DecisionTreeNode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNode1">
+              <PropertyRef Name="PARENT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -119,59 +124,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JobZoomCoreModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="JobZoomCoreEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DecisionTreeNodes" EntityType="JobZoomCoreModel.DecisionTreeNode" />
-          <EntitySet Name="DecisionTreeNodeDistributions" EntityType="JobZoomCoreModel.DecisionTreeNodeDistribution" />
           <EntitySet Name="SimilarityTerms" EntityType="JobZoomCoreModel.SimilarityTerm" />
           <EntitySet Name="TagAttributes" EntityType="JobZoomCoreModel.TagAttribute" />
-          <AssociationSet Name="FK__DecisionT__NODEI__145C0A3F" Association="JobZoomCoreModel.FK__DecisionT__NODEI__145C0A3F">
-            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
-            <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistributions" />
-          </AssociationSet>
           <AssociationSet Name="FK_TagAttribute_TagAttribute" Association="JobZoomCoreModel.FK_TagAttribute_TagAttribute">
             <End Role="TagAttribute" EntitySet="TagAttributes" />
             <End Role="TagAttribute1" EntitySet="TagAttributes" />
           </AssociationSet>
+          <EntitySet Name="DecisionTreeNodes" EntityType="JobZoomCoreModel.DecisionTreeNode" />
+          <EntitySet Name="DecisionTreeNodeDistributions" EntityType="JobZoomCoreModel.DecisionTreeNodeDistribution" />
+          <AssociationSet Name="FK_Node_NodeDistribution" Association="JobZoomCoreModel.FK_Node_NodeDistribution">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
+            <End Role="DecisionTreeNodeDistribution" EntitySet="DecisionTreeNodeDistributions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentNode_Node" Association="JobZoomCoreModel.FK_ParentNode_Node">
+            <End Role="DecisionTreeNode" EntitySet="DecisionTreeNodes" />
+            <End Role="DecisionTreeNode1" EntitySet="DecisionTreeNodes" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="DecisionTreeNode">
-          <Key>
-            <PropertyRef Name="NODEID" />
-          </Key>
-          <Property Name="NODEID" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="NODE_TYPE" Type="Int32" />
-          <Property Name="NODE_CAPTION" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="CHILDREN_CARDINALITY" Type="Int32" />
-          <Property Name="PARENTID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="NODE_DESCRIPTION" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="NODE_RULE" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="MARGINAL_RULE" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="NODE_PROBABILITY" Type="Double" />
-          <Property Name="MARGINAL_PROBABILITY" Type="Double" />
-          <Property Name="NODE_SUPPORT" Type="Double" />
-          <Property Name="MSOLAP_MODEL_COLUMN" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="MSOLAP_NODE_SCORE" Type="Double" />
-          <Property Name="MSOLAP_NODE_SHORT_CAPTION" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="ATTRIBUTE_NAME" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="DecisionTreeNodeDistribution" Relationship="JobZoomCoreModel.FK__DecisionT__NODEI__145C0A3F" FromRole="DecisionTreeNode" ToRole="DecisionTreeNodeDistribution" />
-        </EntityType>
-        <EntityType Name="DecisionTreeNodeDistribution">
-          <Key>
-            <PropertyRef Name="NODEID" />
-          </Key>
-          <Property Name="NODEID" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="ATTRIBUTE_NAME" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="ATTRIBUTE_VALUE" Type="String" MaxLength="7" Unicode="true" FixedLength="false" />
-          <Property Name="SUPPORT" Type="Double" />
-          <Property Name="PROBABILITY" Type="Double" />
-          <Property Name="VARIANCE" Type="Double" />
-          <Property Name="VALUETYPE" Type="Int32" />
-          <NavigationProperty Name="DecisionTreeNode" Relationship="JobZoomCoreModel.FK__DecisionT__NODEI__145C0A3F" FromRole="DecisionTreeNodeDistribution" ToRole="DecisionTreeNode" />
-        </EntityType>
         <EntityType Name="SimilarityTerm">
           <Key>
             <PropertyRef Name="ID" />
@@ -205,18 +179,6 @@
           <NavigationProperty Name="TagAttribute1" Relationship="JobZoomCoreModel.FK_TagAttribute_TagAttribute" FromRole="TagAttribute" ToRole="TagAttribute1" />
           <NavigationProperty Name="TagAttribute2" Relationship="JobZoomCoreModel.FK_TagAttribute_TagAttribute" FromRole="TagAttribute1" ToRole="TagAttribute" />
         </EntityType>
-        <Association Name="FK__DecisionT__NODEI__145C0A3F">
-          <End Role="DecisionTreeNode" Type="JobZoomCoreModel.DecisionTreeNode" Multiplicity="1" />
-          <End Role="DecisionTreeNodeDistribution" Type="JobZoomCoreModel.DecisionTreeNodeDistribution" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="DecisionTreeNode">
-              <PropertyRef Name="NODEID" />
-            </Principal>
-            <Dependent Role="DecisionTreeNodeDistribution">
-              <PropertyRef Name="NODEID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TagAttribute_TagAttribute">
           <End Role="TagAttribute" Type="JobZoomCoreModel.TagAttribute" Multiplicity="0..1" />
           <End Role="TagAttribute1" Type="JobZoomCoreModel.TagAttribute" Multiplicity="*" />
@@ -229,38 +191,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DecisionTreeNode">
+          <Key>
+            <PropertyRef Name="NODE_ID" />
+          </Key>
+          <Property Type="String" Name="NODE_ID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MODEL_NAME" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NODE_TYPE" Nullable="false" />
+          <Property Type="String" Name="NODE_CAPTION" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CHILDREN_CARDINALITY" Nullable="false" />
+          <Property Type="String" Name="PARENT_ID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NODE_DESCRIPTION" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NODE_RULE" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MARGINAL_RULE" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="NODE_PROBABILITY" Nullable="false" />
+          <Property Type="Double" Name="MARGINAL_PROBABILITY" />
+          <Property Type="Double" Name="NODE_SUPPORT" Nullable="false" />
+          <Property Type="String" Name="MSOLAP_MODEL_COLUMN" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="MSOLAP_NODE_SCORE" />
+          <Property Type="String" Name="MSOLAP_NODE_SHORT_CAPTION" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ATTRIBUTE_NAME" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DecisionTreeNodeDistributions" Relationship="JobZoomCoreModel.FK_Node_NodeDistribution" FromRole="DecisionTreeNode" ToRole="DecisionTreeNodeDistribution" />
+          <NavigationProperty Name="DecisionTreeNode_Childs" Relationship="JobZoomCoreModel.FK_ParentNode_Node" FromRole="DecisionTreeNode" ToRole="DecisionTreeNode1" />
+          <NavigationProperty Name="DecisionTreeNode_Parent" Relationship="JobZoomCoreModel.FK_ParentNode_Node" FromRole="DecisionTreeNode1" ToRole="DecisionTreeNode" />
+        </EntityType>
+        <EntityType Name="DecisionTreeNodeDistribution">
+          <Key>
+            <PropertyRef Name="NODE_ID" />
+            <PropertyRef Name="ATTRIBUTE_VALUE" />
+          </Key>
+          <Property Type="String" Name="NODE_ID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ATTRIBUTE_NAME" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ATTRIBUTE_VALUE" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="SUPPORT" Nullable="false" />
+          <Property Type="Double" Name="PROBABILITY" Nullable="false" />
+          <Property Type="Double" Name="VARIANCE" Nullable="false" />
+          <Property Type="Int32" Name="VALUETYPE" Nullable="false" />
+          <NavigationProperty Name="DecisionTreeNode" Relationship="JobZoomCoreModel.FK_Node_NodeDistribution" FromRole="DecisionTreeNodeDistribution" ToRole="DecisionTreeNode" />
+        </EntityType>
+        <Association Name="FK_Node_NodeDistribution">
+          <End Type="JobZoomCoreModel.DecisionTreeNode" Role="DecisionTreeNode" Multiplicity="1" />
+          <End Type="JobZoomCoreModel.DecisionTreeNodeDistribution" Role="DecisionTreeNodeDistribution" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNodeDistribution">
+              <PropertyRef Name="NODE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentNode_Node">
+          <End Type="JobZoomCoreModel.DecisionTreeNode" Role="DecisionTreeNode" Multiplicity="0..1" />
+          <End Type="JobZoomCoreModel.DecisionTreeNode" Role="DecisionTreeNode1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecisionTreeNode">
+              <PropertyRef Name="NODE_ID" />
+            </Principal>
+            <Dependent Role="DecisionTreeNode1">
+              <PropertyRef Name="PARENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="JobZoomCoreModelStoreContainer" CdmEntityContainer="JobZoomCoreEntities">
-          <EntitySetMapping Name="DecisionTreeNodes"><EntityTypeMapping TypeName="JobZoomCoreModel.DecisionTreeNode"><MappingFragment StoreEntitySet="DecisionTreeNode">
-            <ScalarProperty Name="NODEID" ColumnName="NODEID" />
-            <ScalarProperty Name="NODE_TYPE" ColumnName="NODE_TYPE" />
-            <ScalarProperty Name="NODE_CAPTION" ColumnName="NODE_CAPTION" />
-            <ScalarProperty Name="CHILDREN_CARDINALITY" ColumnName="CHILDREN_CARDINALITY" />
-            <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
-            <ScalarProperty Name="NODE_DESCRIPTION" ColumnName="NODE_DESCRIPTION" />
-            <ScalarProperty Name="NODE_RULE" ColumnName="NODE_RULE" />
-            <ScalarProperty Name="MARGINAL_RULE" ColumnName="MARGINAL_RULE" />
-            <ScalarProperty Name="NODE_PROBABILITY" ColumnName="NODE_PROBABILITY" />
-            <ScalarProperty Name="MARGINAL_PROBABILITY" ColumnName="MARGINAL_PROBABILITY" />
-            <ScalarProperty Name="NODE_SUPPORT" ColumnName="NODE_SUPPORT" />
-            <ScalarProperty Name="MSOLAP_MODEL_COLUMN" ColumnName="MSOLAP_MODEL_COLUMN" />
-            <ScalarProperty Name="MSOLAP_NODE_SCORE" ColumnName="MSOLAP_NODE_SCORE" />
-            <ScalarProperty Name="MSOLAP_NODE_SHORT_CAPTION" ColumnName="MSOLAP_NODE_SHORT_CAPTION" />
-            <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="DecisionTreeNodeDistributions"><EntityTypeMapping TypeName="JobZoomCoreModel.DecisionTreeNodeDistribution"><MappingFragment StoreEntitySet="DecisionTreeNodeDistribution">
-            <ScalarProperty Name="NODEID" ColumnName="NODEID" />
-            <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
-            <ScalarProperty Name="ATTRIBUTE_VALUE" ColumnName="ATTRIBUTE_VALUE" />
-            <ScalarProperty Name="SUPPORT" ColumnName="SUPPORT" />
-            <ScalarProperty Name="PROBABILITY" ColumnName="PROBABILITY" />
-            <ScalarProperty Name="VARIANCE" ColumnName="VARIANCE" />
-            <ScalarProperty Name="VALUETYPE" ColumnName="VALUETYPE" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SimilarityTerms"><EntityTypeMapping TypeName="JobZoomCoreModel.SimilarityTerm"><MappingFragment StoreEntitySet="SimilarityTerm">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Keyword1" ColumnName="Keyword1" />
@@ -286,7 +284,42 @@
             <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
             <ScalarProperty Name="Status" ColumnName="Status" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="DecisionTreeNodes">
+            <EntityTypeMapping TypeName="JobZoomCoreModel.DecisionTreeNode">
+              <MappingFragment StoreEntitySet="DecisionTreeNode">
+                <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
+                <ScalarProperty Name="MSOLAP_NODE_SHORT_CAPTION" ColumnName="MSOLAP_NODE_SHORT_CAPTION" />
+                <ScalarProperty Name="MSOLAP_NODE_SCORE" ColumnName="MSOLAP_NODE_SCORE" />
+                <ScalarProperty Name="MSOLAP_MODEL_COLUMN" ColumnName="MSOLAP_MODEL_COLUMN" />
+                <ScalarProperty Name="NODE_SUPPORT" ColumnName="NODE_SUPPORT" />
+                <ScalarProperty Name="MARGINAL_PROBABILITY" ColumnName="MARGINAL_PROBABILITY" />
+                <ScalarProperty Name="NODE_PROBABILITY" ColumnName="NODE_PROBABILITY" />
+                <ScalarProperty Name="MARGINAL_RULE" ColumnName="MARGINAL_RULE" />
+                <ScalarProperty Name="NODE_RULE" ColumnName="NODE_RULE" />
+                <ScalarProperty Name="NODE_DESCRIPTION" ColumnName="NODE_DESCRIPTION" />
+                <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+                <ScalarProperty Name="CHILDREN_CARDINALITY" ColumnName="CHILDREN_CARDINALITY" />
+                <ScalarProperty Name="NODE_CAPTION" ColumnName="NODE_CAPTION" />
+                <ScalarProperty Name="NODE_TYPE" ColumnName="NODE_TYPE" />
+                <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
+                <ScalarProperty Name="NODE_ID" ColumnName="NODE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DecisionTreeNodeDistributions">
+            <EntityTypeMapping TypeName="JobZoomCoreModel.DecisionTreeNodeDistribution">
+              <MappingFragment StoreEntitySet="DecisionTreeNodeDistribution">
+                <ScalarProperty Name="VALUETYPE" ColumnName="VALUETYPE" />
+                <ScalarProperty Name="VARIANCE" ColumnName="VARIANCE" />
+                <ScalarProperty Name="PROBABILITY" ColumnName="PROBABILITY" />
+                <ScalarProperty Name="SUPPORT" ColumnName="SUPPORT" />
+                <ScalarProperty Name="ATTRIBUTE_VALUE" ColumnName="ATTRIBUTE_VALUE" />
+                <ScalarProperty Name="ATTRIBUTE_NAME" ColumnName="ATTRIBUTE_NAME" />
+                <ScalarProperty Name="NODE_ID" ColumnName="NODE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -308,21 +341,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="CoreEntitiesModel">
-        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNode" Width="1.5" PointX="2.75" PointY="1" Height="4.0956022135416656" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNodeDistribution" Width="1.5" PointX="5" PointY="1.75" Height="2.5571907552083331" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobZoomCoreModel.SimilarityTerm" Width="1.5" PointX="4.75" PointY="5.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobZoomCoreModel.SimilarityTerm" Width="1.5" PointX="2.5" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="JobZoomCoreModel.TagAttribute" Width="1.5" PointX="0.75" PointY="0.75" Height="4.6725065104166656" IsExpanded="true" />
-        <AssociationConnector Association="JobZoomCoreModel.FK__DecisionT__NODEI__145C0A3F" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.25" PointY="3.0285953776041667" />
-          <ConnectorPoint PointX="5" PointY="3.0285953776041667" />
-        </AssociationConnector>
         <AssociationConnector Association="JobZoomCoreModel.FK_TagAttribute_TagAttribute" ManuallyRouted="false">
           <ConnectorPoint PointX="1.2819230769230767" PointY="5.4225065104166656" />
           <ConnectorPoint PointX="1.2819230769230767" PointY="5.6725065104166656" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="5.6725065104166656" />
           <ConnectorPoint PointX="1.7284615384615383" PointY="5.4225065104166656" />
         </AssociationConnector>
-      </Diagram>
+        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNode" Width="2.625" PointX="3.625" PointY="2.75" Height="4.6725065104166665" />
+        <EntityTypeShape EntityType="JobZoomCoreModel.DecisionTreeNodeDistribution" Width="2.625" PointX="6.875" PointY="3" Height="2.5571907552083317" />
+        <AssociationConnector Association="JobZoomCoreModel.FK_Node_NodeDistribution" >
+          <ConnectorPoint PointX="6.25" PointY="4.2785953776041659" />
+          <ConnectorPoint PointX="6.875" PointY="4.2785953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="JobZoomCoreModel.FK_ParentNode_Node" >
+          <ConnectorPoint PointX="4.5558653846153847" PointY="7.4225065104166665" />
+          <ConnectorPoint PointX="4.5558653846153847" PointY="7.6725065104166674" />
+          <ConnectorPoint PointX="5.337307692307693" PointY="7.6725065104166674" />
+          <ConnectorPoint PointX="5.337307692307693" PointY="7.4225065104166665" />
+        </AssociationConnector>
+        </Diagram>
     </Diagrams>
   </Designer>
 </edmx:Edmx>
