@@ -200,5 +200,10 @@ namespace JobZoom.Web.Controllers
             JobGraphViewModel model = new JobGraphViewModel(id);
             return PartialView("GraphView", model);
         }
+
+        public ActionResult Weight(Guid id)
+        {
+            return View();
+        }
     }
 }
