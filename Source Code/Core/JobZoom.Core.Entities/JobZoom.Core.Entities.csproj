@@ -48,12 +48,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoreEntitiesModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreEntitiesModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CoreEntitiesModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CoreEntitiesModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CoreEntitiesModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DecisionTreeNode.cs">
+      <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DecisionTreeNodeDistribution.cs">
+      <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimilarityTerm.cs">
+      <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TagAttribute.cs">
+      <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -66,6 +88,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="CoreEntitiesModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CoreEntitiesModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="CoreEntitiesModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CoreEntitiesModel.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
