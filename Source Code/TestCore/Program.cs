@@ -14,9 +14,9 @@ namespace JobZoom.Core
     {
         static void Main(string[] args)
         {
-            string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
+            //string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+            //string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+            //string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
 
 
             //Console.WriteLine("Export View...");
@@ -28,7 +28,7 @@ namespace JobZoom.Core
 
 
             string[] att = new string[] { };
-            string[] ex_att = new string[] { "C#" };
+            string[] ex_att = new string[] {  };
             List<DecisionTreeAnalysisResult> results = new List<DecisionTreeAnalysisResult>();
             //results = getAnalysisResults("Developer Evangelist", CompareType.GreaterThanOrEqualTo, 0.5);
             results = DecisionTreeAnalysis.getAnalysisResults(DecisionTreeAnalysis.convertJobTitleNameToModelName("Developer Evangelist", "PF"), att, ex_att, CompareType.GreaterThanOrEqualTo, 0.5);
