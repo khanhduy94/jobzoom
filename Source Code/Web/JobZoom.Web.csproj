@@ -412,6 +412,7 @@
     <Content Include="Views\EmployerJob\Candidate.cshtml" />
     <Content Include="Views\EmployerEditJob\GraphView.cshtml" />
     <Content Include="Views\EmployerEditJob\Weight.cshtml" />
+    <Content Include="Views\EmployerEditJob\TagWeight.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

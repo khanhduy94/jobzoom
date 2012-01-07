@@ -7,6 +7,8 @@ using JobZoom.Business.Entities;
 using System.Data;
 using JobZoom.Web.Models;
 using JobZoom.Core.FlexibleAttributes;
+using JobZoom.Core.Taxonomy;
+using JobZoom.Core.Entities;
 
 namespace JobZoom.Web.Controllers
 {
@@ -203,7 +205,30 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Weight(Guid id)
         {
-            return View();
+            Hierarchy hierarchy = new Hierarchy();
+            Tag tag = hierarchy.GetHierarchicalTreeByObject(id);
+            return View(tag);
+        }
+
+        [HttpGet]
+        public ActionResult TagWeight(Guid id)
+        {           
+            JobZoomCoreEntities db = new JobZoomCoreEntities();
+            var tagAttribute = db.TagAttributes.FirstOrDefault(x => x.TagId == id);
+            return View(tagAttribute);
+        }
+
+        [HttpPost]
+        public ActionResult TagWeight(TagAttribute tagAttribute)
+        {
+            if (ModelState.IsValid)
+            {
+                JobZoomCoreEntities db = new JobZoomCoreEntities();
+                db.TagAttributes.Attach(tagAttribute);
+                db.Entry(tagAttribute).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Weight", new { id = tagAttribute.ObjectId });
         }
     }
 }
