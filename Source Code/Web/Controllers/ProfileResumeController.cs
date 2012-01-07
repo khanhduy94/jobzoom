@@ -13,6 +13,7 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Message = "aaa";
             return View();
         }
 
