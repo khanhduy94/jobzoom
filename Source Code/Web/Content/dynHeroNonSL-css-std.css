@@ -1,0 +1,694 @@
+﻿/**
+ * Shared Styles
+ */
+
+#hero { overflow: hidden; }
+
+#silverlightControlHost object { outline: none; }
+
+/* Ensure flying site nav floats atop the hero */
+.nav_main_sub,
+#HorizontalNavContent,
+#siteNav_Subnav,
+#siteNav #siteNav_Subnav .nav_main_sub_sub ul {
+	z-index: 2;				
+}
+
+
+div#dynHeroNonSL-wrapper {
+	width: 974px;
+	margin: 0 auto; 
+	position: relative; 
+	z-index: 1;
+}
+
+div#dynHeroNonSL-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-size: 1em;
+	z-index: 1;
+}
+
+/* Table style overrides */
+div#dynHeroNonSL-container table { width: auto; border: 0; border-collapse: collapse; }
+	div#dynHeroNonSL-container table th,
+	div#dynHeroNonSL-container table td {
+		padding: 0;
+		border: 0;
+		background: transparent;
+		vertical-align: top;
+	}
+
+
+div#dynHeroNonSL-container .hide,
+div#dynHeroNonSL-container .accessibilityText {
+	position: absolute;
+	left: -999999em;
+}
+div#dynHeroNonSL-container .show {
+	position: static;
+}
+
+
+div#dynHeroNonSL-container .clear {
+	clear: left;
+}
+
+#dynHeroNonSL-container div.heroWrapper {
+	margin: 0;
+	padding: 0;
+	width: 974px;
+	height: 274px; 
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+ul#dynHeroNonSL-tabs {
+	list-style-type: none;
+	position: relative;
+	top: 0;
+	left: -10px;
+	width: 984px;
+	margin: 0;
+	padding: 0;
+}
+
+
+ul#dynHeroNonSL-tabs li {
+	display: inline;
+	float: left;
+	width: 328px;
+	height: 27px;
+	text-align: center;
+	background: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab_inactive.png') no-repeat 0 0;
+	font: bold 1em 'Segoe UI', Verdana, Arial, sans-serif;
+	color: #808080;
+}
+ul#dynHeroNonSL-tabs li.here {
+	background: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab_active.png') no-repeat;
+	z-index: 1;
+	color: #a5d8ff;
+	position: relative;
+} 
+	ul#dynHeroNonSL-tabs li.here span  { color: #a5d8ff; }
+
+	ul#dynHeroNonSL-tabs li a:link,
+	ul#dynHeroNonSL-tabs li a:visited,
+	ul#dynHeroNonSL-tabs li a:hover {
+		display: block;
+		padding: 6px 0 7px;
+	}
+		
+	ul#dynHeroNonSL-tabs li a:link, ul#dynHeroNonSL-tabs li a:visited {
+		color: #808080;
+		outline: none;
+		text-decoration: none;
+	}
+	ul#dynHeroNonSL-tabs li.here a:link, ul#dynHeroNonSL-tabs li.here a:visited {
+		color: #a5d8ff;
+		outline: none;
+		text-decoration: none;
+	}
+	ul#dynHeroNonSL-tabs li a:hover,
+	ul#dynHeroNonSL-tabs li.here a:hover {
+	 	color: #fff;
+		outline: none;
+		text-decoration: underline;
+	}
+
+	ul#dynHeroNonSL-tabs li.tab1 { position: relative; top: 0; left: 10px; }
+	ul#dynHeroNonSL-tabs li.tab2 { position: relative; top: 0; left: 5px; }
+	ul#dynHeroNonSL-tabs li.tab3 {}
+
+
+#dynHeroNonSL-tabs li.here2 {
+	background: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab_active.png') no-repeat;
+	z-index: 1;
+	color: #a5d8ff;
+}
+		#dynHeroNonSL-tabs li.here2 a:link, 
+		#dynHeroNonSL-tabs li.here2 a:visited {
+			color: #a5d8ff;
+			text-decoration: none;
+			outline: none;
+		}
+
+/**
+ * TAB 1 STYLES
+ */
+
+div#dynHeroNonSL-tab1 {}
+
+/**
+ * Tab 1's BG image is randomized via dynHeroNonSL.js
+ * An inline <noscript> block in the HTML sets a fall-back BG image.
+ */
+#dynHeroNonSL-tab1 div.heroWrapper { background-color: #0b5095; }
+
+div#erpBox, 
+div#crmBox {
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 230px;
+	margin: 0;
+	padding: 0;
+	width: 610px;
+	height: 259px;
+	background: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/innerbox.gif') no-repeat;
+}
+
+#dynHeroNonSL-tab1 div.close {
+	display: inline;
+	float: right;
+	margin: 10px;
+	padding: 0;
+	width: 18px;
+	height: 20px;
+}
+
+div#erpBoxLeft, div#crmBoxLeft {
+	display: inline;
+	float: left;
+	margin: 10px 0 0 30px;
+	padding: 0;
+	width: 170px;
+	height: 185px;
+}
+div#erpBoxLeft h2, div#crmBoxLeft h2 {
+	font: bold 1.4em 'Segoe UI', Arial, sans-serif; 
+	color: #1669B7;
+	margin-bottom:-10px;
+}
+div#erpBoxLeft p, div#crmBoxLeft p {
+	font: 1em/16px 'Segoe UI', Verdana, Arial, sans-serif;
+	color: #787878;
+}
+div#erpBoxLeft a:link, div#erpBoxLeft a:visited, div#crmBoxLeft a:link, div#crmBoxLeft a:visited {
+	font: 1.2em 'Segoe UI', Arial, sans-serif;
+	color: #005CB2;
+	font-weight: bold;
+	text-decoration : none;
+}
+div#erpBoxLeft a:hover, div#crmBoxLeft a:hover {
+	text-decoration: underline;
+}
+
+div#erpBoxRight, div#crmBoxRight {
+	display: inline;
+	float: left;
+	margin: 10px 0 0 30px;
+	padding: 0;
+	width: 310px;
+	height: 185px;
+}
+div#erpBoxRight h3, div#crmBoxRight h3 {
+	font: normal 1.28em 'Segoe UI', Arial, sans-serif;
+	font-weight: 700; 
+	color: #686868;
+	margin-top: 0;
+	margin-bottom: -10px;
+}
+div#erpBoxRight p, div#crmBoxRight p {
+	font: 1em/16px 'Segoe UI', Verdana, Arial, sans-serif;
+	color: #787878;
+}
+div#erpBoxRight a:link, div#erpBoxRight a:visited, div#crmBoxRight a:link, div#crmBoxRight a:visited {
+	font: 1em 'Segoe UI', Verdana, Arial, sans-serif;
+	color: #005CB2;
+	font-weight: 500; 
+	text-decoration: none;
+}
+div#erpBoxRight a:hover, div#crmBoxRight a:hover {
+	text-decoration: underline;
+}
+div#erpBoxRight table  {
+	border: 0; border-collapse: collapse; margin-top: 20px;
+}
+div#crmBoxRight table  {
+	border: 0; border-collapse: collapse; margin-top: 20px;
+}
+div#erpBoxRight table tr, div#crmBoxRight table tr {
+	vertical-align: top;
+}
+div#erpBoxRight table td, div#crmBoxRight table td {
+	vertical-align: top; padding:1px;
+}
+div#erpBoxRight table img, div#crmBoxRight table img {
+	margin: 3px 3px 0 9px;
+}
+
+#dynHeroNonSL-tab1 ul.heroButtons {
+	position: relative;
+	top: 210px;
+	left: 370px;
+	height: 32px;
+	width: 360px;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	font: bold 1.15em 'Segoe UI', Verdana, Arial, sans-serif;
+}
+#dynHeroNonSL-tab1 ul.heroButtons li	 {
+		position: relative;
+		display: inline;
+		float: left;
+		overflow: hidden;	
+		margin: 0 30px 0 0; 
+		padding: 0;
+		background: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/button.png') no-repeat 0 0;
+	}
+	#dynHeroNonSL-tab1 ul.heroButtons li a:link,
+	#dynHeroNonSL-tab1 ul.heroButtons li a:visited,
+	#dynHeroNonSL-tab1 ul.heroButtons li a:hover,
+	#dynHeroNonSL-tab1 ul.heroButtons li.here a:link,
+	#dynHeroNonSL-tab1 ul.heroButtons li.here a:visited,
+	#dynHeroNonSL-tab1 ul.heroButtons li.here a:hover
+	{
+		display: block;
+		width: 150px;
+		height: 32px;
+		overflow: hidden;
+		cursor:  pointer;
+		color: #ffffff; 
+		text-decoration: none;
+	}
+	#dynHeroNonSL-tab1 ul.heroButtons li:hover,
+	#dynHeroNonSL-tab1 ul.heroButtons li.here {
+		background-position: 0 -32px;
+	}
+
+	#dynHeroNonSL-tab1 ul.heroButtons li span  {
+		position: absolute;
+		left: 0;
+		top: 5px;
+		width: 150px;
+		text-align: center;
+	}
+	
+	
+/**
+ * Tab 2 Styles
+ */
+div#dynHeroNonSL-tab2 {}
+#dynHeroNonSL-tab2 div.heroWrapper { 
+    width: 974px;
+	height: 274px;
+	overflow:hidden;
+}
+
+#tab2-p1 {width: 134px; height: 44px; margin: 132px 0 0 14px;}
+#tab2-p2 {width: 123px; height: 44px; margin: 200px 0 0 4px;}
+#tab2-p3 {width: 85px; height: 45px; margin: 131px 0 0 21px;}
+#tab2-p4 {width: 123px; height: 44px; margin: 190px 0 0 6px;}
+#tab2-p5 {width: 124px; height: 44px; margin: 138px 0 0 20px;}   
+     
+#dynHeroNonSL-tab2 
+{
+	background: #ffffff url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/bg_main1.jpg') no-repeat scroll 0 0;
+	width: 974px;
+	height: 274px;
+	overflow:hidden;
+}
+#dynHeroNonSL-tab2-summary {width: 298px; float: left;}
+#dynHeroNonSL-tab2-details {width: 672px; float: left;}
+#dynHeroNonSL-tab2-details h2, 
+#dynHeroNonSL-tab2-details a {font-family: Arial, sans-serif; font-size: 10px; line-height: 1.2em}
+#dynHeroNonSL-tab2-details h2 {margin: 6px 0 0 6px; font-weight: bold;}
+#dynHeroNonSL-tab2-details a, 
+#dynHeroNonSL-tab2-details h2 {font-size: 11px;}
+#dynHeroNonSL-tab2-details a, 
+#dynHeroNonSL-tab2-details a:visited {font-size: 12px;}
+#dynHeroNonSL-tab2-headline {margin: 22px 10px 17px 20px;}
+#dynHeroNonSL-tab2-summary-text {width: 230px; margin:0 30px 5px 30px;}
+.placard {float: left;}
+.placard-industry-text {margin: 0 0 0 6px;}
+.placard-unselected {background-color: #ffffff;}
+.placard-selected {background-color: #e59716; cursor:pointer;}
+a.industry-link-selected,
+a.industry-link-selected:visited, 
+a.industry-link-selected:hover { color: #ffffff; text-decoration: none; }
+/* 
+a.industry-link-selected span, 
+a.industry-link-selected:visited span, 
+a.industry-link-selected:hover span { color: #ffffff; text-decoration: underline; }
+ */
+a.industry-link-selected h2, 
+a.industry-link-selected:visited h2, 
+a.industry-link-selected:hover h2 { color: #000000; text-decoration: underline; }
+a.industry-link-unselected, 
+a.industry-link-unselected:visited, 
+a.industry-link-unselected:hover{ color: #e59716; text-decoration: none; }
+a.industry-link-unselected h2, 
+a.industry-link-unselected:visited h2, 
+a.industry-link-unselected:hover h2 { color: #000000; text-decoration: underline; }
+.summary-text { font-size: 12px; font-family: Arial, sans-serif; color: #000000; }
+
+
+/* Begin: Tab 2, 2nd Screen Styles */
+#dynHeroNonSL-tab2-subdetails{}
+
+#dynHeroNonSL-tab2-SubScreen{
+    display:none;
+    height: 274px;
+    min-height: 274px;
+    width: 974px;
+    min-width:974px;
+ }
+
+#dynHeroNonSL-tab2-SubScreen div{float:left;}
+
+#dynHeroNonSL-tab2-sub-SinglePerson
+{
+    position:relative;
+    display:block;
+    vertical-align: top;
+    float: left;
+    width: 223px;
+    min-width:223px;
+    height: 274px;
+    min-height: 274px;
+}
+
+#dynHeroNonSL-tab2-sub-SinglePerson-Inner
+{
+    display:none;
+    width: 223px;
+    min-width:223px;
+    height: 274px;
+    min-height: 274px;
+    background: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/person_prof.jpg') no-repeat scroll 0 0;
+}
+
+
+
+#tab2-sub-SinglePlacard1,
+#tab2-sub-SinglePlacard2,
+#tab2-sub-SinglePlacard3,
+#tab2-sub-SinglePlacard4,
+#tab2-sub-SinglePlacard5{width: 118px; height: 44px; margin: 0;padding:0 0 0 5px;position:absolute;top:215px;left:0;}
+
+
+
+#dynHeroNonSL-tab2-sub-PageContent
+{ 
+    display:block;
+    float: left;
+    width: 402px;
+    min-width:402px;
+    height: 274px;
+    min-height: 274px;
+    padding: 0 0 0 0;
+    vertical-align:bottom;
+}
+
+#dynHeroNonSL-tab2-sub-PageContentInner1,
+#dynHeroNonSL-tab2-sub-PageContentInner2,
+#dynHeroNonSL-tab2-sub-PageContentInner3,
+#dynHeroNonSL-tab2-sub-PageContentInner4,
+#dynHeroNonSL-tab2-sub-PageContentInner5
+{
+    display:none;
+    margin: 0;
+    width: 402px;
+    min-width:402px;
+    height: 274px;
+    min-height: 274px;
+    padding: 0;
+    vertical-align:bottom;
+    clear:both;  
+}
+
+#dynHeroNonSL-tab2-sub-PageContent-top1,
+#dynHeroNonSL-tab2-sub-PageContent-top2,
+#dynHeroNonSL-tab2-sub-PageContent-top3,
+#dynHeroNonSL-tab2-sub-PageContent-top4,
+#dynHeroNonSL-tab2-sub-PageContent-top5
+{
+    width: 402px;
+    min-width:402px;
+    height:100px;
+    min-height: 100px;
+    vertical-align:top;
+    clear:both;
+    margin:0;
+    padding:0;   
+}
+#dynHeroNonSL-tab2-sub-PageContent-top1{
+	background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/title_prof.jpg') no-repeat scroll 0 0;
+}
+   
+#dynHeroNonSL-tab2-sub-PageContent-top2
+{
+    background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/title_gov.jpg') no-repeat scroll 0 0;
+}
+#dynHeroNonSL-tab2-sub-PageContent-top3
+{
+    background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/title_financ.jpg') no-repeat scroll 0 0;
+}
+#dynHeroNonSL-tab2-sub-PageContent-top4
+{
+    background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/title_manuf.jpg') no-repeat scroll 0 0;   
+}
+#dynHeroNonSL-tab2-sub-PageContent-top5
+{
+    background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/title_retail.jpg') no-repeat scroll 0 0; 
+}
+
+.ctaButton
+{
+	background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/btn_getit_sml.png') no-repeat scroll 0 0;
+	width:77px;
+	min-width:77px;
+	height:24px;
+	min-height:24px;
+	font: normal normal bold .78em/.78em arial, sans-serif;
+	color: #ffffff;
+	text-decoration:none;
+	margin:0;
+	padding: 8px 0 0 24px;
+	z-index:2;
+	cursor:pointer;
+	}
+
+.ctaButton a
+{
+	color: #ffffff;
+	text-decoration:none;
+}
+
+.ctaButton a:hover
+{
+	color: #000;
+	text-decoration:none;
+}
+
+
+#dynHeroNonSL-tab2-sub-PageContent-btm1 table,
+#dynHeroNonSL-tab2-sub-PageContent-btm2 table,
+#dynHeroNonSL-tab2-sub-PageContent-btm3 table,
+#dynHeroNonSL-tab2-sub-PageContent-btm4 table,
+#dynHeroNonSL-tab2-sub-PageContent-btm5 table
+{
+	border:0;
+	padding:0;
+	margin:10px 0 0 0;
+	width:402px;
+	
+}
+
+.PageContent-table-left
+{
+	width: 302px;
+	padding: 0 5px 5px 0 !important;
+}
+.PageContent-table-left div
+{
+	font: normal normal normal 12px/14px arial, sans-serif;
+}
+
+.PageContent-table-right
+{
+	width: 100px;
+	vertical-align:top;
+	padding:0;
+	margin: 5px 0 0 0;
+}
+
+.cta3{
+	background:url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/tab2/dot_arrow_bg.png') no-repeat scroll 0 0;
+	background-position: left center;
+	background-color: Transparent !important;
+	margin: 10px 0 0 0;
+	padding: 0 20px 0 30px;
+	font: normal normal normal 12px/14px arial, sans-serif;
+	color: #FE5A1A;
+	width: 360px;
+}
+
+.cta3 a
+{
+	text-decoration:none;
+	font: normal normal normal 12px/14px arial, sans-serif;
+	color: #FE5A1A;
+}
+
+.cta3 a:hover
+{
+	font: normal normal normal 12px/14px arial, sans-serif;
+	text-decoration:none;
+	color:#10589A;
+}
+
+#dynHeroNonSL-tab2-sub-ManyPeople
+{
+    position: relative; 
+    display:none;
+    width:349px;
+    min-width:349px;
+    height:274px;
+    min-height:274px;
+    border: 0px solid blue;
+}
+
+#dynHeroNonSL-tab2-sub-ManyPeople a {font: normal normal bold 8px/10px arial,sans-serif;color:#e59716;}
+#dynHeroNonSL-tab2-sub-ManyPeople span{padding: 2px 0 2px 2px;} 
+#dynHeroNonSL-tab2-sub-ManyPeople h2 {margin: 2px 0 2px 2px; font: normal normal bold 8px/10px arial,sans-serif;color:#000000;}
+
+
+
+#tab2-sub-p1 {cursor:pointer;width: 68px; height: 40px; margin: 0; padding:2px 0 0 5px;position:absolute;top:120px;left:10px;display:none;}
+#tab2-sub-p2 {cursor:pointer;width: 66px; height: 30px; margin: 0;padding:2px 0 0 5px;position:absolute;top:125px;left:133px;display:none;}
+#tab2-sub-p3 {cursor:pointer;width: 82px; height: 34px; margin: 0;padding:2px 0 0 5px;position:absolute;top:108px;left:260px;display:none;}
+#tab2-sub-p4 {cursor:pointer;width: 80px; height: 32px; margin: 0;padding:2px 0 0 5px;position:absolute;top:206px;left:70px;display:none;}
+#tab2-sub-p5 {cursor:pointer;width: 63px; height: 42px; margin: 0;padding:2px 0 0 5px;position:absolute;top:182px;left:198px;display:none;}  
+
+/* End: Tab 2, 2nd Screen Styles */
+
+
+/* End: Tab 2 Styles */
+
+/**
+ * Tab 3 Styles
+ * Each "pane" is 
+ */
+ 
+div#dynHeroNonSL-tab3 {
+	position: relative;
+}
+
+/* div.heroWrapper contains text & accessibility content - it's layered on top of div.background */
+#dynHeroNonSL-tab3 div.heroWrapper {
+	position: relative;
+	z-index: 20;
+	background-color: transparent;
+}
+
+/* div.background is layered underneath div.heroWrapper - general settings for div#dynHeroNonSL-tab3-Slide{*}  */
+#dynHeroNonSL-tab3 div.background {
+	position: absolute;
+	z-index: 1;
+	width: 974px;
+	height: 274px; 
+	overflow: hidden;
+	background-color: #0b5095;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-image: url('/global/dynamics/en/us/RichMedia/HomeHero/nonSLassets/images/hero_tab3_1.jpg')
+}
+
+/**
+ * div#dynHeroNonSL-tab3-Slide{*}
+ * Use zero-base numbering for the suffix. Example: div#dynHeroNonSL-tab3-Slide0  {zero}
+ * One for each slide in the image sequence.  The "slide" divs are empty: there is no text inside them.
+ * The first one is display: block, the rest are set to "none".
+ */
+ 
+ #dynHeroNonSL-tab3 div.floatText {
+	position: absolute;
+	z-index: 1;
+	width: 922px;
+	height: 36px; 
+	overflow: hidden;
+	top:217px;
+	left:30px;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	font: normal 2em 'Segoe UI', Arial, sans-serif;
+	color: #ffffff;
+}
+div#dynHeroNonSL-tab3-Slide1 {
+	display: block;
+}
+div#dynHeroNonSL-tab3-Slide2 {
+	display: none;
+}
+div#dynHeroNonSL-tab3-Slide3 {
+	display: none;
+}
+div#dynHeroNonSL-tab3-Slide4 {
+	display: none;
+}
+
+div#dynHeroNonSL-tab3-Button
+{
+	position: absolute;
+	z-index: 1;
+	width: 204px;
+	height: 50px; 
+	overflow: hidden;
+	top:210px;
+	left:737px;
+}
+
+#dynHeroNonSL-tab3 h2  {
+	font: normal 3.75em 'Segoe UI', Arial, sans-serif;
+	color: #ffffff;
+	position: absolute;
+	top: 207px;
+	left: 20px;
+	margin: 0;
+	padding: 0;
+}
+
+#dynHeroNonSL-tab3 h3 {
+	position: absolute;
+	top: 229px;
+	left: 260px;
+	margin: 0;
+	padding: 0;
+	font: normal 2em/1.2em 'Segoe UI', Arial, sans-serif;
+}
+
+#dynHeroNonSL-tab3 h3 a:link, #dynHeroNonSL-tab3 h3 a:visited {
+	color: #ffc817;
+	text-decoration: none;
+}
+
+
+#dynHeroNonSL-tab3 div.arrow {
+	position: absolute;
+	top: 228px;
+	left: 910px;
+	width: 37px;
+	height: 37px;
+	margin: 0;
+	padding: 0;
+}
+
+#dynHeroNonSL-tab3 div.arrow a img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+#dynHeroNonSL-tab3 div.arrow a img:hover {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               

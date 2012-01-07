@@ -14,17 +14,17 @@ namespace JobZoom.Core
     {
         static void Main(string[] args)
         {
-            //string MainServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            //string TempServerConnectionString = "Data Source=TRUNGHIEU-PC; Initial Catalog=JobZoom; Integrated Security=SSPI;";
-            //string AnalysisServerConnectionString = "Data Source=TRUNGHIEU-PC; Provider=msolap;";
+            string MainServerConnectionString = "Data Source=CONGPHUCLE-MSFT\\MSSQLDENALI; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+            string TempServerConnectionString = "Data Source=CONGPHUCLE-MSFT\\MSSQLDENALI; Initial Catalog=JobZoom; Integrated Security=SSPI;";
+            string AnalysisServerConnectionString = "Data Source=CONGPHUCLE-MSFT\\MSSQLDENALI; Provider=msolap;";
 
 
-            //Console.WriteLine("Export View...");
-            //ExportViewToMining.Export(MainServerConnectionString, TempServerConnectionString, null, "GetPivotProfile", "PF");
-            //ExportViewToMining.Export(MainServerConnectionString, TempServerConnectionString, null, "GetPivotJob", "JB");
+            Console.WriteLine("Export View...");
+            ExportViewToMining.Export(MainServerConnectionString, TempServerConnectionString, null, "GetPivotProfile", "PF");
+            ExportViewToMining.Export(MainServerConnectionString, TempServerConnectionString, null, "GetPivotJob", "JB");
 
-            //Console.WriteLine("Build Mining Database...");
-            //MiningDatabaseGenerator.BuildMiningDatabase_Console(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
+            Console.WriteLine("Build Mining Database...");
+            MiningDatabaseGenerator.BuildMiningDatabase_Console(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
 
             //Decision Tree 
             string[] att = new string[] { };

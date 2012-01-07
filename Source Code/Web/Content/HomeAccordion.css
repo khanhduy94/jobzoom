@@ -1,0 +1,196 @@
+﻿
+/**
+ * dynAccordion
+ * Structural styles required by plugin.  VISUAL STYLES ARE AT BOTTOM.
+ */
+
+
+/* ===[ begin DO NOT EDIT ]====================================================== */
+/* To customize visual styles, GO TO BOTTOM OF FILE */
+
+
+/*
+* jQuery UI CSS Framework
+* Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+*
+* Stripped down to bare essentials. [v-spsund]
+*/
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -999999em; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important; }
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default { outline: none; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { text-decoration: none; outline: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { outline: none; }
+
+.ui-state-hover a, .ui-state-hover a:hover { text-decoration: none; outline: none; }
+
+.ui-state-active, .ui-widget-content .ui-state-active { outline: none; }
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { outline: none; text-decoration: none; }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {}
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a {}
+.ui-state-error, .ui-widget-content .ui-state-error { border: 1px solid #cd0a0a; background: #fef1ec; color: #cd0a0a; }
+.ui-state-error a, .ui-widget-content .ui-state-error a { color: #cd0a0a; }
+.ui-state-error-text, .ui-widget-content .ui-state-error-text { color: #cd0a0a; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+.ui-priority-primary, .ui-widget-content .ui-priority-primary { font-weight: bold; }
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+
+/* Accordion
+----------------------------------*/
+.ui-accordion .ui-accordion-header { cursor: pointer; position: relative; margin-top: 1px; zoom: 1; }
+.ui-accordion .ui-accordion-li-fix { display: inline; }
+.ui-accordion .ui-accordion-header-active { border-bottom: 0 !important; }
+.ui-accordion .ui-accordion-header a { display: block; }
+.ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
+.ui-accordion .ui-accordion-content { 
+	border-top: 0; 
+	margin-top: -2px; 
+	position: relative; 
+	top: 1px; 
+	margin-bottom: 2px; 
+	overflow: auto; 
+	display: none; 
+}
+.ui-accordion .ui-accordion-content-active { display: block; }
+
+
+
+/* ===[ End DO NOT EDIT ]====================================================== */
+
+
+
+
+
+/**
+ * dynAccordion
+ * EDITABLE CUSTOM VISUAL STYLES FOR MS DYNAMICS.
+ */
+ 
+
+ /**
+  * General styles - all tabs 
+  */
+
+
+#accordion { margin: 1em 0; }
+.ui-accordion .ui-accordion-header { margin-top: 2px; }
+
+.ui-accordion .ui-accordion-header .ui-icon { 
+	background: transparent url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-arrows.png') no-repeat; width: 14px; height: 13px; 
+	left: 92%;
+}
+.ui-accordion .ui-accordion-header .ui-icon-triangle-1-e { background-position: 0 0; }
+.ui-accordion .ui-accordion-header .ui-icon-triangle-1-s { background-position: 0 -13px; }
+
+/* apply no margin: must be flush to edges */
+.ui-accordion .ui-accordion-header a { 
+	width: 368px;
+	height: 46px;
+	color: #fff;
+	font: bold 1.5em Tahoma, Arial, Helvetica, sans-serif;
+}
+
+/* attempt to vertically center */
+.ui-accordion .ui-accordion-header a span { display: block; padding: 0.6em 0.5em 0.5em 1.2em; }
+
+.ui-accordion .ui-accordion-content { padding: 0.25em 2em; color: #fff; }
+.ui-accordion .ui-accordion-content p { margin: 0 0 0.75em; }
+
+.ui-accordion .ui-accordion-content ul a { display: block; padding: 0.15em 1em; text-decoration: none; margin-left: -1em; margin-right: -1em; }
+.ui-accordion .ui-accordion-content a:link, 
+.ui-accordion .ui-accordion-content a:visited { 
+	color: #fff; 
+	text-decoration: none;
+}
+.ui-accordion .ui-accordion-content a:hover,
+.ui-accordion .ui-accordion-content ul a:hover { 
+	color: #000; background: #fff; text-decoration: none; 
+}
+
+
+
+.ui-accordion .ui-accordion-content ul { list-style: none; margin: 0; padding: 0; }
+.ui-accordion .ui-accordion-content ul ul { margin-top: 0.5em; }
+
+.ui-accordion .ui-accordion-content ul li { 
+	margin: 0 0 0.5em; padding: 0 0 0 10px;  
+	background: url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-ul-white.gif') no-repeat 0 0.75em;
+}
+.ui-accordion .ui-accordion-content ul li ul li { 
+	padding: 0 0 0 13px;
+	background: url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-ul-dash.gif') no-repeat 3px 0.9em;
+}
+.ui-accordion .ui-accordion-content ol { list-style: decimal; margin-left: 2.5em; padding-left: 0; }
+.ui-accordion .ui-accordion-content ol ol { list-style: lower-alpha; margin-top: 0.5em; }
+.ui-accordion .ui-accordion-content ol ol ol { list-style: upper-roman; margin-top: 0.5em; }
+.ui-accordion .ui-accordion-content ol ol ol ol { list-style: lower-roman; margin-top: 0.5em; }
+.ui-accordion .ui-accordion-content ol ol ol ol ol { list-style: upper-alpha; margin-top: 0.5em; }
+
+
+/** 
+ * Tab-specific styles 
+ */
+
+.ui-accordion h3.hdr1 { 
+	background: url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-orange-header-plain.png') no-repeat 0 0; 
+}
+.ui-accordion div.content1 {
+	background: #de9625 url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-orange-content.gif') no-repeat left bottom;
+}
+
+
+.ui-accordion h3.hdr2 { 
+	background: url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-blue-header-plain.png') no-repeat 0 0; 
+}
+.ui-accordion div.content2 {
+	background: #248dd4 url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-blue-content.gif') no-repeat left bottom;
+	color: #fff;
+}
+
+.ui-accordion h3.hdr3 { 
+	background: url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-green-header-plain.png') no-repeat 0 0; 
+}
+.ui-accordion div.content3 {
+	background: #699d2c url('/global/dynamics/en/us/PublishingImages/HomeAccordion/HomeAccordion-green-content.gif') no-repeat left bottom;
+	color: #fff;
+}
+
+/* when expanded: */
+.ui-accordion h3.ui-state-active {
+	background-position: 0 -46px;
+}
+
+
+

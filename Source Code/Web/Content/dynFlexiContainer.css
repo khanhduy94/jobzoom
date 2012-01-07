@@ -1,0 +1,2470 @@
+﻿@import url("./Styles/dynShared-css.css");
+body
+{
+}
+#pageWrapper
+{
+}
+#page
+{
+}
+#header
+{
+}
+#hero
+{
+}
+#contentWrapper
+{
+}
+#content
+{
+}
+#pageTools
+{
+}
+#contentMain
+{
+}
+
+.layoutHomepage #leftRail2
+{
+    width: 200px;
+    display: inline;
+    float: left;
+    margin-right: 10px;
+}
+
+.layoutHomepage #leftRail
+{
+    width: 200px;
+    display: inline;
+    float: left;
+    margin-right: 10px;
+}
+
+.layoutHomepage #topRail
+{
+    width: 100%;
+    display: inline;
+    float: left;
+    margin-right: 20px;
+}
+
+.layoutHomepage #body
+{
+    width: 200px;
+    display: inline;
+    float: left;
+}
+.layoutHomepage #bodyDreamWay
+{
+    width: 534px;
+    display: inline;
+    float: left;
+    margin-right:10px;
+}
+.layoutHomepage #bodyDreamWayWide
+{
+    width: 744px;
+    display: inline;
+    float: left;
+    margin-right:10px;
+}
+
+.layoutHomepage #rightRail
+{       
+    width: 200px;
+    display: inline;
+    float: left;    
+}
+
+.layoutHomepage #rightRailWide
+{       
+    width: 200px;
+    display: inline;
+    float: left;    
+}
+
+.layoutHomepage #rightRailDreamWay
+{
+    margin-right: 20px;
+    margin-left: 30px;
+}
+.layoutHomepage #rightRail2
+{
+    margin-right: 20px;
+    margin-left: 30px;
+}
+.layoutHomepage #siteNav #siteNav_Main
+{
+    min-height: 42px;
+}
+.layoutHomepage #hero
+{
+    height: 305px;
+}
+.layoutHomepage #pageTools
+{
+    display: none;
+}
+#rightRail .call-to-action
+{
+    margin: 0 0 1.75em 10px;
+}
+#rightRail .call-to-action p
+{
+    clear: both;
+    margin: 0 0 5px;
+}
+#rightRail .call-to-action img
+{
+    vertical-align: middle;
+}
+#rightRail .call-to-action a.contact-us
+{
+}
+#rightRail .call-to-action a.trials-and-demos
+{
+    margin-left: 1px;
+}
+#rightRail .call-to-action a.how-to-buy
+{
+}
+#rightRail .call-to-action a.get-support
+{
+    margin-left: 2px;
+}
+#bottomRail
+{
+}
+#footer
+{
+}
+#contentWrapper
+{
+}
+#content
+{
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://i3.microsoft.com/dynamics/shared/Templates/pagelayouts/DynPageLayout1/images/shell-content-bg.png',sizingMethod=scale);
+    /*NO IMAGE*/
+}
+#body
+{
+    height: 200px;
+}
+#body2
+{
+    height: 400px;
+}
+.dynFlexiLay_90_10 .dynFlexiLay_90
+{
+    float: left;
+    display: inline;
+    width: 89.5%;
+}
+.dynFlexiLay_90_10 .dynFlexiLay_10
+{
+    float: left;
+    display: inline;
+    width: 9.5%;
+}
+.dynFlexiLay_10_90 .dynFlexiLay_10
+{
+    float: left;
+    display: inline;
+    width: 9.5%;
+}
+.dynFlexiLay_10_90 .dynFlexiLay_90
+{
+    float: left;
+    display: inline;
+    width: 89.5%;
+}
+.dynFlexiLay_75_25 .dynFlexiLay_75
+{
+    float: left;
+    display: inline;
+    width: 74.5%;
+}
+.dynFlexiLay_75_25 .dynFlexiLay_25
+{
+    float: left;
+    display: inline;
+    width: 24.5%;
+}
+.dynFlexiLay_25_75 .dynFlexiLay_25
+{
+    float: left;
+    display: inline;
+    width: 24.5%;
+}
+.dynFlexiLay_25_75 .dynFlexiLay_75
+{
+    float: left;
+    display: inline;
+    width: 74.5%;
+}
+.dynFlexiLay_70_30 .dynFlexiLay_70
+{
+    float: left;
+    display: inline;
+    width: 69.5%;
+}
+.dynFlexiLay_70_30 .dynFlexiLay_30
+{
+    float: left;
+    display: inline;
+    width: 29.5%;
+}
+.dynFlexiLay_30_70 .dynFlexiLay_30
+{
+    float: left;
+    display: inline;
+    width: 29.5%;
+}
+.dynFlexiLay_30_70 .dynFlexiLay_70
+{
+    float: left;
+    display: inline;
+    width: 69.5%;
+}
+.dynFlexiLay_60_40 .dynFlexiLay_60
+{
+    float: left;
+    display: inline;
+    width: 59.5%;
+}
+.dynFlexiLay_60_40 .dynFlexiLay_40
+{
+    float: left;
+    display: inline;
+    width: 39.5%;
+}
+.dynFlexiLay_40_60 .dynFlexiLay_40
+{
+    float: left;
+    display: inline;
+    width: 39.5%;
+}
+.dynFlexiLay_40_60 .dynFlexiLay_60
+{
+    float: left;
+    display: inline;
+    width: 59.5%;
+}
+.dynFlexiLay_50_50 .dynFlexiLay_501, .dynFlexiLay_50_50 .dynFlexiLay_502
+{
+    display: inline;
+    width: 49.5%;
+}
+.dynFlexiLay_50_50 .dynFlexiLay_501
+{
+    float: left;
+}
+.dynFlexiLay_50_50 .dynFlexiLay_502
+{
+    float: left;
+}
+.dynFlexiRow:after
+{
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.dynFlexiRow
+{
+    min-height: 1%;
+}
+.dynFlexiRow
+{
+    clear: both;
+    float: none;
+    text-align: left;
+    margin-top: 15px;
+    margin: 0;
+    padding: 0;
+}
+.dynFlexiCol
+{
+    display: inline;
+    float: left;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    width:100%;
+}
+div.listStyle1
+{
+}
+div.listStyle1 ul
+{
+    list-style: none;
+    margin: 0.5em 0;
+    padding: 0;
+    line-height: 130%;
+}
+div.listStyle1 ul li
+{
+    margin: 0;
+    padding: 0.5em 0 0.5em 10px;
+    background: url('../Images/microsoft/arrow-black.gif') no-repeat 0 0.9em;
+}
+div.listStyle1 ul li:first-child
+{
+    padding-top: 0;
+    background-position: 0 0.5em;
+}
+div.listStyle1 ul ol
+{
+    list-style: decimal;
+    background: none;
+    margin: 0 0 0 1em;
+    padding: 0.5em 0 0.5em 1.5em;
+}
+div.listStyle1 ul ol li
+{
+    background: none;
+    padding: 0;
+}
+div.listStyle1 ul ol ol
+{
+    list-style: upper-alpha;
+}
+div.listStyle1 ul ol ol ol
+{
+    list-style: lower-roman;
+}
+div.listStyle1 ul ul
+{
+    list-style: disc;
+    background: none;
+    padding: 0.5em 0 0.5em 1.5em;
+}
+div.listStyle1 ul ul li
+{
+    background: none;
+    padding: 0.5em 0 0.5em 0;
+}
+div.listStyle1 ul ul ul
+{
+    list-style: circle;
+}
+div.listStyle1 ul ul ul ul
+{
+    list-style: square;
+}
+div.listStyle1 a.more
+{
+    font-size: 1em;
+}
+div.listStyle2
+{
+}
+div.listStyle2 ul
+{
+    list-style: none;
+    margin: 1em 0;
+    padding: 0;
+    line-height: 130%;
+}
+div.listStyle2 ul li
+{
+    margin: 0;
+    padding: 0.5em 0 0.5em 10px;
+    background: url('../Images/microsoft/ul-orange.gif') no-repeat 0 1.1em;
+}
+div.listStyle2 ul li:first-child
+{
+    padding-top: 0;
+    background-position: 0 0.5em;
+}
+div.listStyle2 ul ol
+{
+    list-style: decimal;
+    list-style-image: none;
+}
+div.listStyle2 ul ol ol
+{
+    list-style: upper-alpha;
+}
+div.listStyle2 ul ol ol ol
+{
+    list-style: lower-roman;
+}
+div.listStyle2 ul ul
+{
+    list-style: disc;
+    list-style-image: none;
+}
+div.listStyle2 ul ul ul
+{
+    list-style: circle;
+}
+div.listStyle2 ul ul ul ul
+{
+    list-style: square;
+}
+div.listStyle2 div.more a
+{
+    font-size: 1em;
+}
+div.listStyle3
+{
+    width: 91%;
+    margin: 0 0 1.5em;
+    font-family: Segoe,Tahoma,Arial,Helvetica,sans-serif;
+    line-height: 1em;
+}
+div.listStyle3 ul
+{
+    list-style-image: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.listBlock .listStyle3 li
+{
+    background-image: none;
+    list-style-image: none;
+}
+div.listStyle3 ul li
+{
+    margin: 0;
+    padding: 0 0 0 0.5em;
+}
+div.listStyle3 ul li a:link, div.listStyle3 ul li a:visited, div.listStyle3 ul li a:hover
+{
+    font: bold 12px/20px Segoe,Tahoma,Arial,Helvetica,sans-serif;
+    color: #ff4200;
+    text-decoration: none;
+}
+div.listStyle3 ul li a:hover
+{
+    color: #117ec7;
+}
+div.listStyle3 ul ul
+{
+    list-style-image: none;
+    list-style: none;
+    border-top: 1px solid #b6b6b6;
+    border-bottom: 1px solid #b6b6b6;
+    margin: 0.5em -0.5em;
+    padding: 0.5em 0;
+}
+div.listStyle3 ul ul li
+{
+    margin: 0;
+    padding: 0 0 0 0.5em;
+}
+div.listStyle3 ul ul li a:link, div.listStyle3 ul ul li a:visited, div.listStyle3 ul ul li a:hover
+{
+    font-weight: bold;
+    font-size: 11px;
+    color: #141414;
+    text-decoration: none;
+}
+div.listStyle3 ul ul li a:hover
+{
+    color: #117ec7;
+}
+div.listStyle3 ul ul ul
+{
+    list-style: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+div.listStyle3 ul ul ul li
+{
+    margin: 0;
+    padding: 0 0 0 1.5em;
+}
+div.listStyle3 ul ul ul li a:link, div.listStyle3 ul ul ul li a:visited, div.listStyle3 ul ul ul li a:hover
+{
+    font-weight: normal;
+}
+div.listStyle3 ul ul ul ul
+{
+    list-style: none;
+    border: 0;
+}
+div.listStyle3 ul ol
+{
+    list-style: decimal;
+    list-style-image: none;
+}
+div.listStyle3 ul ol ol
+{
+    list-style: upper-alpha;
+}
+div.listStyle3 ul ol ol ol
+{
+    list-style: lower-roman;
+}
+div.listStyle4
+{
+}
+div.listStyle4 ul
+{
+}
+div.listStyle4 ul li
+{
+    padding-left: 12px;
+    background: url('../Images/microsoft/ul-arrow-dn.gif') no-repeat 0 0.9em;
+}
+div.listStyle4 ul .listBlock ul li
+{
+    background: url('../Images/microsoft/ul.gif') no-repeat 0 0.8em;
+}
+div.listStyle4 ul .listBlock ul ul
+{
+    list-style: disc;
+}
+div.listStyle4 ul .listBlock ul ul ul
+{
+    list-style: circle;
+}
+.listBlock ul.plain
+{
+    list-style: disc;
+    margin: 0;
+    padding: 0;
+}
+.listBlock ul.plain li
+{
+    margin: 0 5px 3px 1.4em;
+    padding: 0.25em 0 0.2em 0;
+    background: none;
+}
+.listBlock ul.plain li:first-child
+{
+    margin-top: 0;
+}
+.listBlock ul.plain li p
+{
+    margin: 0 !important;
+}
+.listBlock ul.plain li p + p
+{
+    margin: 1em 0 0 !important;
+}
+.listBlock ul.plain li a.linkBlock
+{
+    margin: 0 !important;
+}
+div.plain h3
+{
+    margin: 12px 0 6px;
+}
+.listBlock ul.plain ol
+{
+    list-style: decimal;
+    background: none;
+    margin: 0 0 0 1em;
+    padding: 0.5em 0 0.5em 1.5em;
+}
+.listBlock ul.plain .listBlock
+{
+    margin-top: 0;
+}
+.listBlock ul.plain .listBlock ol li
+{
+    background: none;
+    padding: 0;
+}
+.listBlock ul.plain .listBlock ol ol
+{
+    list-style: upper-alpha;
+}
+.listBlock ul.plain .listBlock ol ol ol
+{
+    list-style: lower-roman;
+}
+.listBlock ul.plain .listBlock ul
+{
+    list-style: circle;
+    background: none;
+    padding: 0.25em 0 0;
+}
+.listBlock ul.plain .listBlock ul li
+{
+    background: none;
+    padding: 0.25em 0 0;
+}
+.listBlock ul.plain .listBlock ul ul
+{
+    list-style: square;
+}
+.listBlock ul.plain .listBlock ul ul ul
+{
+}
+.listBlock ul.plain .listBlock ol
+{
+    list-style: decimal;
+}
+.listBlock ul.plain .listBlock ol ol
+{
+    list-style: lower-alpha;
+    margin-top: 0.5em;
+}
+.listBlock ul.plain .listBlock ol ol ol
+{
+    list-style: upper-roman;
+    margin-top: 0.5em;
+}
+.listBlock ul.plain .listBlock ol ol ol ol
+{
+    list-style: lower-roman;
+    margin-top: 0.5em;
+}
+.listBlock ul.plain .listBlock ol ol ol ol ol
+{
+    list-style: upper-alpha;
+    margin-top: 0.5em;
+}
+.listBlock ul.plain ol li
+{
+    margin-bottom: 0.5em;
+}
+.fontStyleSmLight
+{
+    font-size: 0.9em;
+    color: #666666;
+}
+.fontStyleVSmLight
+{
+    font: 0.85em Verdana,Geneva,sans-serif;
+    color: #666666;
+}
+.coreSection > p
+{
+    margin-top: 0;
+}
+.coreSection h3, .coreSection h3 + p
+{
+    margin-bottom: 0.5em;
+}
+div.containerAppearance1
+{
+    margin-bottom: 1em;
+}
+div.containerAppearance2
+{
+    margin-bottom: 10px;
+}
+div.containerAppearance2 div.header
+{
+    background: #5a9bdc url('../Images/microsoft/blue-box-hdr-tile.png') repeat-x top;
+}
+div.containerAppearance2 div.header .headerOuter
+{
+    background: url('../Images/microsoft/blue-box-hdr-left.png') no-repeat top left;
+}
+div.containerAppearance2 div.header .headerInner
+{
+    min-height: 24px;
+    padding: 0 13px;
+    background: url('../Images/microsoft/blue-box-hdr-right.png') no-repeat top right;
+}
+div.containerAppearance2 div.header h2
+{
+    margin: 0;
+    padding: 5px 0;
+    font:bold 12px Tahoma,Arial,"Lucida Grande",Helvetica,sans-serif;
+    color: #fff;
+}
+div.containerAppearance2 div.header h2 a:link, div.containerAppearance2 div.header h2 a:visited, div.containerAppearance2 div.header h2 a:hover
+{
+    text-decoration: none;
+    color: #fff;
+}
+div.containerAppearance2 div.header h2 a:hover
+{
+    text-decoration: underline;
+    color: #fff;
+}
+div.containerAppearance2 div.body
+{    
+}
+div.containerAppearance2 div.body .bodyOuter1
+{
+    background: url('../Images/microsoft/blue-box-bottom-left.png') no-repeat bottom left;
+}
+div.containerAppearance2 div.body .bodyOuter2
+{
+    background: url('../Images/microsoft/blue-box-bottom-right.png') no-repeat bottom right;
+    padding-bottom: 5px;
+}
+
+.bottom_title
+{
+    background-image:url("../Images/microsoft/blue-box-bottom.png");
+    background-position:center top;
+    background-repeat:repeat;
+    height:5px;
+    width:100%;    
+}
+
+.bottom_left  {
+float:left;
+height:5px;
+width:5px;
+z-index:26;
+}
+
+.bottom_right  {
+float:right;
+height:5px;
+width:5px;
+}
+
+div.containerAppearance2 div.body .bodyInner
+{
+    margin: 0;
+    /*padding: 0.65em 10px 1px;*/    
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #dcdcdc;   
+    padding-top:5px;    
+}
+div.containerAppearance2 div.body .bodyInner > div.section
+{
+    padding-top: 1em;
+}
+div.containerAppearance3
+{
+    margin-bottom: 1em;
+}
+div.containerAppearance3 div.header
+{
+    background: #5a9bdc url('../Images/microsoft/blue-box-hdr-tile.png') repeat-x top;
+}
+div.containerAppearance3 div.header .headerOuter
+{
+    background: url('../Images/microsoft/blue-box-hdr-left.png') no-repeat top left;
+}
+div.containerAppearance3 div.header .headerInner
+{
+    min-height: 29px;
+    padding: 0 13px;
+    background: url('../Images/microsoft/blue-box-hdr-right.png') no-repeat top right;
+}
+div.containerAppearance3 div.header h2
+{
+    margin: 0;
+    padding: 5px 0;
+    font: bold 13px Segoe,Tahoma,Arial,sans-serif;
+    color: #fff;
+}
+div.containerAppearance3 div.header h2 a:link, div.containerAppearance3 div.header h2 a:visited, div.containerAppearance3 div.header h2 a:hover
+{
+    text-decoration: none;
+    color: #fff;
+}
+div.containerAppearance3 div.header h2 a:hover
+{
+    text-decoration: underline;
+    color: #fff;
+}
+div.containerAppearance3 div.body
+{
+}
+div.containerAppearance3 div.body .bodyOuter1
+{
+}
+div.containerAppearance3 div.body .bodyOuter2
+{
+    padding-bottom: 5px;
+}
+div.containerAppearance3 div.body .bodyInner
+{
+    margin: 0;
+    border: 0;
+    padding: 0.65em 11px 1px;
+}
+
+.expanding {line-height: 18px;}
+
+div.containerAppearance3 div.body .bodyInner > div.section
+{
+    padding-top: 1em;
+}
+div.containerAppearance4
+{
+    margin: 0 0 1.5em;
+    padding: 0.25em 5px 0 0;
+    background: #fff url('../Images/microsoft/containerAppearance4-bg.jpg') no-repeat 0 0;
+}
+div.containerAppearance4 .header
+{
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+div.containerAppearance4 .header .headerOuter
+{
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+div.containerAppearance4 .header .headerInner
+{
+    margin: 0;
+    padding: 0;    
+    background: transparent;
+}
+div.containerAppearance4 .header h2
+{
+    margin: 0;
+    padding: 0.5em 0 0;
+    background: transparent;
+    text-align: left;
+    font: bold 1.1em Segoe,Tahoma,Arial,Helvetica,sans-serif;
+    color: #009900;
+}
+div.containerAppearance4 .header h2 a:link, div.containerAppearance4 .header h2 a:visited, div.containerAppearance4 .header h2 a:hover, div.containerAppearance4 .header a h2:link, div.containerAppearance4 .header a h2:visited, div.containerAppearance4 .header a h2:hover
+{
+    color: #009900;
+    text-decoration: none;
+}
+div.containerAppearance4 .header h2 a:hover, div.containerAppearance4 .header a h2:hover
+{
+    text-decoration: underline;
+}
+div.containerAppearance4 div.body
+{
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+div.containerAppearance4 div.body .bodyOuter1
+{
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+div.containerAppearance4 div.body .bodyOuter2
+{
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+div.containerAppearance4 div.body .bodyInner
+{
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+div.containerAppearance4 div.body p
+{
+    margin: 1em 0;
+}
+div.containerAppearance4 div.body .listBlock li p
+{
+    margin: 0;
+}
+.listBlock li p + p
+{
+    margin: 1em 0 0;
+}
+div.containerAppearance4 a.linkBlock
+{
+    display: block;
+    margin-top: 0.75em;
+}
+div.orangeBox
+{
+    margin-bottom: 1em;
+}
+div.orangeBox div.header
+{
+    background: #f29f00 url('../Images/microsoft/orangeBox/orange-box-hdr-tile.png') repeat-x top;
+}
+div.orangeBox div.header .headerOuter
+{
+    background: url('../Images/microsoft/orange-box-hdr-left.png') no-repeat top left;
+}
+div.orangeBox div.header .headerInner
+{
+    min-height: 29px;
+    padding: 0 13px;
+    background: url('../Images/microsoft/orange-box-hdr-right.png') no-repeat top right;
+}
+div.orangeBox div.header h2
+{
+    margin: 0;
+    padding: 5px 0;
+    font: bold 13px Segoe,Tahoma,Arial,sans-serif;
+    color: #fff;
+}
+div.orangeBox div.body
+{
+    background: #fff url('../Images/microsoft/orange-box-bottom.png') repeat-x bottom;
+}
+div.orangeBox div.body .bodyOuter1
+{
+    background: url('../Images/microsoft/orange-box-bottom-left.png') no-repeat bottom left;
+}
+div.orangeBox div.body .bodyOuter2
+{
+    background: url('../Images/microsoft/orange-box-bottom-right.png') no-repeat bottom right;
+    padding-bottom: 5px;
+}
+div.orangeBox div.body .bodyInner
+{
+    margin: 0;
+    padding: 0.65em 10px 1px;
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #dcdcdc;
+}
+div.greenBox
+{
+    margin-bottom: 1em;
+}
+div.greenBox div.header
+{
+    background: #6baa4c url('../Images/microsoft/green-box-hdr-tile.png') repeat-x top;
+}
+div.greenBox div.header .headerOuter
+{
+    background: url('../Images/microsoft/green-box-hdr-left.png') no-repeat top left;
+}
+div.greenBox div.header .headerInner
+{
+    min-height: 29px;
+    padding: 0 13px;
+    background: url('../Images/microsoft/green-box-hdr-right.png') no-repeat top right;
+}
+div.greenBox div.header h2
+{
+    margin: 0;
+    padding: 5px 0;
+    font: bold 13px Segoe,Tahoma,Arial,sans-serif;
+    color: #fff;
+}
+div.greenBox div.body
+{
+    background: #fff url('../Images/microsoft/green-box-bottom.png') repeat-x bottom;
+}
+div.greenBox div.body .bodyOuter1
+{
+    background: url('../Images/microsoft/green-box-bottom-left.png') no-repeat bottom left;
+}
+div.greenBox div.body .bodyOuter2
+{
+    background: url('../Images/microsoft/green-box-bottom-right.png') no-repeat bottom right;
+    padding-bottom: 5px;
+}
+div.greenBox div.body .bodyInner
+{
+    margin: 0;
+    padding: 0.65em 10px 1px;
+    border-width: 0 1px;
+    border-style: solid;
+    border-color: #dcdcdc;
+}
+div.alignLeft, div.imgAlignLeft, div.paraEmbedImgLeft, div.alignLeft
+{
+    float: left;
+    margin-right: 0.5em;
+}
+div.imgAlignRight, div.paraEmbedImgRight, div.alignRight
+{
+    float: right;
+    margin-left: 0.5em;
+}
+div.imgAlignCenter, div.paraEmbedImgCenter, div.alignCenter
+{
+    text-align: center;
+    margin-bottom: 1em;
+}
+.alignLeftText, .textAlignLeft
+{
+    text-align: left;
+}
+.alignRightText, .alignRighttext, .textAlignRight
+{
+    text-align: right;
+}
+.alignCenterText, .textAlignCenter
+{
+    text-align: center;
+}
+.margin0
+{
+    margin: 0 !important;
+}
+.margin1
+{
+    margin: 1px !important;
+}
+.margin2
+{
+    margin: 2px !important;
+}
+.margin3
+{
+    margin: 3px !important;
+}
+.margin4
+{
+    margin: 4px !important;
+}
+.margin5
+{
+    margin: 5px !important;
+}
+.margin6
+{
+    margin: 6px !important;
+}
+.margin7
+{
+    margin: 7px !important;
+}
+.margin8
+{
+    margin: 8px !important;
+}
+.margin9
+{
+    margin: 9px !important;
+}
+.margin10
+{
+    margin: 10px !important;
+}
+.margin12
+{
+    margin: 12px !important;
+}
+.margin14
+{
+    margin: 14px !important;
+}
+.margin15
+{
+    margin: 15px !important;
+}
+.margin16
+{
+    margin: 16px !important;
+}
+.margin18
+{
+    margin: 18px !important;
+}
+.margin20
+{
+    margin: 20px !important;
+}
+.margin25
+{
+    margin: 25px !important;
+}
+.margin30
+{
+    margin: 30px !important;
+}
+.margin35
+{
+    margin: 35px !important;
+}
+.margin40
+{
+    margin: 40px !important;
+}
+.marginTop0
+{
+    margin-top: 0 !important;
+}
+.marginTop1
+{
+    margin-top: 1px !important;
+}
+.marginTop2
+{
+    margin-top: 2px !important;
+}
+.marginTop3
+{
+    margin-top: 3px !important;
+}
+.marginTop4
+{
+    margin-top: 4px !important;
+}
+.marginTop5
+{
+    margin-top: 5px !important;
+}
+.marginTop6
+{
+    margin-top: 6px !important;
+}
+.marginTop7
+{
+    margin-top: 7px !important;
+}
+.marginTop8
+{
+    margin-top: 8px !important;
+}
+.marginTop9
+{
+    margin-top: 9px !important;
+}
+.marginTop10
+{
+    margin-top: 10px !important;
+}
+.marginTop12
+{
+    margin-top: 12px !important;
+}
+.marginTop14
+{
+    margin-top: 14px !important;
+}
+.marginTop15
+{
+    margin-top: 0px !important;
+}
+.marginTop16
+{
+    margin-top: 16px !important;
+}
+.marginTop18
+{
+    margin-top: 18px !important;
+}
+.marginTop20
+{
+    margin-top: 20px !important;
+}
+.marginTop25
+{
+    margin-top: 25px !important;
+}
+.marginTop30
+{
+    margin-top: 30px !important;
+}
+.marginTop35
+{
+    margin-top: 35px !important;
+}
+.marginTop40
+{
+    margin-top: 40px !important;
+}
+.marginRight0
+{
+    margin-right: 0 !important;
+}
+.marginRight1
+{
+    margin-right: 1px !important;
+}
+.marginRight2
+{
+    margin-right: 2px !important;
+}
+.marginRight3
+{
+    margin-right: 3px !important;
+}
+.marginRight4
+{
+    margin-right: 4px !important;
+}
+.marginRight5
+{
+    margin-right: 5px !important;
+}
+.marginRight6
+{
+    margin-right: 6px !important;
+}
+.marginRight7
+{
+    margin-right: 7px !important;
+}
+.marginRight8
+{
+    margin-right: 8px !important;
+}
+.marginRight9
+{
+    margin-right: 9px !important;
+}
+.marginRight10
+{
+    margin-right: 10px !important;
+}
+.marginRight12
+{
+    margin-right: 12px !important;
+}
+.marginRight14
+{
+    margin-right: 14px !important;
+}
+.marginRight15
+{
+    margin-right: 15px !important;
+}
+.marginRight16
+{
+    margin-right: 16px !important;
+}
+.marginRight18
+{
+    margin-right: 18px !important;
+}
+.marginRight20
+{
+    margin-right: 20px !important;
+}
+.marginRight25
+{
+    margin-right: 25px !important;
+}
+.marginRight30
+{
+    margin-right: 30px !important;
+}
+.marginRight35
+{
+    margin-right: 35px !important;
+}
+.marginRight40
+{
+    margin-right: 40px !important;
+}
+.marginBottom0
+{
+    margin-bottom: 0 !important;
+}
+.marginBottom1
+{
+    margin-bottom: 1px !important;
+}
+.marginBottom2
+{
+    margin-bottom: 2px !important;
+}
+.marginBottom3
+{
+    margin-bottom: 2px !important;
+}
+.marginBottom4
+{
+    margin-bottom: 4px !important;
+}
+.marginBottom5
+{
+    margin-bottom: 5px !important;
+}
+.marginBottom6
+{
+    margin-bottom: 6px !important;
+}
+.marginBottom7
+{
+    margin-bottom: 7px !important;
+}
+.marginBottom8
+{
+    margin-bottom: 8px !important;
+}
+.marginBottom9
+{
+    margin-bottom: 9px !important;
+}
+.marginBottom10
+{
+    margin-bottom: 10px !important;
+}
+.marginBottom12
+{
+    margin-bottom: 12px !important;
+}
+.marginBottom14
+{
+    margin-bottom: 14px !important;
+}
+.marginBottom15
+{
+    margin-bottom: 15px !important;
+}
+.marginBottom16
+{
+    margin-bottom: 16px !important;
+}
+.marginBottom18
+{
+    margin-bottom: 18px !important;
+}
+.marginBottom20
+{
+    margin-bottom: 20px !important;
+}
+.marginBottom25
+{
+    margin-bottom: 25px !important;
+}
+.marginBottom30
+{
+    margin-bottom: 30px !important;
+}
+.marginBottom35
+{
+    margin-bottom: 35px !important;
+}
+.marginBottom40
+{
+    margin-bottom: 40px !important;
+}
+.marginLeft0
+{
+    margin-left: 0 !important;
+}
+.marginLeft1
+{
+    margin-left: 1px !important;
+}
+.marginLeft2
+{
+    margin-left: 2px !important;
+}
+.marginLeft3
+{
+    margin-left: 3px !important;
+}
+.marginLeft4
+{
+    margin-left: 4px !important;
+}
+.marginLeft5
+{
+    margin-left: 5px !important;
+}
+.marginLeft6
+{
+    margin-left: 6px !important;
+}
+.marginLeft7
+{
+    margin-left: 7px !important;
+}
+.marginLeft8
+{
+    margin-left: 8px !important;
+}
+.marginLeft9
+{
+    margin-left: 9px !important;
+}
+.marginLeft10
+{
+    margin-left: 10px !important;
+}
+.marginLeft12
+{
+    margin-left: 12px !important;
+}
+.marginLeft14
+{
+    margin-left: 14px !important;
+}
+.marginLeft15
+{
+    margin-left: 15px !important;
+}
+.marginLeft16
+{
+    margin-left: 16px !important;
+}
+.marginLeft18
+{
+    margin-left: 18px !important;
+}
+.marginLeft20
+{
+    margin-left: 20px !important;
+}
+.marginLeft25
+{
+    margin-left: 25px !important;
+}
+.marginLeft30
+{
+    margin-left: 30px !important;
+}
+.marginLeft35
+{
+    margin-left: 35px !important;
+}
+.marginLeft40
+{
+    margin-left: 40px !important;
+}
+.padding0
+{
+    padding: 0px !important;
+}
+.padding1
+{
+    padding: 1px !important;
+}
+.padding2
+{
+    padding: 2px !important;
+}
+.padding3
+{
+    padding: 3px !important;
+}
+.padding4
+{
+    padding: 4px !important;
+}
+.padding5
+{
+    padding: 5px !important;
+}
+.padding6
+{
+    padding: 6px !important;
+}
+.padding7
+{
+    padding: 7px !important;
+}
+.padding8
+{
+    padding: 8px !important;
+}
+.padding9
+{
+    padding: 9px !important;
+}
+.padding10
+{
+    padding: 10px !important;
+}
+.padding12
+{
+    padding: 12px !important;
+}
+.padding14
+{
+    padding: 14px !important;
+}
+.padding15
+{
+    padding: 15px !important;
+}
+.padding16
+{
+    padding: 16px !important;
+}
+.padding18
+{
+    padding: 18px !important;
+}
+.padding20
+{
+    padding: 20px !important;
+}
+.padding25
+{
+    padding: 25px !important;
+}
+.padding30
+{
+    padding: 30px !important;
+}
+.paddingTop0
+{
+    padding-top: 0 !important;
+}
+.paddingTop1
+{
+    padding-top: 1px !important;
+}
+.paddingTop2
+{
+    padding-top: 2px !important;
+}
+.paddingTop3
+{
+    padding-top: 3px !important;
+}
+.paddingTop4
+{
+    padding-top: 4px !important;
+}
+.paddingTop5
+{
+    padding-top: 5px !important;
+}
+.paddingTop6
+{
+    padding-top: 6px !important;
+}
+.paddingTop7
+{
+    padding-top: 7px !important;
+}
+.paddingTop8
+{
+    padding-top: 8px !important;
+}
+.paddingTop9
+{
+    padding-top: 9px !important;
+}
+.paddingTop10
+{
+    padding-top: 10px !important;
+}
+.paddingTop12
+{
+    padding-top: 12px !important;
+}
+.paddingTop14
+{
+    padding-top: 14px !important;
+}
+.paddingTop15
+{
+    padding-top: 15px !important;
+}
+.paddingTop16
+{
+    padding-top: 16px !important;
+}
+.paddingTop18
+{
+    padding-top: 18px !important;
+}
+.paddingTop20
+{
+    padding-top: 20px !important;
+}
+.paddingTop25
+{
+    padding-top: 25px !important;
+}
+.paddingTop30
+{
+    padding-top: 30px !important;
+}
+.paddingRight0
+{
+    padding-right: 0 !important;
+}
+.paddingRight1
+{
+    padding-right: 1px !important;
+}
+.paddingRight2
+{
+    padding-right: 2px !important;
+}
+.paddingRight3
+{
+    padding-right: 3px !important;
+}
+.paddingRight4
+{
+    padding-right: 4px !important;
+}
+.paddingRight5
+{
+    padding-right: 5px !important;
+}
+.paddingRight6
+{
+    padding-right: 6px !important;
+}
+.paddingRight7
+{
+    padding-right: 7px !important;
+}
+.paddingRight8
+{
+    padding-right: 8px !important;
+}
+.paddingRight9
+{
+    padding-right: 9px !important;
+}
+.paddingRight10
+{
+    padding-right: 10px !important;
+}
+.paddingRight12
+{
+    padding-right: 12px !important;
+}
+.paddingRight14
+{
+    padding-right: 14px !important;
+}
+.paddingRight15
+{
+    padding-right: 15px !important;
+}
+.paddingRight16
+{
+    padding-right: 16px !important;
+}
+.paddingRight18
+{
+    padding-right: 18px !important;
+}
+.paddingRight20
+{
+    padding-right: 20px !important;
+}
+.paddingRight25
+{
+    padding-right: 25px !important;
+}
+.paddingRight30
+{
+    padding-right: 30px !important;
+}
+.paddingBottom0
+{
+    padding-bottom: 0 !important;
+}
+.paddingBottom1
+{
+    padding-bottom: 1px !important;
+}
+.paddingBottom2
+{
+    padding-bottom: 2px !important;
+}
+.paddingBottom3
+{
+    padding-bottom: 3px !important;
+}
+.paddingBottom4
+{
+    padding-bottom: 4px !important;
+}
+.paddingBottom5
+{
+    padding-bottom: 5px !important;
+}
+.paddingBottom6
+{
+    padding-bottom: 6px !important;
+}
+.paddingBottom7
+{
+    padding-bottom: 7px !important;
+}
+.paddingBottom8
+{
+    padding-bottom: 8px !important;
+}
+.paddingBottom9
+{
+    padding-bottom: 9px !important;
+}
+.paddingBottom10
+{
+    padding-bottom: 10px !important;
+}
+.paddingBottom12
+{
+    padding-bottom: 12px !important;
+}
+.paddingBottom14
+{
+    padding-bottom: 14px !important;
+}
+.paddingBottom15
+{
+    padding-bottom: 15px !important;
+}
+.paddingBottom16
+{
+    padding-bottom: 16px !important;
+}
+.paddingBottom18
+{
+    padding-bottom: 18px !important;
+}
+.paddingBottom20
+{
+    padding-bottom: 20px !important;
+}
+.paddingBottom25
+{
+    padding-bottom: 25px !important;
+}
+.paddingBottom30
+{
+    padding-bottom: 30px !important;
+}
+.paddingLeft0
+{
+    padding-left: 0 !important;
+}
+.paddingLeft1
+{
+    padding-left: 1px !important;
+}
+.paddingLeft2
+{
+    padding-left: 2px !important;
+}
+.paddingLeft3
+{
+    padding-left: 3px !important;
+}
+.paddingLeft4
+{
+    padding-left: 4px !important;
+}
+.paddingLeft5
+{
+    padding-left: 5px !important;
+}
+.paddingLeft6
+{
+    padding-left: 6px !important;
+}
+.paddingLeft7
+{
+    padding-left: 7px !important;
+}
+.paddingLeft8
+{
+    padding-left: 8px !important;
+}
+.paddingLeft9
+{
+    padding-left: 9px !important;
+}
+.paddingLeft10
+{
+    padding-left: 10px !important;
+}
+.paddingLeft12
+{
+    padding-left: 12px !important;
+}
+.paddingLeft14
+{
+    padding-left: 14px !important;
+}
+.paddingLeft15
+{
+    padding-left: 15px !important;
+}
+.paddingLeft16
+{
+    padding-left: 16px !important;
+}
+.paddingLeft18
+{
+    padding-left: 18px !important;
+}
+.paddingLeft20
+{
+    padding-left: 20px !important;
+}
+.paddingLeft25
+{
+    padding-left: 25px !important;
+}
+.paddingLeft30
+{
+    padding-left: 30px !important;
+}
+div.split-1 p, div.split-2 p, div.split-3 p
+{
+    margin: 0;
+}
+div.split-1 p + p, div.split-2 p + p, div.split-3 p + p, div.split-2 div.clear + p
+{
+    margin: 1em 0 0;
+}
+div.split0595
+{
+    margin: 0 0 1em;
+}
+div.split0595 div.split-1, div.split-1 div.split0595 div.split-1, div.split-2 div.split0595 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 5% !important;
+    margin-right: 3%;
+}
+div.split0595 div.split-2, div.split-1 div.split0595 div.split-2, div.split-2 div.split0595 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 92% !important;
+    margin: 0;
+}
+div.split1090
+{
+    margin: 0 0 1em;
+}
+div.split1090 div.split-1, div.split-1 div.split1090 div.split-1, div.split-2 div.split1090 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 10% !important;
+    margin-right: 3%;
+}
+div.split1090 div.split-2, div.split-1 div.split1090 div.split-2, div.split-2 div.split1090 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 87% !important;
+    margin: 0;
+}
+div.split1585
+{
+    margin: 0 0 1em;
+}
+div.split1585 div.split-1, div.split-1 div.split1585 div.split-1, div.split-2 div.split1585 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 15% !important;
+    margin-right: 3%;
+}
+div.split1585 div.split-2, div.split-1 div.split1585 div.split-2, div.split-2 div.split1585 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 82% !important;
+    margin: 0;
+}
+div.split2080
+{
+    margin: 0 0 1em;
+}
+div.split2080 div.split-1, div.split-1 div.split2080 div.split-1, div.split-2 div.split2080 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 20% !important;
+    margin-right: 3%;
+}
+div.split2080 div.split-2, div.split-1 div.split2080 div.split-2, div.split-2 div.split2080 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 77% !important;
+    margin: 0;
+}
+div.split2575
+{
+    margin: 0 0 1em;
+}
+div.split2575 div.split-1, div.split-1 div.split2575 div.split-1, div.split-2 div.split2575 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 25% !important;
+    margin-right: 3%;
+}
+div.split2575 div.split-2, div.split-1 div.split2575 div.split-2, div.split-2 div.split2575 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 72% !important;
+    margin: 0;
+}
+div.split3070
+{
+    margin: 0 0 1em;
+}
+div.split3070 div.split-1, div.bodyInner div.split3070 div.split-1, div.split-1 div.split3070 div.split-1, div.split-2 div.split3070 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 30% !important;
+    margin-right: 3%;
+}
+div.split3070 div.split-2, div.split-1 div.split3070 div.split-2, div.split-2 div.split3070 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 67% !important;
+    margin: 0;
+}
+div.split3565
+{
+    margin: 0 0 1em;
+}
+div.split3565 div.split-1, div.split-1 div.split3565 div.split-1, div.split-2 div.split3565 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 35% !important;
+    margin-right: 3%;
+}
+div.split3565 div.split-2, div.split-1 div.split3565 div.split-2, div.split-2 div.split3565 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 62% !important;
+    margin: 0;
+}
+div.split4060
+{
+    margin: 0 0 1em;
+}
+div.split4060 div.split-1, div.split-1 div.split4060 div.split-1, div.split-2 div.split4060 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 39% !important;
+    margin-right: 3%;
+}
+div.split4060 div.split-2, div.split-1 div.split4060 div.split-2, div.split-2 div.split4060 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 57% !important;
+    margin: 0;
+}
+div.split4555
+{
+    margin: 0 0 1em;
+}
+div.split4555 div.split-1, div.split-1 div.split4555 div.split-1, div.split-2 div.split4555 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 45% !important;
+    margin-right: 3%;
+}
+div.split4555 div.split-2, div.split-1 div.split4555 div.split-2, div.split-2 div.split4555 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 52% !important;
+    margin: 0;
+}
+div.split5050
+{
+    margin: 0 0 1em;
+}
+div.split5050 div.split-1, div.split-1 div.split5050 div.split-1, div.split-2 div.split5050 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 48% !important;
+    margin-right: 3%;
+}
+div.split5050 div.split-2, div.split-1 div.split5050 div.split-2, div.split-2 div.split5050 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 48.5% !important;
+    margin: 0;
+}
+div.split5545
+{
+    margin: 0 0 1em;
+}
+div.split5545 div.split-1, div.split-1 div.split5545 div.split-1, div.split-2 div.split5545 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 52% !important;
+    margin-right: 3%;
+}
+div.split5545 div.split-2, div.split-1 div.split5545 div.split-2, div.split-2 div.split5545 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 45% !important;
+    margin: 0;
+}
+div.split6040
+{
+    margin: 0 0 1em;
+}
+div.split6040 div.split-1, div.split-1 div.split6040 div.split-1, div.split-2 div.split6040 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 57% !important;
+    margin-right: 3%;
+}
+div.split6040 div.split-2, div.split-1 div.split6040 div.split-2, div.split-2 div.split6040 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 40% !important;
+    margin: 0;
+}
+div.split6535
+{
+    margin: 0 0 1em;
+}
+div.split6535 div.split-1, div.split-1 div.split6535 div.split-1, div.split-2 div.split6535 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 62% !important;
+    margin-right: 3%;
+}
+div.split6535 div.split-2, div.split-1 div.split6535 div.split-2, div.split-2 div.split6535 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 35% !important;
+    margin: 0;
+}
+div.split7030
+{
+    margin: 0 0 1em;
+}
+div.split7030 div.split-1, div.split-1 div.split7030 div.split-1, div.split-2 div.split7030 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 67% !important;
+    margin-right: 3%;
+}
+div.split7030 div.split-2, div.split-1 div.split7030 div.split-2, div.split-2 div.split7030 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 30% !important;
+    margin: 0;
+}
+div.split7525
+{
+    margin: 0 0 1em;
+}
+div.split7525 div.split-1, div.split-1 div.split7525 div.split-1, div.split-2 div.split7525 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 72% !important;
+    margin-right: 3%;
+}
+div.split7525 div.split-2, div.split-1 div.split7525 div.split-2, div.split-2 div.split7525 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 25% !important;
+    margin: 0;
+}
+div.split8020
+{
+    margin: 0 0 1em;
+}
+div.split8020 div.split-1, div.split-1 div.split8020 div.split-1, div.split-2 div.split8020 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 77% !important;
+    margin-right: 3%;
+}
+div.split8020 div.split-2, div.split-1 div.split8020 div.split-2, div.split-2 div.split8020 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 20% !important;
+    margin: 0;
+}
+div.split8515
+{
+    margin: 0 0 1em;
+}
+div.split8515 div.split-1, div.split-1 div.split8515 div.split-1, div.split-2 div.split8515 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 82% !important;
+    margin-right: 3%;
+}
+div.split8515 div.split-2, div.split-1 div.split8515 div.split-2, div.split-2 div.split8515 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 15% !important;
+    margin: 0;
+}
+div.split9010
+{
+    margin: 0 0 1em;
+}
+div.split9010 div.split-1, div.split-1 div.split9010 div.split-1, div.split-2 div.split9010 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 87% !important;
+    margin-right: 3%;
+}
+div.split9010 div.split-2, div.split-1 div.split9010 div.split-2, div.split-2 div.split9010 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 10% !important;
+    margin: 0;
+}
+div.split9505
+{
+    margin: 0 0 1em;
+}
+div.split9505 div.split-1, div.split-1 div.split9505 div.split-1, div.split-2 div.split9505 div.split-1
+{
+    display: inline;
+    float: left;
+    width: 92% !important;
+    margin-right: 3%;
+}
+div.split9505 div.split-2, div.split-1 div.split9505 div.split-2, div.split-2 div.split9505 div.split-2
+{
+    display: inline;
+    float: left;
+    width: 5% !important;
+    margin: 0;
+}
+.borderTop
+{
+    margin-top: 0.5em;
+    padding-top: 1em;
+    border-top: 1px solid #c8c8c8;
+}
+.borderBottom
+{
+    margin-bottom: 0.5em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #c8c8c8;
+}
+.borderLeft
+{
+    border-left: 1px solid #c8c8c8;
+}
+.borderRight
+{
+    border-right: 1px solid #c8c8c8;
+}
+p + .linkBlock
+{
+    clear: both;
+    margin: 0.75em 0;
+}
+.linkList li a + p
+{
+    margin-top: 0 !important;
+}
+a.top:link, a.top:visited, a.top:hover, a.TOP:link, a.TOP:visited, a.TOP:hover, div.top a:link, div.top a:visited, div.top a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/top.gif') no-repeat left top;
+}
+a.pdf:link, a.pdf:visited, a.pdf:hover, a.PDF:link, a.PDF:visited, a.PDF:hover, div.pdf a:link, div.pdf a:visited, div.pdf a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/pdf.gif') no-repeat left top;
+}
+a.xps:link, a.xps:visited, a.xps:hover, a.XPS:link, a.XPS:visited, a.XPS:hover, div.xps a:link, div.xps a:visited, div.xps a:hover
+{
+    padding: 0 0 3px 20px;
+    background: url('../Images/microsoft/icons/xps.gif') no-repeat left top;
+}
+a.doc:link, a.doc:visited, a.doc:hover, a.DOC:link, a.DOC:visited, a.DOC:hover, a.docx:link, a.docx:visited, a.docx:hover, a.DOCX:link, a.DOCX:visited, a.DOCX:hover, div.doc a:link, div.doc a:visited, div.doc a:hover, div.DOC a:link, div.DOC a:visited, div.DOC a:hover, div.docx a:link, div.docx a:visited, div.docx a:hover, div.DOCX a:link, div.DOCX a:visited, div.DOCX a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/doc.gif') no-repeat left top;
+}
+a.xls:link, a.xls:visited, a.xls:hover, a.XLS:link, a.XLS:visited, a.XLS:hover, a.xlsx:link, a.xlsx:visited, a.xlsx:hover, a.XLSX:link, a.XLSX:visited, a.XLSX:hover, div.xls a:link, div.xls a:visited, div.xls a:hover, div.XLS a:link, div.XLS a:visited, div.XLS a:hover, div.xlsx a:link, div.xlsx a:visited, div.xlsx a:hover, div.XLSX a:link, div.XLSX a:visited, div.XLSX a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/xls.gif') no-repeat left top;
+}
+a.ppt:link, a.ppt:visited, a.ppt:hover, a.PPT:link, a.PPT:visited, a.PPT:hover, a.pptx:link, a.pptx:visited, a.pptx:hover, a.PPTX:link, a.PPTX:visited, a.PPTX:hover, div.ppt a:link, div.ppt a:visited, div.ppt a:hover, div.PPT a:link, div.PPT a:visited, div.PPT a:hover, div.pptx a:link, div.pptx a:visited, div.pptx a:hover, div.PPTX a:link, div.PPTX a:visited, div.PPTX a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/ppt.png') no-repeat left top;
+}
+a.external:link, a.external:visited, a.external:hover, div.external a:link, div.external a:visited, div.external a:hover, a.offsite:link, a.offsite:visited, a.offsite:hover, div.offsite a:link, div.offsite a:visited, div.offsite a:hover
+{
+    padding: 0 18px 3px 0;
+    background: transparent url('../Images/microsoft/icons/offsite.gif') no-repeat right top;
+}
+a.newwindow:link, a.newwindow:visited, a.newwindow:hover, a.newWindow:link, a.newWindow:visited, a.newWindow:hover, div.newWindow a:link, div.newWindow a:visited, div.newWindow a:hover
+{
+    padding: 0 18px 3px 0;
+    background: transparent url('../Images/microsoft/icons/new-window.gif') no-repeat right top;
+}
+a.wmv:link, a.wmv:visited, a.wmv:hover, a.WMV:link, a.WMV:visited, a.WMV:hover, div.wmv a:link, div.wmv a:visited, div.wmv a:hover, a.wma:link, a.wma:visited, a.wma:hover, a.WMA:link, a.WMA:visited, a.WMA:hover, div.wma a:link, div.wma a:visited, div.wma a:hover, a.mp3:link, a.mp3:visited, a.mp3:hover, a.MP3:link, a.MP3:visited, a.MP3:hover, div.mp3 a:link, div.mp3 a:visited, div.mp3 a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/media.gif') no-repeat left top;
+}
+a.secure:link, a.secure:visited, a.secure:hover, div.secure a:link, div.secure a:visited, div.secure a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/secure.png') no-repeat left top;
+}
+a.email:link, a.email:visited, a.email:hover, div.email a:link, div.email a:visited, div.email a:hover
+{
+    padding: 0 0 3px 20px;
+    background: transparent url('../Images/microsoft/icons/email.png') no-repeat left top;
+}
+a.exe:link, a.exe:visited, a.exe:hover, a.EXE:link, a.EXE:visited, a.EXE:hover, div.exe a:link, div.exe a:visited, div.exe a:hover
+{
+    padding: 0 0 3px 20px;
+    background: url('http://i2.microsoft.com/dynamics/shared/Templates/components/dynCoreContent/images/icons/download-exe.gif') no-repeat left top;
+    /*NO IMAGE*/
+}
+a.zip:link, a.zip:visited, a.zip:hover, a.ZIP:link, a.ZIP:visited, a.ZIP:hover, div.zip a:link, div.zip a:visited, div.zip a:hover
+{
+    padding: 0 0 3px 20px;
+    background: url('../Images/microsoft/icons/zip.png') no-repeat left top;
+}
+.listBlock a.pdf:link, .listBlock a.pdf:visited, .listBlock a.pdf:hover
+{
+    display: block;
+}
+.adControlImage img
+{
+    border: none;
+}
+p + table, table + p, div.tableWrapper + p, p + div.tableWrapper, div.tableWrapper + div.tableWrapper, .listBlock + div.tableWrapper, .linkBlock + div.tableWrapper, .coreSection + div.tableWrapper, div.tableWrapper + .coreSection, .splitBlock + .tableWrapper, .splitBlock + table, .tableWrapper + .splitBlock, div.tableWrapper + .Tabs-wrapper, table + .splitBlock
+{
+    margin-top: 1em;
+}
+.splitBlock div.tableWrapper
+{
+    margin: 0;
+}
+table
+{    
+    empty-cells: show;
+    width: 100%;
+    margin: 0;
+    padding: 0;    
+}
+table caption
+{
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 0.5em 0;
+    background: transparent;
+    text-align: left;
+}
+
+.rightmenulink
+{
+    padding-left:5px;
+    border-bottom: 1px solid #dcdcdc;        
+}
+
+table tr
+{    
+    border-bottom: 1px solid #DCDCDC;    
+}
+
+.accordionContent table tr:first-child
+{    
+    display:none;
+}
+
+.table_socngang
+{
+    width: 100%;
+    margin: 0;
+    padding: 0;    
+}
+
+.table_socngang td
+{
+    padding: 4px 10px 6px;
+    border-left: 1px solid #92bfde;    
+    border-bottom:none;
+    background: #fff;
+    vertical-align: top;
+}
+
+.table_socngang td:first-child
+{
+    border-left:0;    
+}
+
+table th, table td
+{
+    padding: 4px 10px 6px;
+    background: #fff;
+    vertical-align: top;
+}
+table th:first-child, table td:first-child
+{     
+}
+
+table td
+{    
+    padding-top: 4px;
+    padding-bottom: 5px;
+}
+table th
+{
+    text-align: left;
+    background: #5590ae;
+    color: #fff;
+}
+table th p, table td p
+{
+    margin: 0;
+}
+table th p + p, table td p + p
+{
+    margin-top: 1em;
+}
+.altRowStriping table tr.even td
+{
+    background: #eee;
+}
+
+.table_edit
+{
+    font-weight:bold;
+    width:100%;
+}
+
+.tableStyle1 table
+{
+    border: 0;
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding: 0;
+}
+.tableStyle1 table th
+{
+    border: 0;
+    background: transparent;
+    color: #000;
+}
+.tableStyle1 table td
+{
+    border: 0;
+    width: 180px;
+    padding: 1px 20px;
+    background: transparent url('../Images/microsoft/dots-vertical.gif') repeat-y left;
+    vertical-align: top;
+    text-align: left;
+}
+.tableStyle1 table tbody tr td:first-child
+{
+    background: none;
+}
+.tableStyle1 table td h3
+{
+    margin: 0 0 0.5em;
+    font-size: 1em;
+    line-height: 1em;
+    color: #2e2e2e;
+}
+.tableStyle1 td ul
+{
+    list-style: none;
+    margin: 1em 0;
+    padding: 0;
+    line-height: 130%;
+}
+.tableStyle1 td ul li
+{
+    margin: 0;
+    padding: 0.5em 0 0.5em 10px;
+    background: url('../Images/microsoft/ul-orange.gif') no-repeat 0 1.1em;
+}
+.tableStyle1 td ul li:first-child
+{
+    padding-top: 0;
+    background-position: 0 0.5em;
+}
+.tableStyle1 td ul ol
+{
+    list-style: decimal;
+    list-style-image: none;
+}
+.tableStyle1 td ul ol ol
+{
+    list-style: upper-alpha;
+}
+.tableStyle1 td ul ol ol ol
+{
+    list-style: lower-roman;
+}
+.tableStyle1 td ul ul
+{
+    list-style: disc;
+    list-style-image: none;
+}
+.tableStyle1 td ul ul ul
+{
+    list-style: circle;
+}
+.tableStyle1 td ul ul ul ul
+{
+    list-style: square;
+}
+.tableStyle1 td div.more a
+{
+    font-size: 1em;
+}
+.tableStyle4 table
+{
+    margin: 0 !important;
+    padding: 0;
+    border: 0 !important;
+}
+.tableStyle4 table th, .tableStyle4 table td
+{
+    border: 0 !important;
+    padding: 0 !important;
+    background: transparent none !important;
+    color: inherit !important;
+}
+.threeColumns table
+{
+    padding: 0;
+    border: 0 !important;
+}
+.threeColumns table th, .threeColumns table td
+{
+    border: 0 !important;
+    background: transparent none !important;
+    color: inherit !important;
+    width: 33.3%;
+}
+.threeColumns table td
+{
+    padding-right: 6px !important;
+}
+.threeColumns table td + td
+{
+    padding-right: 3px !important;
+    padding-left: 3px !important;
+}
+.threeColumns table td + td + td
+{
+    padding-left: 6px !important;
+}

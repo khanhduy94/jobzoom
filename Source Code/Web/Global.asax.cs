@@ -114,6 +114,11 @@ namespace JobZoom.Web
                 new { controller = "AdminUser", action = "Index", id = UrlParameter.Optional }
                 );
 
+            routes.MapRoute(
+                "AdminMapping",
+                "Admin/Mapping/{action}/{id}",
+                new { controller = "AdminMapping", action = "Index", id = UrlParameter.Optional }
+                );
 
             routes.MapRoute(
                 "Default", // Route name

@@ -115,9 +115,7 @@ namespace JobZoom.Core.Matching
 
                     matchingResults.Add(result);
                 }
-
             }
-
             return matchingResults;
         }
 

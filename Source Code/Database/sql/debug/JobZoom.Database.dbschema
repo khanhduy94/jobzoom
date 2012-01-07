@@ -947,10 +947,10 @@ BEGIN
 
 	SET @SQLString = N'IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS 
 						WHERE TABLE_NAME =''' + @viewName +  ''')
-						DROP VIEW '+  @viewName
+						DROP VIEW ['+  @viewName + ']'
 	EXECUTE (@SQLString)
 
-	SET @SQLString = N'CREATE VIEW ' + @viewName + ' AS
+	SET @SQLString = N'CREATE VIEW [' + @viewName + '] AS
 					SELECT row_number() over (order by pvt.ProfileBasicId desc) as ID, pvt.* FROM (
 						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, TagAttribute.TagName
 						FROM [Profile.Basic]
@@ -1060,7 +1060,7 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="2056" />
+				<Property Name="Length" Value="2065" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetPivotProfile]&#xD;&#xA;&#x9;@Prefix NVARCHAR(50),&#xD;&#xA;&#x9;@JobTitle&#x9;NVARCHAR(128)&#xD;&#xA;AS" />
@@ -2537,7 +2537,7 @@ END]]></Value>
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="1" />
+									<Property Name="Length" Value="10" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -2569,7 +2569,7 @@ END]]></Value>
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="ISql90TypeSpecifier">
-									<Property Name="Length" Value="1" />
+									<Property Name="Length" Value="10" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />

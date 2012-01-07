@@ -1,0 +1,30 @@
+﻿
+/**
+ * Temporary overrides pending core updates
+ */
+
+#pageTools {}
+#pageTools .pageToolsFeedback p { font-size: 1.1em; }
+#pageTools a.print { 
+	background-image: url('/global/dynamics/en/us/PublishingImages/pageToolsTemp/print.gif') !important;
+}
+#pageTools a.email { 
+	background-image: url('/global/dynamics/en/us/PublishingImages/pageToolsTemp/email.gif') !important;
+}
+#pageTools a.share {
+	background-image: url('/global/dynamics/en/us/PublishingImages/pageToolsTemp/share.gif') !important;
+}
+#share-this-page a.facebook {
+	background-image: url('/global/dynamics/en/us/PublishingImages/pageToolsTemp/facebook.png') !important;
+}
+
+
+/* Fixes display probs when scaling text (IE7 only) */
+#siteNav #siteNav_Top a { display: inline-block; }
+
+
+
+/*********************************************************************
+ Custom Classes and Overrides
+**********************************************************************/
+    	

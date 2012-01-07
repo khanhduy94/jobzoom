@@ -66,4 +66,17 @@ namespace JobZoom.Core.Taxonomy
             return tag;            
         }
     }
+
+    public class Test
+    {
+        public void DoTest()
+        {
+            TagAttribute rootNode = new TagAttribute{TagName = "Developer"};
+            Tag tag = new Tag(rootNode);
+
+            TagAttribute secondLevelNodeOne = new TagAttribute{TagName = "LINQ = False"};
+            TagAttribute secondLevelNodeTwe = new TagAttribute{TagName = "LINQ = True"};              
+        }
+    }
+
 }

@@ -8,34 +8,31 @@
         $("#Birthdate").datepicker({ dateFormat: "mm/dd/yy" });
     });    
 </script>
-
+<div id="page-title">
+    <span class="title">Basic Information</span> <span class="subtitle"></span>
+</div>
 @Html.ActionLink("1.Basic information", "Basic", "ProfileEdit")
 @Html.ActionLink("2.Education", "Education", "ProfileEdit")
 @Html.ActionLink("3.Work experience", "Work", "ProfileEdit")
-<h2>
-    Basic information</h2>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 <input id="hidden-userid" type="hidden" userid="@User.Identity.Name" />
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Basic Information</legend>
-
-        @Html.HiddenFor(model => model.ProfileBasicId)        
+        @Html.HiddenFor(model => model.ProfileBasicId)
         <div class="editor-field">
-            @Html.HiddenFor(model=> model.UserId)            
+            @Html.HiddenFor(model => model.UserId)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.FirstName)
         </div>
-        <div class="editor-field">
+        <div class="form-poshytip">
             @Html.EditorFor(model => model.FirstName)
             @Html.ValidationMessageFor(model => model.FirstName)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.LastName)
         </div>
@@ -43,7 +40,6 @@
             @Html.EditorFor(model => model.LastName)
             @Html.ValidationMessageFor(model => model.LastName)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Gender)
         </div>
@@ -51,7 +47,6 @@
             @Html.DropDownList("Gender")
             @Html.ValidationMessageFor(model => model.Gender)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Birthdate)
         </div>
@@ -59,7 +54,6 @@
             @Html.EditorFor(model => model.Birthdate)
             @Html.ValidationMessageFor(model => model.Birthdate)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.MaritalStatus)
         </div>
@@ -67,7 +61,6 @@
             @Html.DropDownList("MaritalStatus")
             @Html.ValidationMessageFor(model => model.MaritalStatus)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.ProfilePictureUrl)
         </div>
@@ -75,7 +68,6 @@
             @Html.EditorFor(model => model.ProfilePictureUrl)
             @Html.ValidationMessageFor(model => model.ProfilePictureUrl)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.AddressLine1)
         </div>
@@ -83,7 +75,6 @@
             @Html.EditorFor(model => model.AddressLine1)
             @Html.ValidationMessageFor(model => model.AddressLine1)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.AddressLine2)
         </div>
@@ -91,7 +82,6 @@
             @Html.EditorFor(model => model.AddressLine2)
             @Html.ValidationMessageFor(model => model.AddressLine2)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Country)
         </div>
@@ -99,7 +89,6 @@
             @Html.DropDownList("Country")
             @Html.ValidationMessageFor(model => model.Country)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.City)
         </div>
@@ -107,7 +96,6 @@
             @Html.DropDownList("City")
             @Html.ValidationMessageFor(model => model.City)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.ZipCode)
         </div>
@@ -115,7 +103,6 @@
             @Html.EditorFor(model => model.ZipCode)
             @Html.ValidationMessageFor(model => model.ZipCode)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Phone)
         </div>
@@ -123,7 +110,6 @@
             @Html.EditorFor(model => model.Phone)
             @Html.ValidationMessageFor(model => model.Phone)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.MobilePhone)
         </div>
@@ -131,7 +117,6 @@
             @Html.EditorFor(model => model.MobilePhone)
             @Html.ValidationMessageFor(model => model.MobilePhone)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Website)
         </div>
@@ -139,7 +124,6 @@
             @Html.EditorFor(model => model.Website)
             @Html.ValidationMessageFor(model => model.Website)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Facebook)
         </div>
@@ -147,7 +131,6 @@
             @Html.EditorFor(model => model.Facebook)
             @Html.ValidationMessageFor(model => model.Facebook)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Twitter)
         </div>
@@ -155,7 +138,6 @@
             @Html.EditorFor(model => model.Twitter)
             @Html.ValidationMessageFor(model => model.Twitter)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -163,15 +145,13 @@
     
 }
 <input id="hidden-birthdate" type="hidden" value="@String.Format("{0:MM/dd/yyyy}", Model.Birthdate)" />
-
 <script type="text/javascript">
     var userid = $("#hidden-userid").attr("userid");
-    var birthdate = $("#hidden-birthdate").attr("value");    
+    var birthdate = $("#hidden-birthdate").attr("value");
     $("#UserId").val(userid);
     $("#Birthdate").val(birthdate);    
     
 </script>
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
