@@ -69,6 +69,7 @@
     <Compile Include="DecisionTreeNodeDistribution.cs">
       <DependentUpon>CoreEntitiesModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntitiesManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimilarityTerm.cs">
       <DependentUpon>CoreEntitiesModel.tt</DependentUpon>

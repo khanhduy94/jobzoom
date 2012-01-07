@@ -241,7 +241,7 @@ namespace JobZoom.Core.Framework.DataMining
 
             if (!existsModelName(strModelName))
             {
-                throw new Exception("Model Name doesn't exists!");
+                throw new Exception("Model Name doesn't exists! (If model name existed, please check connection!)");
             }
             try
             {
@@ -283,7 +283,7 @@ namespace JobZoom.Core.Framework.DataMining
                     if (exceptAttributes != null && exceptAttributes.Length > 0)
                         results = results.Where(r => (!r.NodeDescription.isContainOneOfListAttributes(exceptAttributes))).ToList();
                 }
-                return results;
+                return results.OrderByDescending(r => r.getDetailProbability()).ToList();
             }
             catch (Exception ex)
             {
