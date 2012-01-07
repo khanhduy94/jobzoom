@@ -29,7 +29,7 @@ BEGIN
 
 	SET @SQLString = N'CREATE VIEW [' + @viewName + '] AS
 					SELECT row_number() over (order by pvt.ProfileBasicId desc) as ID, pvt.* FROM (
-						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle, [Job.Approval].IsApproved, TagAttribute.TagName
+						SELECT [Profile.Basic].ProfileBasicId, [Profile.Basic].UserId, [Job.Approval].JobPostingId, [Job.Posting].JobTitle as JobName, [Job.Approval].IsApproved, TagAttribute.TagName
 						FROM [Profile.Basic]
 						INNER JOIN TagAttribute on [Profile.Basic].ProfileBasicId = TagAttribute.ObjectId
 						LEFT JOIN [Job.Approval] ON [Job.Approval].ProfileID = [Profile.Basic].ProfileBasicId

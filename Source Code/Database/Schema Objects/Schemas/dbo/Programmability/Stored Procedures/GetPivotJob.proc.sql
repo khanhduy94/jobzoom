@@ -38,5 +38,4 @@ BEGIN
 						PIVOT (COUNT(TagName) FOR TagName
 						IN ('+@listCol+')) AS pvt'						
 	EXECUTE (@SQLString)
-
 END
