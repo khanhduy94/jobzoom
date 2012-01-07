@@ -26,19 +26,23 @@ namespace JobZoom.Core
             //Console.WriteLine("Build Mining Database...");
             //MiningDatabaseGenerator.BuildMiningDatabase_Console(MainServerConnectionString, AnalysisServerConnectionString, TempServerConnectionString, "PF", new DecisionTreeAlgorithmParameters());
 
-
+            //Decision Tree 
             string[] att = new string[] { };
             string[] ex_att = new string[] {  };
             List<DecisionTreeAnalysisResult> results = new List<DecisionTreeAnalysisResult>();
             //results = getAnalysisResults("Developer Evangelist", CompareType.GreaterThanOrEqualTo, 0.5);
             results = DecisionTreeAnalysis.getAnalysisResults(DecisionTreeAnalysis.convertJobTitleNameToModelName("Developer Evangelist", "PF"), att, ex_att, CompareType.GreaterThanOrEqualTo, 0.5);
+            
             foreach (var result in results)
             {
+
                 Console.WriteLine("NODE_ID = " + result.Node.NODE_ID);
+                Console.WriteLine("Probability = " + result.getDetailProbability());
                 foreach (var caption in result.NodeDescription.NodeCaptions)
                 {
-                    Console.WriteLine(caption.Name + " = " + caption.Value + " with Probability = " + result.getDetailProbability());
+                    Console.WriteLine(caption.Name + " = " + caption.Value);
                 }
+                
                 Console.WriteLine("");
             }
 

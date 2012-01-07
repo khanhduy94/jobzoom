@@ -25,7 +25,8 @@
           <EnableENC>False</EnableENC>
           <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
           <ProjectOutputReferences>
-            <Ref Project="{107266E5-D211-40AE-B582-90009BE051D7}" Folder="ClientBin">ICE.xap</Ref>
+            <Ref Project="{107266E5-D211-40AE-B582-90009BE051D7}" Folder="ClientBin">
+            </Ref>
           </ProjectOutputReferences>
         </WebProjectProperties>
       </FlavorProperties>
