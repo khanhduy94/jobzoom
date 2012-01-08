@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataMining\DecisionTreeManager.cs" />
     <Compile Include="DataMining\enumAttributeValue.cs" />
     <Compile Include="DataMining\enumCompareType.cs" />
     <Compile Include="DataMining\DecisionTreeAlgorithmParameters.cs" />

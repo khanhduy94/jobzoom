@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JobZoom.Core.Entities;
+using JobZoom.Core.DataMining;
+using JobZoom.Core.Framework.DataMining;
 
 namespace JobZoom.Core.Taxonomy
 {
     public class Tag : ComplexTreeNode<Tag>
-    {        
-        public TagAttribute TagAttribute { get; set; }        
-        
+    {
+        public TagAttribute TagAttribute { get; set; }
+
         private bool _Completed;
         public bool Completed
         {
@@ -33,7 +35,7 @@ namespace JobZoom.Core.Taxonomy
         {
             TagAttribute = tagAttribute;
             Completed = false;
-        }                      
+        }
     }
 
     public class Hierarchy
@@ -50,7 +52,7 @@ namespace JobZoom.Core.Taxonomy
 
             foreach (var i in classificationNodes)
             {
-                Tag secondLevelTag = new Tag(i);                
+                Tag secondLevelTag = new Tag(i);
                 tag.Children.Add(secondLevelTag);
                 tag.Depth = 2;
 
@@ -63,19 +65,51 @@ namespace JobZoom.Core.Taxonomy
                     tag.Depth = 3;
                 }
             }
-            return tag;            
+            return tag;
         }
-    }
 
-    public class Test
-    {
-        public void DoTest()
+        public Tag GetHierarchicalTreeByDecisionTree(string modelName)
         {
-            TagAttribute rootNode = new TagAttribute{TagName = "Developer"};
-            Tag tag = new Tag(rootNode);
+            modelName = "PFDeveloperEvangelist";
+            DecisionTreeManager dt = new DecisionTreeManager();
 
-            TagAttribute secondLevelNodeOne = new TagAttribute{TagName = "LINQ = False"};
-            TagAttribute secondLevelNodeTwe = new TagAttribute{TagName = "LINQ = True"};              
+            DecisionTreeNode dtroot = dt.GetDecisionTree(modelName);
+
+            TagAttribute att = new TagAttribute
+            {
+                TagId = Guid.NewGuid(),
+                TagName = dtroot.NODE_CAPTION,
+                TagValue = dtroot.NODE_CAPTION,
+                ObjectDeepLevel = 1,
+                ObjectType = "Decision Tree"
+            };
+            Tag root = new Tag(att);
+
+            addChildNodes(ref root, dtroot, 2);
+            return root;
+        }
+
+        public void addChildNodes(ref Tag ParentTag, DecisionTreeNode node, int ChildDeepLevel)
+        {
+            foreach (var child in node.DecisionTreeNode_Childs)
+            {
+                TagAttribute childAtt = new TagAttribute
+                {
+                    TagId = Guid.NewGuid(),
+                    TagName = child.NODE_CAPTION,
+                    TagValue = child.NODE_CAPTION,
+                    ObjectDeepLevel = ChildDeepLevel,
+                    ObjectType = "Decision Tree"
+                };
+                Tag tag = new Tag(childAtt);
+                ParentTag.Children.Add(tag);
+
+                if (child.NODE_TYPE != (int) DecisionTreeNodeType.Distribution)
+                {
+                    addChildNodes(ref tag, child, ChildDeepLevel + 1);
+                }
+            }
+
         }
     }
 
