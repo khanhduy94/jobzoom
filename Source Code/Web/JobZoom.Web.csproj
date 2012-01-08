@@ -144,6 +144,7 @@
     <Content Include="Content\HomeAccordion.css" />
     <Content Include="Content\jquery.tagit.css" />
     <Content Include="Content\FancySliding.css" />
+    <Content Include="Content\styleHome.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -182,6 +183,7 @@
     <Content Include="Images\background-tile.jpg" />
     <Content Include="Images\backgroundGradient_students.jpg" />
     <Content Include="Images\basic\x.png" />
+    <Content Include="Images\bigpicture.jpg" />
     <Content Include="Images\boxy-ne.png" />
     <Content Include="Images\boxy-nw.png" />
     <Content Include="Images\boxy-se.png" />
@@ -194,6 +196,7 @@
     <Content Include="Images\Hero920_GSLPlive-wshdw.jpg" />
     <Content Include="Images\loading.gif" />
     <Content Include="Images\loading_green.gif" />
+    <Content Include="Images\map.jpg" />
     <Content Include="Images\menubottom.png" />
     <Content Include="Images\microsoft\arrow-black.gif" />
     <Content Include="Images\microsoft\arrow.gif" />
@@ -260,7 +263,17 @@
     <Content Include="Images\microsoft\ul-arrow-dn.gif" />
     <Content Include="Images\microsoft\ul-orange.gif" />
     <Content Include="Images\microsoft\ul.gif" />
+    <Content Include="Images\moreg.jpg" />
+    <Content Include="Images\morer.jpg" />
+    <Content Include="Images\morey.jpg" />
+    <Content Include="Images\search_bg.gif" />
+    <Content Include="Images\submit.jpg" />
     <Content Include="Images\tipsy.gif" />
+    <Content Include="Images\title.gif" />
+    <Content Include="Images\title1.gif" />
+    <Content Include="Images\title2.gif" />
+    <Content Include="Images\title3.gif" />
+    <Content Include="Images\title4.gif" />
     <Content Include="Scripts\external\jquery.bgiframe-2.1.2.js" />
     <Content Include="Scripts\external\jquery.cookie.js" />
     <Content Include="Scripts\external\jquery.metadata.js" />

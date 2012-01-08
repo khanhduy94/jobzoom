@@ -2,3 +2,143 @@
     ViewBag.Title = "Home Page";
 }
 <h2>@ViewBag.Message</h2>
+
+<style type="text/css"> 
+    .search{
+        width:840px;
+        float:left;
+        color:#272727;
+        padding:0 0 16px 108px;
+        overflow:hidden;
+        /*background-image:url(../../Images/search_bg.gif);
+        background-position:top left;
+        background-repeat:repeat-x;*/
+        }
+     .search img{float:left}
+    .input{
+        height:17px;
+        float:left;
+        border:2px inset #CECECE;
+        margin:8px 0 0 7px;
+        padding:0 0 0 5px;
+        font-size:12px;
+        color:#454545
+        }
+     .button{
+        background-image:url(../../Images/button.gif);
+        background-position:top left;
+        background-repeat:no-repeat;
+        line-height:20px;
+        padding:0 0 4px 0;
+        width:67px;
+        text-align:center;
+        display:block;
+        float:left;
+        margin:7px 0 0 8px;
+        font-family:Tahoma, sans-serif;
+        font-size:11px;
+        color:#222222;
+        text-decoration:none
+        }
+      #blocks{
+background-image:url(../../Images/blocks_bg.gif);
+background-position:top left;
+background-repeat:repeat-y;
+width:860px;
+margin:0 40px;
+overflow:hidden;
+float:left;
+padding:23px 0 0 0;
+border-top:1px solid #fff;
+border-bottom:5px solid #fff
+}
+
+    .block{
+width:215px;
+float:left;
+}
+.block p{
+width:180px;
+display:block;
+margin:15px 0 20px 25px;
+}
+.red_text{color:#FEEAE6}
+.gray_text{color:#EDECEC}
+#list{
+padding:12px 0 18px 11px;
+}
+#list li{
+background-image:url(images/ul_bg.gif);
+background-position:top left;
+background-repeat:no-repeat;
+line-height:20px;
+padding:0 0 0 15px;
+margin:0 0 2px 0;
+list-style-type:none;
+}
+#list a{
+color:#FFFFFF;
+text-decoration:none
+}
+#list a:visited{text-decoration:none}
+#list a:hover{text-decoration:underline}
+.more{
+margin:0 0 0 57px;
+}
+.signup{
+width:165px;
+float:left;
+margin:2px 0 15px 22px;
+}
+.submit{
+margin:0 0 0 126px;
+float:left
+}
+
+    
+
+</style>
+
+<img src="../../Images/bigpicture.jpg" alt="" width="892" height="303" />
+
+<div class="search">
+	<img src="../../Images/title.gif" alt="" width="90" height="30" />
+	<input type="text" class="first input" value="Enter keywords" /> <input type="text" class="second input" value="Enter Locations (country, city, zip code)" />
+	<a href="#" class="button">Search</a>
+</div>
+
+<div id="blocks">																																																																																																																													
+	<div class="block">
+		<img src="images/title1.gif" alt="" width="214" height="29" /><br />
+		<img src="images/map.jpg" alt="" width="214" height="160" /><br />
+		<a href="#" class="more"><img src="images/morey.jpg" alt="" width="105" height="27" /></a>
+	</div>
+	<div class="block">
+		<img src="images/title2.gif" alt="" width="214" height="29" /><br />
+		<p class="red_text">Maecenas hendrerit, massa ac laoreet iaculipede mnisl ullamcorper- massa, cosectetuer feipsum eget pede. Proin nunc. Donec nonummy, tellus er sodales enim, in tincidun- mauris in odio. Massa ac laoreet iaculipede nisl ullamcorpermassa, ac consectetuer feipsum eget pede.  Proin nunc. Donec massa.</p>
+		<a href="#" class="more"><img src="images/morer.jpg" alt="" width="105" height="27" /></a>
+	</div>
+	<div class="block">
+		<img src="images/title3.gif" alt="" width="214" height="29" /><br />
+		<ul id="list">
+			<li><a href="#">Maecenas hendrerit</a></li>
+			<li><a href="#">Massa ac laoreet iaculipede</a></li>
+			<li><a href="#">Convallis nonummy tellus</a></li>
+			<li><a href="#">In tincidunt mauris</a></li>
+			<li><a href="#">Maecenas hendrerit</a></li>
+			<li><a href="#">Consectetuer feipsum eget</a></li>
+		</ul>
+		<a href="#" class="more"><img src="images/moreg.jpg" alt="" width="106" height="27" /></a>
+	</div>
+	<div class="block">
+		<img src="images/title4.gif" alt="" width="214" height="29" /><br />
+		<p class="gray_text">Maecenas hendrerit, massa ac laoreet iaculipede mnisl ullamcorper- massa, cosectetuer feipsum eget pede. Proin nunc. Donec nonummy, tellus er sodales enim, in tincidun- mauris in odio. </p>
+		<form action="#">
+			<input type="text" class="signup input" value="Your E-mail Address" style="width:150px"/>
+			<a href="#" class="submit"><img src="images/submit.jpg" alt="" width="69" height="25" /></a>
+		</form>
+	</div>
+</div>
+
+   
+
