@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JobZoom.Web.Models;
+using JobZoom.Core.Framework.DataMining;
+using JobZoom.Business.Entities;
 
 namespace JobZoom.Web.Controllers
 {
@@ -13,8 +16,27 @@ namespace JobZoom.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "aaa";
-            return View();
+            ResumeViewModel model = new ResumeViewModel();
+            JobZoomEntities entities = new JobZoomEntities();
+            Guid[] JobIDs = entities.Job_Approval.Where(a => a.UserId == User.Identity.Name && a.IsApproved == false).Select(a => a.JobPostingId).ToArray();
+            model.JobTitles = entities.Job_Posting.Where(j => JobIDs.Contains(j.JobPostingId)).Select(j => j.JobTitle).ToArray();
+
+            List<DecisionTreeAnalysisResult> results = new List<DecisionTreeAnalysisResult>();
+
+            foreach (string JobTitle in model.JobTitles)
+            {
+                try
+                {
+                    results = DecisionTreeAnalysis.getAnalysisResults(DecisionTreeAnalysis.convertJobTitleNameToModelName(JobTitle, model.Prefix), model.TypedAttributes, model.ExceptAttributes, model.CompareType, model.Probability);
+                    if (results != null)
+                    {
+                        RequiredTagName RequiredTag = new RequiredTagName(JobTitle, results.First().getNodeCaptionsWithValue(true).Select(nc => nc.Name).ToList());
+                        model.RequiredTagNames.Add(RequiredTag);
+                    }
+                }
+                catch (Exception) { }
+            }
+            return View(model);
         }
 
         //
