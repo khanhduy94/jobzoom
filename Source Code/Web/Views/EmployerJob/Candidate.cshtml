@@ -17,9 +17,10 @@
         }
     }
 </script>
-<h2>Candidate Profile</h2>
+<h1>Candidate Profile</h1>
 <h4 style="color:Red">Match: @Model.MatchPercent %</h4>
 <a id="detail" href="javascript:toggle('result','detail');">View detail results</a>
+<br />
 <div id="result" style="margin-left:10px; display:none; ">
     <h3>List attribute match</h3>
     <table style="width:400px">
@@ -53,53 +54,65 @@
     }
 </table>    
 </div>
-<fieldset style="width: 600px;margin-top:10px">
-<div style="margin-left:20px">
-    <div style="font-size:medium; font-weight:bold; padding-top:5px">
-        @Model.Basic.FirstName @Model.Basic.LastName
+<fieldset>
+    <div style="margin:0 20px; padding: 20px; border:solid 2px #999; border-radius:25px; -moz-border-radius:25px;">
+        <table width="100%">
+            <tr>
+                <td style="width:70%">
+                    <div style="font-size:medium; font-weight:bold; padding-top:5px">
+                        @Model.Basic.FirstName @Model.Basic.LastName
+                    </div>
+                    <div style="padding-top:5px">
+                        @Model.Basic.City - @Model.Basic.Country
+                    </div>
+                    <div style="padding-top:5px">
+                        Address: @Model.Basic.AddressLine1
+                    </div>
+                    <div style="padding-top:5px">
+                        Phone: @Model.Basic.Phone
+                    </div>
+                    <div style="padding-top:5px">
+                        Mobile: @Model.Basic.MobilePhone
+                    </div>
+                    <div style="padding-top:5px">
+                        Website: @Model.Basic.Website
+                    </div>
+                    <div style="padding-top:5px">
+                        Facebook: @Model.Basic.Facebook
+                    </div>
+                    <div style="padding-top:5px">
+                        Twitter: @Model.Basic.Twitter
+                    </div>
+                </td>
+                <td style="width:30%">
+                    <div style=" margin:20px; padding:5px; border:solid 1px #999; width:150px; height:auto;">
+                        hinh chan dung o day
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
-    <div style="padding-top:5px">
-        @Model.Basic.City - @Model.Basic.Country
-    </div>
-    <div style="padding-top:5px">
-        Address: @Model.Basic.AddressLine1
-    </div>
-    <div style="padding-top:5px">
-        Phone: @Model.Basic.Phone
-    </div>
-    <div style="padding-top:5px">
-        Mobile: @Model.Basic.MobilePhone
-    </div>
-    <div style="padding-top:5px">
-        Website: @Model.Basic.Website
-    </div>
-    <div style="padding-top:5px">
-        Facebook: @Model.Basic.Facebook
-    </div>
-    <div style="padding-top:5px">
-        Twitter: @Model.Basic.Twitter
-    </div>
-</div>
 </fieldset>
 
-<h3>Education</h3>
+<h2 style="color:#3DB1FF">Education</h2>
 @foreach (var item in Model.Education)
 {
     <fieldset>
         <legend>
-            @item.SchoolUniversityName
+            <h3>@item.SchoolUniversityName</h3>
         </legend>
         <div>@item.Major</div>
         <div>@item.StartDate - @item.EndDate</div>
         <div>@item.Description</div>        
     </fieldset>
 }
-
-<h3>Work experience</h3>
+<div style="border-bottom:dashed 1px #B8B8B8; color:White">.</div>
+<h2 style="color:#3DB1FF">Work experience</h2>
 @foreach (var item in Model.Experience)
 {                
     <fieldset>
-        <legend>@item.CompanyName                               
+        <legend>
+            <h3>@item.CompanyName</h3>
         </legend>
         <div>@item.JobTitle</div>
         <div>@item.StartDate - @item.EndDate</div>

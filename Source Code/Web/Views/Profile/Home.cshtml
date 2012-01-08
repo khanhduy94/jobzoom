@@ -39,40 +39,52 @@
         throw new Error(errMsg);
     }
 </script>
-<div id="page-title">
+<h1>
     <span class="title">Profile</span> <span class="subtitle">Job seeker</span>
-</div>
-@Html.ActionLink("Edit Profile", "Basic", "ProfileEdit")
+</h1>
+
+@Html.ActionLink("Edit Profile", "Basic", "ProfileEdit") |
 @Html.ActionLink("Resume", "index", "ProfileResume")
-<h2>
-    Thêm hình của Profile</h2>
+
+<h2>Thêm hình của Profile</h2>
 <input id="hidden-userid" type="hidden" profilebasicid="@Model.ProfileBasicId" />
-<fieldset style="width: 600px; margin-top: 10px">
-    <div style="margin-left: 20px">
-        <div style="font-size: medium; font-weight: bold; padding-top: 5px">
-            @Model.FirstName @Model.LastName
-        </div>
-        <div style="padding-top: 5px">
-            @Model.City - @Model.Country
-        </div>
-        <div style="padding-top: 5px">
-            Address: @Model.AddressLine1
-        </div>
-        <div style="padding-top: 5px">
-            Phone: @Model.Phone
-        </div>
-        <div style="padding-top: 5px">
-            Mobile: @Model.MobilePhone
-        </div>
-        <div style="padding-top: 5px">
-            Website: @Model.Website
-        </div>
-        <div style="padding-top: 5px">
-            Facebook: @Model.Facebook
-        </div>
-        <div style="padding-top: 5px">
-            Twitter: @Model.Twitter
-        </div>
+<fieldset>
+    <div style="margin:0 20px; padding: 20px; border:solid 2px #999; border-radius:25px; -moz-border-radius:25px;">
+        <table width="100%">
+            <tr>
+                <td style="width:70%">
+                    <div style="font-size: medium; font-weight: bold; padding-top: 5px">
+                        @Model.FirstName @Model.LastName
+                    </div>
+                    <div style="padding-top: 5px">
+                        @Model.City - @Model.Country
+                    </div>
+                    <div style="padding-top: 5px">
+                        Address: @Model.AddressLine1
+                    </div>
+                    <div style="padding-top: 5px">
+                        Phone: @Model.Phone
+                    </div>
+                    <div style="padding-top: 5px">
+                        Mobile: @Model.MobilePhone
+                    </div>
+                    <div style="padding-top: 5px">
+                        Website: @Model.Website
+                    </div>
+                    <div style="padding-top: 5px">
+                        Facebook: @Model.Facebook
+                    </div>
+                    <div style="padding-top: 5px">
+                        Twitter: @Model.Twitter
+                    </div>
+                </td>
+                <td style="width:30%">
+                    <div style=" margin:20px; padding:5px; border:solid 1px #999; width:150px; height:auto;">
+                        hinh chan dung o day
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </fieldset>
 <h2>

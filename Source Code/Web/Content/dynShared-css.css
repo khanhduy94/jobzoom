@@ -19,7 +19,8 @@ body
 
 #silverlightControlHost
 {
-    display: none;
+    height:100%;
+    text-align:center;
 }
 
 .hide

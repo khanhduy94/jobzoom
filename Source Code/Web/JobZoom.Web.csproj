@@ -178,6 +178,7 @@
     </Content>
     <Content Include="iceSettings.xml" />
     <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\apply-icon.png" />
     <Content Include="Images\background-tile.jpg" />
     <Content Include="Images\backgroundGradient_students.jpg" />
     <Content Include="Images\basic\x.png" />

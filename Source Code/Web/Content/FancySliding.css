@@ -1,11 +1,7 @@
-*{
-    margin:0px;
-    padding:0px;
-}
 #content{
-    margin:15px auto;
+    /*margin:15px auto;*/
     text-align:center;
-    width:600px;
+    /*width:600px;*/
     position:relative;
     height:100%;
 }
@@ -20,6 +16,7 @@
     background-color:#f9f9f9;
     width:600px;
     overflow:hidden;
+    margin:0 auto;
 }
 #steps{
     width:600px;

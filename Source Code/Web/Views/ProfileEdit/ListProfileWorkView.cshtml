@@ -3,7 +3,8 @@
 @foreach (var item in Model)
 {                
     <fieldset>
-        <legend>@item.CompanyName <span class="edit-work ButtonLink" profileworkid="@item.ProfileWorkId">Edit</span>                               
+        <legend>
+            <h3>@item.CompanyName &nbsp; <a style="color:#0066cc"><span class="edit-work ButtonLink" profileworkid="@item.ProfileWorkId">Edit</span></a></h3>
         </legend>
         <div>@item.JobTitle</div>
         <div>@item.StartDate - @item.EndDate</div>

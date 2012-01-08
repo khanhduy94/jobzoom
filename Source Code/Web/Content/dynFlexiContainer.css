@@ -2316,11 +2316,13 @@ table th, table td
     vertical-align: top;
 }
 table th:first-child, table td:first-child
-{     
+{  
+    border:1px solid #DCDCDC;   /*add here*/
 }
 
 table td
 {    
+    border:1px solid #DCDCDC; /*add here*/
     padding-top: 4px;
     padding-bottom: 5px;
 }
