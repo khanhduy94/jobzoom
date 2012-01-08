@@ -88,9 +88,11 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCompanyController.cs" />
+    <Compile Include="Controllers\AdminMappingController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\EmployerEditJobController.cs" />
     <Compile Include="Controllers\EmployerHomeController.cs" />
+    <Compile Include="Controllers\EmployerJobController.cs" />
     <Compile Include="Controllers\EmployerJobPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobApplyController.cs" />
@@ -499,6 +501,7 @@
     <Content Include="Views\EmployerEditJob\GraphView.cshtml" />
     <Content Include="Views\EmployerEditJob\Weight.cshtml" />
     <Content Include="Views\EmployerEditJob\TagWeight.cshtml" />
+    <Content Include="Views\AdminMapping\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,7 +11,13 @@ namespace JobZoom.Core.Matching
     {
         public double RequirePoint { get; private set; }
         public double MatchingPoint { get; private set; }
-        public IEnumerable<MatchingResult> Results { get; private set; }       
+        public IEnumerable<MatchingResult> Results { get; private set; }
+
+        public MatchingTool()
+        {
+            RequirePoint = 0;
+            MatchingPoint = 0;
+        }
 
         public void Match(Guid sourceId, Guid targetId)
         {
@@ -25,9 +31,9 @@ namespace JobZoom.Core.Matching
                 Results = Process(sourceTag, targetTag);
                 MatchingPoint = Results.Where(i => i.IsMatchAbsolute == true).Sum(i => (i.TagMatch.Weight != null ? i.TagMatch.Weight.Value : 0));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                
             }
         }
 

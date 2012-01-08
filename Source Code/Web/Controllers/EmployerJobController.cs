@@ -52,8 +52,14 @@ namespace JobZoom.Web.Controllers
 
             // Matching profile with job
             MatchingTool tool = new MatchingTool();
-            tool.Match(id, jobid);            
-            ViewBag.MatchRate = tool.MatchingPoint / tool.RequirePoint * 100;
+            tool.Match(id, jobid);
+            int matchPercent = 0;
+            if (tool.RequirePoint != 0)
+            {
+                matchPercent = Convert.ToInt32(tool.MatchingPoint / tool.RequirePoint * 100);
+            }
+            profile.MatchPercent = matchPercent;
+            profile.MatchResult = tool.Results;
 
             return View(profile);
         }

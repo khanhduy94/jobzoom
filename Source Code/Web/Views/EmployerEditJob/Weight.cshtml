@@ -18,30 +18,29 @@
 </script>
 <h2>
     Assign Weight to job</h2>
-<h3>@Model.TagAttribute.TagName</h3>
-@foreach (JobZoom.Core.Taxonomy.Tag node in Model.Children)
+@if (Model.TagAttribute != null)
 {
-    
-    <div style="font-weight: bold; margin-left: 10px">
-        <a id="@node.TagAttribute.TagName" style="font-size:larger; text-decoration:none ; font-weight: bold;" href="javascript:toggle('@node.TagAttribute.TagId','@node.TagAttribute.TagName');" >
-            -</a> @node.TagAttribute.TagName</div>
-    
-        
-    <div id="@node.TagAttribute.TagId" style="margin-left: 20px; display:block">
-        @foreach (JobZoom.Core.Taxonomy.Tag item in node.Children)
-        {            
-            <fieldset style="width:300px; padding:1; margin-bottom:10px">
-                <div>@item.TagAttribute.TagName - @Html.ActionLink("Edit", "TagWeight", "EmployerEditJob", new { id = item.TagAttribute.TagId }, null)</div>
-                <div>
-                    Value: @item.TagAttribute.TagValue</div>
-                <div>
-                    Weight: @item.TagAttribute.Weight</div>
-                <div>
-                    Value type: @item.TagAttribute.ValueType</div>
-                <div>
-                    Value metric: @item.TagAttribute.TagValueMetric</div>
-            </fieldset>            
-        }
-    </div>
-
+    <h3>@Model.TagAttribute.TagName</h3>
 }
+@foreach (JobZoom.Core.Taxonomy.Tag node in Model.Children) {
+<div style="font-weight: bold; margin-left: 10px">
+    <a id="@node.TagAttribute.TagName" style="font-size:larger; text-decoration:none ; font-weight: bold;" href="javascript:toggle('@node.TagAttribute.TagId','@node.TagAttribute.TagName');" >
+        -</a> @node.TagAttribute.TagName</div>
+
+<div id="@node.TagAttribute.TagId" style="margin-left: 20px; display:block">
+    @foreach (JobZoom.Core.Taxonomy.Tag item in node.Children)
+    {            
+        <fieldset style="width: 300px; padding: 1; margin-bottom: 10px">
+            <div>@item.TagAttribute.TagName - @Html.ActionLink("Edit", "TagWeight", "EmployerEditJob", new { id = item.TagAttribute.TagId }, null)</div>
+            <div>
+                Value: @item.TagAttribute.TagValue</div>
+            <div>
+                Weight: @item.TagAttribute.Weight</div>
+            <div>
+                Value type: @item.TagAttribute.ValueType</div>
+            <div>
+                Value metric: @item.TagAttribute.TagValueMetric</div>
+        </fieldset>            
+    }
+</div>
+} 
