@@ -29,13 +29,14 @@ namespace JobZoom.Web
             try
             {
                 // ensure the id argument is not null
-                if (Request["id"] == null)
+                if (Request["id"] == null && Request["type"] == null)
                 {
                     throw new Exception("Not a valid \"id\" argument");
                 }
 
                 string id = Request["id"];
-                Root root = CreateDataFile(id);
+                string type = Request["type"];
+                Root root = CreateDataFile(id, type);
 
                 XmlSerializer serializer =
                     new XmlSerializer(typeof(Root));
@@ -118,12 +119,21 @@ namespace JobZoom.Web
             return root;
         }
 
-        private Root CreateDataFile(string id)
+        private Root CreateDataFile(string id, string type)
         {
-
+            //PFDeveloperEvangelist
+            Tag tag = new Tag(new TagAttribute { });
+            switch (type)
+            {
+                case "tree":
+                    tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id));
+                    break;
+                case "decisiontree":
+                    tag = new Hierarchy().GetHierarchicalTreeByDecisionTree(id);
+                    break;
+            }
             //JobZoom Core
-            //Tag tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id));
-            Tag tag = new Hierarchy().GetHierarchicalTreeByDecisionTree("PFDeveloperEvangelist");
+            //Tag tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id));            
             // we create the xml structure
             Root root = new Root();
             root.currentNode = new RootCurrentNode();
