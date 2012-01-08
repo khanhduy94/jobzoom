@@ -93,11 +93,12 @@ namespace JobZoom.Core.Taxonomy
         {
             foreach (var child in node.DecisionTreeNode_Childs)
             {
+                string value = child.NODE_CAPTION + "(Support = " + child.NODE_SUPPORT + ", P = " + child.DecisionTreeNodeDistributions.First(nd => nd.ATTRIBUTE_VALUE == "True").PROBABILITY + ")";
                 TagAttribute childAtt = new TagAttribute
                 {
                     TagId = Guid.NewGuid(),
-                    TagName = child.NODE_CAPTION,
-                    TagValue = child.NODE_CAPTION,
+                    TagName = value,
+                    TagValue = value,
                     ObjectDeepLevel = ChildDeepLevel,
                     ObjectType = "Decision Tree"
                 };

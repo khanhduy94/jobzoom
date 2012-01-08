@@ -61,7 +61,7 @@ namespace JobZoom.Web
 
         }
 
-        private Root CreateDataFile(string id)
+        private Root CreateDataFile1(string id)
         {
 
             //JobZoom Core
@@ -116,6 +116,50 @@ namespace JobZoom.Web
             root.currentNode.link = links.ToArray();
 
             return root;
+        }
+
+        private Root CreateDataFile(string id)
+        {
+
+            //JobZoom Core
+            //Tag tag = new Hierarchy().GetHierarchicalTreeByObject(new Guid(id));
+            Tag tag = new Hierarchy().GetHierarchicalTreeByDecisionTree("PFDeveloperEvangelist");
+            // we create the xml structure
+            Root root = new Root();
+            root.currentNode = new RootCurrentNode();
+
+            // we create two empty lists to complete the structure
+            // we will use them later
+            List<Node> neighbors = new List<Node>();
+            List<Link> links = new List<Link>();
+
+            // this function creates a node                             
+            root.currentNode.node = CreateNodeFromObject(tag.TagAttribute);
+
+            //Add link between nodes
+            AddLinkBetweenNodeGraph(tag, root.currentNode.node, ref neighbors, ref links);
+            
+            root.neighbors = neighbors.ToArray();
+            root.currentNode.link = links.ToArray();
+
+            return root;
+        }
+
+        private void AddLinkBetweenNodeGraph(Tag ParentTag, Node currentNode, ref List<Node> neighbors, ref List<Link> links)
+        {
+            foreach (Tag childTag in ParentTag.Children)
+            {
+                TagAttribute childNode = childTag.TagAttribute;
+                Node nodeBefore = CreateNodeFromObject(childNode);
+                neighbors.Add(nodeBefore);
+                Link relation = CreateLinkBetween(currentNode, nodeBefore);
+                links.Add(relation);
+
+                if (childTag.Children.Count > 0)
+                {
+                    AddLinkBetweenNodeGraph(childTag, nodeBefore, ref neighbors, ref links);
+                }
+            }
         }
 
         private Link CreateLinkBetween(Node from, Node to)

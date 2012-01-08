@@ -502,6 +502,7 @@
     <Content Include="Views\EmployerEditJob\Weight.cshtml" />
     <Content Include="Views\EmployerEditJob\TagWeight.cshtml" />
     <Content Include="Views\AdminMapping\Index.cshtml" />
+    <Content Include="Views\ProfileResume\DecisionTreeGraphView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

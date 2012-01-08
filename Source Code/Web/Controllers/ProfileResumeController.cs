@@ -124,5 +124,13 @@ namespace JobZoom.Web.Controllers
                 return View();
             }
         }
+
+        [OutputCache(Duration = 0)]
+        [HttpGet]
+        public ActionResult CreateDecisionTreeGraph(Guid id)
+        {
+            JobGraphViewModel model = new JobGraphViewModel(id);
+            return PartialView("GraphView", model);
+        }
     }
 }
