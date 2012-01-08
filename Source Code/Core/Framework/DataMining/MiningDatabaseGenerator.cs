@@ -904,7 +904,8 @@ namespace JobZoom.Core.Framework.DataMining
                     //chu y kiem tra ky tu '
                     for (int i = 0; i < source.Length; i++)
                     {
-                        strQuery = "UPDATE DecisionTreeNode SET NODE_CAPTION = REPLACE(NODE_CAPTION, '" + source[i] + "', '" + target[i] + "'), " +
+                        strQuery = "UPDATE DecisionTreeNode SET MODEL_NAME = REPLACE(MODEL_NAME, '" + source[i] + "', '" + target[i] + "'), " +
+                                "NODE_CAPTION = REPLACE(NODE_CAPTION, '" + source[i] + "', '" + target[i] + "'), " +
                                 "NODE_DESCRIPTION = REPLACE(cast(NODE_DESCRIPTION as NVARCHAR(MAX)), '" + source[i] + "', '" + target[i] + "')," + 
                                 "MSOLAP_NODE_SHORT_CAPTION = REPLACE(MSOLAP_NODE_SHORT_CAPTION, '" + source[i] + "', '" + target[i] + "');";
                         executeQuery(DatabaseConnectionString, strQuery);
