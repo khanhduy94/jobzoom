@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using JobZoom.Web.Models;
 using JobZoom.Core.Framework.DataMining;
 using JobZoom.Business.Entities;
+using JobZoom.Core.Taxonomy;
+using JobZoom.Core.Entities;
 
 namespace JobZoom.Web.Controllers
 {
@@ -18,10 +20,26 @@ namespace JobZoom.Web.Controllers
         {
             ResumeViewModel model = new ResumeViewModel();
             JobZoomEntities entities = new JobZoomEntities();
+            JobZoomCoreEntities coreEntities = new JobZoomCoreEntities();
             Guid[] JobIDs = entities.Job_Approval.Where(a => a.UserId == User.Identity.Name && a.IsApproved == false).Select(a => a.JobPostingId).ToArray();
             model.JobTitles = entities.Job_Posting.Where(j => JobIDs.Contains(j.JobPostingId)).Select(j => j.JobTitle).ToArray();
+            model.AppliedJobs = entities.Job_Posting.Where(j => JobIDs.Contains(j.JobPostingId)).ToList();
+            model.TagAttributeDics = new List<TagAttributeDic>();
+            foreach (var jobId in JobIDs)
+            {
+                List<TagAttribute> listAttributes = coreEntities.TagAttributes.Where(x => x.ObjectId == jobId && x.ObjectDeepLevel == 3).ToList();
+
+                TagAttributeDic tagAttributeDic = new TagAttributeDic
+                {
+                    JobId = jobId,
+                    TagAttributes = listAttributes
+                };
+                model.TagAttributeDics.Add(tagAttributeDic);
+            }
+            
 
             List<DecisionTreeAnalysisResult> results = new List<DecisionTreeAnalysisResult>();
+            
 
             foreach (string JobTitle in model.JobTitles)
             {
@@ -37,92 +55,6 @@ namespace JobZoom.Web.Controllers
                 catch (Exception) { }
             }
             return View(model);
-        }
-
-        //
-        // GET: /ProfileResume/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
-        // GET: /ProfileResume/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /ProfileResume/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /ProfileResume/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /ProfileResume/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /ProfileResume/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /ProfileResume/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         [OutputCache(Duration = 0)]

@@ -1,39 +1,80 @@
-﻿@{
+﻿@model JobZoom.Web.Models.ResumeViewModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h1>Resume Zoom</h1>
-
+<h1>
+    Resume Zoom</h1>
 @Html.ActionLink("Edit Profile", "Home", "Profile") |
 @Html.ActionLink("Resume", "Index", "ProfileResume")
-
-
-
 <div id="wrapper">
     <div id="steps">
         <form method="post" action="" name="formElem" id="formElem">
+        @*<fieldset class="step">
+            <legend>Account</legend>
+            <p style="background-color: #8861FF">
+                <label for="username">
+                    User name</label>
+                <input name="username" id="username">
+                <label style="float: right; color: Red; text-shadow: none;">
+                    ASFHGFJ</label>
+            </p>
+            <p>
+                <label for="email">
+                    Email</label>
+                <input type="email" autocomplete="OFF" placeholder="info@tympanus.net" name="email"
+                    id="email">
+                <label style="float: right; color: Red; text-shadow: none;">
+                    ASFHGFJ</label>
+            </p>
+            <p>
+                <label for="password">
+                    Password</label>
+                <input type="password" autocomplete="OFF" name="password" id="password">
+            </p>
+        </fieldset>*@
+        @foreach (var i in Model.AppliedJobs)
+        {
             <fieldset class="step">
+                <legend>@i.JobTitle</legend>
+                @{var listAttribute = Model.TagAttributeDics.Where(x => x.JobId == i.JobPostingId).Single().TagAttributes;
+                  foreach (var j in listAttribute)
+                  {
+                    <p style="background-color: #8861FF">
+                        <label for="username">
+                            @j.TagName</label>
+                        <input name="username" id="username">
+                        <label style="float: right; color: Red; text-shadow: none;">
+                            ASFHGFJ</label>
+                    </p>
+                  }
+                }
+            </fieldset>
+@*<fieldset class="step">
                 <legend>Account</legend>
-                <p style="background-color:#8861FF">
-                    <label for="username">User name</label>
+                <p style="background-color: #8861FF">
+                    <label for="username">
+                        User name</label>
                     <input name="username" id="username">
-                    <label style="float:right; color:Red; text-shadow:none;">ASFHGFJ</label>
+                    <label style="float: right; color: Red; text-shadow: none;">
+                        ASFHGFJ</label>
                 </p>
-                
                 <p>
-                    <label for="email">Email</label>
-                    <input type="email" autocomplete="OFF" placeholder="info@tympanus.net" name="email" id="email">
-                    <label style="float:right; color:Red; text-shadow:none;">ASFHGFJ</label>
+                    <label for="email">
+                        Email</label>
+                    <input type="email" autocomplete="OFF" placeholder="info@tympanus.net" name="email"
+                        id="email">
+                    <label style="float: right; color: Red; text-shadow: none;">
+                        ASFHGFJ</label>
                 </p>
-                
-
                 <p>
-                    <label for="password">Password</label>
+                    <label for="password">
+                        Password</label>
                     <input type="password" autocomplete="OFF" name="password" id="password">
                 </p>
-            </fieldset>
-            <fieldset class="step">
+            </fieldset>*@
+        }
+        @*<fieldset class="step">
                 <legend>Personal Details</legend>
                 <p>
                     <label for="name">Full Name</label>
@@ -112,27 +153,22 @@
                 <p class="submit">
                     <button type="submit" id="registerButton">Register</button>
                 </p>
-            </fieldset>
+            </fieldset>*@
         </form>
     </div>
-    <div style="display:none;" id="navigation">
+    <div style="display: none;" id="navigation">
         <ul>
-            <li class="selected">
-                <a href="#">ASP.NET Developer</a>
-            </li>
-            <li>
-                <a href="#">Database Lecture</a>
-            </li>
-            <li>
-                <a href="#">Microsoft Developer Evangelist</a>
-            </li>
-            <li>
-                <a href="#">Android Developer</a>
-            </li>
-			<li>
-                <a href="#">.NET Developer</a>
-            </li>
+            @foreach (var i in Model.AppliedJobs)
+            {
+                <li class="selected"><a href="#">@i.JobTitle</a> </li>
+            }
         </ul>
+        @*<ul>
+            <li class="selected"><a href="#">ASP.NET Developer</a> </li>
+            <li><a href="#">Database Lecture</a> </li>
+            <li><a href="#">Microsoft Developer Evangelist</a> </li>
+            <li><a href="#">Android Developer</a> </li>
+            <li><a href="#">.NET Developer</a> </li>
+        </ul>*@
     </div>
 </div>
-        
