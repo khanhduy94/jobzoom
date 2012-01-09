@@ -8,6 +8,7 @@ using JobZoom.Core.Framework.DataMining;
 using JobZoom.Business.Entities;
 using JobZoom.Core.Taxonomy;
 using JobZoom.Core.Entities;
+using JobZoom.Core.DataMining;
 
 namespace JobZoom.Web.Controllers
 {
@@ -61,8 +62,13 @@ namespace JobZoom.Web.Controllers
         [HttpGet]
         public ActionResult CreateDecisionTreeGraph(Guid id)
         {
-            JobGraphViewModel model = new JobGraphViewModel(id);
-            return PartialView("GraphView", model);
+            JobZoomEntities db = new JobZoomEntities();
+            string jobTitle = db.Job_Posting.Where(x => x.JobPostingId == id).Single().JobTitle;
+
+            string modelName = DecisionTreeAnalysis.convertJobTitleNameToModelName(jobTitle, "PF");
+            
+            JobGraphViewModel model = new JobGraphViewModel(modelName);
+            return PartialView("DecisionTreeGraphView", model);
         }
     }
 }

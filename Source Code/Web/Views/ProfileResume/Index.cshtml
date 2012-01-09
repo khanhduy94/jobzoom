@@ -3,40 +3,80 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    // increase the default animation speed to exaggerate the effect
+    var educationexpid = $("#hidden-educationexpid").attr("educationexpid");
+    $.fx.speeds._default = 1000;
+    $(function () {
+        $("#education-dialog").dialog({
+            autoOpen: false,
+            height: 600,
+            width: 700,
+            show: "blind",
+            hide: "explode",
+            buttons: {
+                "Save": function () {
+                    $.post("/Employer/Job/Edit/SaveEducation",
+                        $("#EditEducationExpView").serialize(),
+                        function (data) {
+                            $("#education-dialog").dialog("close");
+                            $("#divEducationExpList").html(data);
+                        });
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+
+        $("#create-education").click(function () {
+            $("#education-dialog").html("")
+                .dialog("option", "title", "Create Education")
+                .load("/Employer/Job/Edit/CreateEducation/" + educationexpid, function () { $("#education-dialog").dialog("open"); });
+        });
+        $(".edit-education").live("click", function () {
+            var id = $(this).attr("profileeducationid");
+            $("#education-dialog").html("")
+                .dialog("option", "title", "Edit Work")
+                .load("/Employer/Job/Edit/EditEducation/" + id, function () { $("#education-dialog").dialog("open"); });
+        });
+        LoadProfileWorkList();
+
+        $("#graph-dialog").dialog({
+            autoOpen: false,
+            height: 700,
+            width: 900,
+            show: "blind"
+        });
+        $("#view-graph").click(function () {
+            $("#graph-dialog").html("")
+                .dialog("option", "title", "Create Education")
+                .load("/Employer/Job/Edit/CreateGraph/" + "76391aec-eaa5-4c71-b9be-ebaaf1bf1735", function () { $("#graph-dialog").dialog("open"); });
+        });
+        $(".edit-graph").live("click", function () {
+            var id = $(this).attr("jobid");
+            $("#graph-dialog").html("")
+                .dialog("option", "title", "Edit Work")
+                .load("/Profile/Resume/CreateDecisionTreeGraph/" + id, function () { $("#graph-dialog").dialog("open"); });
+        });
+
+    });
+    function LoadProfileWorkList() {
+        $("#divEducationExpList").load("/Employer/Job/Edit/ListEducations/" + educationexpid);
+    }
+</script>
 <h1>
     Resume Zoom</h1>
 @Html.ActionLink("Edit Profile", "Home", "Profile") |
 @Html.ActionLink("Resume", "Index", "ProfileResume")
+
 <div id="wrapper">
     <div id="steps">
         <form method="post" action="" name="formElem" id="formElem">
-        @*<fieldset class="step">
-            <legend>Account</legend>
-            <p style="background-color: #8861FF">
-                <label for="username">
-                    User name</label>
-                <input name="username" id="username">
-                <label style="float: right; color: Red; text-shadow: none;">
-                    ASFHGFJ</label>
-            </p>
-            <p>
-                <label for="email">
-                    Email</label>
-                <input type="email" autocomplete="OFF" placeholder="info@tympanus.net" name="email"
-                    id="email">
-                <label style="float: right; color: Red; text-shadow: none;">
-                    ASFHGFJ</label>
-            </p>
-            <p>
-                <label for="password">
-                    Password</label>
-                <input type="password" autocomplete="OFF" name="password" id="password">
-            </p>
-        </fieldset>*@
         @foreach (var i in Model.AppliedJobs)
         {
             <fieldset class="step">
-                <legend>@i.JobTitle</legend>
+                <legend>@i.JobTitle</legend><a></a><span class="edit-graph ButtonLink" jobid="@i.JobPostingId">View Dicision Tree</span>
                 @{var listAttribute = Model.TagAttributeDics.Where(x => x.JobId == i.JobPostingId).Single().TagAttributes;
                   foreach (var j in listAttribute)
                   {
@@ -171,4 +211,6 @@
             <li><a href="#">.NET Developer</a> </li>
         </ul>*@
     </div>
+</div>
+<div id="graph-dialog" title="" class="Hidden">
 </div>

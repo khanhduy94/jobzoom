@@ -15,7 +15,17 @@ namespace JobZoom.Web.Models
             this.JobHierarchicalTree = jobHierarchicalTree;
             this.JobId = jobId;
         }
+
+        public JobGraphViewModel(string jobtile)
+        {
+            Hierarchy hierarchy = new Hierarchy();
+            Tag decisionTree = hierarchy.GetHierarchicalTreeByDecisionTree(jobtile);
+            this.DecisionTree = decisionTree;
+            this.JobTitile = jobtile;
+        }
         public Guid JobId { get; set; }
         public Tag JobHierarchicalTree { get; set; }
+        public string JobTitile { get; set; }
+        public Tag DecisionTree { get; set; }
     }
 }
